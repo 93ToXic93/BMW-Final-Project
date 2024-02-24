@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BMW-Final-Project", "BMW-Final-Project\BMW-Final-Project.csproj", "{D25C6FBD-26DF-454F-94AD-194659E62180}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BMW-Final-Project", "BMW-Final-Project\BMW-Final-Project.csproj", "{D25C6FBD-26DF-454F-94AD-194659E62180}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BMW-Final-Project.Core", "BMW-Final-Project.Core\BMW-Final-Project.Core.csproj", "{1DF47EC8-2DE6-43C6-88BA-ADEE5205A3C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BMW-Final-Project.Infrastructure", "BMW-Final-Project.Infrastructure\BMW-Final-Project.Infrastructure.csproj", "{CDB4FF97-D50A-4635-9913-DDBC13647DA9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{D25C6FBD-26DF-454F-94AD-194659E62180}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D25C6FBD-26DF-454F-94AD-194659E62180}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D25C6FBD-26DF-454F-94AD-194659E62180}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DF47EC8-2DE6-43C6-88BA-ADEE5205A3C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DF47EC8-2DE6-43C6-88BA-ADEE5205A3C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DF47EC8-2DE6-43C6-88BA-ADEE5205A3C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DF47EC8-2DE6-43C6-88BA-ADEE5205A3C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDB4FF97-D50A-4635-9913-DDBC13647DA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDB4FF97-D50A-4635-9913-DDBC13647DA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDB4FF97-D50A-4635-9913-DDBC13647DA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDB4FF97-D50A-4635-9913-DDBC13647DA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

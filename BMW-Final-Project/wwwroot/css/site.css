@@ -27,30 +27,40 @@ html {
 
 .Home-RR-Button {
     position: absolute;
-    left:6%;
-    top:58%;
+    left: 6%;
+    top: 58%;
     width: 250px;
-    height:50px;
-    border:none;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size:23px;
-    transition:0.3s;
+    height: 50px;
+    border: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 23px;
+    transition: 0.3s;
 }
+
     .Home-RR-Button:hover {
         background-color: #0062FF;
         color: white;
     }
 
-.Text-Home-RR-Img{
-    position:absolute;
-    top:40%;
-    left:6%;
-    color:white;
-    font-size:27px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color:white;
+.Text-Home-RR-Img {
+    position: absolute;
+    top: 40%;
+    left: 6%;
+    color: white;
+    font-size: 27px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
 }
+
 .Text-Home-RR-Img-Top {
     font-size: 50px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
+
+.btn-Motorcycle {
+    transition: 0.1s;
+}
+
+    .btn-Motorcycle:hover {
+      font-weight:bold;   
+    }
