@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BMW_Final_Project.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <header>
@@ -23,7 +24,7 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        
+
                         <li class="nav-item">
                             <a class="nav-link text-dark btn-Motorcycle" asp-area="" asp-controller="Home" asp-action="Index">МОТОРИ</a>
                         </li>
@@ -52,7 +53,13 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
+        <div class="container-fluid FotterDiv">
+            <a class="Facebook" href="https://www.facebook.com/BMW.Motorrad.Bulgaria/" target="_blank"><i class="fa fa-facebook Icon"></i>Facebook</a>
+            <a class="Instagram" href="https://www.instagram.com/bmw_motorrad_bulgaria/" target="_blank"><i class="fa fa-instagram Icon"></i>Instagram</a>
+
+            <a asp-controller="" asp-action="" class="btn-primary contacts-button">Контакти</a>
+
+            <p class="Text-Footer">Бележка: Всички мотоциклети са оборудвани само съгласно законовите изисквания (напр. светлоотразители по стандарт Euro 4). Изобразените на фигурите и във видеата на този уебсайт мотоциклети може да са различни. Изображенията могат да включват допълнителни елементи.</p>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

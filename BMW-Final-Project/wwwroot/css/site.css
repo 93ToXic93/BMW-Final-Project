@@ -28,7 +28,7 @@ html {
 .Home-RR-Button {
     position: absolute;
     left: 6%;
-    top: 58%;
+    top: 37%;
     width: 250px;
     height: 50px;
     border: none;
@@ -44,7 +44,7 @@ html {
 
 .Text-Home-RR-Img {
     position: absolute;
-    top: 40%;
+    top: 28%;
     left: 6%;
     color: white;
     font-size: 27px;
@@ -62,5 +62,156 @@ html {
 }
 
     .btn-Motorcycle:hover {
-      font-weight:bold;   
+        font-weight: bold;
     }
+
+.RegisterLogin {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-left: 100px;
+    padding-top: 70px;
+    font-size: 62px;
+    position: relative;
+}
+
+.LoginRegister {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-left: 100px;
+    font-size: 33px;
+    padding-bottom: 50px;
+    position: relative;
+}
+
+.Inside-Container-Login {
+    color: white;
+    border-radius: 30px;
+}
+
+.Logo-M {
+    position: absolute;
+    height: auto;
+    width: 100%;
+}
+
+.container-Register {
+    padding-bottom: 121px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+}
+
+.Login {
+    position: absolute;
+    right: 10%;
+    top: 61%;
+    text-decoration: none;
+    background-color: #0A58BE;
+    color: white;
+    width: 200px;
+    text-align: center;
+    font-size: 42px;
+    border-radius: 20px;
+    transition: 0.3s;
+    cursor: pointer;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+    .Login:hover {
+        background-color: white;
+        color: #0A58BE;
+    }
+
+.Register {
+    position: relative;
+    top: 80%;
+    right: 113%;
+    text-decoration: none;
+    background-color: #0A58BE;
+    color: white;
+    text-align: center;
+    font-size: 42px;
+    border-radius: 20px;
+    transition: 0.3s;
+    cursor: pointer;
+    padding:10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.Register:hover {
+    background-color: white;
+    color: #0A58BE;
+}
+
+.FotterDiv {
+    display: flex;
+    background-color: #2B2E33;
+    font-size: 40px;
+    padding-bottom: 300px;
+}
+
+.contacts-button {
+    position: relative;
+    left: 56%;
+    top: 90px;
+    width: 350px;
+    height: 50px;
+    border: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 32px;
+    transition: 0.3s;
+    text-decoration: none;
+    text-align: center;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+}
+
+    .contacts-button:hover {
+        background-color: #0062FF;
+        color: white;
+    }
+
+.Text-Footer {
+    position: relative;
+    top: 250px;
+    font-size: 20px;
+    right:20%;
+}
+
+.Icon {
+    padding-right: 15px;
+}
+
+.Instagram {
+    text-decoration: none;
+    position: relative;
+    left: 12%;
+    top: 90px;
+    font-size: 32px;
+    width: 450px;
+    height: 50px;
+    border: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    transition: 0.3s;
+    text-align: center;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+}
+
+    .Instagram:hover {
+        color: #DC00B1
+    }
+
+.Facebook {
+    text-decoration: none;
+    position:relative;
+    left:10%;
+    top:90px;
+    font-size: 32px;
+    width: 380px;
+    height: 50px;
+    border: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    transition: 0.3s;
+    text-align: center;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+}
