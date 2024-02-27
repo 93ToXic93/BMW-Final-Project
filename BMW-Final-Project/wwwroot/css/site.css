@@ -11,6 +11,7 @@ html {
 html {
     position: relative;
     min-height: 100%;
+    overflow-x:hidden;
 }
 
 .Bmw-Home-Container {
@@ -28,7 +29,7 @@ html {
 .Home-RR-Button {
     position: absolute;
     left: 6%;
-    top: 37%;
+    top: 18%;
     width: 250px;
     height: 50px;
     border: none;
@@ -44,7 +45,7 @@ html {
 
 .Text-Home-RR-Img {
     position: absolute;
-    top: 28%;
+    top: 13%;
     left: 6%;
     color: white;
     font-size: 27px;
@@ -93,50 +94,42 @@ html {
 }
 
 .container-Register {
-    padding-bottom: 121px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     display: flex;
+    background-color: white;
 }
 
 .Login {
     position: absolute;
     right: 10%;
-    top: 61%;
+    top: 33%;
     text-decoration: none;
-    background-color: #0A58BE;
     color: white;
-    width: 200px;
-    text-align: center;
     font-size: 42px;
-    border-radius: 20px;
     transition: 0.3s;
     cursor: pointer;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
     .Login:hover {
-        background-color: white;
-        color: #0A58BE;
+        color: #0062FF;
     }
 
 .Register {
     position: relative;
-    top: 80%;
-    right: 113%;
+    top: 46%;
+    right: 100%;
     text-decoration: none;
-    background-color: #0A58BE;
     color: white;
-    text-align: center;
     font-size: 42px;
-    border-radius: 20px;
     transition: 0.3s;
     cursor: pointer;
-    padding:10px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-.Register:hover {
-    background-color: white;
-    color: #0A58BE;
-}
+
+    .Register:hover {
+        color: #0062FF;
+    }
 
 .FotterDiv {
     display: flex;
@@ -171,7 +164,7 @@ html {
     position: relative;
     top: 250px;
     font-size: 20px;
-    right:20%;
+    right: 20%;
 }
 
 .Icon {
@@ -201,9 +194,9 @@ html {
 
 .Facebook {
     text-decoration: none;
-    position:relative;
-    left:10%;
-    top:90px;
+    position: relative;
+    left: 10%;
+    top: 90px;
     font-size: 32px;
     width: 380px;
     height: 50px;
@@ -215,3 +208,131 @@ html {
     color: black;
     border-radius: 10px;
 }
+
+.BlackBoxButtons {
+    height: 100px;
+    display: flex;
+    background-color: #070709;
+}
+
+.BlackBoxMenuButton {
+    color: white;
+    text-decoration: none;
+    font-size: 28px;
+    padding-top: 20px;
+    padding-left: 80px;
+}
+
+.material-icons {
+    padding-right: 10px;
+}
+
+.Cloth-container {
+    display: flex;
+    padding: 70px;
+    background-color: #2B2E33;
+}
+
+.text-cloth-boy {
+    font-size: 40px;
+    color: black;
+    padding-left: 20px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.text-cloth-boy-p {
+    font-size: 23px;
+    color: black;
+    padding-left: 28px;
+    text-decoration: none;
+    cursor: pointer;
+    padding-top: 10px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.Cloth-boy-container-text {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: rgba(255, 255, 255, 0.6);
+    height: 205px;
+    width: 590px;
+    position: absolute;
+    top: 58%;
+    left: 70px;
+}
+
+.cloth-boy-img {
+    width: 900px;
+    padding-right: 25px;
+    position: relative;
+}
+
+.Login-Menu:hover{
+    font-weight:bold;
+}
+
+.cloth-boy-img2{
+    width:900px;
+    height:705px;
+}
+
+.Cloth-boy-container-text2 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: rgba(255, 255, 255, 0.6);
+    height: 200px;
+    width: 630px;
+    position: absolute;
+    top:58%;
+}
+
+.accsesoars-container{
+    display:flex;
+}
+
+.text-accsesoars-container{
+    padding-top:100px
+}
+
+.accsesoars-text-1{
+    font-size:67px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.accsesoars-text-2 {
+    font-size: 35px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.accsesoars-text-3{
+    font-size:20px;
+
+}
+
+.accsesoaries-button {
+    text-decoration: none;
+    font-size: 50px;
+    padding: 20px;
+    position: absolute;
+    top: 80%;
+    left: 80%;
+    background-color: black;
+    color: white;
+    transition:0.3s;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.accsesoaries-button:hover{
+    background-color:blue;
+    color:white;
+}
+
+.MyBuy {
+    padding: 30px;
+    text-decoration: none;
+    color: black;
+    font-size: 24px;
+    transition: 0.3s;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+    .MyBuy:hover {
+        font-weight:bold;
+        color:black;
+    }
