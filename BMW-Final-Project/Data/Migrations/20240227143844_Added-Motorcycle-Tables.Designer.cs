@@ -4,6 +4,7 @@ using BMW_Final_Project.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BMW_Final_Project.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240227143844_Added-Motorcycle-Tables")]
+    partial class AddedMotorcycleTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,20 +47,6 @@ namespace BMW_Final_Project.Data.Migrations
                     b.ToTable("ColorCategories");
 
                     b.HasComment("Color Table");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            IsActive = true,
-                            Name = "White"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            IsActive = true,
-                            Name = "Black"
-                        });
                 });
 
             modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycle", b =>
@@ -203,38 +191,6 @@ namespace BMW_Final_Project.Data.Migrations
                     b.ToTable("StandardEuros");
 
                     b.HasComment("Euro standard table");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Euro-1"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Euro-2"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Euro-3"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Euro-4"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Euro-5"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Euro-6"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

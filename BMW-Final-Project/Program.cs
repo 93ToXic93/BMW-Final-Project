@@ -1,4 +1,5 @@
 using BMW_Final_Project.Extensions;
+using BMW_Final_Project.ModelBinders;
 
 namespace BMW_Final_Project
 {
@@ -11,7 +12,11 @@ namespace BMW_Final_Project
             builder.Services.AddAplicationDbContext(builder.Configuration);
             builder.Services.AddAplicationIdentity(builder.Configuration);
 
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews()
+                .AddMvcOptions(mvcOptions => 
+                {
+                    mvcOptions.ModelBinderProviders.Insert(0,new DecimalModelBinderProvider());
+                });
 
             builder.Services.AddAplicationServices();
 
