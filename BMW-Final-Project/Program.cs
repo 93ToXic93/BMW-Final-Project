@@ -1,3 +1,5 @@
+using BMW_Final_Project.Core.Contracts;
+using BMW_Final_Project.Core.Services;
 using BMW_Final_Project.Extensions;
 using BMW_Final_Project.ModelBinders;
 
@@ -11,6 +13,8 @@ namespace BMW_Final_Project
 
             builder.Services.AddAplicationDbContext(builder.Configuration);
             builder.Services.AddAplicationIdentity(builder.Configuration);
+
+            builder.Services.AddScoped<IMotorcycleService, MotorcycleService>();
 
             builder.Services.AddControllersWithViews()
                 .AddMvcOptions(mvcOptions => 

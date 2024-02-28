@@ -1,5 +1,18 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model ICollection<BMW_Final_Project.Core.Models.MotorcycleModel>
+
+<h1 class="display-2 fw-bold text-center pt-5">ВСИЧКИ МОДЕЛИ</h1>
+<h3 class="fw-bold text-center">ОТКРИЙ СВОЯ МОТОЦИКЛЕТ BMW MOTORRAD.</h3>
+
+
+@if (User.Identity != null && User.Identity.IsAuthenticated)
+{
+    <div>
+
+    </div>
+}
+else
+{
+    <div>
+
+    </div>
 }
