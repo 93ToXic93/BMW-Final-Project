@@ -11,8 +11,6 @@ namespace BMW_Final_Project.Core.Models
 
         public string Model { get; set; } = string.Empty;
 
-        public string TypeMotor { get; set; } = string.Empty;
-
         public string Year { get; set; } = string.Empty;
 
         public string ImageUrl { get; set; } = string.Empty;

@@ -1,6 +1,5 @@
 ﻿using BMW_Final_Project.Core.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace BMW_Final_Project.Controllers
 {
@@ -22,12 +21,21 @@ namespace BMW_Final_Project.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> LoadById (int id)
+        public async Task<IActionResult> LoadById(int id)
         {
             var model = await _service.LoadById(id);
 
             return View(model);
         }
-      
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            var model = await _service.DetailsAsync(id);
+
+            return View(model);
+        }
+
+
     }
 }

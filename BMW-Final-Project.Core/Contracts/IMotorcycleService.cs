@@ -7,5 +7,6 @@ namespace BMW_Final_Project.Core.Contracts
         Task<ICollection<MotorcycleModel>> AllAsync();
         Task<ICollection<MotorcycleModel>> LoadById(int id);
 
+        Task<MotorcycleDetailsModel> DetailsAsync(int id);
     }
 }
