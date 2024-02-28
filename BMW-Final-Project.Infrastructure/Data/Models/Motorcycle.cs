@@ -33,9 +33,6 @@ namespace BMW_Final_Project.Infrastructure.Data.Models
         [ForeignKey(nameof(ColorCategoryId))]
         public ColorCategory ColorCategory { get; set; } = null!;
 
-        [Comment("Date and time of buying the motorcycle")]
-        public DateTime BoughtOn { get; set; }
-
         [Required]
         [Range(MinMotorcycleKg, MaxMotorcycleKg)]
         [Comment("Motorcycle weight")]
@@ -107,7 +104,13 @@ namespace BMW_Final_Project.Infrastructure.Data.Models
         public bool IsActive { get; set; }
 
         [Required]
+        [Comment("Motorcycle amount")]
+        public int Amount { get; set; }
+
+        [Required]
+        [Comment("Buyer identifier")]
         public string BuyerId { get; set; } = string.Empty;
+
 
         [ForeignKey(nameof(BuyerId))]
         public IdentityUser Buyer { get; set; } = null!;
