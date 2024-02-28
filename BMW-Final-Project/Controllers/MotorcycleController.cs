@@ -21,11 +21,6 @@ namespace BMW_Final_Project.Controllers
             return View(model);
         }
 
-        private string GetBuyerId()
-        {
-            return User.FindFirstValue(ClaimTypes.NameIdentifier);
-        }
-
         [HttpGet]
         public async Task<IActionResult> LoadById (int id)
         {
@@ -33,6 +28,6 @@ namespace BMW_Final_Project.Controllers
 
             return View(model);
         }
-
+      
     }
 }

@@ -14,17 +14,24 @@
     <a asp-controller="Motorcycle" asp-action="LoadById" asp-route-id="7" class="Mini-menu-text">Urban Mobility</a>
 </div>
 
-
-@foreach (var motor in Model)
+@if (Model.Any())
 {
     <div class="Motorcycles-container container-fluid">
-        <div>
-            <img class="photo-of-motorcycle" src="@motor.ImageUrl" alt="Motor-Photo"/>
-            <hr/>
-            <h5>@motor.Year</h5>
-            <h5>Модел: @motor.Model</h5>
-            <br/>
-            <a asp-controller="" asp-action="" class="Button-Find">Открий сега</a>
-        </div>
+        @foreach (var motor in Model)
+        {
+            <div class="p-5">
+                <img class="photo-of-motorcycle" src="@motor.ImageUrl" alt="Motor-Photo" />
+                <hr />
+                <h5>@motor.Year</h5>
+                <h5>Модел: @motor.Model</h5>
+                <br />
+                <a asp-controller="" asp-action="" class="Button-Find">Открий сега</a>
+            </div>
+        }
+
     </div>
+}
+else
+{
+    <h1 class="p-5 text-center">В момента нямаме такива мотори, очаквайте скоро!</h1>
 }
