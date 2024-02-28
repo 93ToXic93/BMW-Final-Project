@@ -5,5 +5,7 @@ namespace BMW_Final_Project.Core.Contracts
     public interface IMotorcycleService
     {
         Task<ICollection<MotorcycleModel>> AllAsync();
+        Task<ICollection<MotorcycleModel>> LoadById(int id);
+
     }
 }

@@ -1,12 +1,9 @@
 ﻿@model ICollection<BMW_Final_Project.Core.Models.MotorcycleModel>
 
-<div class="container-fluid">
-    <h1 class="display-2 fw-bold text-center pt-5">ВСИЧКИ МОДЕЛИ</h1>
-    <h3 class="fw-bold text-center">ОТКРИЙ СВОЯ МОТОЦИКЛЕТ BMW MOTORRAD.</h3>
-</div>
+<h1 class="display-2 fw-bold text-center pt-5">ВСИЧКИ МОДЕЛИ</h1>
+<h3 class="fw-bold text-center">ОТКРИЙ СВОЯ МОТОЦИКЛЕТ BMW MOTORRAD.</h3>
 
-
-<div class="Mini-menu-for-motorcycles align-items-center justify-content-center pt-5 container-fluid">
+<div class="Mini-menu-for-motorcycles align-items-center justify-content-center pt-5">
     <a asp-controller="Motorcycle" asp-action="Index" class="Mini-menu-text">ВСИЧКИ</a>
     <a asp-controller="Motorcycle" asp-action="LoadById" asp-route-id="1" class="Mini-menu-text">Sport</a>
     <a asp-controller="Motorcycle" asp-action="LoadById" asp-route-id="2" class="Mini-menu-text">M Sport</a>
@@ -17,17 +14,17 @@
     <a asp-controller="Motorcycle" asp-action="LoadById" asp-route-id="7" class="Mini-menu-text">Urban Mobility</a>
 </div>
 
-<div class="Motorcycles-container container-fluid">
-    @foreach (var motor in Model)
-    {
-        <div class="p-4">
-            <img class="photo-of-motorcycle" src="@motor.ImageUrl" alt="Motor-Photo" />
-            <hr />
+
+@foreach (var motor in Model)
+{
+    <div class="Motorcycles-container container-fluid">
+        <div>
+            <img class="photo-of-motorcycle" src="@motor.ImageUrl" alt="Motor-Photo"/>
+            <hr/>
             <h5>@motor.Year</h5>
             <h5>Модел: @motor.Model</h5>
-            <br />
+            <br/>
             <a asp-controller="" asp-action="" class="Button-Find">Открий сега</a>
         </div>
-    }
-
-</div>
+    </div>
+}

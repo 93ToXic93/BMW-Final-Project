@@ -11,7 +11,7 @@ html {
 html {
     position: relative;
     min-height: 100%;
-    overflow-x:hidden;
+    overflow-x: hidden;
 }
 
 .Bmw-Home-Container {
@@ -60,10 +60,13 @@ html {
 
 .btn-Motorcycle {
     transition: 0.1s;
+    width: 110px;
+    display: inline-block;
 }
 
     .btn-Motorcycle:hover {
         font-weight: bold;
+        border-color: transparent;
     }
 
 .RegisterLogin {
@@ -240,6 +243,7 @@ html {
     text-decoration: none;
     cursor: pointer;
 }
+
 .text-cloth-boy-p {
     font-size: 23px;
     color: black;
@@ -247,7 +251,7 @@ html {
     text-decoration: none;
     cursor: pointer;
     padding-top: 10px;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .Cloth-boy-container-text {
@@ -266,13 +270,13 @@ html {
     position: relative;
 }
 
-.Login-Menu:hover{
-    font-weight:bold;
+.Login-Menu:hover {
+    font-weight: bold;
 }
 
-.cloth-boy-img2{
-    width:900px;
-    height:705px;
+.cloth-boy-img2 {
+    width: 900px;
+    height: 705px;
 }
 
 .Cloth-boy-container-text2 {
@@ -281,20 +285,20 @@ html {
     height: 200px;
     width: 630px;
     position: absolute;
-    top:58%;
+    top: 58%;
 }
 
-.accsesoars-container{
-    display:flex;
+.accsesoars-container {
+    display: flex;
 }
 
-.text-accsesoars-container{
-    padding-top:100px
+.text-accsesoars-container {
+    padding-top: 100px
 }
 
-.accsesoars-text-1{
-    font-size:67px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+.accsesoars-text-1 {
+    font-size: 67px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
 
 .accsesoars-text-2 {
@@ -302,9 +306,8 @@ html {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.accsesoars-text-3{
-    font-size:20px;
-
+.accsesoars-text-3 {
+    font-size: 20px;
 }
 
 .accsesoaries-button {
@@ -316,13 +319,14 @@ html {
     left: 80%;
     background-color: black;
     color: white;
-    transition:0.3s;
+    transition: 0.3s;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-.accsesoaries-button:hover{
-    background-color:blue;
-    color:white;
-}
+
+    .accsesoaries-button:hover {
+        background-color: blue;
+        color: white;
+    }
 
 .MyBuy {
     padding: 30px;
@@ -332,7 +336,69 @@ html {
     transition: 0.3s;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
     .MyBuy:hover {
-        font-weight:bold;
-        color:black;
+        font-weight: bold;
+        color: black;
+    }
+
+.Mini-menu-for-motorcycles {
+    display: flex;
+}
+
+.Mini-menu-text {
+    text-decoration: none;
+    color: black;
+    font-size: 25px;
+    cursor: pointer;
+    transition: 0.1s;
+    width: 190px;
+    display: inline-block;
+    text-align: center;
+    border: 2px solid transparent;
+}
+
+    .Mini-menu-text:last-child {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .Mini-menu-text:hover {
+        font-weight: bold;
+        color: black;
+        border-color: transparent;
+    }
+
+
+.Motorcycles-container {
+    display: flex;
+    padding-left: 100px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.photo-of-motorcycle {
+    width: 300px;
+    height: 210px;
+}
+
+.Button-Find {
+    text-decoration: none;
+    width: 50px;
+    height: 20px;
+    border: solid;
+    border-width: thin;
+    border-color: black;
+    padding: 8px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: black;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+    .Button-Find:hover {
+        background-color: #0066B1;
+        color: white;
+        border-color: white;
     }

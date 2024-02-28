@@ -1,4 +1,9 @@
-﻿namespace BMW_Final_Project.Core.Models
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
+namespace BMW_Final_Project.Core.Models
 {
     public class MotorcycleModel
     {
@@ -7,8 +12,6 @@
         public string Model { get; set; } = string.Empty;
 
         public string TypeMotor { get; set; } = string.Empty;
-
-        public decimal Price { get; set; }
 
         public string Year { get; set; } = string.Empty;
 
