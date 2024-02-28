@@ -20,10 +20,17 @@ namespace BMW_Final_Project.Infrastructure.Data.Models
         public string Model { get; set; } = string.Empty;
 
         [Required]
-        [Comment("Category identifier")]
-        public int CategoryId { get; set; }
+        [Comment("Motorcycle Type identifier")]
+        public int TypeMotorId { get; set; }
 
-        [ForeignKey(nameof(CategoryId))]
+        [ForeignKey(nameof(TypeMotorId))]
+        public TypeMotor TypeMotor { get; set; } = null!;
+
+        [Required]
+        [Comment("Category identifier")]
+        public int ColorCategoryId { get; set; }
+
+        [ForeignKey(nameof(ColorCategoryId))]
         public ColorCategory ColorCategory { get; set; } = null!;
 
         [Comment("Date and time of buying the motorcycle")]

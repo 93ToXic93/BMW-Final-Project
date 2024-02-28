@@ -10,7 +10,13 @@
         public static class StandardEuroConstants
         {
             public const int MaxStandardNameLength = 8;
-            public const int MinStandardNameLength =2;
+            public const int MinStandardNameLength = 2;
+        }
+
+        public static class TypeMotorConstants
+        {
+            public const int MaxTypeNameLength = 50;
+            public const int MinTypeNameLength = 3;
         }
 
         public static class MotorcycleConstants
