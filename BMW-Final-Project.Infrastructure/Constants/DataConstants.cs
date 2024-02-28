@@ -58,5 +58,7 @@
             public const double MinMotorcycleSeatLength = 20;
         }
 
+        public const string DataFormat = "dd/MM/yyyy";
+
     }
 }

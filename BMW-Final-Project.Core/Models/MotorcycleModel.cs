@@ -14,9 +14,5 @@
 
         public string ImageUrl { get; set; } = string.Empty;
 
-        public bool IsActive { get; set; }
-
-        public string BuyerId { get; set; } = string.Empty;
-
     }
 }
