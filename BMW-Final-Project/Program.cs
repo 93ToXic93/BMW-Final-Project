@@ -16,11 +16,10 @@ namespace BMW_Final_Project
 
             builder.Services.AddScoped<IMotorcycleService, MotorcycleService>();
 
-            builder.Services.AddControllersWithViews()
-                .AddMvcOptions(mvcOptions => 
-                {
-                    mvcOptions.ModelBinderProviders.Insert(0,new DecimalModelBinderProvider());
-                });
+            builder.Services.AddControllersWithViews(mvcOptions =>
+            {
+                mvcOptions.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
+            });
 
             builder.Services.AddAplicationServices();
 

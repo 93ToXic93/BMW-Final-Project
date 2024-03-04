@@ -1,4 +1,5 @@
 ﻿using BMW_Final_Project.Infrastructure.Data;
+using BMW_Final_Project.Infrastructure.Data.Common;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +16,8 @@ namespace BMW_Final_Project.Extensions
             var connectionString = configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
+
+            services.AddScoped<IRepostory, Repostory>();
 
             return services;
         }
