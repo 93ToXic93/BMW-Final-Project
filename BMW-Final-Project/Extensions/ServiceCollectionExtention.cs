@@ -17,7 +17,7 @@ namespace BMW_Final_Project.Extensions
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
-            services.AddScoped<IRepostory, Repostory>();
+            services.AddScoped<IRepository, Repository>();
 
             return services;
         }
