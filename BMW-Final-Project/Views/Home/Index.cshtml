@@ -15,7 +15,7 @@
     </div>
     <div class="BlackBoxButtons">
         <a asp-controller="" asp-action="" class="BlackBoxMenuButton"><i class="material-icons">event</i>Събития</a>
-        <a asp-controller="" asp-action="" class="BlackBoxMenuButton">Преглед на Модели</a>
+        <a asp-controller="Motorcycle" asp-action="Index" class="BlackBoxMenuButton">Преглед на Модели</a>
         <a href="https://www.bmw-motorrad.bg/bg/public-pool/content-pool/dealerlocator.html" target="_blank" class="BlackBoxMenuButton"><i class="fa fa-map-marker p-2"></i>Локация</a>
     </div>
     @if (User.FindFirstValue(ClaimTypes.NameIdentifier) == null)

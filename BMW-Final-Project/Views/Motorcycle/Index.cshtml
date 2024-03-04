@@ -26,7 +26,7 @@
             <h5>@motor.Year</h5>
             <h5>Модел: @motor.Model</h5>
             <br />
-            <a asp-controller="Motorcycle" asp-action="Details" class="Button-Find">Открий сега</a>
+            <a asp-controller="Motorcycle" asp-action="Details" asp-route-id="@motor.Id" class="Button-Find">Открий сега</a>
         </div>
     }
 
