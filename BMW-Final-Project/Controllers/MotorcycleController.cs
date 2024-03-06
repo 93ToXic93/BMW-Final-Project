@@ -28,9 +28,6 @@ namespace BMW_Final_Project.Controllers
             return View(model);
         }
 
-
-
-
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {

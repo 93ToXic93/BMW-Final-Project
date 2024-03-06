@@ -408,3 +408,34 @@ html {
     width:35px;
     height:35px;
 }
+
+.DetailsText{
+    font-size:20px;
+}
+.containerTextDetails{
+    padding-top:100px;
+    padding-left:250px;
+}
+.Hr{
+    position:absolute;
+    left:23%;
+    top:62%;
+}
+.CC {
+    position: absolute;
+    left: 23%;
+    top: 70%;
+}
+.Kg {
+    position: absolute;
+    left: 72%;
+    top: 70%;
+}
+.TankCap {
+    position: absolute;
+    left: 70%;
+    top: 62%;
+}
+.ImgEngine{
+    padding-top:50px;
+}

@@ -1,3 +1,41 @@
 ﻿@model BMW_Final_Project.Core.Models.MotorcycleDetailsModel
 
-<h1>DetailsAsync</h1>
+<div class="container-fluid">
+    <div class="text-center">
+        <img src="@Model.ImageUrl" alt="RR photo" class="DetailsPhoto img-fluid w-50" />
+    </div>
+
+    <div class="containerTextDetails">
+        <p class="display-2 fw-bold">@Model.Model</p>
+        <p class="display-4">НЕКА ПЪТЯТ Е ВАШАТА СЦЕНА</p>
+        <p class="pt-2 DetailsText">
+            Изпълнение на @Model.Model. С този сензационен @Model.TypeMotor ще сте в светлината на прожекторите.<br /> Характерът му: приветлив.Дизайн: изразителен.
+            При неговата разработка не е оставен нито един винт.<br /> С революционната си концепция на рамката този мотоциклет е наистина готов за персонализиране.<br />
+            Затова не се колебайте да направите нещо още по-добро – направете го свое олицетворение.<br />
+            @Model.Model ви приканва да декларирате своето лично присъствие на улицата. Нека <br />
+            този мотор с неговите @Model.HorsePowers конски сили ви пренесат в нов свят!
+        </p>
+    </div>
+
+    <div class="container-fluid text-center ImgEngine">
+        <img src="~/img/Enginejpg.jpg" class="pt-5 pb-5 w-50">
+        <div class="Hr">
+            <p class="display-4 fw-bold">@Model.HorsePowers</p>
+            <p class="Enginge-Text">Конски Сили</p>
+        </div>
+        <div class="CC">
+            <p class="display-4 fw-bold">@Model.CC</p>
+            <p class="Enginge-Text">Кубични сили</p>
+        </div>
+        <div class="Kg">
+            <p class="display-4 fw-bold">@Model.Kg</p>
+            <p class="Enginge-Text">Тегло на мотора</p>
+
+        </div>
+        <div class="TankCap">
+            <p class="display-4 fw-bold">@Model.TankCapacity</p>
+            <p class="Enginge-Text">Капацитет на резервоара</p>
+        </div>
+    </div>
+</div>
+

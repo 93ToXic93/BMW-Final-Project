@@ -1,23 +1,25 @@
 ﻿using BMW_Final_Project.Core.Contracts;
 using BMW_Final_Project.Core.Models;
 using BMW_Final_Project.Infrastructure.Data;
+using BMW_Final_Project.Infrastructure.Data.Common;
+using BMW_Final_Project.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace BMW_Final_Project.Core.Services
 {
     public class MotorcycleService : IMotorcycleService
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IRepository _repository;
 
-        public MotorcycleService(ApplicationDbContext context)
+        public MotorcycleService(IRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         public async Task<ICollection<MotorcycleModel>> AllAsync()
         {
-            var motorcycles = await _context.Motorcycles
-                .AsNoTracking()
+            var motorcycles = await _repository
+                .AllReadOnly<Motorcycle>()
                 .Where(x => x.IsActive)
                 .Select(x => new MotorcycleModel()
                 {
@@ -34,8 +36,8 @@ namespace BMW_Final_Project.Core.Services
 
         public async Task<ICollection<MotorcycleModel>> LoadById(int id)
         {
-            var motorcycles = await _context.Motorcycles
-                .AsNoTracking()
+            var motorcycles = await _repository
+                .AllReadOnly<Motorcycle>()
                 .Where(x => x.IsActive && x.TypeMotor.Id == id)
                 .Select(x => new MotorcycleModel()
                 {
@@ -51,12 +53,11 @@ namespace BMW_Final_Project.Core.Services
 
         public async Task<MotorcycleDetailsModel> DetailsAsync(int id)
         {
-            var model = await _context.Motorcycles
-                .FindAsync(id);
+            var model = await GetByIdAsync(id);
 
             if (model == null)
             {
-                throw new ArgumentNullException();
+                throw new NullReferenceException();
             }
 
             if (id != model.Id)
@@ -64,13 +65,8 @@ namespace BMW_Final_Project.Core.Services
                 throw new ArgumentException("model id isn't correct!");
             }
 
-            if (model.IsActive == false)
-            {
-                throw new ArgumentException("This motorcycle is deleted");
-            }
-
-
-            var modelDetails = await _context.Motorcycles
+            var modelDetails = await _repository
+                .AllReadOnly<Motorcycle>()
                 .Where(x => x.Id == id)
                 .Select(x => new MotorcycleDetailsModel()
                 {
@@ -78,6 +74,7 @@ namespace BMW_Final_Project.Core.Services
                     ImageUrl = x.ImageUrl,
                     Model = x.Model,
                     Amount = x.Amount,
+                    TankCapacity = x.TankCapacity,
                     CC = x.CC,
                     DTC = x.DTC,
                     FrontBreak = x.FrontBreak,
@@ -88,6 +85,15 @@ namespace BMW_Final_Project.Core.Services
 
             return modelDetails;
 
+        }
+
+        public async Task<Motorcycle?> GetByIdAsync(int id)
+        {
+            var motorcycle = await _repository.AllReadOnly<Motorcycle>()
+             .Where(x => x.Id == id && x.IsActive)
+             .FirstOrDefaultAsync();
+
+            return motorcycle;
         }
     }
 }
