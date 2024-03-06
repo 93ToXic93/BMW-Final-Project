@@ -10,8 +10,6 @@ namespace BMW_Final_Project.Core.Models
     public class MotorcycleDetailsModel : MotorcycleModel
     {
 
-        public int TypeMotorId { get; set; }
-
         public string TypeMotor { get; set; } = string.Empty;
 
         public int Kg { get; set; }
@@ -21,8 +19,6 @@ namespace BMW_Final_Project.Core.Models
         public int HorsePowers { get; set; }
 
         public int CC { get; set; }
-
-        public int StandardEuroId { get; set; }
 
         public string StandardEuro { get; set; } = string.Empty;
 
@@ -37,8 +33,6 @@ namespace BMW_Final_Project.Core.Models
         public string RearBreak { get; set; } = string.Empty;
 
         public int SeatHeightMm { get; set; }
-
-        public bool IsActive { get; set; }
 
         public int Amount { get; set; }
 

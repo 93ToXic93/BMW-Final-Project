@@ -21,21 +21,63 @@
         <img src="~/img/Enginejpg.jpg" class="pt-5 pb-5 w-50">
         <div class="Hr">
             <p class="display-4 fw-bold">@Model.HorsePowers</p>
-            <p class="Enginge-Text">Конски Сили</p>
+            <p class="Enginge-Text fw-bold">Конски Сили</p>
         </div>
         <div class="CC">
             <p class="display-4 fw-bold">@Model.CC</p>
-            <p class="Enginge-Text">Кубични сили</p>
+            <p class="Enginge-Text fw-bold">Кубични сили</p>
         </div>
         <div class="Kg">
             <p class="display-4 fw-bold">@Model.Kg</p>
-            <p class="Enginge-Text">Тегло на мотора</p>
+            <p class="Enginge-Text fw-bold">Тегло на мотора</p>
 
         </div>
         <div class="TankCap">
-            <p class="display-4 fw-bold">@Model.TankCapacity</p>
-            <p class="Enginge-Text">Капацитет на резервоара</p>
+            <p class="display-4 fw-bold">@Model.TankCapacity L</p>
+            <p class="Enginge-Text fw-bold">Капацитет на резервоара</p>
         </div>
     </div>
+
+    <div class="text-center ContainerDetailsData">
+        <h1 class="H1Tech">ТЕХНИЧЕСКИ  <img class="FlagPhoto" src="~/img/depositphotos_45404339-stock-illustration-waving-crossed-black-and-white.jpg">  ДАННИ</h1>
+
+        <div class="p-5">
+            <div class="p-4">
+                <h2 class="TextData fw-bold">КОНТРОЛ НА СЦЕПЛЕНИЕТО</h2>
+                <hr />
+                <p class="p-details">@Model.DTC</p>
+            </div>
+            <div class="p-4">
+                <h2 class="TextData fw-bold">ПРЕДНА СПИРАЧКА</h2>
+                <hr />
+                <P class="p-details">@Model.FrontBreak</P>
+            </div>
+            <div class="p-4">
+                <h2 class="TextData fw-bold">ЗАДНА СПИРАЧКА</h2>
+                <hr />
+                <P class="p-details">@Model.RearBreak</P>
+            </div>
+            <div class="p-4">
+                <h2 class="TextData fw-bold">ВИСОЧИНА НА СЕДАЛКАТА</h2>
+                <hr />
+                <P class="p-details">@Model.SeatHeightMm</P>
+            </div>
+            <div class="p-4">
+                <h2 class="TextData fw-bold">ЕВРО СТАНДАРТ</h2>
+                <hr />
+                <P class="p-details">@Model.StandardEuro</P>
+            </div>
+            <div class="p-4">
+                <h2 class="TextData fw-bold">СКОРОСТНА КУТИЯ</h2>
+                <hr />
+                <P class="p-details">@Model.Transmission</P>
+            </div>
+        </div>
+    </div>
+    <div class="PriceContainer">
+        <h1 class="textPrice">Price: @Model.Price</h1>
+    </div>
+    <a asp-controller="" asp-action="" asp-route-id="@Model.Id" class="btnBuy">Buy</a>
+
 </div>
 

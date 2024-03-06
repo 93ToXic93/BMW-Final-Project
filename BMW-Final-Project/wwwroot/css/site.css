@@ -372,7 +372,7 @@ html {
 
 .Motorcycles-container {
     display: flex;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
     padding-left: 100px;
     padding-top: 100px;
     padding-bottom: 100px;
@@ -404,38 +404,75 @@ html {
         border-color: white;
     }
 
-.Card{
-    width:35px;
-    height:35px;
+.Card {
+    width: 35px;
+    height: 35px;
 }
 
-.DetailsText{
-    font-size:20px;
+.DetailsText {
+    font-size: 20px;
 }
-.containerTextDetails{
-    padding-top:100px;
-    padding-left:250px;
+
+.containerTextDetails {
+    padding-top: 100px;
+    padding-left: 250px;
 }
-.Hr{
-    position:absolute;
-    left:23%;
-    top:62%;
+
+.Hr {
+    position: absolute;
+    left: 23%;
+    top: 38%;
 }
+
 .CC {
     position: absolute;
     left: 23%;
-    top: 70%;
+    top: 46%;
 }
+
 .Kg {
     position: absolute;
     left: 72%;
-    top: 70%;
+    top: 46%;
 }
+
 .TankCap {
     position: absolute;
     left: 70%;
-    top: 62%;
+    top: 38%;
 }
-.ImgEngine{
-    padding-top:50px;
+
+.ImgEngine {
+    padding-top: 50px;
+}
+
+.FlagPhoto {
+    height: auto;
+    width: 200px;
+}
+
+.ContainerDetailsData {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding-top: 100px;
+}
+
+.TextData {
+    text-align: center;
+}
+
+.H1Tech {
+    padding-right: 30px;
+    padding-bottom: 30px;
+}
+
+.p-details {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 22px;
+}
+
+.textPrice {
+    padding-left: 100px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border:solid;
+    border-color:black;
 }

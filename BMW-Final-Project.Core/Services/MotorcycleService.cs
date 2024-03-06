@@ -1,4 +1,5 @@
-﻿using BMW_Final_Project.Core.Contracts;
+﻿using System.Globalization;
+using BMW_Final_Project.Core.Contracts;
 using BMW_Final_Project.Core.Models;
 using BMW_Final_Project.Infrastructure.Data;
 using BMW_Final_Project.Infrastructure.Data.Common;
@@ -67,17 +68,22 @@ namespace BMW_Final_Project.Core.Services
 
             var modelDetails = await _repository
                 .AllReadOnly<Motorcycle>()
-                .Where(x => x.Id == id)
+                .Where(x => x.Id == id && x.IsActive)
                 .Select(x => new MotorcycleDetailsModel()
                 {
                     Id = x.Id,
                     ImageUrl = x.ImageUrl,
+                    Price = x.Price.ToString(CultureInfo.InvariantCulture),
                     Model = x.Model,
                     Amount = x.Amount,
                     TankCapacity = x.TankCapacity,
                     CC = x.CC,
                     DTC = x.DTC,
                     FrontBreak = x.FrontBreak,
+                    Transmission = x.Transmission,
+                    StandardEuro = x.StandardEuro.Name,
+                    SeatHeightMm = x.SeatHeightMm,
+                    RearBreak = x.RearBreak,
                     HorsePowers = x.HorsePowers,
                     Kg = x.Kg,
                 })
