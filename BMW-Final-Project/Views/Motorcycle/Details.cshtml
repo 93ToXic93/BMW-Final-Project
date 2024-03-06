@@ -75,9 +75,9 @@
         </div>
     </div>
     <div class="PriceContainer">
-        <h1 class="textPrice">Price: @Model.Price</h1>
+        <h1 class="priceText">Цена: </h1>
+        <a asp-controller="" asp-action="" asp-route-id="@Model.Id" class="textPrice">@Model.Price$</a>
     </div>
-    <a asp-controller="" asp-action="" asp-route-id="@Model.Id" class="btnBuy">Buy</a>
 
 </div>
 
