@@ -33,6 +33,11 @@ html {
     width: 250px;
     height: 50px;
     border: none;
+    background-color: white;
+    padding-left: 45px;
+    text-decoration: none;
+    color: black;
+    padding-top: 5px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 23px;
     transition: 0.3s;
@@ -470,7 +475,7 @@ html {
     font-size: 22px;
 }
 
-.textPrice {
+.ButtonPrice {
     padding-right: 60px;
     padding-left: 60px;
     padding-bottom: 20px;
@@ -480,12 +485,12 @@ html {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     border-color: black;
     border-radius: 20px;
-    background-color: lawngreen;
-    color: black;
+    background-color: black;
+    color: white;
     transition: 0.3s;
 }
 
-    .textPrice:hover {
+    .ButtonPrice:hover {
         background-color: #0062FF;
         color: white;
         border: none;

@@ -1,4 +1,5 @@
 ﻿@using System.Security.Claims
+@model BMW_Final_Project.Core.Models.MotorcycleModel
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -7,7 +8,7 @@
     <div>
 
         <img class="img-fluid position-relative" alt="S1000RR photo" src="/img/Made-RR.jpg" />
-        <button class="Home-RR-Button">Открийте Сега</button>
+        <a class="Home-RR-Button" asp-controller="Motorcycle" asp-action="Details" asp-route-id="4">Открийте Сега</a>
         <h1 class="Text-Home-RR-Img">
             <p class="Text-Home-RR-Img-Top">Новият BMW S1000RR</p>НЕКА ПЪТЯТ Е ВАШАТА СЦЕНА
         </h1>
@@ -41,7 +42,7 @@
             <div class="Inside-Container-Login container-fluid m-0 p-0">
                 <img class="Logo-M" alt="Logo-M" src="img/Logo-edited.jpg" />
                 <p class="RegisterLogin">Вече можеш да откриеш<br />
-                    <p class="LoginRegister">нови светове с BMW !</p></p>
+                <p class="LoginRegister">нови светове с BMW !</p></p>
                 <p class="LoginRegister">MAKE LIVE A RIDE</p>
 
             </div>
@@ -52,17 +53,18 @@
         <div>
             <img class="cloth-boy-img" alt="ClothPhoto" src="~/img/cloth-boy.jpg" />
             <div class="Cloth-boy-container-text">
-                <a asp-controller="" asp-action="" class="text-cloth-boy">ОБЛЕКЛО ОТ BMW MOTORRAD</a>
+                <a asp-controller="Cloth" asp-action="Index" class="text-cloth-boy">ОБЛЕКЛО ОТ BMW MOTORRAD</a>
                 <p class="text-cloth-boy-p">Безопасност, иновация и качество – на <br /> мотоциклета с новият BMW S1000RR.</p>
-                <hr/>
+                <hr />
             </div>
+
         </div>
         <div>
             <img class="cloth-boy-img2" alt="ClothPhoto" src="~/img/f1r.jpg" />
             <div class="Cloth-boy-container-text2">
                 <a asp-controller="" asp-action="" class="text-cloth-boy">СВОБОДАТА ВИНАГИ Е НА МОДА</a>
                 <p class="text-cloth-boy-p">Характери, които пасват на вашия: запознайте се със семействата на BMW F900R.</p>
-                <hr/>
+                <hr />
             </div>
         </div>
     </div>
@@ -75,9 +77,10 @@
             <p class="accsesoars-text-1">НЕОГРАНИЧНИ ВЪЗМОЖНОСТИ</p>
             <p class="accsesoars-text-2">ВАШАТА МАШИНА – КАКТО СИ Я ПРЕДСТАВЯТЕ</p>
             <p class="accsesoars-text-3">
-                Страстта също може да става по-силна: за повече индивидуалност,<br/> повече комфорт и подчертан спортен характер. Оригиналните аксесоари от
-                <br /> BMW Motorrad са предназначени точно за тази цел. <br/>Независимо дали става въпрос за ежедневието ви, приключения, или повече ефективност – <br/>ние имаме подходящите за вас аксесоари.</p>
-                
+                Страстта също може да става по-силна: за повече индивидуалност,<br /> повече комфорт и подчертан спортен характер. Оригиналните аксесоари от
+                <br /> BMW Motorrad са предназначени точно за тази цел. <br />Независимо дали става въпрос за ежедневието ви, приключения, или повече ефективност – <br />ние имаме подходящите за вас аксесоари.
+            </p>
+
             <a asp-action="" asp-controller="" class="accsesoaries-button">Аксесоари</a>
         </div>
     </div>
