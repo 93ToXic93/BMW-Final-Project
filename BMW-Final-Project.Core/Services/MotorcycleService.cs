@@ -37,6 +37,17 @@ namespace BMW_Final_Project.Core.Services
 
         public async Task<ICollection<MotorcycleModel>> LoadById(int id)
         {
+            var model = await GetByIdAsync(id);
+
+            if (model == null)
+            {
+                throw new NullReferenceException();
+            }
+            if (id != model.Id)
+            {
+                throw new ArgumentException("model id isn't correct!");
+            }
+
             var motorcycles = await _repository
                 .AllReadOnly<Motorcycle>()
                 .Where(x => x.IsActive && x.TypeMotor.Id == id)

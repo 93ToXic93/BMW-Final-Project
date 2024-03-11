@@ -23,19 +23,32 @@ namespace BMW_Final_Project.Controllers
         [HttpGet]
         public async Task<IActionResult> LoadById(int id)
         {
-            var model = await _service.LoadById(id);
+            try
+            {
+                var model = await _service.LoadById(id);
 
-            return View(model);
+                return View(model);
+            }
+            catch (Exception e)
+            {
+                //TO DO THE EXCEPTION!
+
+                return RedirectToAction(nameof(Index));
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            var model = await _service.DetailsAsync(id);
-
-            return View(model);
+            try
+            {
+                var model = await _service.DetailsAsync(id);
+                return View(model);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction(nameof(Index));
+            }
         }
-
-
     }
 }

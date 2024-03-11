@@ -21,11 +21,11 @@
     @foreach (var motor in Model)
     {
         <div class="p-5">
-            <img class="photo-of-motorcycle" src="@motor.ImageUrl" alt="Motor-Photo" />
-            <hr />
+            <img class="photo-of-motorcycle" src="@motor.ImageUrl" alt="Motor-Photo"/>
+            <hr/>
             <h5>@motor.Year</h5>
             <h5>Модел: @motor.Model</h5>
-            <br />
+            <br/>
             <a asp-controller="Motorcycle" asp-action="Details" asp-route-id="@motor.Id" class="Button-Find">Открий сега</a>
         </div>
     }
