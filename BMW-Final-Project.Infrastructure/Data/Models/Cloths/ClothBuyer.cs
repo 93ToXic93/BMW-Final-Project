@@ -1,19 +1,19 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 
-namespace BMW_Final_Project.Infrastructure.Data.Models
+namespace BMW_Final_Project.Infrastructure.Data.Models.Cloths
 {
-    [Comment("Motorcycles and Buyers")]
-    public class MotorcycleBuyers
+    [Comment("Cloth and buyers")]
+    public class ClothBuyer
     {
         [Required]
-        [Comment("Motorcycle identifier")]
-        public int MotorcycleId { get; set; }
+        [Comment("Cloth identifier")]
+        public int ClothId { get; set; }
 
-        [ForeignKey(nameof(MotorcycleId))]
-        public Motorcycle Motorcycle { get; set; } = null!;
+        [ForeignKey(nameof(ClothId))]
+        public Cloth Cloth { get; set; } = null!;
 
         [Required]
         [Comment("Buyer identifier")]

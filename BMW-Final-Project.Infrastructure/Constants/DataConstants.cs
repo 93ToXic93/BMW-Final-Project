@@ -58,6 +58,39 @@
             public const double MinMotorcycleSeatLength = 20;
         }
 
+        public static class ClothConstants
+        {
+            public const int NameMaxLength = 200;
+            public const int NameMinLength = 10;
+
+            public const int DescriptionMaxLength = 500;
+            public const int DescriptionMinLength = 10;
+
+            public const int ImgUrlMaxLength = 70000;
+            public const int ImgUrlMinLength = 3;
+
+            public const double PriceMax = 200000;
+            public const double PriceMin = 1;
+
+            public const double AmountMax = 200000;
+            public const double AmountMin = 1;
+        }
+        public static class ClothCollectionConstants
+        {
+            public const int NameMaxLength = 100;
+            public const int NameMinLength = 2;
+        }
+        public static class TypePersonConstants
+        {
+            public const int NameMaxLength = 40;
+            public const int NameMinLength = 2;
+        }
+        public static class SizeConstants
+        {
+            public const int NameMaxLength = 15;
+            public const int NameMinLength = 1;
+        }
+
         public const string DataFormat = "dd/MM/yyyy";
 
     }

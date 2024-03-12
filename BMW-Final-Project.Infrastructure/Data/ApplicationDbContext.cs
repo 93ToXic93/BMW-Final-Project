@@ -1,4 +1,5 @@
-﻿using BMW_Final_Project.Infrastructure.Data.Models;
+﻿using BMW_Final_Project.Infrastructure.Data.Models.Cloths;
+using BMW_Final_Project.Infrastructure.Data.Models.Motorcycles;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +17,13 @@ namespace BMW_Final_Project.Infrastructure.Data
         public DbSet<StandardEuro> StandardEuros { get; set; } = null!;
         public DbSet<ColorCategory> ColorCategories { get; set; } = null!;
 
+        public DbSet<Cloth> Cloths { get; set; } = null!;
+        public DbSet<ClothBuyer> ClothsBuyers { get; set; } = null!;
+        public DbSet<TypePerson> TypesPersons { get; set; } = null!;
+        public DbSet<Size> Sizes { get; set; } = null!;
+        public DbSet<ClothCollection> ClothCollections { get; set; } = null!;
+
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<MotorcycleBuyers>()
@@ -30,19 +38,86 @@ namespace BMW_Final_Project.Infrastructure.Data
                 .WithMany()
                 .OnDelete(DeleteBehavior.Restrict);
 
+            builder.Entity<ClothBuyer>()
+                .HasKey(x => new { x.BuyerId, x.ClothId });
+
+            builder.Entity<Cloth>()
+                .Property(x => x.Price)
+                .HasPrecision(18, 2);
+
+            builder.Entity<ClothBuyer>()
+                .HasOne(x => x.Buyer)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<TypePerson>()
+                .HasData(new TypePerson()
+                {
+                    Id = 1,
+                    Name = "Мъже",
+                },
+                    new TypePerson
+                    {
+                        Id = 2,
+                        Name = "Жени",
+                    }, new TypePerson
+                    {
+                        Id = 3,
+                        Name = "Деца",
+                    });
+
+
+            builder
+                .Entity<Size>()
+                .HasData(new Size
+                {
+                    Id = 1,
+                    Name = "XS",
+                },
+                    new Size
+                    {
+                        Id = 2,
+                        Name = "S",
+                    }, new Size
+                    {
+                        Id = 3,
+                        Name = "M",
+                    },
+                    new Size
+                    {
+                        Id = 4,
+                        Name = "L",
+                    },
+                    new Size
+                    {
+                        Id = 5,
+                        Name = "XL",
+                    }, new Size
+                    {
+                        Id = 6,
+                        Name = "XXL",
+                    }, new Size
+                    {
+                        Id = 7,
+                        Name = "XXXL",
+                    });
+
+
+
 
             builder
                 .Entity<ColorCategory>()
                 .HasData(new ColorCategory
                 {
                     Id = 1,
-                    Name = "White",
+                    Name = "Черен",
                     IsActive = true
                 },
                     new ColorCategory
                     {
                         Id = 2,
-                        Name = "Black",
+                        Name = "Бял",
                         IsActive = true
                     });
 
@@ -52,28 +127,28 @@ namespace BMW_Final_Project.Infrastructure.Data
                 .HasData(new StandardEuro
                 {
                     Id = 1,
-                    Name = "Euro-1",
+                    Name = "Евро-1",
                 },
                     new StandardEuro
                     {
                         Id = 2,
-                        Name = "Euro-2",
+                        Name = "Евро-2",
                     }, new StandardEuro
                     {
                         Id = 3,
-                        Name = "Euro-3",
+                        Name = "Евро-3",
                     }, new StandardEuro
                     {
                         Id = 4,
-                        Name = "Euro-4",
+                        Name = "Евро-4",
                     }, new StandardEuro
                     {
                         Id = 5,
-                        Name = "Euro-5",
+                        Name = "Евро-5",
                     }, new StandardEuro
                     {
                         Id = 6,
-                        Name = "Euro-6",
+                        Name = "Евро-6",
                     });
 
 
@@ -81,10 +156,10 @@ namespace BMW_Final_Project.Infrastructure.Data
                 .Entity<TypeMotor>()
                 .HasData(new TypeMotor
                 {
-                        Id = 1,
-                        Name = "Sport",
-                        IsActive = true
-                    },
+                    Id = 1,
+                    Name = "Sport",
+                    IsActive = true
+                },
                     new TypeMotor
                     {
                         Id = 2,
