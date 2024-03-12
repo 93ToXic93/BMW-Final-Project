@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
-using static BMW_Final_Project.Infrastructure.Constants.DataConstants.CategoryConstants;
+using static BMW_Final_Project.Infrastructure.Constants.DataConstants.CategoryColorConstants;
 
 namespace BMW_Final_Project.Infrastructure.Data.Models.Motorcycles
 {

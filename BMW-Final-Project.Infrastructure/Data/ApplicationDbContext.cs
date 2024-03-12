@@ -51,7 +51,8 @@ namespace BMW_Final_Project.Infrastructure.Data
                 .WithMany()
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Entity<IdentityUser>()
+            builder
+                .Entity<IdentityUser>()
                 .HasData(new IdentityUser()
                 {
                     Email = "Adi@gmail.com",
@@ -62,6 +63,24 @@ namespace BMW_Final_Project.Infrastructure.Data
                     PasswordHash = "AQAAAAEAACcQAAAAENm8EjC/RzIWTB/V8XGUF3U3H5qt4KDqe6QoeypTHc8GrXcJPPt06yr1AFfR/Jc7wQ==",
                     UserName = "Adi@gmail.com"
                 });
+
+            //builder
+            //    .Entity<IdentityRole>()
+            //    .HasData(new IdentityRole
+            //{
+            //    Id = "1",
+            //    Name = "Admin",
+            //    NormalizedName = "ADMIN"
+            //});
+
+            //builder
+            //    .Entity<IdentityUserRole<string>>()
+            //    .HasData(new IdentityUserRole<string>
+            //{
+            //    UserId = "42405069-32f4-4217-825e-a76dad984fc7",
+            //    RoleId = "1"
+            //});
+
 
             builder
                 .Entity<TypePerson>()
@@ -171,43 +190,30 @@ namespace BMW_Final_Project.Infrastructure.Data
                 {
                     Id = 1,
                     Name = "Sport",
-                    IsActive = true
                 }, new TypeMotor
                 {
                     Id = 2,
                     Name = "M",
-                    IsActive = true
-
                 }, new TypeMotor
                 {
                     Id = 3,
                     Name = "Tour",
-                    IsActive = true
-
                 }, new TypeMotor
                 {
                     Id = 4,
                     Name = "Roadster",
-                    IsActive = true
-
                 }, new TypeMotor
                 {
                     Id = 5,
                     Name = "Heritage",
-                    IsActive = true
-
                 }, new TypeMotor
                 {
                     Id = 6,
                     Name = "Adventure",
-                    IsActive = true
-
                 }, new TypeMotor
                 {
                     Id = 7,
                     Name = "Urban Mobility",
-                    IsActive = true
-
                 });
 
 

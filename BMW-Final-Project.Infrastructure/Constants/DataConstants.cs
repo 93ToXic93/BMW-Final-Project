@@ -2,9 +2,10 @@
 {
     public static class DataConstants
     {
-        public static class CategoryConstants
+        public static class CategoryColorConstants
         {
             public const int MaxColorNameLength = 50;
+            public const int MinColorNameLength = 3;
         }
 
         public static class StandardEuroConstants
@@ -93,5 +94,10 @@
 
         public const string DataFormat = "dd/MM/yyyy";
 
+        public const string RequiredErrorMessage = "The {0} field is required!";
+
+        public const string LengthErrorMessage = "The {0} should be between {2} and {1} symbols!";
+
+        public const string RangeErrorMessage = "The {0} should be between {1} and {2}!";
     }
 }

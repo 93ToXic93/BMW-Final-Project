@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BMW_Final_Project.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240312155026_Initial-Mig")]
-    partial class InitialMig
+    [Migration("20240312185312_Initial-Migration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -410,7 +410,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 1,
-                            Year = new DateTime(2024, 3, 12, 17, 50, 26, 243, DateTimeKind.Local).AddTicks(1736)
+                            Year = new DateTime(2024, 3, 12, 20, 53, 12, 411, DateTimeKind.Local).AddTicks(9246)
                         },
                         new
                         {
@@ -433,7 +433,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 16,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 4,
-                            Year = new DateTime(2024, 3, 12, 17, 50, 26, 243, DateTimeKind.Local).AddTicks(1778)
+                            Year = new DateTime(2024, 3, 12, 20, 53, 12, 411, DateTimeKind.Local).AddTicks(9281)
                         },
                         new
                         {
@@ -456,7 +456,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 2,
-                            Year = new DateTime(2024, 3, 12, 17, 50, 26, 243, DateTimeKind.Local).AddTicks(1782)
+                            Year = new DateTime(2024, 3, 12, 20, 53, 12, 411, DateTimeKind.Local).AddTicks(9285)
                         });
                 });
 
@@ -542,10 +542,6 @@ namespace BMW_Final_Project.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit")
-                        .HasComment("Type ad status");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -562,43 +558,36 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            IsActive = true,
                             Name = "Sport"
                         },
                         new
                         {
                             Id = 2,
-                            IsActive = true,
                             Name = "M"
                         },
                         new
                         {
                             Id = 3,
-                            IsActive = true,
                             Name = "Tour"
                         },
                         new
                         {
                             Id = 4,
-                            IsActive = true,
                             Name = "Roadster"
                         },
                         new
                         {
                             Id = 5,
-                            IsActive = true,
                             Name = "Heritage"
                         },
                         new
                         {
                             Id = 6,
-                            IsActive = true,
                             Name = "Adventure"
                         },
                         new
                         {
                             Id = 7,
-                            IsActive = true,
                             Name = "Urban Mobility"
                         });
                 });
@@ -724,7 +713,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         {
                             Id = "42405069-32f4-4217-825e-a76dad984fc7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "72dd8ecf-5b85-4ce1-b57f-946cace60261",
+                            ConcurrencyStamp = "f2394dde-3d81-4a83-967c-da0858f3d718",
                             Email = "Adi@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -732,7 +721,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             NormalizedUserName = "ADI@GMAIL.COM",
                             PasswordHash = "AQAAAAEAACcQAAAAENm8EjC/RzIWTB/V8XGUF3U3H5qt4KDqe6QoeypTHc8GrXcJPPt06yr1AFfR/Jc7wQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "66ca53ff-3f37-4a52-a81f-18ab5704764d",
+                            SecurityStamp = "aff2ff4c-afbc-48ee-bc4a-ba6244e20877",
                             TwoFactorEnabled = false,
                             UserName = "Adi@gmail.com"
                         });

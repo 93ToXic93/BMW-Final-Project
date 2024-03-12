@@ -16,10 +16,6 @@ namespace BMW_Final_Project.Infrastructure.Data.Models.Motorcycles
         [MaxLength(DataConstants.TypeMotorConstants.MaxTypeNameLength)]
         public string Name { get; set; } = string.Empty;
 
-        [Required]
-        [Comment("Type ad status")]
-        public bool IsActive { get; set; }
-
         public ICollection<Motorcycle> Motorcycles { get; set; } = new List<Motorcycle>();
     }
 }
