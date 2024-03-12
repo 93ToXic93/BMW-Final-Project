@@ -385,6 +385,77 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     b.ToTable("Motorcycles");
 
                     b.HasComment("Motorcycles table");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Amount = 20,
+                            BuyerId = "42405069-32f4-4217-825e-a76dad984fc7",
+                            CC = 1000,
+                            ColorCategoryId = 1,
+                            DTC = "BMW own Dynamic Traction Control specified for this unique bike",
+                            FrontBreak = "BMW own Front Brake Control specified for this unique bike",
+                            HorsePowers = 205,
+                            ImageUrl = "https://images4.alphacoders.com/127/1277784.jpg",
+                            IsActive = true,
+                            Kg = 197,
+                            Model = "BMW S1000RR",
+                            Price = 62000m,
+                            RearBreak = "BMW own Rear Brake Control specified for this unique bike",
+                            SeatHeightMm = 705,
+                            StandardEuroId = 3,
+                            TankCapacity = 21,
+                            Transmission = "BMW 6-Gears transmission",
+                            TypeMotorId = 1,
+                            Year = new DateTime(2024, 3, 12, 17, 50, 26, 243, DateTimeKind.Local).AddTicks(1736)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Amount = 20,
+                            BuyerId = "42405069-32f4-4217-825e-a76dad984fc7",
+                            CC = 900,
+                            ColorCategoryId = 1,
+                            DTC = "BMW own Dynamic Traction Control specified for this unique bike",
+                            FrontBreak = "BMW own Front Brake Control specified for this unique bike",
+                            HorsePowers = 105,
+                            ImageUrl = "https://storage.edidomus.it/dueruote/nuovo/850/lat1586861045333.jpg",
+                            IsActive = true,
+                            Kg = 210,
+                            Model = "BMW F900R",
+                            Price = 32000m,
+                            RearBreak = "BMW own Rear Brake Control specified for this unique bike",
+                            SeatHeightMm = 705,
+                            StandardEuroId = 3,
+                            TankCapacity = 16,
+                            Transmission = "BMW 6-Gears transmission",
+                            TypeMotorId = 4,
+                            Year = new DateTime(2024, 3, 12, 17, 50, 26, 243, DateTimeKind.Local).AddTicks(1778)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Amount = 20,
+                            BuyerId = "42405069-32f4-4217-825e-a76dad984fc7",
+                            CC = 100,
+                            ColorCategoryId = 1,
+                            DTC = "BMW own Dynamic Traction Control specified for this unique bike",
+                            FrontBreak = "BMW own Front Brake Control specified for this unique bike",
+                            HorsePowers = 225,
+                            ImageUrl = "https://www.procycles.com.au/cdn/shop/files/2023-BMW-M-1000-RR_-16-1024x724.jpg?v=1689145146",
+                            IsActive = true,
+                            Kg = 190,
+                            Model = "BMW M1000RR",
+                            Price = 82000m,
+                            RearBreak = "BMW own Rear Brake Control specified for this unique bike",
+                            SeatHeightMm = 665,
+                            StandardEuroId = 3,
+                            TankCapacity = 21,
+                            Transmission = "BMW 6-Gears transmission",
+                            TypeMotorId = 2,
+                            Year = new DateTime(2024, 3, 12, 17, 50, 26, 243, DateTimeKind.Local).AddTicks(1782)
+                        });
                 });
 
             modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycles.MotorcycleBuyers", b =>
@@ -645,6 +716,24 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "42405069-32f4-4217-825e-a76dad984fc7",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "72dd8ecf-5b85-4ce1-b57f-946cace60261",
+                            Email = "Adi@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADI@GMAIL.COM",
+                            NormalizedUserName = "ADI@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAENm8EjC/RzIWTB/V8XGUF3U3H5qt4KDqe6QoeypTHc8GrXcJPPt06yr1AFfR/Jc7wQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "66ca53ff-3f37-4a52-a81f-18ab5704764d",
+                            TwoFactorEnabled = false,
+                            UserName = "Adi@gmail.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>

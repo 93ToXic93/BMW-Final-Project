@@ -7,17 +7,17 @@
 
 <div class="login-Main-Container container-fluid">
     <div class="login-box">
-        <h2>Log In</h2>
+        <h2>Влизане</h2>
         <form id="account" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="user-box">
                 <input asp-for="Input.Email" class="form-control" autocomplete="username" required="true">
-                <label asp-for="Input.Email" class="form-label">Username</label>
+                <label asp-for="Input.Email" class="form-label">Имейл</label>
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
             <div class="user-box">
                 <input asp-for="Input.Password" class="form-control" autocomplete="current-password" required="true">
-                <label asp-for="Input.Password" class="form-label">Password</label>
+                <label asp-for="Input.Password" class="form-label">Парола</label>
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
             <div class="checkbox text-white">
@@ -32,18 +32,18 @@
                     <span></span>
                     <span></span>
                     <span></span>
-                    Submit
+                    Влез
                 </a>
             </button>
 
             <p>
-                <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                <a id="forgot-password" asp-page="./ForgotPassword">Забравена парола?</a>
             </p>
             <p>
-                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Регистрирай се като нов потребител</a>
             </p>
             <p>
-                <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Препрати имейл конфигурация</a>
             </p>
 
         </form>

@@ -533,7 +533,7 @@ html {
 .login-Main-Container {
     font-family: sans-serif;
     background: linear-gradient(#141e30, #243b55);
-    padding-bottom:1000px;
+    padding-bottom: 1000px;
 }
 
 .login-box {
@@ -702,6 +702,17 @@ html {
     border: none;
     color: #03E9F4;
 }
+
     .ButtonLog:hover {
+        color: black;
+    }
+
+.ButtonReg {
+    background-color: #0F1723;
+    border: none;
+    color: #03E9F4;
+}
+
+    .ButtonReg:hover {
         color: black;
     }

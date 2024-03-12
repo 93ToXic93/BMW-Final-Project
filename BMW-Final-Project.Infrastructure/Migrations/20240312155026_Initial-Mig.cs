@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BMW_Final_Project.Infrastructure.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialMig : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,6 +49,20 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ClothCollections",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false, comment: "Collection identifier")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false, comment: "Collection Name")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ClothCollections", x => x.Id);
+                },
+                comment: "Season cloth collections");
+
+            migrationBuilder.CreateTable(
                 name: "ColorCategories",
                 columns: table => new
                 {
@@ -62,6 +76,20 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     table.PrimaryKey("PK_ColorCategories", x => x.Id);
                 },
                 comment: "Color Table");
+
+            migrationBuilder.CreateTable(
+                name: "Sizes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false, comment: "Size identifier")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false, comment: "Size")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sizes", x => x.Id);
+                },
+                comment: "Size table");
 
             migrationBuilder.CreateTable(
                 name: "StandardEuros",
@@ -91,6 +119,20 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     table.PrimaryKey("PK_TypeMotor", x => x.Id);
                 },
                 comment: "Type of the motorcycle");
+
+            migrationBuilder.CreateTable(
+                name: "TypesPersons",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false, comment: "TypePerson identifier")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false, comment: "TypePerson type")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TypesPersons", x => x.Id);
+                },
+                comment: "TypePerson's table");
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
@@ -207,7 +249,6 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     Model = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false, comment: "Motorcycle model"),
                     TypeMotorId = table.Column<int>(type: "int", nullable: false, comment: "Motorcycle Type identifier"),
                     ColorCategoryId = table.Column<int>(type: "int", nullable: false, comment: "Category identifier"),
-                    BoughtOn = table.Column<DateTime>(type: "datetime2", nullable: false, comment: "Date and time of buying the motorcycle"),
                     Kg = table.Column<int>(type: "int", nullable: false, comment: "Motorcycle weight"),
                     TankCapacity = table.Column<int>(type: "int", nullable: false, comment: "Motorcycle tank capacity"),
                     HorsePowers = table.Column<int>(type: "int", nullable: false, comment: "Motorcycle horse powers"),
@@ -222,8 +263,8 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     SeatHeightMm = table.Column<int>(type: "int", nullable: false, comment: "Motorcycle seat height in mm"),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", maxLength: 70000, nullable: false, comment: "Motorcycle photo"),
                     IsActive = table.Column<bool>(type: "bit", nullable: false, comment: "Motorcycle ad status"),
-                    BuyerId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Buyer identifier"),
-                    Amount = table.Column<int>(type: "int", nullable: false, comment: "Motorcycle amount")
+                    Amount = table.Column<int>(type: "int", nullable: false, comment: "Motorcycle amount"),
+                    BuyerId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Buyer identifier")
                 },
                 constraints: table =>
                 {
@@ -256,6 +297,53 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                 comment: "Motorcycles table");
 
             migrationBuilder.CreateTable(
+                name: "Cloths",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false, comment: "Cloth identifier")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false, comment: "Cloth name"),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false, comment: "Cloth description"),
+                    ImgUrl = table.Column<string>(type: "nvarchar(max)", maxLength: 70000, nullable: false, comment: "Cloth image"),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false, comment: "Cloth price"),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false, comment: "Cloth status"),
+                    Amount = table.Column<int>(type: "int", nullable: false, comment: "Cloth amount"),
+                    ClothCollectionId = table.Column<int>(type: "int", nullable: false, comment: "Cloth collection identifier"),
+                    SizeId = table.Column<int>(type: "int", nullable: false, comment: "Size identifier"),
+                    TypePersonId = table.Column<int>(type: "int", nullable: false, comment: "TypePerson identifier"),
+                    BuyerId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Buyer identifier")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cloths", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Cloths_AspNetUsers_BuyerId",
+                        column: x => x.BuyerId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Cloths_ClothCollections_ClothCollectionId",
+                        column: x => x.ClothCollectionId,
+                        principalTable: "ClothCollections",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Cloths_Sizes_SizeId",
+                        column: x => x.SizeId,
+                        principalTable: "Sizes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Cloths_TypesPersons_TypePersonId",
+                        column: x => x.TypePersonId,
+                        principalTable: "TypesPersons",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                },
+                comment: "Cloth table");
+
+            migrationBuilder.CreateTable(
                 name: "MotorcyclesBuyers",
                 columns: table => new
                 {
@@ -278,15 +366,59 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 },
-                comment: "Motorcycles and Buyers");
+                comment: "Motorcycles and buyers");
+
+            migrationBuilder.CreateTable(
+                name: "ClothsBuyers",
+                columns: table => new
+                {
+                    ClothId = table.Column<int>(type: "int", nullable: false, comment: "Cloth identifier"),
+                    BuyerId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Buyer identifier")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ClothsBuyers", x => new { x.BuyerId, x.ClothId });
+                    table.ForeignKey(
+                        name: "FK_ClothsBuyers_AspNetUsers_BuyerId",
+                        column: x => x.BuyerId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ClothsBuyers_Cloths_ClothId",
+                        column: x => x.ClothId,
+                        principalTable: "Cloths",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                },
+                comment: "Cloth and buyers");
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "42405069-32f4-4217-825e-a76dad984fc7", 0, "72dd8ecf-5b85-4ce1-b57f-946cace60261", "Adi@gmail.com", true, false, null, "ADI@GMAIL.COM", "ADI@GMAIL.COM", "AQAAAAEAACcQAAAAENm8EjC/RzIWTB/V8XGUF3U3H5qt4KDqe6QoeypTHc8GrXcJPPt06yr1AFfR/Jc7wQ==", null, false, "66ca53ff-3f37-4a52-a81f-18ab5704764d", false, "Adi@gmail.com" });
 
             migrationBuilder.InsertData(
                 table: "ColorCategories",
                 columns: new[] { "Id", "IsActive", "Name" },
                 values: new object[,]
                 {
-                    { 1, true, "White" },
-                    { 2, true, "Black" }
+                    { 1, true, "Черен" },
+                    { 2, true, "Бял" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Sizes",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "XS" },
+                    { 2, "S" },
+                    { 3, "M" },
+                    { 4, "L" },
+                    { 5, "XL" },
+                    { 6, "XXL" },
+                    { 7, "XXXL" }
                 });
 
             migrationBuilder.InsertData(
@@ -294,12 +426,12 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { 1, "Euro-1" },
-                    { 2, "Euro-2" },
-                    { 3, "Euro-3" },
-                    { 4, "Euro-4" },
-                    { 5, "Euro-5" },
-                    { 6, "Euro-6" }
+                    { 1, "Евро-1" },
+                    { 2, "Евро-2" },
+                    { 3, "Евро-3" },
+                    { 4, "Евро-4" },
+                    { 5, "Евро-5" },
+                    { 6, "Евро-6" }
                 });
 
             migrationBuilder.InsertData(
@@ -315,6 +447,31 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     { 6, true, "Adventure" },
                     { 7, true, "Urban Mobility" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "TypesPersons",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Мъже" },
+                    { 2, "Жени" },
+                    { 3, "Деца" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Motorcycles",
+                columns: new[] { "Id", "Amount", "BuyerId", "CC", "ColorCategoryId", "DTC", "FrontBreak", "HorsePowers", "ImageUrl", "IsActive", "Kg", "Model", "Price", "RearBreak", "SeatHeightMm", "StandardEuroId", "TankCapacity", "Transmission", "TypeMotorId", "Year" },
+                values: new object[] { 1, 20, "42405069-32f4-4217-825e-a76dad984fc7", 1000, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 205, "https://images4.alphacoders.com/127/1277784.jpg", true, 197, "BMW S1000RR", 62000m, "BMW own Rear Brake Control specified for this unique bike", 705, 3, 21, "BMW 6-Gears transmission", 1, new DateTime(2024, 3, 12, 17, 50, 26, 243, DateTimeKind.Local).AddTicks(1736) });
+
+            migrationBuilder.InsertData(
+                table: "Motorcycles",
+                columns: new[] { "Id", "Amount", "BuyerId", "CC", "ColorCategoryId", "DTC", "FrontBreak", "HorsePowers", "ImageUrl", "IsActive", "Kg", "Model", "Price", "RearBreak", "SeatHeightMm", "StandardEuroId", "TankCapacity", "Transmission", "TypeMotorId", "Year" },
+                values: new object[] { 2, 20, "42405069-32f4-4217-825e-a76dad984fc7", 900, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 105, "https://storage.edidomus.it/dueruote/nuovo/850/lat1586861045333.jpg", true, 210, "BMW F900R", 32000m, "BMW own Rear Brake Control specified for this unique bike", 705, 3, 16, "BMW 6-Gears transmission", 4, new DateTime(2024, 3, 12, 17, 50, 26, 243, DateTimeKind.Local).AddTicks(1778) });
+
+            migrationBuilder.InsertData(
+                table: "Motorcycles",
+                columns: new[] { "Id", "Amount", "BuyerId", "CC", "ColorCategoryId", "DTC", "FrontBreak", "HorsePowers", "ImageUrl", "IsActive", "Kg", "Model", "Price", "RearBreak", "SeatHeightMm", "StandardEuroId", "TankCapacity", "Transmission", "TypeMotorId", "Year" },
+                values: new object[] { 3, 20, "42405069-32f4-4217-825e-a76dad984fc7", 100, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 225, "https://www.procycles.com.au/cdn/shop/files/2023-BMW-M-1000-RR_-16-1024x724.jpg?v=1689145146", true, 190, "BMW M1000RR", 82000m, "BMW own Rear Brake Control specified for this unique bike", 665, 3, 21, "BMW 6-Gears transmission", 2, new DateTime(2024, 3, 12, 17, 50, 26, 243, DateTimeKind.Local).AddTicks(1782) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -354,6 +511,31 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cloths_BuyerId",
+                table: "Cloths",
+                column: "BuyerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cloths_ClothCollectionId",
+                table: "Cloths",
+                column: "ClothCollectionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cloths_SizeId",
+                table: "Cloths",
+                column: "SizeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cloths_TypePersonId",
+                table: "Cloths",
+                column: "TypePersonId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClothsBuyers_ClothId",
+                table: "ClothsBuyers",
+                column: "ClothId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Motorcycles_BuyerId",
@@ -399,13 +581,28 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "ClothsBuyers");
+
+            migrationBuilder.DropTable(
                 name: "MotorcyclesBuyers");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
+                name: "Cloths");
+
+            migrationBuilder.DropTable(
                 name: "Motorcycles");
+
+            migrationBuilder.DropTable(
+                name: "ClothCollections");
+
+            migrationBuilder.DropTable(
+                name: "Sizes");
+
+            migrationBuilder.DropTable(
+                name: "TypesPersons");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

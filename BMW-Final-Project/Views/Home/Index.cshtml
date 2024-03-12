@@ -1,5 +1,5 @@
 ﻿@using System.Security.Claims
-@model BMW_Final_Project.Core.Models.MotorcycleModel
+@model ICollection<BMW_Final_Project.Core.Models.MotorcycleModel>
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -8,7 +8,7 @@
     <div>
 
         <img class="img-fluid position-relative" alt="S1000RR photo" src="/img/Made-RR.jpg" />
-        <a class="Home-RR-Button" asp-controller="Motorcycle" asp-action="Details" asp-route-id="4">Открийте Сега</a>
+        <a class="Home-RR-Button" asp-controller="Motorcycle" asp-action="Details" asp-route-id="1">Открийте Сега</a>
         <h1 class="Text-Home-RR-Img">
             <p class="Text-Home-RR-Img-Top">Новият BMW S1000RR</p>НЕКА ПЪТЯТ Е ВАШАТА СЦЕНА
         </h1>

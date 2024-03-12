@@ -4,7 +4,7 @@
     ViewData["Title"] = "Register";
 }
 
-<h1 class="text-center display-3fw-bold">@ViewData["Title"]</h1>
+@* <h1 class="text-center display-3fw-bold">@ViewData["Title"]</h1>
 
 <div class="row">
     <div class="col-md-4"></div>
@@ -31,6 +31,10 @@
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
         </form>
     </div>
+    
+
+    
+
     @* <div class="col-md-6 col-md-offset-2">
         <section>
             <h3>Use another service to register.</h3>
@@ -61,7 +65,50 @@
             }
         </section>
     </div> *@
+@* </div> *@ 
+
+
+
+
+
+
+<div class="login-Main-Container container-fluid">
+    <div class="login-box">
+        <h2>Register</h2>
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="user-box">
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" required="true">
+                <label asp-for="Input.Email" class="form-label">Username</label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="user-box">
+                <input asp-for="Input.Password" class="form-control" autocomplete="current-password" required="true">
+                <label asp-for="Input.Password" class="form-label">Password</label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="user-box">
+                    <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" required="true"/>
+                    <label asp-for="Input.ConfirmPassword">Confirm Password</label>
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <button class="ButtonReg" id="registerSubmit" type="submit">
+                <a>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Register
+                </a>
+            </button>
+        </form>
+    </div>
 </div>
+
+
+
+
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
