@@ -1,10 +1,9 @@
-﻿using System.Globalization;
-using BMW_Final_Project.Core.Contracts;
+﻿using BMW_Final_Project.Core.Contracts;
 using BMW_Final_Project.Core.Models;
-using BMW_Final_Project.Infrastructure.Data;
 using BMW_Final_Project.Infrastructure.Data.Common;
 using BMW_Final_Project.Infrastructure.Data.Models.Motorcycles;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 namespace BMW_Final_Project.Core.Services
 {

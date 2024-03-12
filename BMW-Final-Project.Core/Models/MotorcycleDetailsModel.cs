@@ -1,11 +1,4 @@
-﻿using BMW_Final_Project.Infrastructure.Data.Models;
-using BMW_Final_Project.Infrastructure.ValidationAttributes;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace BMW_Final_Project.Core.Models
+﻿namespace BMW_Final_Project.Core.Models
 {
     public class MotorcycleDetailsModel : MotorcycleModel
     {
