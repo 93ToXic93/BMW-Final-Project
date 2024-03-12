@@ -1,6 +1,9 @@
-﻿namespace BMW_Final_Project.Core.Services
+﻿using BMW_Final_Project.Core.Contracts;
+
+namespace BMW_Final_Project.Core.Services
 {
-    public class ClothService
+    public class ClothService : IClothService
     {
+
     }
 }
