@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BMW_Final_Project.Infrastructure.Constants;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace BMW_Final_Project.Infrastructure.ValidationAttributes
 {

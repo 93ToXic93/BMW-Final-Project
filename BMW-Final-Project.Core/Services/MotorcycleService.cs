@@ -3,7 +3,7 @@ using BMW_Final_Project.Core.Contracts;
 using BMW_Final_Project.Core.Models;
 using BMW_Final_Project.Infrastructure.Data;
 using BMW_Final_Project.Infrastructure.Data.Common;
-using BMW_Final_Project.Infrastructure.Data.Models;
+using BMW_Final_Project.Infrastructure.Data.Models.Motorcycles;
 using Microsoft.EntityFrameworkCore;
 
 namespace BMW_Final_Project.Core.Services
@@ -37,17 +37,6 @@ namespace BMW_Final_Project.Core.Services
 
         public async Task<ICollection<MotorcycleModel>> LoadById(int id)
         {
-            var model = await GetByIdAsync(id);
-
-            if (model == null)
-            {
-                throw new NullReferenceException();
-            }
-            if (id != model.Id)
-            {
-                throw new ArgumentException("model id isn't correct!");
-            }
-
             var motorcycles = await _repository
                 .AllReadOnly<Motorcycle>()
                 .Where(x => x.IsActive && x.TypeMotor.Id == id)
