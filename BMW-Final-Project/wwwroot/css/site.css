@@ -716,3 +716,24 @@ html {
     .ButtonReg:hover {
         color: black;
     }
+
+.Add-Motorcycle-Button {
+    text-decoration: none;
+    border: solid;
+    padding: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: black;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    transition: 0.7s;
+    color: white;
+    background-color: black;
+}
+
+    .Add-Motorcycle-Button:hover {
+        color: white;
+        background-color: lawngreen;
+        border-radius: 30px;
+    }

@@ -105,6 +105,7 @@ namespace BMW_Final_Project.Infrastructure.Data.Models.Motorcycles
 
         [Required]
         [Comment("Motorcycle amount")]
+        [Range(MaxMotorcycleAmount,MinMotorcycleAmount)]
         public int Amount { get; set; }
 
         [Required]

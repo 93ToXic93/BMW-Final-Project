@@ -408,7 +408,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 1,
-                            Year = new DateTime(2024, 3, 12, 20, 53, 12, 411, DateTimeKind.Local).AddTicks(9246)
+                            Year = new DateTime(2024, 3, 12, 21, 28, 11, 242, DateTimeKind.Local).AddTicks(6353)
                         },
                         new
                         {
@@ -431,7 +431,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 16,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 4,
-                            Year = new DateTime(2024, 3, 12, 20, 53, 12, 411, DateTimeKind.Local).AddTicks(9281)
+                            Year = new DateTime(2024, 3, 12, 21, 28, 11, 242, DateTimeKind.Local).AddTicks(6388)
                         },
                         new
                         {
@@ -454,7 +454,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 2,
-                            Year = new DateTime(2024, 3, 12, 20, 53, 12, 411, DateTimeKind.Local).AddTicks(9285)
+                            Year = new DateTime(2024, 3, 12, 21, 28, 11, 242, DateTimeKind.Local).AddTicks(6392)
                         });
                 });
 
@@ -711,7 +711,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         {
                             Id = "42405069-32f4-4217-825e-a76dad984fc7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f2394dde-3d81-4a83-967c-da0858f3d718",
+                            ConcurrencyStamp = "8e926353-4d54-48da-b0f6-c79a71d78e5c",
                             Email = "Adi@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
@@ -719,7 +719,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             NormalizedUserName = "ADI@GMAIL.COM",
                             PasswordHash = "AQAAAAEAACcQAAAAENm8EjC/RzIWTB/V8XGUF3U3H5qt4KDqe6QoeypTHc8GrXcJPPt06yr1AFfR/Jc7wQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "aff2ff4c-afbc-48ee-bc4a-ba6244e20877",
+                            SecurityStamp = "6c6c55c6-231e-40f3-bcec-b844a2719399",
                             TwoFactorEnabled = false,
                             UserName = "Adi@gmail.com"
                         });

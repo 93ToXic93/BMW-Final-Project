@@ -50,5 +50,10 @@ namespace BMW_Final_Project.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
+
+        public Task<IActionResult> Add()
+        {
+            return View();
+        }
     }
 }

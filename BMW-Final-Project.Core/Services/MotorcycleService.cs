@@ -27,6 +27,7 @@ namespace BMW_Final_Project.Core.Services
                     ImageUrl = x.ImageUrl,
                     Model = x.Model,
                     Year = x.Year.Year.ToString(),
+                    price = x.Price.ToString("F")
                 })
                 .ToListAsync();
 

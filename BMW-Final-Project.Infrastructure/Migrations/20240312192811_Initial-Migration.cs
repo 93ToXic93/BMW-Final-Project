@@ -395,7 +395,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "42405069-32f4-4217-825e-a76dad984fc7", 0, "f2394dde-3d81-4a83-967c-da0858f3d718", "Adi@gmail.com", true, false, null, "ADI@GMAIL.COM", "ADI@GMAIL.COM", "AQAAAAEAACcQAAAAENm8EjC/RzIWTB/V8XGUF3U3H5qt4KDqe6QoeypTHc8GrXcJPPt06yr1AFfR/Jc7wQ==", null, false, "aff2ff4c-afbc-48ee-bc4a-ba6244e20877", false, "Adi@gmail.com" });
+                values: new object[] { "42405069-32f4-4217-825e-a76dad984fc7", 0, "8e926353-4d54-48da-b0f6-c79a71d78e5c", "Adi@gmail.com", true, false, null, "ADI@GMAIL.COM", "ADI@GMAIL.COM", "AQAAAAEAACcQAAAAENm8EjC/RzIWTB/V8XGUF3U3H5qt4KDqe6QoeypTHc8GrXcJPPt06yr1AFfR/Jc7wQ==", null, false, "6c6c55c6-231e-40f3-bcec-b844a2719399", false, "Adi@gmail.com" });
 
             migrationBuilder.InsertData(
                 table: "ColorCategories",
@@ -460,17 +460,17 @@ namespace BMW_Final_Project.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "Motorcycles",
                 columns: new[] { "Id", "Amount", "BuyerId", "CC", "ColorCategoryId", "DTC", "FrontBreak", "HorsePowers", "ImageUrl", "IsActive", "Kg", "Model", "Price", "RearBreak", "SeatHeightMm", "StandardEuroId", "TankCapacity", "Transmission", "TypeMotorId", "Year" },
-                values: new object[] { 1, 20, "42405069-32f4-4217-825e-a76dad984fc7", 1000, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 205, "https://images4.alphacoders.com/127/1277784.jpg", true, 197, "BMW S1000RR", 62000m, "BMW own Rear Brake Control specified for this unique bike", 705, 3, 21, "BMW 6-Gears transmission", 1, new DateTime(2024, 3, 12, 20, 53, 12, 411, DateTimeKind.Local).AddTicks(9246) });
+                values: new object[] { 1, 20, "42405069-32f4-4217-825e-a76dad984fc7", 1000, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 205, "https://images4.alphacoders.com/127/1277784.jpg", true, 197, "BMW S1000RR", 62000m, "BMW own Rear Brake Control specified for this unique bike", 705, 3, 21, "BMW 6-Gears transmission", 1, new DateTime(2024, 3, 12, 21, 28, 11, 242, DateTimeKind.Local).AddTicks(6353) });
 
             migrationBuilder.InsertData(
                 table: "Motorcycles",
                 columns: new[] { "Id", "Amount", "BuyerId", "CC", "ColorCategoryId", "DTC", "FrontBreak", "HorsePowers", "ImageUrl", "IsActive", "Kg", "Model", "Price", "RearBreak", "SeatHeightMm", "StandardEuroId", "TankCapacity", "Transmission", "TypeMotorId", "Year" },
-                values: new object[] { 2, 20, "42405069-32f4-4217-825e-a76dad984fc7", 900, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 105, "https://storage.edidomus.it/dueruote/nuovo/850/lat1586861045333.jpg", true, 210, "BMW F900R", 32000m, "BMW own Rear Brake Control specified for this unique bike", 705, 3, 16, "BMW 6-Gears transmission", 4, new DateTime(2024, 3, 12, 20, 53, 12, 411, DateTimeKind.Local).AddTicks(9281) });
+                values: new object[] { 2, 20, "42405069-32f4-4217-825e-a76dad984fc7", 900, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 105, "https://storage.edidomus.it/dueruote/nuovo/850/lat1586861045333.jpg", true, 210, "BMW F900R", 32000m, "BMW own Rear Brake Control specified for this unique bike", 705, 3, 16, "BMW 6-Gears transmission", 4, new DateTime(2024, 3, 12, 21, 28, 11, 242, DateTimeKind.Local).AddTicks(6388) });
 
             migrationBuilder.InsertData(
                 table: "Motorcycles",
                 columns: new[] { "Id", "Amount", "BuyerId", "CC", "ColorCategoryId", "DTC", "FrontBreak", "HorsePowers", "ImageUrl", "IsActive", "Kg", "Model", "Price", "RearBreak", "SeatHeightMm", "StandardEuroId", "TankCapacity", "Transmission", "TypeMotorId", "Year" },
-                values: new object[] { 3, 20, "42405069-32f4-4217-825e-a76dad984fc7", 100, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 225, "https://www.procycles.com.au/cdn/shop/files/2023-BMW-M-1000-RR_-16-1024x724.jpg?v=1689145146", true, 190, "BMW M1000RR", 82000m, "BMW own Rear Brake Control specified for this unique bike", 665, 3, 21, "BMW 6-Gears transmission", 2, new DateTime(2024, 3, 12, 20, 53, 12, 411, DateTimeKind.Local).AddTicks(9285) });
+                values: new object[] { 3, 20, "42405069-32f4-4217-825e-a76dad984fc7", 100, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 225, "https://www.procycles.com.au/cdn/shop/files/2023-BMW-M-1000-RR_-16-1024x724.jpg?v=1689145146", true, 190, "BMW M1000RR", 82000m, "BMW own Rear Brake Control specified for this unique bike", 665, 3, 21, "BMW 6-Gears transmission", 2, new DateTime(2024, 3, 12, 21, 28, 11, 242, DateTimeKind.Local).AddTicks(6392) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

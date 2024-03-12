@@ -57,6 +57,9 @@
 
             public const double MaxMotorcycleSeatLength = 1500;
             public const double MinMotorcycleSeatLength = 20;
+
+            public const double MinMotorcycleAmount = 1;
+            public const double MaxMotorcycleAmount = 50000;
         }
 
         public static class ClothConstants
@@ -93,6 +96,8 @@
         }
 
         public const string DataFormat = "dd/MM/yyyy";
+
+        public const string DataFormatError = $"The format should be like: {DataFormat}";
 
         public const string RequiredErrorMessage = "The {0} field is required!";
 

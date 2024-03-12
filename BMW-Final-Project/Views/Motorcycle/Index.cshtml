@@ -4,7 +4,12 @@
     <h1 class="display-2 fw-bold text-center pt-5">ВСИЧКИ МОДЕЛИ</h1>
     <h3 class="fw-bold text-center">ОТКРИЙ СВОЯ МОТОЦИКЛЕТ BMW MOTORRAD.</h3>
 </div>
-
+@if (User.Identity != null && User.Identity.IsAuthenticated @* && User.IsInRole("Admin") *@)
+{
+    <div class="text-center p-5">
+        <a asp-controller="Motorcycle" asp-action="Add" class="Add-Motorcycle-Button">Add Motorcycle</a>
+    </div>
+}
 
 <div class="Mini-menu-for-motorcycles align-items-center justify-content-center pt-5 container-fluid">
     <a asp-controller="Motorcycle" asp-action="Index" class="Mini-menu-text">ВСИЧКИ</a>
@@ -17,15 +22,17 @@
     <a asp-controller="Motorcycle" asp-action="LoadById" asp-route-id="7" class="Mini-menu-text">Urban Mobility</a>
 </div>
 
+
 <div class="Motorcycles-container container-fluid">
     @foreach (var motor in Model)
     {
         <div class="p-5">
-            <img class="photo-of-motorcycle" src="@motor.ImageUrl" alt="Motor-Photo"/>
-            <hr/>
+            <img class="photo-of-motorcycle" src="@motor.ImageUrl" alt="Motor-Photo" />
+            <hr />
             <h5>@motor.Year</h5>
             <h5>Модел: @motor.Model</h5>
-            <br/>
+            <h6>Цена: @motor.price$</h6>
+            <br />
             <a asp-controller="Motorcycle" asp-action="Details" asp-route-id="@motor.Id" class="Button-Find">Открий сега</a>
         </div>
     }
