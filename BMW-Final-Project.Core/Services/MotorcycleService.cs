@@ -101,5 +101,47 @@ namespace BMW_Final_Project.Core.Services
 
             return motorcycle;
         }
+
+        public async Task<ICollection<TypeMotorModel>> GetTypeMotorcyclesAsync()
+        {
+            var motoTypes = await _repository
+                .AllReadOnly<TypeMotor>()
+                .Select(x => new TypeMotorModel()
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                })
+                .ToListAsync();
+
+            return motoTypes;
+        }
+        public async Task<ICollection<ColorCategoryModel>> GetColorsAsync()
+        {
+            var motoColors = await _repository
+                .AllReadOnly<ColorCategory>()
+                .Where(x => x.IsActive)
+                .Select(x => new ColorCategoryModel()
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                })
+                .ToListAsync();
+
+            return motoColors;
+        }
+
+        public async Task<ICollection<StandardEuroModel>> GetStandardEurosAsync()
+        {
+            var motoColors = await _repository
+                .AllReadOnly<StandardEuro>()
+                .Select(x => new StandardEuroModel()
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                })
+                .ToListAsync();
+
+            return motoColors;
+        }
     }
 }

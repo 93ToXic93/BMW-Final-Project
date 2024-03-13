@@ -79,7 +79,7 @@ namespace BMW_Final_Project.Core.Models
         public bool IsActive { get; set; }
 
         [Required(ErrorMessage = RequiredErrorMessage)]
-        [Range(MaxMotorcycleAmount,MinMotorcycleAmount,ErrorMessage = RangeErrorMessage)]
+        [Range(MinMotorcycleAmount,MaxMotorcycleAmount,ErrorMessage = RangeErrorMessage)]
         public int Amount { get; set; }
 
         public string BuyerId { get; set; } = string.Empty;

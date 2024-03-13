@@ -11,5 +11,13 @@ namespace BMW_Final_Project.Core.Contracts
         Task<MotorcycleDetailsModel> DetailsAsync(int id);
 
         Task<Motorcycle?> GetByIdAsync(int id);
+
+        Task<ICollection<TypeMotorModel>> GetTypeMotorcyclesAsync();
+
+        Task<ICollection<ColorCategoryModel>> GetColorsAsync();
+
+        Task<ICollection<StandardEuroModel>> GetStandardEurosAsync();
+
+
     }
 }

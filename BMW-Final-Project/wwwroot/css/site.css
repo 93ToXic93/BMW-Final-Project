@@ -126,7 +126,7 @@ html {
 .Register {
     position: relative;
     top: 46%;
-    right: 100%;
+    right: 45%;
     text-decoration: none;
     color: white;
     font-size: 42px;
@@ -565,7 +565,7 @@ html {
             padding: 10px;
             font-size: 16px;
             color: #fff;
-            margin-bottom: 30px;
+            margin-bottom: 60px;
             border: none;
             border-bottom: 1px solid #fff;
             outline: none;
@@ -576,8 +576,7 @@ html {
             position: absolute;
             top: 0;
             left: 0;
-            padding: 10px 0;
-            font-size: 14px;
+            font-size: 18px;
             color: #fff;
             pointer-events: none;
             transition: .5s;
@@ -585,10 +584,10 @@ html {
 
         .login-box .user-box input:focus ~ label,
         .login-box .user-box input:valid ~ label {
-            top: -35px;
+            top: -55px;
             left: 0;
             color: #03e9f4;
-            font-size: 12px;
+            font-size: 18px;
         }
 
     .login-box form a {
@@ -737,3 +736,12 @@ html {
         background-color: lawngreen;
         border-radius: 30px;
     }
+
+.text-danger {
+    position: absolute;
+    top: -30px;
+    left: 0;
+    width: 100%;
+    color: #ff0000; 
+    font-size: 18px; 
+}

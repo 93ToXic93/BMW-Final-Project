@@ -1,4 +1,5 @@
 ﻿using BMW_Final_Project.Core.Contracts;
+using BMW_Final_Project.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BMW_Final_Project.Controllers
@@ -51,9 +52,17 @@ namespace BMW_Final_Project.Controllers
             }
         }
 
-        public Task<IActionResult> Add()
+        [HttpGet]
+        public async Task<IActionResult> Add()
         {
-            return View();
+            var model = new AddMotorcycleModel()
+            {
+                TypeMotorModels = await _service.GetTypeMotorcyclesAsync(),
+                ColorCategoryModels = await _service.GetColorsAsync(),
+                StandardEuroModels = await _service.GetStandardEurosAsync()
+            };
+
+            return View(model);
         }
     }
 }

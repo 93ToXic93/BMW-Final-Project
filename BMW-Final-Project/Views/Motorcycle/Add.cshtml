@@ -1,0 +1,125 @@
+﻿@model BMW_Final_Project.Core.Models.AddMotorcycleModel
+
+<form asp-controller="Motorcycle" asp-action="Add" method="post">
+    <div class="form-group">
+        <label asp-for="Model">Модел</label>
+        <input asp-for="Model" class="form-control" />
+        <span asp-validation-for="Model" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TypeMotorId">Тип мотор</label>
+        <select asp-for="TypeMotorId" class="form-control">
+            <option value="">-- Select Type of Motor --</option>
+            @foreach (var typeMotor in Model.TypeMotorModels)
+            {
+                <option value="@typeMotor.Id">@typeMotor.Name</option>
+            }
+        </select>
+        <span asp-validation-for="TypeMotorId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ColorCategoryId">Цвят</label>
+        <select asp-for="ColorCategoryId" class="form-control">
+            <option value="">-- Select Color Category --</option>
+            @foreach (var colorCategory in Model.ColorCategoryModels)
+            {
+                <option value="@colorCategory.Id">@colorCategory.Name</option>
+            }
+        </select>
+        <span asp-validation-for="ColorCategoryId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Kg">Килограми на мотора</label>
+        <input asp-for="Kg" class="form-control" />
+        <span asp-validation-for="Kg" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TankCapacity">Капацитет на резервоара</label>
+        <input asp-for="TankCapacity" class="form-control" />
+        <span asp-validation-for="TankCapacity" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="HorsePowers">Конси сили</label>
+        <input asp-for="HorsePowers" class="form-control" />
+        <span asp-validation-for="HorsePowers" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CC">Кубични сили</label>
+        <input asp-for="CC" class="form-control" />
+        <span asp-validation-for="CC" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="StandardEuroId">Евро стандарт</label>
+        <select asp-for="StandardEuroId" class="form-control">
+            <option value="">-- Select Standard Euro --</option>
+            @foreach (var standardEuro in Model.StandardEuroModels)
+            {
+                <option value="@standardEuro.Id">@standardEuro.Name</option>
+            }
+        </select>
+        <span asp-validation-for="StandardEuroId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Price">Цена</label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Year">Година на производство</label>
+        <input asp-for="Year" class="form-control" />
+        <span asp-validation-for="Year" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DTC">Динамичен контрол на сцеплението</label>
+        <input asp-for="DTC" class="form-control" />
+        <span asp-validation-for="DTC" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Transmission">Скоростна кутия</label>
+        <input asp-for="Transmission" class="form-control" />
+        <span asp-validation-for="Transmission" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FrontBreak">Предна спирачка</label>
+        <input asp-for="FrontBreak" class="form-control" />
+        <span asp-validation-for="FrontBreak" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="RearBreak">Задна спирачка</label>
+        <input asp-for="RearBreak" class="form-control" />
+        <span asp-validation-for="RearBreak" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SeatHeightMm">Височина на седалката</label>
+        <input asp-for="SeatHeightMm" class="form-control" />
+        <span asp-validation-for="SeatHeightMm" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ImageUrl">URL на снимката</label>
+        <input asp-for="ImageUrl" class="form-control" />
+        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Amount">Брой мотори</label>
+        <input asp-for="Amount" class="form-control" />
+        <span asp-validation-for="Amount" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Motorcycle</button>
+</form>
