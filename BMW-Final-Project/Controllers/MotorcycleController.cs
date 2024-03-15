@@ -55,14 +55,29 @@ namespace BMW_Final_Project.Controllers
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            var model = new AddMotorcycleModel()
+            var modelToAdd = new AddMotorcycleModel()
             {
                 TypeMotorModels = await _service.GetTypeMotorcyclesAsync(),
                 ColorCategoryModels = await _service.GetColorsAsync(),
                 StandardEuroModels = await _service.GetStandardEurosAsync()
             };
 
-            return View(model);
+            return View(modelToAdd);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(AddMotorcycleModel modelToAdd)
+        {
+            if (!ModelState.IsValid)
+            {
+                modelToAdd.TypeMotorModels = await _service.GetTypeMotorcyclesAsync();
+                modelToAdd.ColorCategoryModels = await _service.GetColorsAsync();
+                modelToAdd.StandardEuroModels = await _service.GetStandardEurosAsync();
+
+                return View(modelToAdd);
+            }
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

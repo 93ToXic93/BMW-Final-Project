@@ -9,16 +9,16 @@
     <div class="login-box">
         <h2>Влизане</h2>
         <form id="account" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="ModelOnly" class="text-danger1"></div>
             <div class="user-box">
                 <input asp-for="Input.Email" class="form-control" autocomplete="username" area-required="true">
                 <label asp-for="Input.Email" class="form-label">Имейл</label>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                <span asp-validation-for="Input.Email" class="text-danger1"></span>
             </div>
             <div class="user-box">
                 <input asp-for="Input.Password" class="form-control" autocomplete="current-password" area-required="true">
                 <label asp-for="Input.Password" class="form-label">Парола</label>
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                <span asp-validation-for="Input.Password" class="text-danger1"></span>
             </div>
             <div class="checkbox text-white">
                 <label asp-for="Input.RememberMe" class="form-label">

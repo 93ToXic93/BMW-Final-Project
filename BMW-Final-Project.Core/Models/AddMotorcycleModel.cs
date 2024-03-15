@@ -1,8 +1,4 @@
-﻿using BMW_Final_Project.Infrastructure.Data.Models.Motorcycles;
-using BMW_Final_Project.Infrastructure.ValidationAttributes;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using BMW_Final_Project.Infrastructure.ValidationAttributes;
 using System.ComponentModel.DataAnnotations;
 using static BMW_Final_Project.Infrastructure.Constants.DataConstants;
 using static BMW_Final_Project.Infrastructure.Constants.DataConstants.MotorcycleConstants;
@@ -16,10 +12,12 @@ namespace BMW_Final_Project.Core.Models
         [StringLength(MaxMotorcycleModelLength,MinimumLength = MinMotorcycleModelLength,ErrorMessage = LengthErrorMessage)]
         public string Model { get; set; } = string.Empty;
 
+        [Required(ErrorMessage = RequiredErrorMessage)]
         public int TypeMotorId { get; set; }
 
         public ICollection<TypeMotorModel> TypeMotorModels { get; set; } = null!;
 
+        [Required(ErrorMessage = RequiredErrorMessage)]
         public int ColorCategoryId { get; set; }
 
         public ICollection<ColorCategoryModel> ColorCategoryModels { get; set; } = null!;
@@ -40,6 +38,7 @@ namespace BMW_Final_Project.Core.Models
         [Range(MinMotorcycleCC, MaxMotorcycleCC,ErrorMessage = RangeErrorMessage)]
         public int CC { get; set; }
 
+        [Required(ErrorMessage = RequiredErrorMessage)]
         public int StandardEuroId { get; set; }
 
         public ICollection<StandardEuroModel> StandardEuroModels { get; set; } = null!;
