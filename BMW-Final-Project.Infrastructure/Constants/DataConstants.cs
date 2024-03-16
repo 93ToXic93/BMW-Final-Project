@@ -97,12 +97,12 @@
 
         public const string DataFormat = "dd/MM/yyyy";
 
-        public const string DataFormatError = $"The format should be like: {DataFormat}";
+        public const string DataFormatError = $"Правилният формат трябва да изглежда като: {DataFormat}!";
 
-        public const string RequiredErrorMessage = "The {0} field is required!";
+        public const string RequiredErrorMessage = "Полето {0} е задължително!";
 
-        public const string LengthErrorMessage = "The {0} should be between {2} and {1} symbols!";
+        public const string LengthErrorMessage = "Полето {0} трябва да бъде между {2} и {1} символи!";
 
-        public const string RangeErrorMessage = "The {0} should be between {1} and {2}!";
+        public const string RangeErrorMessage = "Полето {0} трябва да бъде между {1} и {2}!";
     }
 }
