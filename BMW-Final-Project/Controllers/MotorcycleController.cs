@@ -1,5 +1,5 @@
 ﻿using BMW_Final_Project.Engine.Contracts;
-using BMW_Final_Project.Engine.Models;
+using BMW_Final_Project.Engine.Models.Motorcycle;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BMW_Final_Project.Controllers

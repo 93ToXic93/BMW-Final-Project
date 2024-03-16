@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using BMW_Final_Project.Engine.Contracts;
 using BMW_Final_Project.Engine.Models;
+using BMW_Final_Project.Engine.Models.Motorcycle;
 using BMW_Final_Project.Infrastructure.Data.Common;
 using BMW_Final_Project.Infrastructure.Data.Models.Motorcycles;
 using Microsoft.EntityFrameworkCore;

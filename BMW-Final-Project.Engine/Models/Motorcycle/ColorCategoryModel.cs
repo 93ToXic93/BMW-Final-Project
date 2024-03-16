@@ -1,7 +1,7 @@
 ﻿using BMW_Final_Project.Infrastructure.Constants;
 using System.ComponentModel.DataAnnotations;
 
-namespace BMW_Final_Project.Engine.Models
+namespace BMW_Final_Project.Engine.Models.Motorcycle
 {
     public class ColorCategoryModel
     {

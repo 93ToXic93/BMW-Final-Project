@@ -1,4 +1,4 @@
-﻿namespace BMW_Final_Project.Engine.Models
+﻿namespace BMW_Final_Project.Engine.Models.Motorcycle
 {
     public class MotorcycleDetailsModel : MotorcycleModel
     {

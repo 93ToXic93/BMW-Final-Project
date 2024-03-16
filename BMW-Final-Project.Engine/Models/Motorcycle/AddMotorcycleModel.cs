@@ -1,8 +1,8 @@
-﻿using BMW_Final_Project.Infrastructure.ValidationAttributes;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using BMW_Final_Project.Infrastructure.ValidationAttributes;
 using static BMW_Final_Project.Infrastructure.Constants.DataConstants;
 using static BMW_Final_Project.Infrastructure.Constants.DataConstants.MotorcycleConstants;
-namespace BMW_Final_Project.Engine.Models
+namespace BMW_Final_Project.Engine.Models.Motorcycle
 {
     public class AddMotorcycleModel
     {
