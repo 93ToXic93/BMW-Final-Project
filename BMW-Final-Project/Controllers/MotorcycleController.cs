@@ -48,6 +48,7 @@ namespace BMW_Final_Project.Controllers
             }
             catch (Exception e)
             {
+                //TO DO THE EXCEPTION
                 return RedirectToAction(nameof(Index));
             }
         }
