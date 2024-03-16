@@ -23,7 +23,6 @@
   <ItemGroup>
     <ProjectReference Include="..\BMW-Final-Project.Engine\BMW-Final-Project.Engine.csproj" />
     <ProjectReference Include="..\BMW-Final-Project.Infrastructure\BMW-Final-Project.Infrastructure.csproj" />
-    <ProjectReference Include="..\BMW-Final-Projeect.Core\BMW-Final-Project.Core.csproj" />
   </ItemGroup>
 
 </Project>
