@@ -7,13 +7,13 @@
             <form asp-controller="Motorcycle" asp-action="Add" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group p-3">
-                    <label asp-for="@Model.Model" class="form-label-add-edit">Name</label>
+                    <label asp-for="@Model.Model" class="form-label-add-edit">Модел</label>
                     <input asp-for="@Model.Model" class="form-control" aria-required="true"/>
                     <span asp-validation-for="@Model.Model" class="text-danger"></span>
                 </div>
 
                 <div class="form-group p-3">
-                    <label asp-for="@Model.TypeMotorId">Тип мотор</label>
+                    <label asp-for="@Model.TypeMotorId">Тип на мотор</label>
                     <select asp-for="@Model.TypeMotorId" class="form-control">
                         <option value="">Изберете тип на мотора</option>
                         @foreach (var typeMotor in Model.TypeMotorModels)
@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="form-group p-3">
-                    <label asp-for="@Model.ColorCategoryId">Цвят</label>
+                    <label asp-for="@Model.ColorCategoryId">Цвят на мотора</label>
                     <select asp-for="@Model.ColorCategoryId" class="form-control">
                         <option value="">Изберете цвят</option>
                         @foreach (var colorCategory in Model.ColorCategoryModels)
@@ -37,13 +37,13 @@
                 </div>
 
                 <div class="form-group p-3">
-                    <label asp-for="@Model.Kg">Килограми на мотора</label>
+                    <label asp-for="@Model.Kg">Тегло на мотора</label>
                     <input asp-for="@Model.Kg" class="form-control" />
                     <span asp-validation-for="@Model.Kg" class="text-danger"></span>
                 </div>
 
                 <div class="form-group p-3">
-                    <label asp-for="@Model.TankCapacity">Капацитет на резервоара</label>
+                    <label asp-for="@Model.TankCapacity">Капацитет на резервоара (в литри)</label>
                     <input asp-for="@Model.TankCapacity" class="form-control" />
                     <span asp-validation-for="@Model.TankCapacity" class="text-danger"></span>
                 </div>
@@ -109,7 +109,7 @@
                 </div>
 
                 <div class="form-group p-3">
-                    <label asp-for="@Model.SeatHeightMm">Височина на седалката</label>
+                    <label asp-for="@Model.SeatHeightMm">Височина на седалката (в милиметри)</label>
                     <input asp-for="@Model.SeatHeightMm" class="form-control" />
                     <span asp-validation-for="@Model.SeatHeightMm" class="text-danger"></span>
                 </div>

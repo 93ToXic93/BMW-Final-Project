@@ -13,11 +13,11 @@ namespace BMW_Final_Project.Infrastructure.ValidationAttributes
 
                 if (givenYear < currentYear)
                 {
-                    return new ValidationResult("The year should be this year or next year we are selling new motorcycles.");
+                    return new ValidationResult("Годината на производство трябва да е тази или следващата година! Продаваме нови мотори!");
                 }
                 else if (givenYear > currentYear + 1)
                 {
-                    return new ValidationResult("The year should be this year or next year we are selling new motorcycles.");
+                    return new ValidationResult("Годината на производство трябва да е тази или следващата година!");
                 }
             }
 
