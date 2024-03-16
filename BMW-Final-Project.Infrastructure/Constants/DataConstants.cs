@@ -97,7 +97,7 @@
 
         public const string DataFormat = "dd/MM/yyyy";
 
-        public const string DataFormatError = $"Правилният формат трябва да изглежда като: {DataFormat}!";
+        public const string DataFormatError = $"Правилният формат трябва да изглежда като: {DataFormat} и датата не трябва да е преди тази година!";
 
         public const string RequiredErrorMessage = "Полето {0} е задължително!";
 
