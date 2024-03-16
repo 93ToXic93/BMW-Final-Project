@@ -5,6 +5,10 @@ VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BMW-Final-Project", "BMW-Final-Project\BMW-Final-Project.csproj", "{D25C6FBD-26DF-454F-94AD-194659E62180}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BMW-Final-Project.Engine", "BMW-Final-Project.Engine\BMW-Final-Project.Engine.csproj", "{ADEDD898-3647-4B97-959D-1AD870829665}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BMW-Final-Project.Infrastructure", "BMW-Final-Project.Infrastructure\BMW-Final-Project.Infrastructure.csproj", "{7094A7B9-FB7B-494D-8B9F-3F62C2D70735}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{D25C6FBD-26DF-454F-94AD-194659E62180}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D25C6FBD-26DF-454F-94AD-194659E62180}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D25C6FBD-26DF-454F-94AD-194659E62180}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADEDD898-3647-4B97-959D-1AD870829665}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADEDD898-3647-4B97-959D-1AD870829665}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADEDD898-3647-4B97-959D-1AD870829665}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADEDD898-3647-4B97-959D-1AD870829665}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7094A7B9-FB7B-494D-8B9F-3F62C2D70735}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7094A7B9-FB7B-494D-8B9F-3F62C2D70735}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7094A7B9-FB7B-494D-8B9F-3F62C2D70735}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7094A7B9-FB7B-494D-8B9F-3F62C2D70735}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
