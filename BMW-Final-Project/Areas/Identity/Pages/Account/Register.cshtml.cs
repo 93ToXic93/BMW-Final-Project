@@ -91,7 +91,7 @@ namespace BMW_Final_Project.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required(ErrorMessage = DataConstants.RequiredErrorMessage)]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = DataConstants.LengthErrorMessage, MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Парола")]
             public string Password { get; set; }
@@ -125,16 +125,16 @@ namespace BMW_Final_Project.Areas.Identity.Pages.Account
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
-            var email = _emailStore.FindByEmailAsync(Input.Email.ToUpper(), CancellationToken.None);
-
-            if (email != null)
-            {
-                 ModelState.AddModelError("email","Имейлът вече съществува");
-            }
-
 
             if (ModelState.IsValid)
             {
+                var existingUser = await _userManager.FindByEmailAsync(Input.Email);
+                if (existingUser != null)
+                {
+                    ModelState.AddModelError(string.Empty, "Този имайл вече съществува!");
+                    return Page();
+                }
+
                 var user = CreateUser();
 
                 user.FirstName = Input.FirstName;
@@ -189,8 +189,8 @@ namespace BMW_Final_Project.Areas.Identity.Pages.Account
             }
             catch
             {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(IdentityUser)}'. " +
-                    $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
+                    $"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }

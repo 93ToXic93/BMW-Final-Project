@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BMW_Final_Project.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240318192229_Initial")]
-    partial class Initial
+    [Migration("20240318211202_SeedingData")]
+    partial class SeedingData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,6 +50,15 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("ab5f19c3-0e66-4a5b-ab4a-ada016abc5c5"),
+                            ConcurrencyStamp = "231294f2-711e-4375-b0ad-24a0afb2ca49",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        });
                 });
 
             modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.IdentityModels.ApplicationUser", b =>
@@ -132,9 +141,9 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("051ff0f3-4490-4676-ae7c-09cdea604ac1"),
+                            Id = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8262332f-e004-4e81-8e7b-5359bd49b5dd",
+                            ConcurrencyStamp = "b2a2e494-1e6b-4506-bc62-b9d64d733bcc",
                             Email = "Adi@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Adrian",
@@ -142,12 +151,12 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             LockoutEnabled = true,
                             Nickname = "ToXic",
                             NormalizedEmail = "ADI@GMAIL.COM",
-                            NormalizedUserName = "ADI",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIACA+VvicBKh3LicCXPAVaIMQwEQp6EA/JDPVi8vilgkKZdOpAdd1HzSmpH1Z2wSQ==",
+                            NormalizedUserName = "ADI@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEI3QtfajC/20tDwfiPUotrnRFmEHiDOX94A8vBX98WkoD40TPRsKlcZ/VJUHNSOdsg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5CE7D6AB-58D6-443A-8B0B-5EB4194F5FD1",
+                            SecurityStamp = "F75F20C0-D284-4940-BC8B-5DAB4DD73C0B",
                             TwoFactorEnabled = false,
-                            UserName = "Adi"
+                            UserName = "Adi@gmail.com"
                         });
                 });
 
@@ -518,7 +527,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         {
                             Id = 1,
                             Amount = 20,
-                            BuyerId = new Guid("051ff0f3-4490-4676-ae7c-09cdea604ac1"),
+                            BuyerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
                             CC = 1000,
                             ColorCategoryId = 1,
                             DTC = "BMW own Dynamic Traction Control specified for this unique bike",
@@ -535,13 +544,13 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 1,
-                            Year = new DateTime(2024, 3, 18, 21, 22, 29, 169, DateTimeKind.Local).AddTicks(622)
+                            Year = new DateTime(2024, 3, 18, 23, 12, 1, 967, DateTimeKind.Local).AddTicks(7000)
                         },
                         new
                         {
                             Id = 2,
                             Amount = 20,
-                            BuyerId = new Guid("051ff0f3-4490-4676-ae7c-09cdea604ac1"),
+                            BuyerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
                             CC = 900,
                             ColorCategoryId = 1,
                             DTC = "BMW own Dynamic Traction Control specified for this unique bike",
@@ -558,13 +567,13 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 16,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 4,
-                            Year = new DateTime(2024, 3, 18, 21, 22, 29, 169, DateTimeKind.Local).AddTicks(666)
+                            Year = new DateTime(2024, 3, 18, 23, 12, 1, 967, DateTimeKind.Local).AddTicks(7047)
                         },
                         new
                         {
                             Id = 3,
                             Amount = 20,
-                            BuyerId = new Guid("051ff0f3-4490-4676-ae7c-09cdea604ac1"),
+                            BuyerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
                             CC = 100,
                             ColorCategoryId = 1,
                             DTC = "BMW own Dynamic Traction Control specified for this unique bike",
@@ -581,7 +590,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 2,
-                            Year = new DateTime(2024, 3, 18, 21, 22, 29, 169, DateTimeKind.Local).AddTicks(671)
+                            Year = new DateTime(2024, 3, 18, 23, 12, 1, 967, DateTimeKind.Local).AddTicks(7051)
                         });
                 });
 
@@ -801,6 +810,13 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                            RoleId = new Guid("ab5f19c3-0e66-4a5b-ab4a-ada016abc5c5")
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>

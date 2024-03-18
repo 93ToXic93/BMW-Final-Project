@@ -534,6 +534,7 @@ html {
     font-family: sans-serif;
     background: linear-gradient(#141e30, #243b55);
     padding-bottom: 1000px;
+    padding-top:100px;
 }
 
 .login-box {

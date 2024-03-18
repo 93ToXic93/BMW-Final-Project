@@ -4,6 +4,7 @@ using BMW_Final_Project.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BMW_Final_Project.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240318210825_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,15 +50,6 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("ab5f19c3-0e66-4a5b-ab4a-ada016abc5c5"),
-                            ConcurrencyStamp = "231294f2-711e-4375-b0ad-24a0afb2ca49",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        });
                 });
 
             modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.IdentityModels.ApplicationUser", b =>
@@ -135,27 +128,6 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "b2a2e494-1e6b-4506-bc62-b9d64d733bcc",
-                            Email = "Adi@gmail.com",
-                            EmailConfirmed = false,
-                            FirstName = "Adrian",
-                            LastName = "Ivanov",
-                            LockoutEnabled = true,
-                            Nickname = "ToXic",
-                            NormalizedEmail = "ADI@GMAIL.COM",
-                            NormalizedUserName = "ADI@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEI3QtfajC/20tDwfiPUotrnRFmEHiDOX94A8vBX98WkoD40TPRsKlcZ/VJUHNSOdsg==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "F75F20C0-D284-4940-BC8B-5DAB4DD73C0B",
-                            TwoFactorEnabled = false,
-                            UserName = "Adi@gmail.com"
-                        });
                 });
 
             modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloths.Cloth", b =>
@@ -290,43 +262,6 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     b.ToTable("Sizes");
 
                     b.HasComment("Size table");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "XS"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "S"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "M"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "L"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "XL"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "XXL"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "XXXL"
-                        });
                 });
 
             modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloths.TypePerson", b =>
@@ -349,23 +284,6 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     b.ToTable("TypesPersons");
 
                     b.HasComment("TypePerson's table");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Мъже"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Жени"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Деца"
-                        });
                 });
 
             modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycles.ColorCategory", b =>
@@ -392,20 +310,6 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     b.ToTable("ColorCategories");
 
                     b.HasComment("Color Table");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            IsActive = true,
-                            Name = "Черен"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            IsActive = true,
-                            Name = "Бял"
-                        });
                 });
 
             modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycles.Motorcycle", b =>
@@ -519,77 +423,6 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     b.ToTable("Motorcycles");
 
                     b.HasComment("Motorcycles table");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Amount = 20,
-                            BuyerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
-                            CC = 1000,
-                            ColorCategoryId = 1,
-                            DTC = "BMW own Dynamic Traction Control specified for this unique bike",
-                            FrontBreak = "BMW own Front Brake Control specified for this unique bike",
-                            HorsePowers = 205,
-                            ImageUrl = "https://images4.alphacoders.com/127/1277784.jpg",
-                            IsActive = true,
-                            Kg = 197,
-                            Model = "BMW S1000RR",
-                            Price = 62000m,
-                            RearBreak = "BMW own Rear Brake Control specified for this unique bike",
-                            SeatHeightMm = 705,
-                            StandardEuroId = 3,
-                            TankCapacity = 21,
-                            Transmission = "BMW 6-Gears transmission",
-                            TypeMotorId = 1,
-                            Year = new DateTime(2024, 3, 18, 23, 12, 1, 967, DateTimeKind.Local).AddTicks(7000)
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Amount = 20,
-                            BuyerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
-                            CC = 900,
-                            ColorCategoryId = 1,
-                            DTC = "BMW own Dynamic Traction Control specified for this unique bike",
-                            FrontBreak = "BMW own Front Brake Control specified for this unique bike",
-                            HorsePowers = 105,
-                            ImageUrl = "https://storage.edidomus.it/dueruote/nuovo/850/lat1586861045333.jpg",
-                            IsActive = true,
-                            Kg = 210,
-                            Model = "BMW F900R",
-                            Price = 32000m,
-                            RearBreak = "BMW own Rear Brake Control specified for this unique bike",
-                            SeatHeightMm = 705,
-                            StandardEuroId = 3,
-                            TankCapacity = 16,
-                            Transmission = "BMW 6-Gears transmission",
-                            TypeMotorId = 4,
-                            Year = new DateTime(2024, 3, 18, 23, 12, 1, 967, DateTimeKind.Local).AddTicks(7047)
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Amount = 20,
-                            BuyerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
-                            CC = 100,
-                            ColorCategoryId = 1,
-                            DTC = "BMW own Dynamic Traction Control specified for this unique bike",
-                            FrontBreak = "BMW own Front Brake Control specified for this unique bike",
-                            HorsePowers = 225,
-                            ImageUrl = "https://www.procycles.com.au/cdn/shop/files/2023-BMW-M-1000-RR_-16-1024x724.jpg?v=1689145146",
-                            IsActive = true,
-                            Kg = 190,
-                            Model = "BMW M1000RR",
-                            Price = 82000m,
-                            RearBreak = "BMW own Rear Brake Control specified for this unique bike",
-                            SeatHeightMm = 665,
-                            StandardEuroId = 3,
-                            TankCapacity = 21,
-                            Transmission = "BMW 6-Gears transmission",
-                            TypeMotorId = 2,
-                            Year = new DateTime(2024, 3, 18, 23, 12, 1, 967, DateTimeKind.Local).AddTicks(7051)
-                        });
                 });
 
             modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycles.MotorcycleBuyers", b =>
@@ -631,38 +464,6 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     b.ToTable("StandardEuros");
 
                     b.HasComment("Euro standard table");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Евро-1"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Евро-2"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Евро-3"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Евро-4"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Евро-5"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Евро-6"
-                        });
                 });
 
             modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycles.TypeMotor", b =>
@@ -685,43 +486,6 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     b.ToTable("TypeMotor");
 
                     b.HasComment("Type of the motorcycle");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Sport"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "M"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Tour"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Roadster"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Heritage"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Adventure"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Urban Mobility"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -808,13 +572,6 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
-                            RoleId = new Guid("ab5f19c3-0e66-4a5b-ab4a-ada016abc5c5")
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>

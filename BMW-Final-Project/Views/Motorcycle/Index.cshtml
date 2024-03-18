@@ -5,7 +5,7 @@
     <h1 class="display-2 fw-bold text-center pt-5">ВСИЧКИ МОДЕЛИ</h1>
     <h3 class="fw-bold text-center">ОТКРИЙ СВОЯ МОТОЦИКЛЕТ BMW MOTORRAD.</h3>
 </div>
-@if (User.Identity != null && User.Identity.IsAuthenticated @* && User.IsInRole("Admin") *@)
+@if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Admin"))
 {
     <div class="text-center p-5">
         <a asp-controller="Motorcycle" asp-action="Add" class="Add-Motorcycle-Button">Add Motorcycle</a>

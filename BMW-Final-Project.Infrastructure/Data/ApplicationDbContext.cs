@@ -57,9 +57,9 @@ namespace BMW_Final_Project.Infrastructure.Data
             builder.Entity<ApplicationUser>().HasData(
                 new ApplicationUser
                 {
-                    Id = Guid.Parse("051ff0f3-4490-4676-ae7c-09cdea604ac1"),
-                    UserName = "Adi",
-                    NormalizedUserName = "ADI",
+                    Id = Guid.Parse("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                    UserName = "Adi@gmail.com",
+                    NormalizedUserName = "ADI@GMAIL.COM",
                     Email = "Adi@gmail.com",
                     NormalizedEmail = "ADI@GMAIL.COM",
                     SecurityStamp = Guid.NewGuid().ToString().ToUpper(),
@@ -75,22 +75,22 @@ namespace BMW_Final_Project.Infrastructure.Data
                     PasswordHash = hasher.HashPassword(null, "123456")
                 });
 
-            //builder
-            //    .Entity<IdentityRole>()
-            //    .HasData(new IdentityRole
-            //{
-            //    Id = "1",
-            //    Name = "Admin",
-            //    NormalizedName = "ADMIN"
-            //});
+            builder
+                .Entity<ApplicationRole>()
+                .HasData(new ApplicationRole
+                {
+                    Id = Guid.Parse("ab5f19c3-0e66-4a5b-ab4a-ada016abc5c5"),
+                    Name = "Admin",
+                    NormalizedName = "ADMIN"
+                });
 
-            //builder
-            //    .Entity<IdentityUserRole<string>>()
-            //    .HasData(new IdentityUserRole<string>
-            //{
-            //    UserId = "42405069-32f4-4217-825e-a76dad984fc7",
-            //    RoleId = "1"
-            //});
+            builder
+                .Entity<IdentityUserRole<Guid>>()
+                .HasData(new IdentityUserRole<Guid>
+                {
+                    UserId = Guid.Parse("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                    RoleId = Guid.Parse("ab5f19c3-0e66-4a5b-ab4a-ada016abc5c5")
+                });
 
 
             builder
@@ -240,7 +240,7 @@ namespace BMW_Final_Project.Infrastructure.Data
                     StandardEuroId = 3,
                     Price = 62000,
                     Year = DateTime.Now,
-                    BuyerId = Guid.Parse("051ff0f3-4490-4676-ae7c-09cdea604ac1"),
+                    BuyerId = Guid.Parse("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
                     ColorCategoryId = 1,
                     Kg = 197,
                     TankCapacity = 21,
@@ -263,7 +263,7 @@ namespace BMW_Final_Project.Infrastructure.Data
                     StandardEuroId = 3,
                     Price = 32000,
                     Year = DateTime.Now,
-                    BuyerId = Guid.Parse("051ff0f3-4490-4676-ae7c-09cdea604ac1"),
+                    BuyerId = Guid.Parse("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
                     ColorCategoryId = 1,
                     Kg = 210,
                     TankCapacity = 16,
@@ -285,7 +285,7 @@ namespace BMW_Final_Project.Infrastructure.Data
                     StandardEuroId = 3,
                     Price = 82000,
                     Year = DateTime.Now,
-                    BuyerId = Guid.Parse("051ff0f3-4490-4676-ae7c-09cdea604ac1"),
+                    BuyerId = Guid.Parse("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
                     ColorCategoryId = 1,
                     Kg = 190,
                     TankCapacity = 21,
