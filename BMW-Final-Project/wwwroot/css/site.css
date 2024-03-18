@@ -401,10 +401,53 @@ html {
     color: black;
     font-weight: bold;
     transition: 0.3s;
+    margin-right:15px;
 }
 
     .Button-Find:hover {
         background-color: #0066B1;
+        color: white;
+        border-color: white;
+    }
+
+.Button-Find2 {
+    text-decoration: none;
+    width: 50px;
+    height: 20px;
+    border: solid;
+    border-width: thin;
+    border-color: black;
+    padding: 8px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: black;
+    font-weight: bold;
+    transition: 0.3s;
+    margin-right: 15px;
+}
+
+    .Button-Find2:hover {
+        background-color: yellow;
+        color: black;
+        border-color: white;
+    }
+
+.Button-Find3 {
+    text-decoration: none;
+    width: 50px;
+    height: 20px;
+    border: solid;
+    border-width: thin;
+    border-color: black;
+    padding: 8px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: black;
+    font-weight: bold;
+    transition: 0.3s;
+    margin-right: 15px;
+}
+
+    .Button-Find3:hover {
+        background-color: red;
         color: white;
         border-color: white;
     }

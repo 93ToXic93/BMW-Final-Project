@@ -34,6 +34,14 @@
                 <h5>Модел: @motor.Model</h5>
                 <br />
                 <a asp-controller="Motorcycle" asp-action="Details" asp-route-id="@motor.Id" class="Button-Find">Открий сега</a>
+
+                @if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <a asp-controller="Motorcycle" asp-action="Details" asp-route-id="@motor.Id" class="Button-Find2">Промени</a>
+                    <div class="p-4">
+                        <a asp-controller="Motorcycle" asp-action="Details" asp-route-id="@motor.Id" class="Button-Find3">Изтрий мотора</a>
+                    </div>
+                }
             </div>
         }
 
