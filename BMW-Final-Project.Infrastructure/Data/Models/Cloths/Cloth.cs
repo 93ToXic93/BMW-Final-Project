@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BMW_Final_Project.Infrastructure.Data.IdentityModels;
 using static BMW_Final_Project.Infrastructure.Constants.DataConstants.ClothConstants;
 
 namespace BMW_Final_Project.Infrastructure.Data.Models.Cloths
@@ -65,10 +66,10 @@ namespace BMW_Final_Project.Infrastructure.Data.Models.Cloths
 
         [Required]
         [Comment("Buyer identifier")]
-        public string BuyerId { get; set; } = string.Empty;
+        public Guid BuyerId { get; set; } 
 
         [ForeignKey(nameof(BuyerId))]
-        public IdentityUser Buyer { get; set; } = null!;
+        public ApplicationUser Buyer { get; set; } = null!;
 
         public ICollection<ClothBuyer> ClothBuyers { get; set; } = new List<ClothBuyer>();
 

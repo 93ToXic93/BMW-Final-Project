@@ -1,5 +1,6 @@
 ﻿using BMW_Final_Project.Infrastructure.Data;
 using BMW_Final_Project.Infrastructure.Data.Common;
+using BMW_Final_Project.Infrastructure.Data.IdentityModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,7 +24,7 @@ namespace BMW_Final_Project.Extensions
         }
         public static IServiceCollection AddAplicationIdentity(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDefaultIdentity<IdentityUser>(options =>
+            services.AddDefaultIdentity<ApplicationUser>(options =>
                 {
                     options.SignIn.RequireConfirmedAccount = false;
                     options.Password.RequireDigit = false;
@@ -31,6 +32,7 @@ namespace BMW_Final_Project.Extensions
                     options.Password.RequireUppercase = false;
                     options.Password.RequireNonAlphanumeric = false;
                 })
+                .AddRoles<ApplicationRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             return services;
         }

@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using BMW_Final_Project.Infrastructure.Data.IdentityModels;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 
 namespace BMW_Final_Project.Infrastructure.Data.Models.Motorcycles
 {
@@ -17,9 +17,9 @@ namespace BMW_Final_Project.Infrastructure.Data.Models.Motorcycles
 
         [Required]
         [Comment("Buyer identifier")]
-        public string BuyerId { get; set; } = string.Empty;
+        public Guid BuyerId { get; set; }
 
         [ForeignKey(nameof(BuyerId))]
-        public IdentityUser Buyer { get; set; } = null!;
+        public ApplicationUser Buyer { get; set; } = null!;
     }
 }

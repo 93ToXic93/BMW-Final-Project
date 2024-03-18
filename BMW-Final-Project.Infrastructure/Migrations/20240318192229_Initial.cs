@@ -13,7 +13,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                 name: "AspNetRoles",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -27,7 +27,10 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                 name: "AspNetUsers",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Nickname = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -139,7 +142,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -160,7 +163,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -182,7 +185,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -199,8 +202,8 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                 name: "AspNetUserRoles",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -223,7 +226,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                 name: "AspNetUserTokens",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -263,7 +266,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", maxLength: 70000, nullable: false, comment: "Motorcycle photo"),
                     IsActive = table.Column<bool>(type: "bit", nullable: false, comment: "Motorcycle ad status"),
                     Amount = table.Column<int>(type: "int", nullable: false, comment: "Motorcycle amount"),
-                    BuyerId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Buyer identifier")
+                    BuyerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false, comment: "Buyer identifier")
                 },
                 constraints: table =>
                 {
@@ -310,7 +313,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     ClothCollectionId = table.Column<int>(type: "int", nullable: false, comment: "Cloth collection identifier"),
                     SizeId = table.Column<int>(type: "int", nullable: false, comment: "Size identifier"),
                     TypePersonId = table.Column<int>(type: "int", nullable: false, comment: "TypePerson identifier"),
-                    BuyerId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Buyer identifier")
+                    BuyerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false, comment: "Buyer identifier")
                 },
                 constraints: table =>
                 {
@@ -347,7 +350,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                 columns: table => new
                 {
                     MotorcycleId = table.Column<int>(type: "int", nullable: false, comment: "Motorcycle identifier"),
-                    BuyerId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Buyer identifier")
+                    BuyerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false, comment: "Buyer identifier")
                 },
                 constraints: table =>
                 {
@@ -372,7 +375,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                 columns: table => new
                 {
                     ClothId = table.Column<int>(type: "int", nullable: false, comment: "Cloth identifier"),
-                    BuyerId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Buyer identifier")
+                    BuyerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false, comment: "Buyer identifier")
                 },
                 constraints: table =>
                 {
@@ -394,8 +397,8 @@ namespace BMW_Final_Project.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "42405069-32f4-4217-825e-a76dad984fc7", 0, "38916c80-6bb3-46ed-96e9-19eb435fa661", "Adi@gmail.com", true, false, null, "ADI@GMAIL.COM", "ADI@GMAIL.COM", "AQAAAAEAACcQAAAAENm8EjC/RzIWTB/V8XGUF3U3H5qt4KDqe6QoeypTHc8GrXcJPPt06yr1AFfR/Jc7wQ==", null, false, "d6a8fed3-b11e-43f9-821f-cde39229f109", false, "Adi@gmail.com" });
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "Nickname", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { new Guid("051ff0f3-4490-4676-ae7c-09cdea604ac1"), 0, "8262332f-e004-4e81-8e7b-5359bd49b5dd", "Adi@gmail.com", false, "Adrian", "Ivanov", true, null, "ToXic", "ADI@GMAIL.COM", "ADI", "AQAAAAEAACcQAAAAEIACA+VvicBKh3LicCXPAVaIMQwEQp6EA/JDPVi8vilgkKZdOpAdd1HzSmpH1Z2wSQ==", null, false, "5CE7D6AB-58D6-443A-8B0B-5EB4194F5FD1", false, "Adi" });
 
             migrationBuilder.InsertData(
                 table: "ColorCategories",
@@ -460,17 +463,17 @@ namespace BMW_Final_Project.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "Motorcycles",
                 columns: new[] { "Id", "Amount", "BuyerId", "CC", "ColorCategoryId", "DTC", "FrontBreak", "HorsePowers", "ImageUrl", "IsActive", "Kg", "Model", "Price", "RearBreak", "SeatHeightMm", "StandardEuroId", "TankCapacity", "Transmission", "TypeMotorId", "Year" },
-                values: new object[] { 1, 20, "42405069-32f4-4217-825e-a76dad984fc7", 1000, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 205, "https://images4.alphacoders.com/127/1277784.jpg", true, 197, "BMW S1000RR", 62000m, "BMW own Rear Brake Control specified for this unique bike", 705, 3, 21, "BMW 6-Gears transmission", 1, new DateTime(2024, 3, 16, 13, 52, 58, 938, DateTimeKind.Local).AddTicks(2827) });
+                values: new object[] { 1, 20, new Guid("051ff0f3-4490-4676-ae7c-09cdea604ac1"), 1000, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 205, "https://images4.alphacoders.com/127/1277784.jpg", true, 197, "BMW S1000RR", 62000m, "BMW own Rear Brake Control specified for this unique bike", 705, 3, 21, "BMW 6-Gears transmission", 1, new DateTime(2024, 3, 18, 21, 22, 29, 169, DateTimeKind.Local).AddTicks(622) });
 
             migrationBuilder.InsertData(
                 table: "Motorcycles",
                 columns: new[] { "Id", "Amount", "BuyerId", "CC", "ColorCategoryId", "DTC", "FrontBreak", "HorsePowers", "ImageUrl", "IsActive", "Kg", "Model", "Price", "RearBreak", "SeatHeightMm", "StandardEuroId", "TankCapacity", "Transmission", "TypeMotorId", "Year" },
-                values: new object[] { 2, 20, "42405069-32f4-4217-825e-a76dad984fc7", 900, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 105, "https://storage.edidomus.it/dueruote/nuovo/850/lat1586861045333.jpg", true, 210, "BMW F900R", 32000m, "BMW own Rear Brake Control specified for this unique bike", 705, 3, 16, "BMW 6-Gears transmission", 4, new DateTime(2024, 3, 16, 13, 52, 58, 938, DateTimeKind.Local).AddTicks(2863) });
+                values: new object[] { 2, 20, new Guid("051ff0f3-4490-4676-ae7c-09cdea604ac1"), 900, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 105, "https://storage.edidomus.it/dueruote/nuovo/850/lat1586861045333.jpg", true, 210, "BMW F900R", 32000m, "BMW own Rear Brake Control specified for this unique bike", 705, 3, 16, "BMW 6-Gears transmission", 4, new DateTime(2024, 3, 18, 21, 22, 29, 169, DateTimeKind.Local).AddTicks(666) });
 
             migrationBuilder.InsertData(
                 table: "Motorcycles",
                 columns: new[] { "Id", "Amount", "BuyerId", "CC", "ColorCategoryId", "DTC", "FrontBreak", "HorsePowers", "ImageUrl", "IsActive", "Kg", "Model", "Price", "RearBreak", "SeatHeightMm", "StandardEuroId", "TankCapacity", "Transmission", "TypeMotorId", "Year" },
-                values: new object[] { 3, 20, "42405069-32f4-4217-825e-a76dad984fc7", 100, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 225, "https://www.procycles.com.au/cdn/shop/files/2023-BMW-M-1000-RR_-16-1024x724.jpg?v=1689145146", true, 190, "BMW M1000RR", 82000m, "BMW own Rear Brake Control specified for this unique bike", 665, 3, 21, "BMW 6-Gears transmission", 2, new DateTime(2024, 3, 16, 13, 52, 58, 938, DateTimeKind.Local).AddTicks(2866) });
+                values: new object[] { 3, 20, new Guid("051ff0f3-4490-4676-ae7c-09cdea604ac1"), 100, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 225, "https://www.procycles.com.au/cdn/shop/files/2023-BMW-M-1000-RR_-16-1024x724.jpg?v=1689145146", true, 190, "BMW M1000RR", 82000m, "BMW own Rear Brake Control specified for this unique bike", 665, 3, 21, "BMW 6-Gears transmission", 2, new DateTime(2024, 3, 18, 21, 22, 29, 169, DateTimeKind.Local).AddTicks(671) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

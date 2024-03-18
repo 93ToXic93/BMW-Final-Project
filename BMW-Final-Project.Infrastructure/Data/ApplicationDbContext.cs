@@ -1,4 +1,5 @@
-﻿using BMW_Final_Project.Infrastructure.Data.Models.Cloths;
+﻿using BMW_Final_Project.Infrastructure.Data.IdentityModels;
+using BMW_Final_Project.Infrastructure.Data.Models.Cloths;
 using BMW_Final_Project.Infrastructure.Data.Models.Motorcycles;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -6,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BMW_Final_Project.Infrastructure.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
@@ -51,17 +52,27 @@ namespace BMW_Final_Project.Infrastructure.Data
                 .WithMany()
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder
-                .Entity<IdentityUser>()
-                .HasData(new IdentityUser()
+            var hasher = new PasswordHasher<ApplicationUser>();
+
+            builder.Entity<ApplicationUser>().HasData(
+                new ApplicationUser
                 {
+                    Id = Guid.Parse("051ff0f3-4490-4676-ae7c-09cdea604ac1"),
+                    UserName = "Adi",
+                    NormalizedUserName = "ADI",
                     Email = "Adi@gmail.com",
-                    EmailConfirmed = true,
-                    Id = "42405069-32f4-4217-825e-a76dad984fc7",
-                    NormalizedEmail = "Adi@gmail.com".ToUpper(),
-                    NormalizedUserName = "Adi@gmail.com".ToUpper(),
-                    PasswordHash = "AQAAAAEAACcQAAAAENm8EjC/RzIWTB/V8XGUF3U3H5qt4KDqe6QoeypTHc8GrXcJPPt06yr1AFfR/Jc7wQ==",
-                    UserName = "Adi@gmail.com"
+                    NormalizedEmail = "ADI@GMAIL.COM",
+                    SecurityStamp = Guid.NewGuid().ToString().ToUpper(),
+                    ConcurrencyStamp = Guid.NewGuid().ToString(),
+                    TwoFactorEnabled = false,
+                    EmailConfirmed = false,
+                    PhoneNumberConfirmed = false,
+                    AccessFailedCount = 0,
+                    LockoutEnabled = true,
+                    FirstName = "Adrian",
+                    LastName = "Ivanov",
+                    Nickname = "ToXic",
+                    PasswordHash = hasher.HashPassword(null, "123456")
                 });
 
             //builder
@@ -225,11 +236,11 @@ namespace BMW_Final_Project.Infrastructure.Data
                     Model = "BMW S1000RR",
                     TypeMotorId = 1,
                     Amount = 20,
-                    BuyerId = "42405069-32f4-4217-825e-a76dad984fc7",
                     CC = 1000,
                     StandardEuroId = 3,
                     Price = 62000,
                     Year = DateTime.Now,
+                    BuyerId = Guid.Parse("051ff0f3-4490-4676-ae7c-09cdea604ac1"),
                     ColorCategoryId = 1,
                     Kg = 197,
                     TankCapacity = 21,
@@ -248,11 +259,11 @@ namespace BMW_Final_Project.Infrastructure.Data
                     Model = "BMW F900R",
                     TypeMotorId = 4,
                     Amount = 20,
-                    BuyerId = "42405069-32f4-4217-825e-a76dad984fc7",
                     CC = 900,
                     StandardEuroId = 3,
                     Price = 32000,
                     Year = DateTime.Now,
+                    BuyerId = Guid.Parse("051ff0f3-4490-4676-ae7c-09cdea604ac1"),
                     ColorCategoryId = 1,
                     Kg = 210,
                     TankCapacity = 16,
@@ -270,11 +281,11 @@ namespace BMW_Final_Project.Infrastructure.Data
                     Model = "BMW M1000RR",
                     TypeMotorId = 2,
                     Amount = 20,
-                    BuyerId = "42405069-32f4-4217-825e-a76dad984fc7",
                     CC = 100,
                     StandardEuroId = 3,
                     Price = 82000,
                     Year = DateTime.Now,
+                    BuyerId = Guid.Parse("051ff0f3-4490-4676-ae7c-09cdea604ac1"),
                     ColorCategoryId = 1,
                     Kg = 190,
                     TankCapacity = 21,

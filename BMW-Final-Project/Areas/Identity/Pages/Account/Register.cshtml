@@ -49,6 +49,21 @@
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger1"></div>
             <div class="user-box">
+                <input asp-for="Input.FirstName" class="form-control" autocomplete="username" area-required="true">
+                <label asp-for="Input.FirstName" class="form-label">Първо име</label>
+                <span asp-validation-for="Input.FirstName" class="text-danger1"></span>
+            </div>
+            <div class="user-box">
+                <input asp-for="Input.LastName" class="form-control" autocomplete="username" area-required="true">
+                <label asp-for="Input.LastName" class="form-label">Последно име</label>
+                <span asp-validation-for="Input.LastName" class="text-danger1"></span>
+            </div>
+            <div class="user-box">
+                <input asp-for="Input.Nickname" class="form-control" autocomplete="username" area-required="true">
+                <label asp-for="Input.Nickname" class="form-label">Прякор</label>
+                <span asp-validation-for="Input.Nickname" class="text-danger1"></span>
+            </div>
+            <div class="user-box">
                 <input asp-for="Input.Email" class="form-control" autocomplete="username" area-required="true">
                 <label asp-for="Input.Email" class="form-label">Имейл</label>
                 <span asp-validation-for="Input.Email" class="text-danger1"></span>
