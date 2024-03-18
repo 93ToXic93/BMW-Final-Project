@@ -27,6 +27,7 @@
         public int SeatHeightMm { get; set; }
 
         public int Amount { get; set; }
+        public string ColorCategory { get; set; } = string.Empty;
 
     }
 }

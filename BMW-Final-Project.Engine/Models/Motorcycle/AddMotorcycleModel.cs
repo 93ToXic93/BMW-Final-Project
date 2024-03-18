@@ -17,13 +17,13 @@ namespace BMW_Final_Project.Engine.Models.Motorcycle
         [Display(Name = "Тип на мотора")]
         public int TypeMotorId { get; set; }
 
-        public ICollection<TypeMotorModel> TypeMotorModels { get; set; } = null!;
+        public ICollection<TypeMotorModel> TypeMotorModels { get; set; } = new List<TypeMotorModel>();
 
         [Required(ErrorMessage = RequiredErrorMessage)]
         [Display(Name = "Цвят на мотора")]
         public int ColorCategoryId { get; set; }
 
-        public ICollection<ColorCategoryModel> ColorCategoryModels { get; set; } = null!;
+        public ICollection<ColorCategoryModel> ColorCategoryModels { get; set; } = new List<ColorCategoryModel>();
 
         [Required(ErrorMessage = RequiredErrorMessage)]
         [Range(MinMotorcycleKg, MaxMotorcycleKg, ErrorMessage = RangeErrorMessage)]
@@ -49,7 +49,7 @@ namespace BMW_Final_Project.Engine.Models.Motorcycle
         [Display(Name = "Евро стандарт")]
         public int StandardEuroId { get; set; }
 
-        public ICollection<StandardEuroModel> StandardEuroModels { get; set; } = null!;
+        public ICollection<StandardEuroModel> StandardEuroModels { get; set; } = new List<StandardEuroModel>();
 
         [Required(ErrorMessage = RequiredErrorMessage)]
         [Range(MinMotorcyclePrice, MaxMotorcyclePrice, ErrorMessage = RangeErrorMessage)]

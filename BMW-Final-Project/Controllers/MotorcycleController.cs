@@ -56,6 +56,11 @@ namespace BMW_Final_Project.Controllers
         [HttpGet]
         public async Task<IActionResult> Add()
         {
+            if (!IsAuthorized())
+            {
+                return Unauthorized();
+            }
+
             var modelToAdd = new AddMotorcycleModel()
             {
                 TypeMotorModels = await _service.GetTypeMotorcyclesAsync(),
@@ -69,6 +74,11 @@ namespace BMW_Final_Project.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(AddMotorcycleModel modelToAdd)
         {
+            if (!IsAuthorized())
+            {
+                return Unauthorized();
+            }
+
             if (!ModelState.IsValid)
             {
                 modelToAdd.TypeMotorModels = await _service.GetTypeMotorcyclesAsync();
@@ -77,6 +87,10 @@ namespace BMW_Final_Project.Controllers
 
                 return View(modelToAdd);
             }
+
+            modelToAdd.BuyerId = GetUserId();
+
+            await _service.AddAsync(modelToAdd);
 
             return RedirectToAction(nameof(Index));
         }

@@ -1,4 +1,6 @@
 ﻿using System.Globalization;
+using System.Security.Claims;
+using System.Security.Cryptography.X509Certificates;
 using BMW_Final_Project.Engine.Contracts;
 using BMW_Final_Project.Engine.Models;
 using BMW_Final_Project.Engine.Models.Motorcycle;
@@ -33,6 +35,38 @@ namespace BMW_Final_Project.Engine.Services
                 .ToListAsync();
 
             return motorcycles;
+        }
+
+        public async Task AddAsync(AddMotorcycleModel model)
+        {
+            
+            Motorcycle motorcycle = new Motorcycle()
+            {
+                Id = model.Id,
+                ImageUrl = model.ImageUrl,
+                Model = model.Model,
+                Amount = model.Amount,
+                CC = model.CC,
+                BuyerId = new Guid(model.BuyerId),
+                ColorCategoryId = model.ColorCategoryId,
+                DTC = model.DTC,
+                FrontBreak = model.FrontBreak,
+                RearBreak = model.RearBreak,
+                TankCapacity = model.TankCapacity,
+                TypeMotorId = model.TypeMotorId,
+                Transmission = model.Transmission,
+                IsActive = true,
+                Kg = model.Kg,
+                Price = model.Price,
+                HorsePowers = model.HorsePowers,
+                SeatHeightMm = model.SeatHeightMm,
+                StandardEuroId = model.StandardEuroId,
+                Year = model.Year,
+            };
+
+            await _repository.AddAsync(motorcycle);
+
+            await _repository.SaveChangesAsync();
         }
 
 
@@ -87,6 +121,7 @@ namespace BMW_Final_Project.Engine.Services
                     RearBreak = x.RearBreak,
                     HorsePowers = x.HorsePowers,
                     Kg = x.Kg,
+                    ColorCategory = x.ColorCategory.Name
                 })
                 .FirstOrDefaultAsync();
 
