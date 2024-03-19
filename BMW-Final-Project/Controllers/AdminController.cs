@@ -40,6 +40,11 @@ namespace BMW_Final_Project.Controllers
                 return Unauthorized();
             }
 
+            if (await _service.IsThisMotorcycleExistAsync(modelToAdd))
+            {
+                ModelState.AddModelError(string.Empty, "Този мотор вече съществува!");
+            }
+
             if (!ModelState.IsValid)
             {
                 modelToAdd.TypeMotorModels = await _service.GetTypeMotorcyclesAsync();
@@ -93,10 +98,10 @@ namespace BMW_Final_Project.Controllers
                 SeatHeightMm = model.SeatHeightMm,
                 HorsePowers = model.HorsePowers,
                 Year = model.Year,
-                ColorCategoryModels = await _service.GetColorsAsync(),
-                StandardEuroModels = await _service.GetStandardEurosAsync(),
-                TypeMotorModels = await _service.GetTypeMotorcyclesAsync()
             };
+            modelToEdit.ColorCategoryModels = await _service.GetColorsAsync();
+            modelToEdit.StandardEuroModels = await _service.GetStandardEurosAsync();
+            modelToEdit.TypeMotorModels = await _service.GetTypeMotorcyclesAsync();
 
             return View(modelToEdit);
         }
@@ -129,7 +134,27 @@ namespace BMW_Final_Project.Controllers
 
 
 
-            return RedirectToAction("Index","Motorcycle");
+            return RedirectToAction("Index", "Motorcycle");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteMotorcycle(int id)
+        {
+            if (!IsAuthorized())
+            {
+                return Unauthorized();
+            }
+
+            try
+            {
+                await _service.DeleteAsync(id);
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+
+            return RedirectToAction("Index", "Motorcycle");
         }
     }
 }

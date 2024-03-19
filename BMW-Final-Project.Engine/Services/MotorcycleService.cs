@@ -68,36 +68,64 @@ namespace BMW_Final_Project.Engine.Services
 
         public async Task AddAsync(AddMotorcycleModel model)
         {
-            
-            Motorcycle motorcycle = new Motorcycle()
+            if (await IsThisMotorcycleExistButDeletedAsync(model))
             {
-                Id = model.Id,
-                ImageUrl = model.ImageUrl,
-                Model = model.Model,
-                Amount = model.Amount,
-                CC = model.CC,
-                BuyerId = new Guid(model.BuyerId),
-                ColorCategoryId = model.ColorCategoryId,
-                DTC = model.DTC,
-                FrontBreak = model.FrontBreak,
-                RearBreak = model.RearBreak,
-                TankCapacity = model.TankCapacity,
-                TypeMotorId = model.TypeMotorId,
-                Transmission = model.Transmission,
-                IsActive = true,
-                Kg = model.Kg,
-                Price = model.Price,
-                HorsePowers = model.HorsePowers,
-                SeatHeightMm = model.SeatHeightMm,
-                StandardEuroId = model.StandardEuroId,
-                Year = model.Year,
-            };
+                var motorcycleToAdd = await GetByNameDeletedMotorcycleAsync(model.Model);
 
-            await _repository.AddAsync(motorcycle);
+                motorcycleToAdd.IsActive = true;
+                motorcycleToAdd.Amount = model.Amount;
+                motorcycleToAdd.ImageUrl = model.ImageUrl;
+                motorcycleToAdd.Model = model.Model;
+                motorcycleToAdd.CC = model.CC;
+                motorcycleToAdd.ColorCategoryId = model.ColorCategoryId;
+                motorcycleToAdd.DTC = model.DTC;
+                motorcycleToAdd.FrontBreak = model.FrontBreak;
+                motorcycleToAdd.RearBreak = model.RearBreak;
+                motorcycleToAdd.TankCapacity = model.TankCapacity;
+                motorcycleToAdd.TypeMotorId = model.TypeMotorId;
+                motorcycleToAdd.Transmission = model.Transmission;
+                motorcycleToAdd.Kg = model.Kg;
+                motorcycleToAdd.Price = model.Price;
+                motorcycleToAdd.HorsePowers = model.HorsePowers;
+                motorcycleToAdd.SeatHeightMm = model.SeatHeightMm;
+                motorcycleToAdd.StandardEuroId = model.StandardEuroId;
+                motorcycleToAdd.Year = model.Year;
 
-            await _repository.SaveChangesAsync();
+                await _repository.SaveChangesAsync();
+
+            }
+            else
+            {
+                Motorcycle motorcycle = new Motorcycle()
+                {
+                    Id = model.Id,
+                    ImageUrl = model.ImageUrl,
+                    Model = model.Model,
+                    Amount = model.Amount,
+                    CC = model.CC,
+                    BuyerId = new Guid(model.BuyerId),
+                    ColorCategoryId = model.ColorCategoryId,
+                    DTC = model.DTC,
+                    FrontBreak = model.FrontBreak,
+                    RearBreak = model.RearBreak,
+                    TankCapacity = model.TankCapacity,
+                    TypeMotorId = model.TypeMotorId,
+                    Transmission = model.Transmission,
+                    IsActive = true,
+                    Kg = model.Kg,
+                    Price = model.Price,
+                    HorsePowers = model.HorsePowers,
+                    SeatHeightMm = model.SeatHeightMm,
+                    StandardEuroId = model.StandardEuroId,
+                    Year = model.Year,
+                };
+
+                await _repository.AddAsync(motorcycle);
+
+                await _repository.SaveChangesAsync();
+            }
+
         }
-
 
         public async Task<ICollection<MotorcycleModel>> LoadById(int id)
         {
@@ -182,6 +210,15 @@ namespace BMW_Final_Project.Engine.Services
             return motorcycle;
         }
 
+        public async Task<Motorcycle?> GetByNameDeletedMotorcycleAsync(string name)
+        {
+            var motorcycle = await _repository.All<Motorcycle>()
+                .Where(x => x.Model == name && x.IsActive == false)
+                .FirstOrDefaultAsync();
+
+            return motorcycle;
+        }
+
         public async Task<ICollection<TypeMotorModel>> GetTypeMotorcyclesAsync()
         {
             var motoTypes = await _repository
@@ -222,6 +259,39 @@ namespace BMW_Final_Project.Engine.Services
                 .ToListAsync();
 
             return motoColors;
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var motorcycle = await GetByIdAsync(id);
+
+            if (motorcycle == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (id != motorcycle.Id)
+            {
+                throw new ArgumentException("Not found");
+            }
+
+            motorcycle.IsActive = false;
+
+            await _repository.SaveChangesAsync();
+        }
+
+        public async Task<bool> IsThisMotorcycleExistAsync(AddMotorcycleModel model)
+        {
+            var motorcycle = _repository.AllReadOnly<Motorcycle>().Any(x => x.IsActive == true && x.Model == model.Model);
+
+            return motorcycle;
+        }
+
+        public async Task<bool> IsThisMotorcycleExistButDeletedAsync(AddMotorcycleModel model)
+        {
+            var motorcycle = _repository.AllReadOnly<Motorcycle>().Any(x => x.IsActive == false && x.Model == model.Model);
+
+            return motorcycle;
         }
     }
 }
