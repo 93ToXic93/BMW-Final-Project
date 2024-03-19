@@ -95,6 +95,15 @@
             public const int NameMinLength = 1;
         }
 
+        public static class ApplicationUserConstants
+        {
+            public const int FirstNameMaxLength = 50;
+
+            public const int LastNameMaxLength = 50;
+
+            public const int NicknameMaxLength = 50;
+        }
+
         public const string DataFormat = "dd/MM/yyyy";
 
         public const string DataFormatError = $"Правилният формат трябва да изглежда като: {DataFormat} и датата не трябва да е преди тази година!";

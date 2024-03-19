@@ -232,6 +232,7 @@ namespace BMW_Final_Project.Engine.Services
 
             return motoTypes;
         }
+
         public async Task<ICollection<ColorCategoryModel>> GetColorsAsync()
         {
             var motoColors = await _repository
