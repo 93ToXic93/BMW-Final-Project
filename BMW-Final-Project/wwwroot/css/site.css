@@ -401,7 +401,7 @@ html {
     color: black;
     font-weight: bold;
     transition: 0.3s;
-    margin-right:15px;
+    margin-right: 15px;
 }
 
     .Button-Find:hover {
@@ -577,7 +577,7 @@ html {
     font-family: sans-serif;
     background: linear-gradient(#141e30, #243b55);
     padding-bottom: 1000px;
-    padding-top:100px;
+    padding-top: 100px;
 }
 
 .login-box {
@@ -787,6 +787,52 @@ html {
     top: -30px;
     left: 0;
     width: 100%;
-    color: #ff0000; 
-    font-size: 18px; 
+    color: #ff0000;
+    font-size: 18px;
 }
+
+.aboutUsP {
+    font-size: 26px;
+}
+
+.btn-for-Us {
+    padding-right: 60px;
+    padding-left: 60px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    font-size: 25px;
+    text-decoration: none;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-color: black;
+    border-radius: 20px;
+    background-color: black;
+    color: white;
+    transition: 0.3s;
+}
+
+    .btn-for-Us:hover {
+        background-color: #0062FF;
+        color: white;
+        border: none;
+    }
+
+.Add-Button-Submit {
+    padding-right: 60px;
+    padding-left: 60px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 25px;
+    text-decoration: none;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-color: black;
+    border-radius: 20px;
+    background-color: black;
+    color: white;
+    transition: 0.3s;
+}
+
+    .Add-Button-Submit:hover {
+        background-color: white;
+        color: black;
+        box-shadow: 10px 15px 15px 2px black;
+    }
