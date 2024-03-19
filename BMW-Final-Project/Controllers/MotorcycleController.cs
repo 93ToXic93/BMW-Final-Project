@@ -53,6 +53,11 @@ namespace BMW_Final_Project.Controllers
             }
         }
 
+        public async Task<IActionResult> BuyMotorcycle()
+        {
+            return View();
+        }
+
 
     }
 }
