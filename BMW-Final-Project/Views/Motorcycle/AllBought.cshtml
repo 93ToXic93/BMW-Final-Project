@@ -1,0 +1,18 @@
+﻿@model ICollection<BMW_Final_Project.Engine.Models.Motorcycle.AllMineMotorcycles>
+
+
+
+<div class="text-center row">
+    @foreach (var e in Model)
+    {
+        <div class="card col-4" style="width: 20rem; ">
+            <div class="card-body">
+                <img src="@e.ImageUrl" alt="Motorcycle photo" class="DetailsPhoto img-fluid" />
+                <h5 class="card-title mt-1">Model: @e.Model</h5>
+                <h6 class="card-title mt-1">Price: @e.Price</h6>
+                <p class="mb-0"><span class="fw-bold">Year: </span>@e.Year</p>
+                <p class="mb-0"><span class="fw-bold">CC: </span>@e.CC</p>
+            </div>
+        </div>
+    }
+</div>

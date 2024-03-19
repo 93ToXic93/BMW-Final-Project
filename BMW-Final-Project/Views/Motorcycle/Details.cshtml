@@ -82,7 +82,9 @@
     </div>
     <div class="PriceContainer">
         <h1 class="priceText">Купи: </h1>
-        <a asp-controller="Motorcycle" asp-action="BuyMotorcycle" asp-route-id="@Model.Id" class="ButtonPrice">@Model.Price$</a>
+        <form class="input-group-sm" asp-controller="Motorcycle" asp-action="BuyMotorcycle" asp-route-id="@Model.Id">
+            <input type="submit" value="@Model.Price$" class="Add-Button-Submit" />
+        </form>
     </div>
 
 </div>

@@ -127,6 +127,26 @@ namespace BMW_Final_Project.Engine.Services
 
         }
 
+        public async Task AddAsync(int id, string userId)
+        {
+            var motorcycleToAdd = await GetByIdAsync(id);
+
+            if (motorcycleToAdd == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            var motorcycle = new MotorcycleBuyers()
+            {
+                MotorcycleId = motorcycleToAdd.Id,
+                BuyerId = Guid.Parse(userId)
+            };
+
+            await _repository.AddAsync(motorcycle);
+
+            await _repository.SaveChangesAsync();
+        }
+
         public async Task<ICollection<MotorcycleModel>> LoadById(int id)
         {
             var motorcycles = await _repository
@@ -204,6 +224,7 @@ namespace BMW_Final_Project.Engine.Services
         public async Task<Motorcycle?> GetByIdAsync(int id)
         {
             var motorcycle = await _repository.All<Motorcycle>()
+                .Include(x => x.MotorcycleBuyers)
                 .Where(x => x.Id == id && x.IsActive)
                 .FirstOrDefaultAsync();
 
@@ -293,6 +314,37 @@ namespace BMW_Final_Project.Engine.Services
             var motorcycle = _repository.AllReadOnly<Motorcycle>().Any(x => x.IsActive == false && x.Model == model.Model);
 
             return motorcycle;
+        }
+
+        public async Task<ICollection<AllMineMotorcycles>> GetAllMineMotorcyclesAsync(string userId)
+        {
+            var motorcycles = await _repository
+                .AllReadOnly<MotorcycleBuyers>()
+                .Where(x => x.BuyerId == Guid.Parse(userId))
+                .Select(x => new AllMineMotorcycles()
+                {
+                    Id = x.Motorcycle.Id,
+                    ImageUrl = x.Motorcycle.ImageUrl,
+                    Model = x.Motorcycle.Model,
+                    Year = x.Motorcycle.Year.Year.ToString(),
+                    Price = x.Motorcycle.Price.ToString("F"),
+                    CC = x.Motorcycle.CC,
+                    ColorCategory = x.Motorcycle.ColorCategory.Name,
+                    DTC = x.Motorcycle.DTC,
+                    FrontBreak = x.Motorcycle.FrontBreak,
+                    RearBreak = x.Motorcycle.RearBreak,
+                    Transmission = x.Motorcycle.Transmission,
+                    SeatHeightMm = x.Motorcycle.SeatHeightMm,
+                    StandardEuro = x.Motorcycle.StandardEuro.Name,
+                    HorsePowers = x.Motorcycle.HorsePowers,
+                    TankCapacity = x.Motorcycle.TankCapacity,
+                    Kg = x.Motorcycle.Kg,
+                    TypeMotor = x.Motorcycle.TypeMotor.Name
+                })
+                .ToListAsync();
+
+            return motorcycles;
+
         }
     }
 }

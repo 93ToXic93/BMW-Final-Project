@@ -1,6 +1,8 @@
 ﻿using BMW_Final_Project.Engine.Contracts;
 using BMW_Final_Project.Engine.Models.Motorcycle;
+using BMW_Final_Project.Infrastructure.Data.Models.Motorcycles;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BMW_Final_Project.Controllers
 {
@@ -53,11 +55,22 @@ namespace BMW_Final_Project.Controllers
             }
         }
 
-        public async Task<IActionResult> BuyMotorcycle()
+        [HttpPost]
+        public async Task<IActionResult> BuyMotorcycle(int id)
         {
-            return View();
+
+            await _service.AddAsync(id, GetUserId());
+
+            return RedirectToAction(nameof(AllBought));
         }
 
+        [HttpGet]
+        public async Task<IActionResult> AllBought()
+        {
+            var motorcycles = await _service.GetAllMineMotorcyclesAsync(GetUserId());
+
+            return View(motorcycles);
+        }
 
     }
 }
