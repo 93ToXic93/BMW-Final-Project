@@ -1,9 +1,8 @@
-﻿using BMW_Final_Project.Infrastructure.ValidationAttributes;
-using Microsoft.AspNetCore.Identity;
+﻿using BMW_Final_Project.Infrastructure.Data.IdentityModels;
+using BMW_Final_Project.Infrastructure.ValidationAttributes;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using BMW_Final_Project.Infrastructure.Data.IdentityModels;
 using static BMW_Final_Project.Infrastructure.Constants.DataConstants.MotorcycleConstants;
 
 namespace BMW_Final_Project.Infrastructure.Data.Models.Motorcycles

@@ -8,11 +8,15 @@ namespace BMW_Final_Project.Engine.Contracts
     {
         Task<ICollection<MotorcycleModel>> AllAsync();
 
+        Task EditAsync(EditMotorcycleModel model);
+
         Task AddAsync(AddMotorcycleModel model);
 
         Task<ICollection<MotorcycleModel>> LoadById(int id);
 
         Task<MotorcycleDetailsModel> DetailsAsync(int id);
+
+        Task<Motorcycle?> GetByIdReadOnlyAsync(int id);
 
         Task<Motorcycle?> GetByIdAsync(int id);
 
@@ -21,6 +25,7 @@ namespace BMW_Final_Project.Engine.Contracts
         Task<ICollection<ColorCategoryModel>> GetColorsAsync();
 
         Task<ICollection<StandardEuroModel>> GetStandardEurosAsync();
+
 
 
     }

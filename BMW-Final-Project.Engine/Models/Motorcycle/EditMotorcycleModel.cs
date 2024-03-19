@@ -5,7 +5,7 @@ using static BMW_Final_Project.Infrastructure.Constants.DataConstants.Motorcycle
 
 namespace BMW_Final_Project.Engine.Models.Motorcycle
 {
-    public class AddMotorcycleModel
+    public class EditMotorcycleModel
     {
         public int Id { get; set; }
 
@@ -96,8 +96,6 @@ namespace BMW_Final_Project.Engine.Models.Motorcycle
         [Range(MinMotorcycleAmount, MaxMotorcycleAmount, ErrorMessage = RangeErrorMessage)]
         [Display(Name = "Брой мотори")]
         public int Amount { get; set; }
-        public bool IsActive { get; set; }
 
-        public string BuyerId { get; set; } = string.Empty;
     }
 }
