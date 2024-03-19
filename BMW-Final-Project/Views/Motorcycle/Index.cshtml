@@ -8,7 +8,7 @@
 @if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Admin"))
 {
     <div class="text-center p-5">
-        <a asp-controller="Motorcycle" asp-action="Add" class="Add-Motorcycle-Button">Add Motorcycle</a>
+        <a asp-controller="Admin" asp-action="AddMotorcycle" class="Add-Motorcycle-Button">Add Motorcycle</a>
     </div>
 }
 
@@ -38,9 +38,9 @@
 
             @if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Admin"))
             {
-                <a asp-controller="Motorcycle" asp-action="Edit" asp-route-id="@motor.Id" class="Button-Find2">Промени</a>
+                <a asp-controller="Admin" asp-action="EditMotorcycle" asp-route-id="@motor.Id" class="Button-Find2">Промени</a>
                 <div class="p-4">
-                    <a asp-controller="Motorcycle" asp-action="Details" asp-route-id="@motor.Id" class="Button-Find3">Изтрий мотора</a>
+                    <a asp-controller="Admin" asp-action="DeleteMotorcycle" asp-route-id="@motor.Id" class="Button-Find3">Изтрий мотора</a>
                 </div>
             }
         </div>
