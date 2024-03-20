@@ -28,7 +28,8 @@ namespace BMW_Final_Project.Engine.Services
                     ImageUrl = x.ImageUrl,
                     Model = x.Model,
                     Year = x.Year.Year.ToString(),
-                    price = x.Price.ToString("F")
+                    Price = x.Price.ToString("F"),
+                    Amount = x.Amount
                 })
                 .ToListAsync();
 
@@ -136,15 +137,33 @@ namespace BMW_Final_Project.Engine.Services
                 throw new ArgumentNullException();
             }
 
-            var motorcycle = new MotorcycleBuyers()
+            if (!(motorcycleToAdd.MotorcycleBuyers.Any(x => x.Motorcycle.Id == id && x.BuyerId == Guid.Parse(userId)  || motorcycleToAdd.Amount == 0)))
             {
-                MotorcycleId = motorcycleToAdd.Id,
-                BuyerId = Guid.Parse(userId)
-            };
+                var motorcycle = new MotorcycleBuyers()
+                {
+                    MotorcycleId = motorcycleToAdd.Id,
+                    BuyerId = Guid.Parse(userId)
+                };
 
-            await _repository.AddAsync(motorcycle);
+                if (motorcycleToAdd.Amount > 0)
+                {
+                    motorcycleToAdd.Amount -= 1;
 
-            await _repository.SaveChangesAsync();
+                    await _repository.AddAsync(motorcycle);
+
+                    await _repository.SaveChangesAsync();
+                }
+                else
+                {
+                    throw new ArgumentException("There is no more of this motor!");
+                }
+
+            }
+            else
+            {
+                throw new ArgumentException("Already reserved it or its 0 amount!");
+            }
+
         }
 
         public async Task<ICollection<MotorcycleModel>> LoadById(int id)
@@ -158,6 +177,8 @@ namespace BMW_Final_Project.Engine.Services
                     ImageUrl = x.ImageUrl,
                     Model = x.Model,
                     Year = x.Year.Year.ToString(),
+                    Price = x.Price.ToString("F"),
+                    Amount = x.Amount
                 })
                 .ToListAsync();
 
@@ -226,6 +247,15 @@ namespace BMW_Final_Project.Engine.Services
             var motorcycle = await _repository.All<Motorcycle>()
                 .Include(x => x.MotorcycleBuyers)
                 .Where(x => x.Id == id && x.IsActive)
+                .FirstOrDefaultAsync();
+
+            return motorcycle;
+        }
+
+        public async Task<MotorcycleBuyers?> GetByIdMotorsAndServicesAsync(int id)
+        {
+            var motorcycle = await _repository.All<MotorcycleBuyers>()
+                .Where(x => x.MotorcycleId == id)
                 .FirstOrDefaultAsync();
 
             return motorcycle;
@@ -320,31 +350,42 @@ namespace BMW_Final_Project.Engine.Services
         {
             var motorcycles = await _repository
                 .AllReadOnly<MotorcycleBuyers>()
-                .Where(x => x.BuyerId == Guid.Parse(userId))
+                .Where(x => x.BuyerId == Guid.Parse(userId) && x.Motorcycle.IsActive)
                 .Select(x => new AllMineMotorcycles()
                 {
                     Id = x.Motorcycle.Id,
                     ImageUrl = x.Motorcycle.ImageUrl,
-                    Model = x.Motorcycle.Model,
                     Year = x.Motorcycle.Year.Year.ToString(),
                     Price = x.Motorcycle.Price.ToString("F"),
-                    CC = x.Motorcycle.CC,
                     ColorCategory = x.Motorcycle.ColorCategory.Name,
-                    DTC = x.Motorcycle.DTC,
-                    FrontBreak = x.Motorcycle.FrontBreak,
-                    RearBreak = x.Motorcycle.RearBreak,
-                    Transmission = x.Motorcycle.Transmission,
-                    SeatHeightMm = x.Motorcycle.SeatHeightMm,
-                    StandardEuro = x.Motorcycle.StandardEuro.Name,
-                    HorsePowers = x.Motorcycle.HorsePowers,
-                    TankCapacity = x.Motorcycle.TankCapacity,
-                    Kg = x.Motorcycle.Kg,
-                    TypeMotor = x.Motorcycle.TypeMotor.Name
                 })
                 .ToListAsync();
 
             return motorcycles;
 
+        }
+
+        public async Task RemoveMotorcycle(int id)
+        {
+            var motorcycleToRemove = await GetByIdMotorsAndServicesAsync(id);
+
+            var motorcycle = await GetByIdAsync(id);
+
+            if (motorcycleToRemove == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (motorcycle == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            motorcycle.Amount += 1;
+
+            _repository.Remove(motorcycleToRemove);
+
+            await _repository.SaveChangesAsync();
         }
     }
 }

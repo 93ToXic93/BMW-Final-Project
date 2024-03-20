@@ -6,33 +6,11 @@
 
         public string Model { get; set; } = string.Empty;
 
-        public string TypeMotor { get; set; } = string.Empty;
-
         public string ColorCategory { get; set; } = string.Empty;
-
-        public int Kg { get; set; }
-
-        public int TankCapacity { get; set; }
-
-        public int HorsePowers { get; set; }
-
-        public int CC { get; set; }
-
-        public string StandardEuro { get; set; } = string.Empty;
 
         public string Price { get; set; } = string.Empty;
 
         public string Year { get; set; } = string.Empty;
-
-        public string DTC { get; set; } = string.Empty;
-
-        public string Transmission { get; set; } = string.Empty;
-
-        public string FrontBreak { get; set; } = string.Empty;
-
-        public string RearBreak { get; set; } = string.Empty;
-
-        public int SeatHeightMm { get; set; }
 
         public string ImageUrl { get; set; } = string.Empty;
 

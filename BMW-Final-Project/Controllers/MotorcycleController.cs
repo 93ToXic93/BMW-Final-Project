@@ -58,10 +58,31 @@ namespace BMW_Final_Project.Controllers
         [HttpPost]
         public async Task<IActionResult> BuyMotorcycle(int id)
         {
+            try
+            {
+                await _service.AddAsync(id, GetUserId());
+                return RedirectToAction(nameof(AllBought));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
 
-            await _service.AddAsync(id, GetUserId());
+        }
 
-            return RedirectToAction(nameof(AllBought));
+        [HttpPost]
+        public async Task<IActionResult> RemoveMotorcycle(int id)
+        {
+            try
+            {
+                await _service.RemoveMotorcycle(id);
+                return RedirectToAction(nameof(AllBought));
+            }
+            catch (Exception e)
+            {
+                return NotFound();
+            }
+
         }
 
         [HttpGet]
@@ -70,6 +91,13 @@ namespace BMW_Final_Project.Controllers
             var motorcycles = await _service.GetAllMineMotorcyclesAsync(GetUserId());
 
             return View(motorcycles);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Force()
+        {
+
+            return RedirectToAction(nameof(AllBought));
         }
 
     }

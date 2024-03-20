@@ -10,7 +10,9 @@
 
         public string ImageUrl { get; set; } = string.Empty;
 
-        public string price { get; set; } = string.Empty;
+        public string Price { get; set; } = string.Empty;
+
+        public int Amount { get; set; }
 
     }
 }

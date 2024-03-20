@@ -27,23 +27,38 @@
 <div class="Motorcycles-container container-fluid">
     @foreach (var motor in Model)
     {
+
         <div class="p-5">
-            <img class="photo-of-motorcycle" src="@motor.ImageUrl" alt="Motor-Photo" />
-            <hr />
-            <h5>@motor.Year</h5>
-            <h5>Модел: @motor.Model</h5>
-            <h6>Цена: @motor.price$</h6>
-            <br />
-            <a asp-controller="Motorcycle" asp-action="Details" asp-route-id="@motor.Id" class="Button-Find">Открий сега</a>
 
             @if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Admin"))
             {
+                <img class="photo-of-motorcycle" src="@motor.ImageUrl" alt="Motor-Photo" />
+                <hr />
+                <h5>@motor.Year</h5>
+                <h5>Модел: @motor.Model</h5>
+                <h6>Цена: @motor.Price$</h6>
+                <h5>Брой мотори @motor.Amount</h5>
+                <br />
+                <a asp-controller="Motorcycle" asp-action="Details" asp-route-id="@motor.Id" class="Button-Find">Открий сега</a>
                 <a asp-controller="Admin" asp-action="EditMotorcycle" asp-route-id="@motor.Id" class="Button-Find2">Промени</a>
                 <div class="p-4">
                     <form asp-controller="Admin" asp-action="DeleteMotorcycle" asp-route-id="@motor.Id" method="post">
                         <button type="submit" class="Button-Find3">Изтрий мотора</button>
                     </form>
                 </div>
+            }
+            else
+            {
+                if (motor.Amount > 0)
+                {
+                    <img class="photo-of-motorcycle" src="@motor.ImageUrl" alt="Motor-Photo" />
+                    <hr />
+                    <h5>@motor.Year</h5>
+                    <h5>Модел: @motor.Model</h5>
+                    <h6>Цена: @motor.Price$</h6>
+                    <br />
+                    <a asp-controller="Motorcycle" asp-action="Details" asp-route-id="@motor.Id" class="Button-Find">Открий сега</a>
+                }
             }
         </div>
     }
