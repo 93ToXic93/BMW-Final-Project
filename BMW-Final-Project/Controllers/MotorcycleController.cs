@@ -75,7 +75,7 @@ namespace BMW_Final_Project.Controllers
         {
             try
             {
-                await _service.RemoveMotorcycle(id);
+                await _service.RemoveMotorcycleAsync(id);
                 return RedirectToAction(nameof(AllBought));
             }
             catch (Exception e)
@@ -94,8 +94,18 @@ namespace BMW_Final_Project.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Force()
+        public async Task<IActionResult> Force(int id)
         {
+
+            try
+            {
+                await _service.BuyMotorcycleAsync(id);
+                return RedirectToAction(nameof(AllBought));
+            }
+            catch (Exception e)
+            {
+                return NotFound();
+            }
 
             return RedirectToAction(nameof(AllBought));
         }

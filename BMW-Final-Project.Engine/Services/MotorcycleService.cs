@@ -365,7 +365,7 @@ namespace BMW_Final_Project.Engine.Services
 
         }
 
-        public async Task RemoveMotorcycle(int id)
+        public async Task RemoveMotorcycleAsync(int id)
         {
             var motorcycleToRemove = await GetByIdMotorsAndServicesAsync(id);
 
@@ -382,6 +382,27 @@ namespace BMW_Final_Project.Engine.Services
             }
 
             motorcycle.Amount += 1;
+
+            _repository.Remove(motorcycleToRemove);
+
+            await _repository.SaveChangesAsync();
+        }
+
+        public async Task BuyMotorcycleAsync(int id)
+        {
+            var motorcycleToRemove = await GetByIdMotorsAndServicesAsync(id);
+
+            var motorcycle = await GetByIdAsync(id);
+
+            if (motorcycleToRemove == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (motorcycle == null)
+            {
+                throw new ArgumentNullException();
+            }
 
             _repository.Remove(motorcycleToRemove);
 

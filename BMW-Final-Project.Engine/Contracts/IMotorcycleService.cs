@@ -40,7 +40,8 @@ namespace BMW_Final_Project.Engine.Contracts
 
         Task<ICollection<AllMineMotorcycles>> GetAllMineMotorcyclesAsync(string userId);
 
-        Task RemoveMotorcycle(int id);
+        Task RemoveMotorcycleAsync(int id);
 
+        Task BuyMotorcycleAsync(int id);
     }
 }
