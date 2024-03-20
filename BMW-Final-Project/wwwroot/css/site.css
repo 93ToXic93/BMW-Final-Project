@@ -347,26 +347,14 @@ html {
         color: black;
     }
 
-.Mini-menu-for-motorcycles {
-    display: flex;
-}
-
 .Mini-menu-text {
     text-decoration: none;
     color: black;
     font-size: 25px;
     cursor: pointer;
     transition: 0.1s;
-    width: 190px;
-    display: inline-block;
-    text-align: center;
     border: 2px solid transparent;
 }
-
-    .Mini-menu-text:last-child {
-        margin-right: 0;
-        margin-left: 0;
-    }
 
     .Mini-menu-text:hover {
         font-weight: bold;
@@ -921,3 +909,67 @@ html {
         background-color: #0066B1;
         box-shadow: 5px 5px 10px 1px black;
     }
+
+
+@media (max-width: 768px) {
+    .Mini-menu-text {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-left: 170px;
+    }
+
+    .Text-Footer {
+        height: 500px;
+        padding-right: 10px;
+        font-size: 18px;
+    }
+
+    .contacts-button {
+        position: absolute;
+        top: 98%;
+        left: 20%;
+    }
+
+    .Text-Home-RR-Img {
+        position: relative;
+        top: -190px;
+        font-size: 13px;
+    }
+
+    .Text-Home-RR-Img-Top {
+        position: relative;
+        top: 50px;
+        font-size: 11px;
+    }
+
+    .Home-RR-Button {
+        position: relative;
+        top: -90px;
+        height: 23px;
+        font-size: 13px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 10px;
+    }
+
+    .RegisterLogin {
+        position: relative;
+        top: 10px;
+        font-size: 16px;
+        left: 40px;
+        padding:0px;
+    }
+
+    .LoginRegister {
+        position: relative;
+        font-size: 16px;
+        padding: 0px;
+        left: 40px;
+    }
+    .Login{
+        position:relative;
+        top:000px;
+    }
+
+}

@@ -6,19 +6,23 @@
 }
 
 <div class="container-fluid m-0 p-0">
-    <div>
 
-        <img class="img-fluid position-relative" alt="S1000RR photo" src="/img/Made-RR.jpg" />
-        <a class="Home-RR-Button" asp-controller="Motorcycle" asp-action="Details" asp-route-id="1">Открийте Сега</a>
-        <h1 class="Text-Home-RR-Img">
-            <p class="Text-Home-RR-Img-Top">Новият BMW S1000RR</p>НЕКА ПЪТЯТ Е ВАШАТА СЦЕНА
-        </h1>
+    <img class="img-fluid position-relative" alt="S1000RR photo" src="/img/Made-RR.jpg" />
+    <a class="Home-RR-Button" asp-controller="Motorcycle" asp-action="Details" asp-route-id="1">Открийте Сега</a>
+    <h1 class="Text-Home-RR-Img">
+        <p class="Text-Home-RR-Img-Top">Новият BMW S1000RR</p>НЕКА ПЪТЯТ Е ВАШАТА СЦЕНА
+    </h1>
 
-    </div>
-    <div class="BlackBoxButtons">
-        <a asp-controller="" asp-action="" class="BlackBoxMenuButton"><i class="material-icons">event</i>Събития</a>
-        <a asp-controller="Motorcycle" asp-action="Index" class="BlackBoxMenuButton">Преглед на Модели</a>
-        <a href="https://www.bmw-motorrad.bg/bg/public-pool/content-pool/dealerlocator.html" target="_blank" class="BlackBoxMenuButton"><i class="fa fa-map-marker p-2"></i>Локация</a>
+    <div class="bg-black d-flex row">
+        <div class="p-2 col-md-2">
+            <a asp-controller="" asp-action="" class="BlackBoxMenuButton"><i class="material-icons">event</i>Събития</a>
+        </div>
+        <div class="p-2 col-md-3">
+            <a asp-controller="Motorcycle" asp-action="Index" class="BlackBoxMenuButton">Преглед на Модели</a>
+        </div>
+        <div class="p-2 col-md-2">
+            <a href="https://www.bmw-motorrad.bg/bg/public-pool/content-pool/dealerlocator.html" target="_blank" class="BlackBoxMenuButton"><i class="fa fa-map-marker p-2"></i>Локация</a>
+        </div>
     </div>
     @if (User.FindFirstValue(ClaimTypes.NameIdentifier) == null)
     {

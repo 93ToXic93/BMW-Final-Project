@@ -1,5 +1,6 @@
 ﻿using BMW_Final_Project.Engine.Contracts;
 using BMW_Final_Project.Engine.Models.Motorcycle;
+using BMW_Final_Project.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BMW_Final_Project.Controllers
@@ -54,7 +55,7 @@ namespace BMW_Final_Project.Controllers
                 return View(modelToAdd);
             }
 
-            modelToAdd.BuyerId = GetUserId();
+            modelToAdd.BuyerId = User.Id();
 
             await _service.AddAsync(modelToAdd);
 
@@ -155,6 +156,19 @@ namespace BMW_Final_Project.Controllers
             }
 
             return RedirectToAction("Index", "Motorcycle");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddColor(AddColorModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            await _service.AddNewColorAsync(model);
+
+            return RedirectToAction(nameof(AddMotorcycle));
         }
     }
 }

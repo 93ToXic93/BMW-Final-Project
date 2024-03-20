@@ -1,8 +1,6 @@
 ﻿using BMW_Final_Project.Engine.Contracts;
-using BMW_Final_Project.Engine.Models.Motorcycle;
-using BMW_Final_Project.Infrastructure.Data.Models.Motorcycles;
+using BMW_Final_Project.Extensions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace BMW_Final_Project.Controllers
 {
@@ -60,7 +58,7 @@ namespace BMW_Final_Project.Controllers
         {
             try
             {
-                await _service.AddAsync(id, GetUserId());
+                await _service.AddAsync(id, User.Id());
                 return RedirectToAction(nameof(AllBought));
             }
             catch (Exception e)
@@ -88,7 +86,7 @@ namespace BMW_Final_Project.Controllers
         [HttpGet]
         public async Task<IActionResult> AllBought()
         {
-            var motorcycles = await _service.GetAllMineMotorcyclesAsync(GetUserId());
+            var motorcycles = await _service.GetAllMineMotorcyclesAsync(User.Id());
 
             return View(motorcycles);
         }
@@ -109,6 +107,8 @@ namespace BMW_Final_Project.Controllers
 
             return RedirectToAction(nameof(AllBought));
         }
+
+        
 
     }
 }

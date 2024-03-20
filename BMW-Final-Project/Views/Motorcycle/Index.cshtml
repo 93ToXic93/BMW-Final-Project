@@ -12,15 +12,35 @@
     </div>
 }
 
-<div class="Mini-menu-for-motorcycles align-items-center justify-content-center pt-5 container-fluid">
-    <a asp-controller="Motorcycle" asp-action="Index" class="Mini-menu-text">ВСИЧКИ</a>
-    <a asp-controller="Motorcycle" asp-action="LoadById" asp-route-id="1" class="Mini-menu-text">Sport</a>
-    <a asp-controller="Motorcycle" asp-action="LoadById" asp-route-id="2" class="Mini-menu-text">M Sport</a>
-    <a asp-controller="Motorcycle" asp-action="LoadById" asp-route-id="3" class="Mini-menu-text">Tour</a>
-    <a asp-controller="Motorcycle" asp-action="LoadById" asp-route-id="4" class="Mini-menu-text">Roadster</a>
-    <a asp-controller="Motorcycle" asp-action="LoadById" asp-route-id="5" class="Mini-menu-text">Heritage</a>
-    <a asp-controller="Motorcycle" asp-action="LoadById" asp-route-id="6" class="Mini-menu-text">Adventure</a>
-    <a asp-controller="Motorcycle" asp-action="LoadById" asp-route-id="7" class="Mini-menu-text">Urban Mobility</a>
+
+<div class="row">
+    <div class="d-lg-flex">
+        <div class="col-md-2"></div>
+        <div class="col-md-1">
+            <a asp-controller="Motorcycle" asp-action="Index" class="@* Mini-menu-text *@">ВСИЧКИ</a>
+        </div>
+        <div class="col-md-1">
+            <a asp-controller="Motorcycle" asp-action="LoadById" asp-route-id="1" class="Mini-menu-text">Sport</a>
+        </div>
+        <div class="col-md-1">
+            <a asp-controller="Motorcycle" asp-action="LoadById" asp-route-id="2" class="Mini-menu-text">M Sport</a>
+        </div>
+        <div class="col-md-1">
+            <a asp-controller="Motorcycle" asp-action="LoadById" asp-route-id="3" class="Mini-menu-text">Tour</a>
+        </div>
+        <div class="col-md-1">
+            <a asp-controller="Motorcycle" asp-action="LoadById" asp-route-id="4" class="Mini-menu-text">Roadster</a>
+        </div>
+        <div class="col-md-1">
+            <a asp-controller="Motorcycle" asp-action="LoadById" asp-route-id="5" class="Mini-menu-text">Heritage</a>
+        </div>
+        <div class="col-md-1">
+            <a asp-controller="Motorcycle" asp-action="LoadById" asp-route-id="6" class="Mini-menu-text">Adventure</a>
+        </div>
+        <div class="col-md-2">
+            <a asp-controller="Motorcycle" asp-action="LoadById" asp-route-id="7" class="Mini-menu-text">Urban Mobility</a>
+        </div>
+    </div>
 </div>
 
 
@@ -28,7 +48,7 @@
     @foreach (var motor in Model)
     {
 
-        <div class="p-5">
+        <div class="p-2">
 
             @if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Admin"))
             {

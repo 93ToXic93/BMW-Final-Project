@@ -12,9 +12,5 @@ namespace BMW_Final_Project.Controllers
             return User.Identity.IsAuthenticated && User.IsInRole("Admin");
         }
 
-        public string GetUserId()
-        {
-            return User.FindFirstValue(ClaimTypes.NameIdentifier);
-        }
     }
 }
