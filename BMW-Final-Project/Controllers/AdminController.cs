@@ -158,15 +158,31 @@ namespace BMW_Final_Project.Controllers
             return RedirectToAction("Index", "Motorcycle");
         }
 
+
         [HttpPost]
-        public async Task<IActionResult> AddColor(AddColorModel model)
+        public async Task<IActionResult> AddColor([FromBody] AddColorModel model)
         {
+            if (!IsAuthorized())
+            {
+                return Unauthorized();
+            }
+
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            await _service.AddNewColorAsync(model);
+            try
+            {
+                await _service.AddNewColorAsync(model);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                throw;
+            }
+
+
 
             return RedirectToAction(nameof(AddMotorcycle));
         }

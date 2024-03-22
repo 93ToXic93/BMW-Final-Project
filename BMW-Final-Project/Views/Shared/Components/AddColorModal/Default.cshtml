@@ -1,12 +1,15 @@
 ﻿@model BMW_Final_Project.Engine.Models.Motorcycle.AddColorModel
 
-<div class="modal fade" id="ProgramNameModal" tabindex="-1" aria-labelledby="ProgramNameModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Добави нов цвят</h1>
-            </div>
-            <form asp-controller="Admin" asp-action="AddColor" method="post" id="myForm">
+<div class="alert alert-success" role="alert" id="ColorAlert">
+    This is a success alert—check it out!
+</div>
+<form asp-controller="Admin" asp-action="AddColor" method="post" id="myForm">
+    <div class="modal fade" id="ProgramNameModal" tabindex="-1" aria-labelledby="ProgramNameModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Добави нов цвят</h1>
+                </div>
                 <div class="modal-body">
                     <label asp-for="@Model.Name" class="fw-bold">Цвят на мотора</label>
                     <input asp-for="@Model.Name" class="form-control fw-bold border-2 border-dark" type="text" required />
@@ -14,45 +17,12 @@
                 </div>
                 <div class="modal-footer">
                     <button id="myButton" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Затвори</button>
-                    <button type="button" id="submitBtn" class="btn btn-primary">Запази</button>
+                    <input type="submit" id="submitBtn" class="btn btn-primary" />
                 </div>
-            </form>
+            </div>
         </div>
     </div>
-</div>
+</form>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $("#submitBtn").click(function () {
-            var formData = $('#myForm').serialize(); // Serialize form data
 
-            $.ajax({
-                url: '@Url.Action("AddColor", "Admin")',
-                type: 'POST',
-                data: formData, // Pass serialized form data
-                success: function (result) {
-                    if (result.success) {
-                        $('#myButton').click();
-                        window.location.href = '@Url.Action("AddColor", "Admin", "result.id")';
-                    } else {
-                        displayErrors(result.errors);
-                    }
-                },
-                error: function (error) {
-                    console.error("Error: " + JSON.stringify(error));
-                }
-            });
 
-            function displayErrors(errors) {
-                for (var key in errors) {
-                    if (errors.hasOwnProperty(key)) {
-                        var errorMessages = errors[key];
-                        $('#' + key + '-error').text(errorMessages.join(', '));
-                    }
-                }
-            }
-        });
-    });
-
-</script>

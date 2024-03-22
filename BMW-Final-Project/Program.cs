@@ -21,6 +21,7 @@ namespace BMW_Final_Project
                 mvcOptions.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
             });
 
+            
             builder.Services.AddAplicationServices();
 
             var app = builder.Build();
@@ -29,6 +30,7 @@ namespace BMW_Final_Project
             if (app.Environment.IsDevelopment())
             {
                 app.UseMigrationsEndPoint();
+
             }
             else
             {
@@ -36,6 +38,7 @@ namespace BMW_Final_Project
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

@@ -29,4 +29,8 @@
     <ProjectReference Include="..\BMW-Final-Project.Infrastructure\BMW-Final-Project.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Admin\Js\AddColor\" />
+  </ItemGroup>
+
 </Project>

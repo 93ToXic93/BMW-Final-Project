@@ -104,7 +104,7 @@ namespace BMW_Final_Project.Engine.Services
                     Model = model.Model,
                     Amount = model.Amount,
                     CC = model.CC,
-                    BuyerId = new Guid(model.BuyerId),
+                    BuyerId = model.BuyerId,
                     ColorCategoryId = model.ColorCategoryId,
                     DTC = model.DTC,
                     FrontBreak = model.FrontBreak,
@@ -128,7 +128,7 @@ namespace BMW_Final_Project.Engine.Services
 
         }
 
-        public async Task AddAsync(int id, string userId)
+        public async Task AddAsync(int id, Guid userId)
         {
             var motorcycleToAdd = await GetByIdAsync(id);
 
@@ -137,12 +137,12 @@ namespace BMW_Final_Project.Engine.Services
                 throw new ArgumentNullException();
             }
 
-            if (!(motorcycleToAdd.MotorcycleBuyers.Any(x => x.Motorcycle.Id == id && x.BuyerId == Guid.Parse(userId)  || motorcycleToAdd.Amount == 0)))
+            if (!(motorcycleToAdd.MotorcycleBuyers.Any(x => x.Motorcycle.Id == id && x.BuyerId == userId || motorcycleToAdd.Amount == 0)))
             {
                 var motorcycle = new MotorcycleBuyers()
                 {
                     MotorcycleId = motorcycleToAdd.Id,
-                    BuyerId = Guid.Parse(userId)
+                    BuyerId = userId
                 };
 
                 if (motorcycleToAdd.Amount > 0)
@@ -346,11 +346,11 @@ namespace BMW_Final_Project.Engine.Services
             return motorcycle;
         }
 
-        public async Task<ICollection<AllMineMotorcycles>> GetAllMineMotorcyclesAsync(string userId)
+        public async Task<ICollection<AllMineMotorcycles>> GetAllMineMotorcyclesAsync(Guid userId)
         {
             var motorcycles = await _repository
                 .AllReadOnly<MotorcycleBuyers>()
-                .Where(x => x.BuyerId == Guid.Parse(userId) && x.Motorcycle.IsActive)
+                .Where(x => x.BuyerId == userId && x.Motorcycle.IsActive)
                 .Select(x => new AllMineMotorcycles()
                 {
                     Id = x.Motorcycle.Id,
@@ -405,6 +405,26 @@ namespace BMW_Final_Project.Engine.Services
             }
 
             _repository.Remove(motorcycleToRemove);
+
+            await _repository.SaveChangesAsync();
+        }
+
+        public async Task AddNewColorAsync(AddColorModel model)
+        {
+
+            ColorCategory color = new ColorCategory()
+            {
+                IsActive = true,
+                Name = model.Name
+            };
+
+            if (_repository.AllReadOnly<ColorCategory>().Any(x => x.Name == model.Name))
+            {
+                throw new ArgumentException("There is already one!");
+            }
+
+            await _repository.AddAsync(color);
+
 
             await _repository.SaveChangesAsync();
         }

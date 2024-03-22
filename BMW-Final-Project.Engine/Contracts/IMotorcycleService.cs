@@ -12,7 +12,7 @@ namespace BMW_Final_Project.Engine.Contracts
 
         Task AddAsync(AddMotorcycleModel model);
 
-        Task AddAsync(int id , string userId);
+        Task AddAsync(int id , Guid userId);
 
         Task<ICollection<MotorcycleModel>> LoadById(int id);
 
@@ -38,10 +38,12 @@ namespace BMW_Final_Project.Engine.Contracts
 
         Task<bool> IsThisMotorcycleExistButDeletedAsync(AddMotorcycleModel model);
 
-        Task<ICollection<AllMineMotorcycles>> GetAllMineMotorcyclesAsync(string userId);
+        Task<ICollection<AllMineMotorcycles>> GetAllMineMotorcyclesAsync(Guid userId);
 
         Task RemoveMotorcycleAsync(int id);
 
         Task BuyMotorcycleAsync(int id);
+
+        Task AddNewColorAsync(AddColorModel model);
     }
 }

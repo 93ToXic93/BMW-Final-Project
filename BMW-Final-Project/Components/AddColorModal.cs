@@ -5,10 +5,10 @@ namespace BMW_Final_Project.Components
 {
     public class AddColorModal : ViewComponent
     {
-        public async Task<IViewComponentResult> InvokeAsync(AddColorModel model)
+        public async Task<IViewComponentResult> InvokeAsync(AddColorModel viewModel)
         {
 
-            return await Task.FromResult<IViewComponentResult>(View(model));
+            return await Task.FromResult<IViewComponentResult>(View(viewModel));
         }
     }
 }
