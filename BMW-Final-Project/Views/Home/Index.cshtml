@@ -5,8 +5,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="container-fluid m-0 p-0">
-
+<div class="container-fluid m-0 p-0 bg-black">
     <img class="img-fluid position-relative" alt="S1000RR photo" src="/img/Made-RR.jpg" />
     <a class="Home-RR-Button" asp-controller="Motorcycle" asp-action="Details" asp-route-id="1">Открийте Сега</a>
     <h1 class="Text-Home-RR-Img">
@@ -24,9 +23,11 @@
             <a href="https://www.bmw-motorrad.bg/bg/public-pool/content-pool/dealerlocator.html" target="_blank" class="BlackBoxMenuButton"><i class="fa fa-map-marker p-2"></i>Локация</a>
         </div>
     </div>
-    @if (User.FindFirstValue(ClaimTypes.NameIdentifier) == null)
-    {
-        <div class="container-Register">
+</div>
+@if (User.FindFirstValue(ClaimTypes.NameIdentifier) == null)
+{
+    <div class="row">
+        <div class="container-Register col-md-5">
             <div class="Inside-Container-Login container-fluid m-0 p-0">
                 <img class="Logo-M" alt="Logo-M" src="img/Logo-edited.jpg" />
                 <p class="RegisterLogin">Регистрирай се сега и започни<br />
@@ -34,61 +35,68 @@
                 <p class="LoginRegister">Make Life a Ride</p>
 
             </div>
-            <div>
+            <div col-md-3>
                 <a asp-area="Identity" asp-page="/Account/Login" class="Login">Вход</a>
                 <a asp-area="Identity" asp-page="/Account/Register" class="Register">Регистрация</a>
             </div>
 
         </div>
-    }
-    else
-    {
-        <div class="container-Register">
-            <div class="Inside-Container-Login container-fluid m-0 p-0">
-                <img class="Logo-M" alt="Logo-M" src="img/Logo-edited.jpg" />
-                <p class="RegisterLogin">Вече можеш да откриеш<br />
-                <p class="LoginRegister">нови светове с BMW !</p></p>
-                <p class="LoginRegister">MAKE LIVE A RIDE</p>
+    </div>
+}
+else
+{
 
-            </div>
-        </div>
-    }
+    <div class="container-Register">
+        <div class="Inside-Container-Login container-fluid m-0 p-0">
+            <img class="Logo-M" alt="Logo-M" src="img/Logo-edited.jpg" />
+            <p class="RegisterLogin">Вече можеш да откриеш<br />
+            <p class="LoginRegister">нови светове с BMW !</p></p>
+            <p class="LoginRegister">MAKE LIVE A RIDE</p>
 
-    <div class="Cloth-container">
-        <div>
-            <img class="cloth-boy-img" alt="ClothPhoto" src="~/img/cloth-boy.jpg" />
-            <div class="Cloth-boy-container-text">
-                <a asp-controller="Cloth" asp-action="Index" class="text-cloth-boy">ОБЛЕКЛО ОТ BMW MOTORRAD</a>
-                <p class="text-cloth-boy-p">Безопасност, иновация и качество – на <br /> мотоциклета с новият BMW S1000RR.</p>
-                <hr />
-            </div>
-
-        </div>
-        <div>
-            <img class="cloth-boy-img2" alt="ClothPhoto" src="~/img/f1r.jpg" />
-            <div class="Cloth-boy-container-text2">
-                <a asp-controller="Cloth" asp-action="Index" class="text-cloth-boy">СВОБОДАТА ВИНАГИ Е НА МОДА</a>
-                <p class="text-cloth-boy-p">Характери, които пасват на вашия: запознайте се със семействата на BMW F900R.</p>
-                <hr />
-            </div>
         </div>
     </div>
+}
 
-    <div class="accsesoars-container">
-        <div>
+<div class="Cloth-container row">
+    <div class="col-md-6">
+        <img class="cloth-boy-img img-fluid" alt="ClothPhoto" src="~/img/cloth-boy.jpg" />
+        <div class="Cloth-boy-container-text">
+            <a asp-controller="Cloth" asp-action="Index" class="text-cloth-boy">ОБЛЕКЛО ОТ BMW MOTORRAD</a>
+            <p class="text-cloth-boy-p">Безопасност, иновация и качество – на <br /> мотоциклета с новият BMW S1000RR.</p>
+            <hr />
+        </div>
+
+    </div>
+    <div class="col-md-6">
+
+        <img class="cloth-boy-img2 img-fluid" alt="ClothPhoto" src="~/img/f1r.jpg" />
+        <div class="Cloth-boy-container-text2">
+            <a asp-controller="Cloth" asp-action="Index" class="text-cloth-boy">СВОБОДАТА ВИНАГИ Е НА МОДА</a>
+            <p class="text-cloth-boy-p">Характери, които пасват на вашия: запознайте се със семействата на BMW F900R.</p>
+            <hr />
+        </div>
+    </div>
+</div>
+
+<div class="accsesoars-container d-flex">
+    <div class="row">
+        <div class="col-md-6">
             <img class="acssesoars-photo" alt="ClothPhoto" src="~/img/kisspng-bmw-r-ninet-scrambler-bmw-motorrad-motorcycle-exha-5bf0cd512261b3.0893488615425078571408.jpg" />
         </div>
-        <div class="text-accsesoars-container">
-            <p class="accsesoars-text-1">НЕОГРАНИЧНИ ВЪЗМОЖНОСТИ</p>
-            <p class="accsesoars-text-2">ВАШАТА МАШИНА – КАКТО СИ Я ПРЕДСТАВЯТЕ</p>
-            <p class="accsesoars-text-3">
-                Страстта също може да става по-силна: за повече индивидуалност,<br /> повече комфорт и подчертан спортен характер. Оригиналните аксесоари от
-                <br /> BMW Motorrad са предназначени точно за тази цел. <br />Независимо дали става въпрос за ежедневието ви, приключения, или повече ефективност – <br />ние имаме подходящите за вас аксесоари.
-            </p>
-
-            <a asp-action="" asp-controller="" class="accsesoaries-button">Аксесоари</a>
+        <div class="text-accsesoars-container col-md-6">
+            <div class="paddingPhoneAccsesoars">
+                <p class="accsesoars-text-1">НЕОГРАНИЧНИ ВЪЗМОЖНОСТИ</p>
+                <p class="accsesoars-text-2">ВАШАТА МАШИНА – КАКТО СИ Я ПРЕДСТАВЯТЕ</p>
+                <p class="accsesoars-text-3">
+                    Страстта също може да става по-силна: за повече индивидуалност,<br /> повече комфорт и подчертан спортен характер. Оригиналните аксесоари от
+                    <br /> BMW Motorrad са предназначени точно за тази цел. <br />Независимо дали става въпрос за ежедневието ви, приключения, или повече ефективност – <br />ние имаме подходящите за вас аксесоари.
+                </p>
+            </div>
+            <div>
+                <a asp-action="" asp-controller="" class="accsesoaries-button">Аксесоари</a>
+            </div>
         </div>
     </div>
-
-
 </div>
+
+

@@ -265,7 +265,7 @@ html {
     height: 205px;
     width: 590px;
     position: absolute;
-    top: 58%;
+    top: 57%;
     left: 70px;
 }
 
@@ -287,7 +287,7 @@ html {
 .Cloth-boy-container-text2 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     background-color: rgba(255, 255, 255, 0.6);
-    height: 200px;
+    height: 189px;
     width: 630px;
     position: absolute;
     top: 58%;
@@ -969,7 +969,88 @@ html {
     }
     .Login{
         position:relative;
-        top:000px;
+        top:10px;
+        left:10px;
+        font-size:22px;
     }
-
+    .Register {
+        position: relative;
+        top: 10px;
+        left: -25px;
+        font-size: 22px;
+    }
+    .cloth-boy-img2{
+        width:318px;
+        height:auto;
+        padding-top:30px;
+    }
+    .Cloth-boy-container-text2 {
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        background-color: rgba(255, 255, 255, 0.6);
+        height: 100px;
+        width: 317px;
+        top:887px;
+        position: absolute;
+    }
+    .text-cloth-boy{
+        font-size:20px;
+    }
+    .text-cloth-boy-p{
+        font-size:14px;
+    }
+    .Cloth-boy-container-text {
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        background-color: rgba(255, 255, 255, 0.6);
+        height: 100px;
+        width: 317px;
+        top: 1168px;
+        position: absolute;
+    }
+    .acssesoars-photo{
+        width:500px;
+    }
+    .text-accsesoars-container{
+        padding:30px;
+    }
+    .accsesoars-text-1{
+        font-size:60px;
+    }
+    .accsesoars-text-2 {
+        font-size: 30px;
+    }
+    .accsesoars-text-3 {
+        font-size: 18px;
+    }
+    .accsesoaries-button{
+        left:100px;
+        top: 70%;
+    }
+    .paddingPhoneAccsesoars{
+        padding-bottom:180px;
+    }
+    .containerTextDetails {
+        padding-top: 20px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+    }
+    .Hr{
+        top:26%;
+        left:30px
+    }
+    .CC {
+        top: 26%;
+        right:-220px;
+    }
+    .Kg {
+        top: 30%;
+        right: 20px;
+    }
+    .TankCap {
+        top: 30%;
+        left: 30px
+    }
+    .FlagPhoto{
+        width:100px;
+        height:100px;
+    }
 }

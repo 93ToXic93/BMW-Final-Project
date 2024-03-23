@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Admin\Js\AddColor\" />
+    <Folder Include="wwwroot\js\AddColor\" />
   </ItemGroup>
 
 </Project>

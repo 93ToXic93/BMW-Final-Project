@@ -1,19 +1,19 @@
 
 $('#submitBtn').on('click', function (e) {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
 
     console.log("Button clicked");
 
-    // Serialize form data manually
+
     var formData = {
         Name: $('#Name').val()
     };
 
     $.ajax({
-        url: 'AddColor', // URL of your server-side endpoint
-        type: 'POST', // HTTP method
+        url: 'AddColor',
+        type: 'POST',
         contentType: 'application/json',
-        data: JSON.stringify(formData), // Form data to be sent to the server
+        data: JSON.stringify(formData),
         complete: function () {
             $('#ProgramNameModal').modal('hide');
         }

@@ -169,7 +169,7 @@ namespace BMW_Final_Project.Controllers
 
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return RedirectToAction(nameof(AddMotorcycle));
             }
 
             try
