@@ -3,33 +3,40 @@
 <div class="text-center row">
 
     <h1 class="display-2 fw-bold p-3">Мойте BMW Мотори</h1>
-    @foreach (var e in Model)
+    @if (Model.Any())
     {
-        <div class="card col-4" style="width: 30rem; ">
-            <div class="card-body p-5">
-                <form class="input-group-sm" asp-controller="Motorcycle" asp-action="RemoveMotorcycle" asp-route-id="@e.Id">
-                    <button type="submit" class="border-0">
-                        <div class="close-container">
-                            <div class="leftright"></div>
-                            <div class="rightleft"></div>
+        @foreach (var e in Model)
+        {
+            <div class="card col-4" style="width: 30rem; ">
+                <div class="card-body p-5">
+                    <form class="input-group-sm" asp-controller="Motorcycle" asp-action="RemoveMotorcycle" asp-route-id="@e.Id">
+                        <button type="submit" class="border-0">
+                            <div class="close-container">
+                                <div class="leftright"></div>
+                                <div class="rightleft"></div>
 
-                            <input type="submit" class="close labelText" value="Remove" />
+                                <input type="submit" class="close labelText" value="Remove" />
 
-                        </div>
-                    </button>
-                </form>
+                            </div>
+                        </button>
+                    </form>
 
-                <img src="@e.ImageUrl" alt="Motorcycle photo" class="photo-of-motorcycle" />
-                <h4 class="card-title mt-1 fw-bold">Модел: @e.Model</h4>
-                <h4 class="card-title mt-1 fw-bold">Цена: @e.Price$</h4>
-                <p class="mb-0">Година на производство: @e.Year</p>
-                <p class="mb-0">Кубични сили: @e.ColorCategory</p>
-                <form class="input-group-sm" asp-controller="Motorcycle" asp-action="Force" asp-route-id="@e.Id">
+                    <img src="@e.ImageUrl" alt="Motorcycle photo" class="photo-of-motorcycle" />
+                    <h4 class="card-title mt-1 fw-bold">Модел: @e.Model</h4>
+                    <h4 class="card-title mt-1 fw-bold">Цена: @e.Price$</h4>
+                    <p class="mb-0">Година на производство: @e.Year</p>
+                    <p class="mb-0">Кубични сили: @e.ColorCategory</p>
+                    <form class="input-group-sm" asp-controller="Motorcycle" asp-action="Force" asp-route-id="@e.Id">
 
-                    <input type="submit" class="Button-Force" value="Купи" />
+                        <input type="submit" class="Button-Force" value="Купи" />
 
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
+        }
+    }
+    else
+    {
+        <h1>В момента нямате купени мотори</h1>
     }
 </div>

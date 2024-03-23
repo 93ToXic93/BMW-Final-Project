@@ -10,7 +10,7 @@
         if (user != null)
         {
             <li>
-                <a class="MyBuy" asp-controller="Motorcycle" asp-action="AllBought"><img class="Card" alt="card-shop" src="~/img/cart-shopping-solid.svg"/></a>
+                <a asp-controller="Motorcycle" asp-action="AllBought" class="nav-link text-dark fw-bold">Поръчки</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-dark fw-bold" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Здравей @user.Nickname</a>
