@@ -105,7 +105,6 @@ namespace BMW_Final_Project.Controllers
                 return NotFound();
             }
 
-            return RedirectToAction(nameof(AllBought));
         }
 
         

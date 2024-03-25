@@ -958,7 +958,7 @@ html {
         top: 10px;
         font-size: 16px;
         left: 40px;
-        padding:0px;
+        padding: 0px;
     }
 
     .LoginRegister {
@@ -967,37 +967,44 @@ html {
         padding: 0px;
         left: 40px;
     }
-    .Login{
-        position:relative;
-        top:10px;
-        left:10px;
-        font-size:22px;
+
+    .Login {
+        position: relative;
+        top: 10px;
+        left: 10px;
+        font-size: 22px;
     }
+
     .Register {
         position: relative;
         top: 10px;
         left: -25px;
         font-size: 22px;
     }
-    .cloth-boy-img2{
-        width:318px;
-        height:auto;
-        padding-top:30px;
+
+    .cloth-boy-img2 {
+        width: 318px;
+        height: auto;
+        padding-top: 30px;
     }
+
     .Cloth-boy-container-text2 {
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         background-color: rgba(255, 255, 255, 0.6);
         height: 100px;
         width: 317px;
-        top:887px;
+        top: 887px;
         position: absolute;
     }
-    .text-cloth-boy{
-        font-size:20px;
+
+    .text-cloth-boy {
+        font-size: 20px;
     }
-    .text-cloth-boy-p{
-        font-size:14px;
+
+    .text-cloth-boy-p {
+        font-size: 14px;
     }
+
     .Cloth-boy-container-text {
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         background-color: rgba(255, 255, 255, 0.6);
@@ -1006,60 +1013,81 @@ html {
         top: 1168px;
         position: absolute;
     }
-    .acssesoars-photo{
-        width:500px;
+
+    .acssesoars-photo {
+        width: 500px;
     }
-    .text-accsesoars-container{
-        padding:30px;
+
+    .text-accsesoars-container {
+        padding: 30px;
     }
-    .accsesoars-text-1{
-        font-size:60px;
+
+    .accsesoars-text-1 {
+        font-size: 60px;
     }
+
     .accsesoars-text-2 {
         font-size: 30px;
     }
+
     .accsesoars-text-3 {
         font-size: 18px;
     }
-    .accsesoaries-button{
-        left:100px;
+
+    .accsesoaries-button {
+        left: 100px;
         top: 70%;
     }
-    .paddingPhoneAccsesoars{
-        padding-bottom:180px;
+
+    .paddingPhoneAccsesoars {
+        padding-bottom: 180px;
     }
+
     .containerTextDetails {
         padding-top: 20px;
         padding-bottom: 0px;
         padding-left: 0px;
     }
-    .Hr{
-        top:26%;
-        left:30px
+
+    .Hr {
+        top: 26%;
+        left: 30px
     }
+
     .CC {
         top: 26%;
-        right:-220px;
+        right: -220px;
     }
+
     .Kg {
         top: 30%;
         right: 20px;
     }
+
     .TankCap {
         top: 30%;
         left: 30px
     }
-    .FlagPhoto{
-        width:100px;
-        height:100px;
+
+    .FlagPhoto {
+        width: 100px;
+        height: 100px;
     }
-    .priceText{
-       padding-right:10px;
-       padding-top:10px;
+
+    .priceText {
+        padding-right: 10px;
+        padding-top: 10px;
     }
+
     .PriceContainer {
         margin-bottom: 30px;
         padding-left: 20px;
         display: flex;
     }
 }
+
+.my-alert {
+    background-color: lawngreen;
+    color: black;
+}
+
