@@ -1,7 +1,10 @@
-﻿using BMW_Final_Project.Infrastructure.Data;
+﻿using BMW_Final_Project.Engine.Contracts;
+using BMW_Final_Project.Engine.Services;
+using BMW_Final_Project.Infrastructure.Data;
 using BMW_Final_Project.Infrastructure.Data.Common;
 using BMW_Final_Project.Infrastructure.Data.IdentityModels;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace BMW_Final_Project.Extensions
@@ -12,13 +15,14 @@ namespace BMW_Final_Project.Extensions
         {
             return services;
         }
-        public static IServiceCollection AddAplicationDbContext(this IServiceCollection services,IConfiguration configuration)
+        public static IServiceCollection AddAplicationDbContext(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
             services.AddScoped<IRepository, Repository>();
+            services.AddScoped<IMotorcycleService, MotorcycleService>();
 
             return services;
         }

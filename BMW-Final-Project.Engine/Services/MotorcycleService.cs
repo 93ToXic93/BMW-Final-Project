@@ -137,7 +137,8 @@ namespace BMW_Final_Project.Engine.Services
                 throw new ArgumentNullException();
             }
 
-            if (!(motorcycleToAdd.MotorcycleBuyers.Any(x => x.Motorcycle.Id == id && x.BuyerId == userId || motorcycleToAdd.Amount == 0)))
+            if (!(motorcycleToAdd.MotorcycleBuyers.Any(x =>
+                    x.Motorcycle.Id == id && x.BuyerId == userId || motorcycleToAdd.Amount == 0)))
             {
                 var motorcycle = new MotorcycleBuyers()
                 {
@@ -166,7 +167,7 @@ namespace BMW_Final_Project.Engine.Services
 
         }
 
-        public async Task<ICollection<MotorcycleModel>> LoadById(int id)
+        public async Task<ICollection<MotorcycleModel>> LoadByIdAsync(int id)
         {
             var motorcycles = await _repository
                 .AllReadOnly<Motorcycle>()
@@ -236,8 +237,8 @@ namespace BMW_Final_Project.Engine.Services
         public async Task<Motorcycle?> GetByIdReadOnlyAsync(int id)
         {
             var motorcycle = await _repository.AllReadOnly<Motorcycle>()
-             .Where(x => x.Id == id && x.IsActive)
-             .FirstOrDefaultAsync();
+                .Where(x => x.Id == id && x.IsActive)
+                .FirstOrDefaultAsync();
 
             return motorcycle;
         }
@@ -287,7 +288,7 @@ namespace BMW_Final_Project.Engine.Services
         public async Task<ICollection<ColorCategoryModel>> GetColorsAsync()
         {
             var motoColors = await _repository
-                .AllReadOnly<ColorCategory>()
+                .All<ColorCategory>()
                 .Where(x => x.IsActive)
                 .Select(x => new ColorCategoryModel()
                 {
@@ -334,14 +335,16 @@ namespace BMW_Final_Project.Engine.Services
 
         public async Task<bool> IsThisMotorcycleExistAsync(AddMotorcycleModel model)
         {
-            var motorcycle = _repository.AllReadOnly<Motorcycle>().Any(x => x.IsActive == true && x.Model == model.Model);
+            var motorcycle = _repository.AllReadOnly<Motorcycle>()
+                .Any(x => x.IsActive == true && x.Model == model.Model);
 
             return motorcycle;
         }
 
         public async Task<bool> IsThisMotorcycleExistButDeletedAsync(AddMotorcycleModel model)
         {
-            var motorcycle = _repository.AllReadOnly<Motorcycle>().Any(x => x.IsActive == false && x.Model == model.Model);
+            var motorcycle = _repository.AllReadOnly<Motorcycle>()
+                .Any(x => x.IsActive == false && x.Model == model.Model);
 
             return motorcycle;
         }
@@ -411,20 +414,74 @@ namespace BMW_Final_Project.Engine.Services
 
         public async Task AddNewColorAsync(AddColorModel model)
         {
-
-            ColorCategory color = new ColorCategory()
-            {
-                IsActive = true,
-                Name = model.Name
-            };
-
-            if (_repository.AllReadOnly<ColorCategory>().Any(x => x.Name == model.Name))
+            if (_repository.AllReadOnly<ColorCategory>().Any(x => x.Name == model.Name && x.IsActive))
             {
                 throw new ArgumentException("There is already one!");
             }
+            else if (await _repository.AllReadOnly<ColorCategory>().AnyAsync(x => x.Name == model.Name && x.IsActive == false))
+            {
+                var colorToAddAgain = await _repository.All<ColorCategoryModel>()
+                    .FirstAsync(x => x.Name == model.Name);
 
-            await _repository.AddAsync(color);
+                colorToAddAgain.IsActive = true;
 
+                await _repository.SaveChangesAsync();
+            }
+            else
+            {
+                ColorCategory color = new ColorCategory()
+                {
+                    IsActive = true,
+                    Name = model.Name
+                };
+
+                await _repository.AddAsync(color);
+
+
+                await _repository.SaveChangesAsync();
+            }
+
+        }
+
+        public async Task<DeleteColorPageModel> GetColorsToDeleteAsync(int currentPage, int colorsPerPage)
+        {
+            var motoColors = _repository.All<ColorCategory>();
+
+            var colors = await motoColors
+                .Where(x => x.IsActive)
+                .Skip((currentPage - 1) * colorsPerPage)
+                .Take(colorsPerPage)
+                .Select(c => new DeleteColorModel
+                {
+                    Id = c.Id,
+                    IsActive = c.IsActive,
+                    Name = c.Name
+                })
+                .ToListAsync();
+
+            var totalCount = await motoColors.CountAsync();
+
+            return new DeleteColorPageModel
+            {
+                Colors = colors,
+                TotalCount = totalCount,
+                ColorsPerPage = colorsPerPage,
+                CurrentPage = currentPage,
+            };
+        }
+
+        public async Task DeleteColorAsync(int id)
+        {
+            var colorToDel = await _repository.All<ColorCategory>()
+                .Where(x => x.Id == id && x.IsActive)
+                .FirstOrDefaultAsync();
+
+            if (colorToDel == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            colorToDel.IsActive = false;
 
             await _repository.SaveChangesAsync();
         }

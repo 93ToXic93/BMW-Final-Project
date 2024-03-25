@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            @await Component.InvokeAsync("AddColorModal")
 
             <form asp-controller="Admin" asp-action="AddMotorcycle" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -40,8 +41,8 @@
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ProgramNameModal">
                     Добави нов цвят
                 </button>
-
-                @await Component.InvokeAsync("AddColorModal")
+                
+                <a class="btn btn-danger" asp-controller="Admin" asp-action="ShowColorToDelete">Изтрийте цвят</a>
 
                 <div class="form-group p-3">
                     <label asp-for="@Model.Kg" class="fw-bold">Тегло на мотора</label>
@@ -133,7 +134,7 @@
                     <span asp-validation-for="@Model.Amount" class="text-danger"></span>
                 </div>
                 <div class="p-4">
-                    <input class="Add-Button-Submit" type="submit" value="Submit" />
+                    <input class="Add-Button-Submit" id="AddMotor" type="submit" value="Submit" />
                 </div>
 
             </form>
