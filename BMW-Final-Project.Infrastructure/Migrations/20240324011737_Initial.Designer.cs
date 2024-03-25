@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BMW_Final_Project.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240322144711_Initial")]
+    [Migration("20240324011737_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,7 +55,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("ab5f19c3-0e66-4a5b-ab4a-ada016abc5c5"),
-                            ConcurrencyStamp = "4e49644c-a8b3-410d-a256-3d7cca105ea0",
+                            ConcurrencyStamp = "5905a05a-aed4-41fa-b7f6-dc4f256a87e6",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -143,7 +143,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         {
                             Id = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c1509419-729e-4417-953b-0f84f60a7441",
+                            ConcurrencyStamp = "bc718d67-99eb-432b-9093-07ae698b8b12",
                             Email = "Adi@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Adrian",
@@ -152,9 +152,9 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             Nickname = "ToXic",
                             NormalizedEmail = "ADI@GMAIL.COM",
                             NormalizedUserName = "ADI@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEA9AxpydHGb7hq0FOG7BIw9YrCpOLWNngu1Eogl2gEmQCU5zLyIRkqZ2lVN+MGGmVw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAED/mMMTBr/wlsyjQ94rKz51SSk47Ij8hJipyGfviNl5MLUOyxmPpoSglCy0JCVkiLQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1EC1F82B-77C0-4190-8AB6-10E0A2730195",
+                            SecurityStamp = "2D03A625-F8A8-48D1-B9B0-C6A6934711C0",
                             TwoFactorEnabled = false,
                             UserName = "Adi@gmail.com"
                         });
@@ -544,7 +544,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 1,
-                            Year = new DateTime(2024, 3, 22, 16, 47, 11, 585, DateTimeKind.Local).AddTicks(5587)
+                            Year = new DateTime(2024, 3, 24, 3, 17, 36, 840, DateTimeKind.Local).AddTicks(542)
                         },
                         new
                         {
@@ -567,7 +567,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 16,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 4,
-                            Year = new DateTime(2024, 3, 22, 16, 47, 11, 585, DateTimeKind.Local).AddTicks(5629)
+                            Year = new DateTime(2024, 3, 24, 3, 17, 36, 840, DateTimeKind.Local).AddTicks(578)
                         },
                         new
                         {
@@ -590,7 +590,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 2,
-                            Year = new DateTime(2024, 3, 22, 16, 47, 11, 585, DateTimeKind.Local).AddTicks(5634)
+                            Year = new DateTime(2024, 3, 24, 3, 17, 36, 840, DateTimeKind.Local).AddTicks(582)
                         });
                 });
 

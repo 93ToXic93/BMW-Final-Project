@@ -1,7 +1,8 @@
 
 
-$('#submitBtn').on('click', function (e) {
-    e.preventDefault();
+console.log('im in')
+
+$('#submitBtn').on('click', function () {
 
     console.log("Button clicked");
 
