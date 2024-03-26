@@ -412,23 +412,23 @@ namespace BMW_Final_Project.Engine.Services
             await _repository.SaveChangesAsync();
         }
 
-        public async Task AddNewColorAsync(ColorCategoryModel model)
+        public async Task AddNewColorAsync(AddColorModel model)
         {
-            //if (_repository.AllReadOnly<ColorCategory>().Any(x => x.Name == model.Name && x.IsActive))
-            //{
-            //    throw new ArgumentException("There is already one!");
-            //}
-            //else if (await _repository.AllReadOnly<ColorCategory>().AnyAsync(x => x.Name == model.Name && x.IsActive == false))
-            //{
-            //    var colorToAddAgain = await _repository.All<ColorCategoryModel>()
-            //        .FirstAsync(x => x.Name == model.Name);
+            if (_repository.AllReadOnly<ColorCategory>().Any(x => x.Name == model.Name && x.IsActive))
+            {
+                throw new ArgumentException("There is already one!");
+            }
+            else if (await _repository.AllReadOnly<ColorCategory>().AnyAsync(x => x.Name == model.Name && x.IsActive == false))
+            {
+                var colorToAddAgain = await _repository.All<ColorCategoryModel>()
+                    .FirstAsync(x => x.Name == model.Name);
 
-            //    colorToAddAgain.IsActive = true;
+                colorToAddAgain.IsActive = true;
 
-            //    await _repository.SaveChangesAsync();
-            //}
-            //else
-            //{
+                await _repository.SaveChangesAsync();
+            }
+            else
+            {
                 ColorCategory color = new ColorCategory()
                 {
                     IsActive = true,
@@ -439,51 +439,51 @@ namespace BMW_Final_Project.Engine.Services
 
 
                 await _repository.SaveChangesAsync();
-            //}
-
-        }
-
-        public async Task<DeleteColorPageModel> GetColorsToDeleteAsync(int currentPage, int colorsPerPage)
-        {
-            var motoColors = _repository.All<ColorCategory>();
-
-            var colors = await motoColors
-                .Where(x => x.IsActive)
-                .Skip((currentPage - 1) * colorsPerPage)
-                .Take(colorsPerPage)
-                .Select(c => new DeleteColorModel
-                {
-                    Id = c.Id,
-                    IsActive = c.IsActive,
-                    Name = c.Name
-                })
-                .ToListAsync();
-
-            var totalCount = await motoColors.CountAsync();
-
-            return new DeleteColorPageModel
-            {
-                Colors = colors,
-                TotalCount = totalCount,
-                ColorsPerPage = colorsPerPage,
-                CurrentPage = currentPage,
-            };
-        }
-
-        public async Task DeleteColorAsync(int id)
-        {
-            var colorToDel = await _repository.All<ColorCategory>()
-                .Where(x => x.Id == id && x.IsActive)
-                .FirstOrDefaultAsync();
-
-            if (colorToDel == null)
-            {
-                throw new ArgumentNullException();
             }
 
-            colorToDel.IsActive = false;
-
-            await _repository.SaveChangesAsync();
         }
+
+        //public async Task<DeleteColorPageModel> GetColorsToDeleteAsync(int currentPage, int colorsPerPage)
+        //{
+        //    var motoColors = _repository.All<ColorCategory>();
+
+        //    var colors = await motoColors
+        //        .Where(x => x.IsActive)
+        //        .Skip((currentPage - 1) * colorsPerPage)
+        //        .Take(colorsPerPage)
+        //        .Select(c => new DeleteColorModel
+        //        {
+        //            Id = c.Id,
+        //            IsActive = c.IsActive,
+        //            Name = c.Name
+        //        })
+        //        .ToListAsync();
+
+        //    var totalCount = await motoColors.CountAsync();
+
+        //    return new DeleteColorPageModel
+        //    {
+        //        Colors = colors,
+        //        TotalCount = totalCount,
+        //        ColorsPerPage = colorsPerPage,
+        //        CurrentPage = currentPage,
+        //    };
+        //}
+
+        //public async Task DeleteColorAsync(int id)
+        //{
+        //    var colorToDel = await _repository.All<ColorCategory>()
+        //        .Where(x => x.Id == id && x.IsActive)
+        //        .FirstOrDefaultAsync();
+
+        //    if (colorToDel == null)
+        //    {
+        //        throw new ArgumentNullException();
+        //    }
+
+        //    colorToDel.IsActive = false;
+
+        //    await _repository.SaveChangesAsync();
+        //}
     }
 }
