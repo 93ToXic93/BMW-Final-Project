@@ -49,7 +49,7 @@ namespace BMW_Final_Project.Controllers
             if (!ModelState.IsValid)
             {
                 modelToAdd.TypeMotorModels = await _service.GetTypeMotorcyclesAsync();
-                //modelToAdd.ColorCategoryModels = await _service.GetColorsAsync();
+                modelToAdd.ColorCategoryModels = await _service.GetColorsAsync();
                 modelToAdd.StandardEuroModels = await _service.GetStandardEurosAsync();
 
                 return View(modelToAdd);
@@ -191,7 +191,6 @@ namespace BMW_Final_Project.Controllers
         public async Task<IActionResult> GetColors()
         {
             var colors = await _service.GetColorsAsync();
-
 
             return Json(colors); 
         }

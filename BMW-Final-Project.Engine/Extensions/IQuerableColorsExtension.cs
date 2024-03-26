@@ -5,9 +5,9 @@ namespace BMW_Final_Project.Engine.Extensions
 {
     public static class IQuerableColorsExtension
     {
-        public static IQueryable<DeleteColorModel> ProjectToHouseServiceModel(this IQueryable<ColorCategory> houses)
+        public static IQueryable<DeleteColorModel> ProjectToHouseServiceModel(this IQueryable<ColorCategory> color)
         {
-            return houses
+            return color
                 .Select(c => new DeleteColorModel()
                 {
                     Id = c.Id,
