@@ -2,6 +2,7 @@ using BMW_Final_Project.Engine.Contracts;
 using BMW_Final_Project.Engine.Services;
 using BMW_Final_Project.Extensions;
 using BMW_Final_Project.ModelBinders;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BMW_Final_Project
 {
@@ -14,12 +15,12 @@ namespace BMW_Final_Project
             builder.Services.AddAplicationDbContext(builder.Configuration);
             builder.Services.AddAplicationIdentity(builder.Configuration);
 
-            builder.Services.AddScoped<IMotorcycleService, MotorcycleService>();
-
             builder.Services.AddControllersWithViews(mvcOptions =>
             {
                 mvcOptions.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
+                mvcOptions.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
             });
+
 
             
             builder.Services.AddAplicationServices();
@@ -34,8 +35,8 @@ namespace BMW_Final_Project
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseExceptionHandler("/Home/Error/500");
+                app.UseStatusCodePagesWithReExecute("/Home/Error", "?statusCode={0}");
                 app.UseHsts();
             }
 
