@@ -26,7 +26,7 @@ namespace BMW_Final_Project.Controllers
         {
             try
             {
-                var model = await _service.LoadByIdAsync(id);
+                var model = await _service.LoadById(id);
 
                 return View(model);
             }
@@ -48,8 +48,8 @@ namespace BMW_Final_Project.Controllers
             }
             catch (Exception e)
             {
-                
-                return NotFound();
+                //TO DO THE EXCEPTION
+                return RedirectToAction(nameof(Index));
             }
         }
 
