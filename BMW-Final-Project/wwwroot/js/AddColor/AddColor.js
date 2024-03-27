@@ -6,6 +6,10 @@ console.log('im in');
 $('#AlertColor').hide();
 $('#AlertColorError').hide();
 
+$.ajaxSetup({
+    contentType: 'application/json'
+});
+
 $('#submitBtn').on('click', function () {
     var formData = {
         Name: $('#Name').val()
@@ -14,10 +18,15 @@ $('#submitBtn').on('click', function () {
     console.log('im in adding color')
 
     $.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
         url: '/Admin/AddColor',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(formData),
+        dataType: 'json',
         success: function () {
 
             console.log('adding color')
@@ -46,7 +55,11 @@ function fetchColors() {
         url: '/Admin/GetColors',
         type: 'GET',
         dataType: 'json',
-        contentType: "application/json; charset=utf-8",
+        contentType: "application/json",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
         success: function (data) {
             console.log(data)
             console.log('im in succses fetch')

@@ -45,5 +45,9 @@ namespace BMW_Final_Project.Engine.Contracts
         Task BuyMotorcycleAsync(int id);
 
         Task AddNewColorAsync(AddColorModel model);
+
+        Task<DeleteColorPageModel> GetColorsToDeleteAsync(int currentPage, int housesPerPage);
+
+        Task DeleteColorAsync(int id);
     }
 }

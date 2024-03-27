@@ -194,5 +194,30 @@ namespace BMW_Final_Project.Controllers
             return Json(colors);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> ShowColorToDelete(int currentPage = 1, int colorsPerPage = 10)
+        {
+            if (!IsAuthorized())
+            {
+                return BadRequest();
+            }
+            var colorsModel = await _service.GetColorsToDeleteAsync(currentPage, colorsPerPage);
+
+            return View(colorsModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteColor(int id)
+        {
+            if (!IsAuthorized())
+            {
+                return BadRequest();
+            }
+
+            await _service.DeleteColorAsync(id);
+
+            return RedirectToAction(nameof(ShowColorToDelete));
+        }
+
     }
 }

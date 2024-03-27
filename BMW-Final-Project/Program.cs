@@ -2,6 +2,7 @@ using BMW_Final_Project.Engine.Contracts;
 using BMW_Final_Project.Engine.Services;
 using BMW_Final_Project.Extensions;
 using BMW_Final_Project.ModelBinders;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BMW_Final_Project
 {
@@ -17,6 +18,7 @@ namespace BMW_Final_Project
             builder.Services.AddControllersWithViews(mvcOptions =>
             {
                 mvcOptions.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
+                mvcOptions.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
             });
 
             
