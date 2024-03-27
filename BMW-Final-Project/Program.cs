@@ -14,8 +14,6 @@ namespace BMW_Final_Project
             builder.Services.AddAplicationDbContext(builder.Configuration);
             builder.Services.AddAplicationIdentity(builder.Configuration);
 
-            builder.Services.AddScoped<IMotorcycleService, MotorcycleService>();
-
             builder.Services.AddControllersWithViews(mvcOptions =>
             {
                 mvcOptions.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());

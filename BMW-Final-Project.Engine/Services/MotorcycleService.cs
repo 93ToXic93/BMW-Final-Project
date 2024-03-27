@@ -418,7 +418,7 @@ namespace BMW_Final_Project.Engine.Services
                 Name = model.Name
             };
 
-            if (_repository.AllReadOnly<ColorCategory>().Any(x => x.Name == model.Name))
+            if (await _repository.AllReadOnly<ColorCategory>().AnyAsync(x => x.Name == model.Name))
             {
                 throw new ArgumentException("There is already one!");
             }

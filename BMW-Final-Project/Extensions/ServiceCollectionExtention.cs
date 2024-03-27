@@ -1,7 +1,8 @@
-﻿using BMW_Final_Project.Infrastructure.Data;
+﻿using BMW_Final_Project.Engine.Contracts;
+using BMW_Final_Project.Engine.Services;
+using BMW_Final_Project.Infrastructure.Data;
 using BMW_Final_Project.Infrastructure.Data.Common;
 using BMW_Final_Project.Infrastructure.Data.IdentityModels;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace BMW_Final_Project.Extensions
@@ -19,6 +20,7 @@ namespace BMW_Final_Project.Extensions
                 options.UseSqlServer(connectionString));
 
             services.AddScoped<IRepository, Repository>();
+            services.AddScoped<IMotorcycleService, MotorcycleService>();
 
             return services;
         }

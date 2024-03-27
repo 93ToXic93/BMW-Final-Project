@@ -1,9 +1,5 @@
 ﻿@model BMW_Final_Project.Engine.Models.Motorcycle.AddColorModel
 
-<div id="AlertColor" class="alert alert-success fade show my-alert" role="alert">
-    Успешно добавихте нов цвят!
-</div>
-
 
 <form asp-controller="Admin" asp-action="AddColor" method="post" id="myForm">
     <div class="modal fade" id="ProgramNameModal" tabindex="-1" aria-labelledby="ProgramNameModalLabel" aria-hidden="true">
@@ -11,9 +7,6 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Добави нов цвят</h1>
-                    <div id="AlertColorError" class="alert alert-danger" role="alert">
-                        Този цвят вече съществува!
-                    </div>
                 </div>
                 <div class="modal-body">
                     <label asp-for="@Model.Name" class="fw-bold">Цвят на мотора</label>
@@ -22,7 +15,7 @@
                 </div>
                 <div class="modal-footer">
                     <button id="myButton" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Затвори</button>
-                    <button type="button" id="submitBtn" class="btn btn-primary">Запази</button>
+                    <input type="submit" id="submitBtn" class="btn btn-primary" value="Запази"/>
                 </div>
             </div>
         </div>
