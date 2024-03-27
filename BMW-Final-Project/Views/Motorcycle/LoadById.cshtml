@@ -59,7 +59,7 @@
                     <a asp-controller="Motorcycle" asp-action="Details" asp-route-id="@motor.Id" class="Button-Find">Открий сега</a>
                     <a asp-controller="Admin" asp-action="EditMotorcycle" asp-route-id="@motor.Id" class="Button-Find2">Промени</a>
                     <div class="p-4">
-                        <form asp-controller="Admin" asp-action="DeleteMotorcycle" asp-route-id="@motor.Id" method="post">
+                        <form asp-controller="Admin" asp-action="DeleteMotorcycle" onsubmit="return ConfirmDelete()" asp-route-id="@motor.Id" method="post">
                             <button type="submit" class="Button-Find3">Изтрий мотора</button>
                         </form>
                     </div>
@@ -85,4 +85,7 @@
 else
 {
     <h1 class="p-5 text-center">В момента нямаме такива мотори, очаквайте скоро!</h1>
+}
+@section Scripts {
+    <script src="~/js/DeleteCheck/DeleteCheck.js"></script>
 }

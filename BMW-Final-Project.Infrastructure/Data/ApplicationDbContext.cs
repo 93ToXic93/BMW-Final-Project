@@ -162,6 +162,51 @@ namespace BMW_Final_Project.Infrastructure.Data
                         Id = 2,
                         Name = "Бял",
                         IsActive = true
+                    }, new ColorCategory
+                    {
+                        Id = 3,
+                        Name = "Червен",
+                        IsActive = true
+                    }, new ColorCategory
+                    {
+                        Id = 4,
+                        Name = "Жълт",
+                        IsActive = true
+                    }, new ColorCategory
+                    {
+                        Id = 5,
+                        Name = "Лилав",
+                        IsActive = true
+                    }, new ColorCategory
+                    {
+                        Id = 6,
+                        Name = "Бордо",
+                        IsActive = true
+                    }, new ColorCategory
+                    {
+                        Id = 7,
+                        Name = "Светло-син",
+                        IsActive = true
+                    }, new ColorCategory
+                    {
+                        Id = 8,
+                        Name = "Светло-жълт",
+                        IsActive = true
+                    }, new ColorCategory
+                    {
+                        Id = 9,
+                        Name = "Светло-лилав",
+                        IsActive = true
+                    }, new ColorCategory
+                    {
+                        Id = 10,
+                        Name = "Зелен",
+                        IsActive = true
+                    }, new ColorCategory
+                    {
+                        Id = 11,
+                        Name = "Оранжев",
+                        IsActive = true
                     });
 
 

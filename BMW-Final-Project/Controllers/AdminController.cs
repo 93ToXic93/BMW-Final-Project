@@ -26,7 +26,6 @@ namespace BMW_Final_Project.Controllers
             var modelToAdd = new AddMotorcycleModel()
             {
                 TypeMotorModels = await _service.GetTypeMotorcyclesAsync(),
-                ColorCategoryModels = await _service.GetColorsAsync(),
                 StandardEuroModels = await _service.GetStandardEurosAsync()
             };
 
@@ -49,7 +48,6 @@ namespace BMW_Final_Project.Controllers
             if (!ModelState.IsValid)
             {
                 modelToAdd.TypeMotorModels = await _service.GetTypeMotorcyclesAsync();
-                modelToAdd.ColorCategoryModels = await _service.GetColorsAsync();
                 modelToAdd.StandardEuroModels = await _service.GetStandardEurosAsync();
 
                 return View(modelToAdd);
@@ -65,46 +63,50 @@ namespace BMW_Final_Project.Controllers
         [HttpGet]
         public async Task<IActionResult> EditMotorcycle(int id)
         {
-            var model = await _service.GetByIdAsync(id);
-
-            if (!IsAuthorized())
+            try
             {
-                return Unauthorized();
+                var model = await _service.GetByIdAsync(id);
+                if (!IsAuthorized())
+                {
+                    return Unauthorized();
+                }
+
+                if (model == null)
+                {
+                    return BadRequest();
+                }
+
+                if (id != model.Id)
+                {
+                    return BadRequest();
+                }
+                var modelToEdit = new EditMotorcycleModel
+                {
+                    Amount = model.Amount,
+                    ImageUrl = model.ImageUrl,
+                    Model = model.Model,
+                    CC = model.CC,
+                    DTC = model.DTC,
+                    FrontBreak = model.FrontBreak,
+                    RearBreak = model.RearBreak,
+                    TankCapacity = model.TankCapacity,
+                    TypeMotorId = model.TypeMotorId,
+                    Transmission = model.Transmission,
+                    Kg = model.Kg,
+                    Price = model.Price,
+                    SeatHeightMm = model.SeatHeightMm,
+                    HorsePowers = model.HorsePowers,
+                    Year = model.Year,
+                };
+                modelToEdit.StandardEuroModels = await _service.GetStandardEurosAsync();
+                modelToEdit.TypeMotorModels = await _service.GetTypeMotorcyclesAsync();
+                return View(modelToEdit);
+            }
+            catch (Exception e)
+            {
+                return NotFound();
             }
 
-            if (model == null)
-            {
-                return BadRequest();
-            }
-
-            if (id != model.Id)
-            {
-                return BadRequest();
-            }
-
-            var modelToEdit = new EditMotorcycleModel
-            {
-                Amount = model.Amount,
-                ImageUrl = model.ImageUrl,
-                Model = model.Model,
-                CC = model.CC,
-                DTC = model.DTC,
-                FrontBreak = model.FrontBreak,
-                RearBreak = model.RearBreak,
-                TankCapacity = model.TankCapacity,
-                TypeMotorId = model.TypeMotorId,
-                Transmission = model.Transmission,
-                Kg = model.Kg,
-                Price = model.Price,
-                SeatHeightMm = model.SeatHeightMm,
-                HorsePowers = model.HorsePowers,
-                Year = model.Year,
-            };
-            modelToEdit.ColorCategoryModels = await _service.GetColorsAsync();
-            modelToEdit.StandardEuroModels = await _service.GetStandardEurosAsync();
-            modelToEdit.TypeMotorModels = await _service.GetTypeMotorcyclesAsync();
-
-            return View(modelToEdit);
         }
 
         [HttpPost]
@@ -118,7 +120,6 @@ namespace BMW_Final_Project.Controllers
             if (!ModelState.IsValid)
             {
                 modelToEdit.TypeMotorModels = await _service.GetTypeMotorcyclesAsync();
-                modelToEdit.ColorCategoryModels = await _service.GetColorsAsync();
                 modelToEdit.StandardEuroModels = await _service.GetStandardEurosAsync();
 
                 return View(modelToEdit);
@@ -190,8 +191,15 @@ namespace BMW_Final_Project.Controllers
         [HttpGet]
         public async Task<IActionResult> GetColors()
         {
-            var colors = await _service.GetColorsAsync();
-            return Json(colors);
+            try
+            {
+                var colors = await _service.GetColorsAsync();
+                return Json(colors);
+            }
+            catch (Exception e)
+            {
+                return NotFound();
+            }
         }
 
         [HttpGet]
@@ -201,9 +209,17 @@ namespace BMW_Final_Project.Controllers
             {
                 return BadRequest();
             }
-            var colorsModel = await _service.GetColorsToDeleteAsync(currentPage, colorsPerPage);
 
-            return View(colorsModel);
+            try
+            {
+                var colorsModel = await _service.GetColorsToDeleteAsync(currentPage, colorsPerPage);
+
+                return View(colorsModel);
+            }
+            catch (Exception e)
+            {
+                return NotFound();
+            }
         }
 
         [HttpPost]
@@ -214,9 +230,17 @@ namespace BMW_Final_Project.Controllers
                 return BadRequest();
             }
 
-            await _service.DeleteColorAsync(id);
+            try
+            {
+                await _service.DeleteColorAsync(id);
 
-            return RedirectToAction(nameof(ShowColorToDelete));
+                return RedirectToAction(nameof(ShowColorToDelete));
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+
         }
 
     }

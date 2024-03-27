@@ -18,10 +18,6 @@ $('#submitBtn').on('click', function () {
     console.log('im in adding color')
 
     $.ajax({
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
         url: '/Admin/AddColor',
         type: 'POST',
         contentType: 'application/json',

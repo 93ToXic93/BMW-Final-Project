@@ -166,7 +166,7 @@ namespace BMW_Final_Project.Engine.Services
 
         }
 
-        public async Task<ICollection<MotorcycleModel>> LoadById(int id)
+        public async Task<ICollection<MotorcycleModel>> LoadByIdAsync(int id)
         {
             var motorcycles = await _repository
                 .AllReadOnly<Motorcycle>()
@@ -248,6 +248,11 @@ namespace BMW_Final_Project.Engine.Services
                 .Include(x => x.MotorcycleBuyers)
                 .Where(x => x.Id == id && x.IsActive)
                 .FirstOrDefaultAsync();
+
+            if (motorcycle == null)
+            {
+                throw new ArgumentNullException();
+            }
 
             return motorcycle;
         }
@@ -334,14 +339,14 @@ namespace BMW_Final_Project.Engine.Services
 
         public async Task<bool> IsThisMotorcycleExistAsync(AddMotorcycleModel model)
         {
-            var motorcycle = _repository.AllReadOnly<Motorcycle>().Any(x => x.IsActive == true && x.Model == model.Model);
+            var motorcycle = await _repository.AllReadOnly<Motorcycle>().AnyAsync(x => x.IsActive == true && x.Model == model.Model);
 
             return motorcycle;
         }
 
         public async Task<bool> IsThisMotorcycleExistButDeletedAsync(AddMotorcycleModel model)
         {
-            var motorcycle = _repository.AllReadOnly<Motorcycle>().Any(x => x.IsActive == false && x.Model == model.Model);
+            var motorcycle = await _repository.AllReadOnly<Motorcycle>().AnyAsync(x => x.IsActive == false && x.Model == model.Model);
 
             return motorcycle;
         }
@@ -412,7 +417,7 @@ namespace BMW_Final_Project.Engine.Services
         public async Task AddNewColorAsync(AddColorModel model)
         {
 
-            if (_repository.AllReadOnly<ColorCategory>().Any(x => x.Name == model.Name && x.IsActive))
+            if (await _repository.AllReadOnly<ColorCategory>().AnyAsync(x => x.Name == model.Name && x.IsActive))
             {
                 throw new ArgumentException("There is already one!");
             }

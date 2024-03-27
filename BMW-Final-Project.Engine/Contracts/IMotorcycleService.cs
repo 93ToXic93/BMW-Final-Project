@@ -14,7 +14,7 @@ namespace BMW_Final_Project.Engine.Contracts
 
         Task AddAsync(int id , Guid userId);
 
-        Task<ICollection<MotorcycleModel>> LoadById(int id);
+        Task<ICollection<MotorcycleModel>> LoadByIdAsync(int id);
 
         Task<MotorcycleDetailsModel> DetailsAsync(int id);
 

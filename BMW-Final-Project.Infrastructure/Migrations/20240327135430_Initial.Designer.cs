@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BMW_Final_Project.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240324011737_Initial")]
+    [Migration("20240327135430_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,7 +55,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("ab5f19c3-0e66-4a5b-ab4a-ada016abc5c5"),
-                            ConcurrencyStamp = "5905a05a-aed4-41fa-b7f6-dc4f256a87e6",
+                            ConcurrencyStamp = "bc7a5a2c-8aac-48d8-8e1e-13ada1c5af51",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -143,7 +143,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         {
                             Id = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bc718d67-99eb-432b-9093-07ae698b8b12",
+                            ConcurrencyStamp = "d053d1c4-7c1a-4358-b49e-8829f115f539",
                             Email = "Adi@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Adrian",
@@ -152,9 +152,9 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             Nickname = "ToXic",
                             NormalizedEmail = "ADI@GMAIL.COM",
                             NormalizedUserName = "ADI@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAED/mMMTBr/wlsyjQ94rKz51SSk47Ij8hJipyGfviNl5MLUOyxmPpoSglCy0JCVkiLQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOc7W74z75B2w5arW53gnFVWtC7WQTkP3eLtf+tw8WvHzRcfAte7vtv9GX0eH94YFQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2D03A625-F8A8-48D1-B9B0-C6A6934711C0",
+                            SecurityStamp = "B9E7D0EA-B70F-4D36-83EA-0F9FADF65FC7",
                             TwoFactorEnabled = false,
                             UserName = "Adi@gmail.com"
                         });
@@ -407,6 +407,60 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             Id = 2,
                             IsActive = true,
                             Name = "Бял"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            IsActive = true,
+                            Name = "Червен"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            IsActive = true,
+                            Name = "Жълт"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            IsActive = true,
+                            Name = "Лилав"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            IsActive = true,
+                            Name = "Бордо"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            IsActive = true,
+                            Name = "Светло-син"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            IsActive = true,
+                            Name = "Светло-жълт"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            IsActive = true,
+                            Name = "Светло-лилав"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            IsActive = true,
+                            Name = "Зелен"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            IsActive = true,
+                            Name = "Оранжев"
                         });
                 });
 
@@ -544,7 +598,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 1,
-                            Year = new DateTime(2024, 3, 24, 3, 17, 36, 840, DateTimeKind.Local).AddTicks(542)
+                            Year = new DateTime(2024, 3, 27, 15, 54, 30, 185, DateTimeKind.Local).AddTicks(6711)
                         },
                         new
                         {
@@ -567,7 +621,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 16,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 4,
-                            Year = new DateTime(2024, 3, 24, 3, 17, 36, 840, DateTimeKind.Local).AddTicks(578)
+                            Year = new DateTime(2024, 3, 27, 15, 54, 30, 185, DateTimeKind.Local).AddTicks(6795)
                         },
                         new
                         {
@@ -590,7 +644,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 2,
-                            Year = new DateTime(2024, 3, 24, 3, 17, 36, 840, DateTimeKind.Local).AddTicks(582)
+                            Year = new DateTime(2024, 3, 27, 15, 54, 30, 185, DateTimeKind.Local).AddTicks(6810)
                         });
                 });
 
