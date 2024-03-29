@@ -10,7 +10,7 @@ good user expirience!
 
 ## Tech Stack
 
-- **Backend:** .NET, ASP.NET, Entity Framework Core
+- **Backend:** .NET 6, ASP.NET, Entity Framework Core
 - **Languages:** C#, HTML, CSS, JavaScript (Bootstrap, Ajax, jQuery, Vanilla JavaScript)
 - **Architecture:**  MVC and Unit of Work Patterns, Service Layer, Data Layer
 - **Other Concepts:** Model Binding, ViewModels, Object-Oriented Programming (OOP) principles, Filters, Middlewares
