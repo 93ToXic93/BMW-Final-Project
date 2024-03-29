@@ -344,6 +344,64 @@ namespace BMW_Final_Project.Infrastructure.Data
                     HorsePowers = 225,
                 });
 
+            //builder
+            //   .Entity<Cloth>()
+            //   .HasData(new Cloth
+            //   {
+            //       Id = 1,
+            //       Amount = 20,
+            //       Price = 62000,
+            //       BuyerId = Guid.Parse("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+            //       IsActive = true,
+            //       ImgUrl = "https://bmwaccessories.ie/cdn/shop/products/80145A21737_3.jpg?v=1647336616&width=1445",
+            //       SizeId = 3,
+
+            //   }, new Motorcycle()
+            //   {
+            //       Id = 2,
+            //       Model = "BMW F900R",
+            //       TypeMotorId = 4,
+            //       Amount = 20,
+            //       CC = 900,
+            //       StandardEuroId = 3,
+            //       Price = 32000,
+            //       Year = DateTime.Now,
+            //       BuyerId = Guid.Parse("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+            //       ColorCategoryId = 1,
+            //       Kg = 210,
+            //       TankCapacity = 16,
+            //       DTC = "BMW own Dynamic Traction Control specified for this unique bike",
+            //       Transmission = "BMW 6-Gears transmission",
+            //       FrontBreak = "BMW own Front Brake Control specified for this unique bike",
+            //       RearBreak = "BMW own Rear Brake Control specified for this unique bike",
+            //       SeatHeightMm = 705,
+            //       ImageUrl = "https://storage.edidomus.it/dueruote/nuovo/850/lat1586861045333.jpg",
+            //       IsActive = true,
+            //       HorsePowers = 105,
+            //   }, new Motorcycle()
+            //   {
+            //       Id = 3,
+            //       Model = "BMW M1000RR",
+            //       TypeMotorId = 2,
+            //       Amount = 20,
+            //       CC = 100,
+            //       StandardEuroId = 3,
+            //       Price = 82000,
+            //       Year = DateTime.Now,
+            //       BuyerId = Guid.Parse("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+            //       ColorCategoryId = 1,
+            //       Kg = 190,
+            //       TankCapacity = 21,
+            //       DTC = "BMW own Dynamic Traction Control specified for this unique bike",
+            //       Transmission = "BMW 6-Gears transmission",
+            //       FrontBreak = "BMW own Front Brake Control specified for this unique bike",
+            //       RearBreak = "BMW own Rear Brake Control specified for this unique bike",
+            //       SeatHeightMm = 665,
+            //       ImageUrl = "https://www.procycles.com.au/cdn/shop/files/2023-BMW-M-1000-RR_-16-1024x724.jpg?v=1689145146",
+            //       IsActive = true,
+            //       HorsePowers = 225,
+            //   });
+
 
 
 

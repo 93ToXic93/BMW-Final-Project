@@ -13,7 +13,7 @@ namespace BMW_Final_Project.Extensions
         {
             return services;
         }
-        public static IServiceCollection AddAplicationDbContext(this IServiceCollection services,IConfiguration configuration)
+        public static IServiceCollection AddAplicationDbContext(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -36,6 +36,16 @@ namespace BMW_Final_Project.Extensions
                 })
                 .AddRoles<ApplicationRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            return services;
+        }
+        public static IServiceCollection AddApplicationAuthentication(this IServiceCollection services)
+        {
+            services
+                .ConfigureApplicationCookie(options =>
+                {
+                    options.AccessDeniedPath = PathString.FromUriComponent("/Home/Error?statusCode={0}");
+                });
+
             return services;
         }
 

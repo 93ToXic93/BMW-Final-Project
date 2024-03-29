@@ -28,7 +28,7 @@
 
                 <div class="form-group p-3">
                     <label asp-for="@Model.ColorCategoryId" class="fw-bold">Цвят на мотора</label>
-                    <select @* id="colorDropdown" *@ asp-for="@Model.ColorCategoryId" class="form-control fw-bold border-2 border-dark">
+                    <select id="colorDropdown" asp-for="@Model.ColorCategoryId" class="form-control fw-bold border-2 border-dark">
                         <option value="">Изберете цвят</option>
                         @foreach (var colorCategory in Model.ColorCategoryModels)
                         {

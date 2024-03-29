@@ -9,6 +9,15 @@
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7232;http://localhost:5128"
     },
+    "BMW_Final_Project-production": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "https://localhost:7232;http://localhost:5128"
+    },
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,

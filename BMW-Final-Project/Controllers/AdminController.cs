@@ -1,10 +1,12 @@
 ﻿using BMW_Final_Project.Engine.Contracts;
 using BMW_Final_Project.Engine.Models.Motorcycle;
 using BMW_Final_Project.Extensions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BMW_Final_Project.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : BaseController
     {
 
@@ -18,10 +20,6 @@ namespace BMW_Final_Project.Controllers
         [HttpGet]
         public async Task<IActionResult> AddMotorcycle()
         {
-            if (!IsAuthorized())
-            {
-                return Unauthorized();
-            }
 
             var modelToAdd = new AddMotorcycleModel()
             {
@@ -35,10 +33,6 @@ namespace BMW_Final_Project.Controllers
         [HttpPost]
         public async Task<IActionResult> AddMotorcycle(AddMotorcycleModel modelToAdd)
         {
-            if (!IsAuthorized())
-            {
-                return Unauthorized();
-            }
 
             if (await _service.IsThisMotorcycleExistAsync(modelToAdd))
             {
@@ -66,10 +60,6 @@ namespace BMW_Final_Project.Controllers
             try
             {
                 var model = await _service.GetByIdAsync(id);
-                if (!IsAuthorized())
-                {
-                    return Unauthorized();
-                }
 
                 if (model == null)
                 {
@@ -104,7 +94,7 @@ namespace BMW_Final_Project.Controllers
             }
             catch (Exception e)
             {
-                return NotFound();
+                return Unauthorized();
             }
 
         }
@@ -112,10 +102,6 @@ namespace BMW_Final_Project.Controllers
         [HttpPost]
         public async Task<IActionResult> EditMotorcycle(EditMotorcycleModel modelToEdit, int id)
         {
-            if (!IsAuthorized())
-            {
-                return Unauthorized();
-            }
 
             if (!ModelState.IsValid)
             {
@@ -142,10 +128,6 @@ namespace BMW_Final_Project.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteMotorcycle(int id)
         {
-            if (!IsAuthorized())
-            {
-                return Unauthorized();
-            }
 
             try
             {
@@ -163,10 +145,6 @@ namespace BMW_Final_Project.Controllers
         [HttpPost]
         public async Task<IActionResult> AddColor([FromBody] AddColorModel model)
         {
-            if (!IsAuthorized())
-            {
-                return Unauthorized();
-            }
 
             if (!ModelState.IsValid)
             {
@@ -179,8 +157,7 @@ namespace BMW_Final_Project.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
-                throw;
+                return BadRequest();
             }
 
 
@@ -205,10 +182,6 @@ namespace BMW_Final_Project.Controllers
         [HttpGet]
         public async Task<IActionResult> ShowColorToDelete(int currentPage = 1, int colorsPerPage = 10)
         {
-            if (!IsAuthorized())
-            {
-                return BadRequest();
-            }
 
             try
             {
@@ -225,11 +198,6 @@ namespace BMW_Final_Project.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteColor(int id)
         {
-            if (!IsAuthorized())
-            {
-                return BadRequest();
-            }
-
             try
             {
                 await _service.DeleteColorAsync(id);
