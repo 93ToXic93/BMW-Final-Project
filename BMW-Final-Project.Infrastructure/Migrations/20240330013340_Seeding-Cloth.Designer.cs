@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BMW_Final_Project.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240327135430_Initial")]
-    partial class Initial
+    [Migration("20240330013340_Seeding-Cloth")]
+    partial class SeedingCloth
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,7 +55,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("ab5f19c3-0e66-4a5b-ab4a-ada016abc5c5"),
-                            ConcurrencyStamp = "bc7a5a2c-8aac-48d8-8e1e-13ada1c5af51",
+                            ConcurrencyStamp = "fa7310ac-5dea-4e11-accc-97b6cd78476c",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -143,7 +143,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         {
                             Id = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d053d1c4-7c1a-4358-b49e-8829f115f539",
+                            ConcurrencyStamp = "61b007c8-04d1-4253-9686-fd787d6482ca",
                             Email = "Adi@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Adrian",
@@ -152,9 +152,9 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             Nickname = "ToXic",
                             NormalizedEmail = "ADI@GMAIL.COM",
                             NormalizedUserName = "ADI@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOc7W74z75B2w5arW53gnFVWtC7WQTkP3eLtf+tw8WvHzRcfAte7vtv9GX0eH94YFQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHqvTya5VQuKxkCb9lC+4+TQwZrsnMas9ehRV1FWkYrt/f5hiV0tWMIX0keZV8++Pg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "B9E7D0EA-B70F-4D36-83EA-0F9FADF65FC7",
+                            SecurityStamp = "4A18B788-A9AC-4490-ACBD-E9F6D0CFEF16",
                             TwoFactorEnabled = false,
                             UserName = "Adi@gmail.com"
                         });
@@ -229,6 +229,50 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     b.ToTable("Cloths");
 
                     b.HasComment("Cloth table");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Amount = 20,
+                            BuyerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                            ClothCollectionId = 3,
+                            Description = "Тениската е от 100% памук, качеството е гарантирано! Създадена е в Германия и е точната придобивка за лятото.",
+                            ImgUrl = "https://bmwaccessories.ie/cdn/shop/products/80145A21737_3.jpg?v=1647336616&width=1445",
+                            IsActive = true,
+                            Name = "Тениска къс ръкав BMW-GO-SPEED",
+                            Price = 60m,
+                            SizeId = 3,
+                            TypePersonId = 3
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Amount = 20,
+                            BuyerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                            ClothCollectionId = 1,
+                            Description = "Якето е кожено и доста леко за вида му пропуска въздух с цел изягване на запотяване, произведено е в Германия.",
+                            ImgUrl = "https://www.dhresource.com/webp/m/0x0/f2/albu/g22/M00/41/9D/rBNaEmLG6pGASPeRAABoSHJIjxI746.jpg",
+                            IsActive = true,
+                            Name = "М-Power Лятно яке",
+                            Price = 200m,
+                            SizeId = 3,
+                            TypePersonId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Amount = 20,
+                            BuyerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                            ClothCollectionId = 2,
+                            Description = "Суитчера е от 100% памук и е доста лек и прохладен за горещото лято, произведен е в Германия.",
+                            ImgUrl = "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/596362/01/fnd/PNA/fmt/png/BMW-M-Motorsport-Women's-Hooded-Sweat-Jacket",
+                            IsActive = true,
+                            Name = "БМВ Оrigin Суитчер",
+                            Price = 100m,
+                            SizeId = 3,
+                            TypePersonId = 2
+                        });
                 });
 
             modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloths.ClothBuyer", b =>
@@ -270,6 +314,23 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     b.ToTable("ClothCollections");
 
                     b.HasComment("Season cloth collections");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Зимна колекция"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "БМВ Origin колекция"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "M-Колекция"
+                        });
                 });
 
             modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloths.Size", b =>
@@ -598,7 +659,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 1,
-                            Year = new DateTime(2024, 3, 27, 15, 54, 30, 185, DateTimeKind.Local).AddTicks(6711)
+                            Year = new DateTime(2024, 3, 30, 3, 33, 39, 793, DateTimeKind.Local).AddTicks(5478)
                         },
                         new
                         {
@@ -621,7 +682,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 16,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 4,
-                            Year = new DateTime(2024, 3, 27, 15, 54, 30, 185, DateTimeKind.Local).AddTicks(6795)
+                            Year = new DateTime(2024, 3, 30, 3, 33, 39, 793, DateTimeKind.Local).AddTicks(5526)
                         },
                         new
                         {
@@ -644,7 +705,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 2,
-                            Year = new DateTime(2024, 3, 27, 15, 54, 30, 185, DateTimeKind.Local).AddTicks(6810)
+                            Year = new DateTime(2024, 3, 30, 3, 33, 39, 793, DateTimeKind.Local).AddTicks(5530)
                         });
                 });
 

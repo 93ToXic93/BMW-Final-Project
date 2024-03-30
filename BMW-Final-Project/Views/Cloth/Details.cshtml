@@ -1,0 +1,44 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model BMW_Final_Project.Engine.Models.Cloth.ClothDetailsModel
+
+<div class="container-fluid">
+    <div class="text-center">
+        <img src="@Model.ImgUrl" alt="RR photo" class="img-fluid w-50" />
+    </div>
+
+    <div class="containerTextDetails">
+        <p class="display-2 fw-bold">@Model.Name</p>
+        <p class="display-4 fw-bold">Бмв винаги е на мода!</p>
+        <p class="pt-2 DetailsText">
+            Изпитваме безгранично въодушевление от мотоциклетите. Със същата страст<br /> разработваме и произвеждаме и облеклото за BMW Motorrad.
+            В него комбинираме<br /> функционални материали с удобство при носене.<br /> То обединява качество и уникален дизайн в едно. Ще усетите това по време на пътуване,<br />
+            а също така ще изглеждате и добре на мотоциклета си.
+        </p>
+    </div>
+    <div class="containerTextDetails">
+        <p class="pt-2 display-5 p-5">
+            @Model.Description
+        </p>
+        <p class="pt-2 display-3 fw-bold">
+            Колекция: @Model.ClothCollection
+        </p>
+        <div class="d-flex m-5">
+            <p class="p-5 display-5 fw-bold">
+                Размер:
+            </p>
+            <p class="display-5 border border-dark sizeContainer fw-bold text-center">
+                @Model.Size
+            </p>
+        </div>
+    </div>
+
+    <div class="PriceContainer">
+        <h1 class="priceText">Резервирай: </h1>
+        <form class="input-group-sm" asp-controller="Cloth" asp-action="BuyCloth" method="post">
+            <input type="hidden" name="id" value="@Model.Id" />
+            <input type="submit" value="@Model.Price$" class="Add-Button-Submit" />
+        </form>
+    </div>
+
+</div>
+

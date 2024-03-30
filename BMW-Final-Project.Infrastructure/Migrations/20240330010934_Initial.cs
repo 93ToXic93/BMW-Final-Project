@@ -398,12 +398,22 @@ namespace BMW_Final_Project.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { new Guid("ab5f19c3-0e66-4a5b-ab4a-ada016abc5c5"), "bc7a5a2c-8aac-48d8-8e1e-13ada1c5af51", "Admin", "ADMIN" });
+                values: new object[] { new Guid("ab5f19c3-0e66-4a5b-ab4a-ada016abc5c5"), "93a95098-49a0-4ec6-846a-576f387dcb71", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "Nickname", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 0, "d053d1c4-7c1a-4358-b49e-8829f115f539", "Adi@gmail.com", false, "Adrian", "Ivanov", true, null, "ToXic", "ADI@GMAIL.COM", "ADI@GMAIL.COM", "AQAAAAEAACcQAAAAEOc7W74z75B2w5arW53gnFVWtC7WQTkP3eLtf+tw8WvHzRcfAte7vtv9GX0eH94YFQ==", null, false, "B9E7D0EA-B70F-4D36-83EA-0F9FADF65FC7", false, "Adi@gmail.com" });
+                values: new object[] { new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 0, "5842c052-0ac2-4654-be9e-358bffb2addd", "Adi@gmail.com", false, "Adrian", "Ivanov", true, null, "ToXic", "ADI@GMAIL.COM", "ADI@GMAIL.COM", "AQAAAAEAACcQAAAAEMI+7jQWYZnWVQWfMTg+Z6jEX0kkm3+qs/hIFPCWjPn+oInIkWMAjpwhDa5bXhyTTw==", null, false, "8A16FD7B-C421-4295-8F91-E74197EBD539", false, "Adi@gmail.com" });
+
+            migrationBuilder.InsertData(
+                table: "ClothCollections",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Зимна колекция" },
+                    { 2, "БМВ Origin колекция" },
+                    { 3, "M-Колекция" }
+                });
 
             migrationBuilder.InsertData(
                 table: "ColorCategories",
@@ -480,13 +490,23 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                 values: new object[] { new Guid("ab5f19c3-0e66-4a5b-ab4a-ada016abc5c5"), new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9") });
 
             migrationBuilder.InsertData(
+                table: "Cloths",
+                columns: new[] { "Id", "Amount", "BuyerId", "ClothCollectionId", "Description", "ImgUrl", "IsActive", "Name", "Price", "SizeId", "TypePersonId" },
+                values: new object[,]
+                {
+                    { 1, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 3, "", "https://bmwaccessories.ie/cdn/shop/products/80145A21737_3.jpg?v=1647336616&width=1445", true, "Тениска къс ръкав BMW-GO-SPEED", 60m, 3, 3 },
+                    { 2, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 1, "", "https://www.dhresource.com/webp/m/0x0/f2/albu/g22/M00/41/9D/rBNaEmLG6pGASPeRAABoSHJIjxI746.jpg", true, "М-Power Лятно яке", 200m, 3, 1 },
+                    { 3, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 2, "", "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/596362/01/fnd/PNA/fmt/png/BMW-M-Motorsport-Women's-Hooded-Sweat-Jacket", true, "БМВ Оrigin Суитчер", 100m, 3, 2 }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Motorcycles",
                 columns: new[] { "Id", "Amount", "BuyerId", "CC", "ColorCategoryId", "DTC", "FrontBreak", "HorsePowers", "ImageUrl", "IsActive", "Kg", "Model", "Price", "RearBreak", "SeatHeightMm", "StandardEuroId", "TankCapacity", "Transmission", "TypeMotorId", "Year" },
                 values: new object[,]
                 {
-                    { 1, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 1000, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 205, "https://images4.alphacoders.com/127/1277784.jpg", true, 197, "BMW S1000RR", 62000m, "BMW own Rear Brake Control specified for this unique bike", 705, 3, 21, "BMW 6-Gears transmission", 1, new DateTime(2024, 3, 27, 15, 54, 30, 185, DateTimeKind.Local).AddTicks(6711) },
-                    { 2, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 900, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 105, "https://storage.edidomus.it/dueruote/nuovo/850/lat1586861045333.jpg", true, 210, "BMW F900R", 32000m, "BMW own Rear Brake Control specified for this unique bike", 705, 3, 16, "BMW 6-Gears transmission", 4, new DateTime(2024, 3, 27, 15, 54, 30, 185, DateTimeKind.Local).AddTicks(6795) },
-                    { 3, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 100, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 225, "https://www.procycles.com.au/cdn/shop/files/2023-BMW-M-1000-RR_-16-1024x724.jpg?v=1689145146", true, 190, "BMW M1000RR", 82000m, "BMW own Rear Brake Control specified for this unique bike", 665, 3, 21, "BMW 6-Gears transmission", 2, new DateTime(2024, 3, 27, 15, 54, 30, 185, DateTimeKind.Local).AddTicks(6810) }
+                    { 1, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 1000, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 205, "https://images4.alphacoders.com/127/1277784.jpg", true, 197, "BMW S1000RR", 62000m, "BMW own Rear Brake Control specified for this unique bike", 705, 3, 21, "BMW 6-Gears transmission", 1, new DateTime(2024, 3, 30, 3, 9, 33, 761, DateTimeKind.Local).AddTicks(4144) },
+                    { 2, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 900, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 105, "https://storage.edidomus.it/dueruote/nuovo/850/lat1586861045333.jpg", true, 210, "BMW F900R", 32000m, "BMW own Rear Brake Control specified for this unique bike", 705, 3, 16, "BMW 6-Gears transmission", 4, new DateTime(2024, 3, 30, 3, 9, 33, 761, DateTimeKind.Local).AddTicks(4189) },
+                    { 3, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 100, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 225, "https://www.procycles.com.au/cdn/shop/files/2023-BMW-M-1000-RR_-16-1024x724.jpg?v=1689145146", true, 190, "BMW M1000RR", 82000m, "BMW own Rear Brake Control specified for this unique bike", 665, 3, 21, "BMW 6-Gears transmission", 2, new DateTime(2024, 3, 30, 3, 9, 33, 761, DateTimeKind.Local).AddTicks(4193) }
                 });
 
             migrationBuilder.CreateIndex(

@@ -1,12 +1,94 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BMW_Final_Project.Engine.Contracts;
+using BMW_Final_Project.Extensions;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BMW_Final_Project.Controllers
 {
     public class ClothController : BaseController
     {
-        public IActionResult Index()
+        private readonly IClothService _service;
+
+        public ClothController(IClothService service)
         {
-            return View();
+            _service = service;
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            var model = await _service.AllAsync();
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> LoadById(int id)
+        {
+            var model = await _service.LoadByIdAsync(id);
+
+            return View(model);
+
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            try
+            {
+                var model = await _service.DetailsAsync(id);
+                return View(model);
+            }
+            catch (Exception e)
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> BuyCloth(int id)
+        {
+            try
+            {
+                await _service.AddAsync(id, User.Id());
+                return RedirectToAction("AllBought","Motorcycle");
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveCloth(int id)
+        {
+            try
+            {
+                await _service.RemoveClothAsync(id);
+                return RedirectToAction("AllBought","Motorcycle");
+            }
+            catch (Exception e)
+            {
+                return NotFound();
+            }
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Force(int id)
+        {
+
+            try
+            {
+                await _service.BuyClothAsync(id);
+                return RedirectToAction("AllBought","Motorcycle");
+            }
+            catch (Exception e)
+            {
+                return NotFound();
+            }
+
+        }
+
     }
 }

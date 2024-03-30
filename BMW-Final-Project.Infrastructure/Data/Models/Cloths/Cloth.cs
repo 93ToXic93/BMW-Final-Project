@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using BMW_Final_Project.Infrastructure.Data.IdentityModels;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using BMW_Final_Project.Infrastructure.Data.IdentityModels;
 using static BMW_Final_Project.Infrastructure.Constants.DataConstants.ClothConstants;
 
 namespace BMW_Final_Project.Infrastructure.Data.Models.Cloths

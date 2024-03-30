@@ -21,6 +21,7 @@ namespace BMW_Final_Project.Extensions
 
             services.AddScoped<IRepository, Repository>();
             services.AddScoped<IMotorcycleService, MotorcycleService>();
+            services.AddScoped<IClothService, ClothService>();
 
             return services;
         }

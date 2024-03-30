@@ -24,16 +24,10 @@ namespace BMW_Final_Project.Controllers
         [HttpGet]
         public async Task<IActionResult> LoadById(int id)
         {
-            try
-            {
-                var model = await _service.LoadByIdAsync(id);
+            var model = await _service.LoadByIdAsync(id);
 
-                return View(model);
-            }
-            catch (Exception e)
-            {
-                return NotFound();
-            }
+            return View(model);
+
         }
 
         [HttpGet]
@@ -104,7 +98,7 @@ namespace BMW_Final_Project.Controllers
 
         }
 
-        
+
 
     }
 }
