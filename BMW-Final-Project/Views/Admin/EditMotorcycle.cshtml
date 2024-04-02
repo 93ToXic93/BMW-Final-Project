@@ -8,6 +8,7 @@
             <form asp-controller="Admin" asp-action="EditMotorcycle" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <h1 class="display-4 fw-bold text-center p-3">Редактиране на мотор</h1>
+                <img class="img-fluid w-50 imgEdit" src="@Model.ImageUrl" alt="MotorcyclePhoto" />
                 <div class="form-group p-3">
                     <label asp-for="@Model.Model" class="form-label-add-edit fw-bold">Модел</label>
                     <input asp-for="@Model.Model" class="form-control border-2 border-dark fw-bold" aria-required="true" />
