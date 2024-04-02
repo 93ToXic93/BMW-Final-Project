@@ -53,7 +53,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("ab5f19c3-0e66-4a5b-ab4a-ada016abc5c5"),
-                            ConcurrencyStamp = "ebe4a756-c37e-425c-b3bf-c8a2f45fca7e",
+                            ConcurrencyStamp = "d53d4a60-86f2-4480-988d-119541991c1d",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -141,7 +141,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         {
                             Id = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "71261d54-d13a-4fef-a78a-072883f90f12",
+                            ConcurrencyStamp = "f08e544e-f7e1-496a-b29e-b06fe55b5614",
                             Email = "Adi@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Adrian",
@@ -150,9 +150,9 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             Nickname = "ToXic",
                             NormalizedEmail = "ADI@GMAIL.COM",
                             NormalizedUserName = "ADI@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAECBHvXNdb6pjT9QYUp4aNaXxI3+/V3UwY6cjr1ujkOnIYfhn2jwZb7c5H9YBv+4DuQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEkCUGK7o3rRTZGI61ulRz154EFSc83SNgElYQE/1Ffmo8ocGkivfSGQjxUbfwVXZQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "E75BEFC6-C6AE-41D8-B636-D57CD42B816C",
+                            SecurityStamp = "A5781346-029A-4E73-8B75-C41691C05ED5",
                             TwoFactorEnabled = false,
                             UserName = "Adi@gmail.com"
                         });
@@ -270,6 +270,62 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             Price = 100m,
                             SizeId = 1,
                             TypePersonId = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Amount = 20,
+                            BuyerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                            ClothCollectionId = 3,
+                            Description = "Тениската е от 100% памук и е доста лека и прохладна за горещото лято, произведена е в Германия.",
+                            ImgUrl = "https://i.ebayimg.com/images/g/eCsAAOSwuz5j3pLA/s-l1200.webp",
+                            IsActive = true,
+                            Name = "БМВ Оrigin Тениска",
+                            Price = 120m,
+                            SizeId = 2,
+                            TypePersonId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Amount = 20,
+                            BuyerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                            ClothCollectionId = 2,
+                            Description = "Суитчера е от 100% памук и е доста лек и прохладен за горещото лято, произведен е в Германия.",
+                            ImgUrl = "https://img.fruugo.com/product/0/33/211450330_max.jpg",
+                            IsActive = true,
+                            Name = "БМВ Оrigin Суитчер",
+                            Price = 70m,
+                            SizeId = 1,
+                            TypePersonId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Amount = 20,
+                            BuyerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                            ClothCollectionId = 1,
+                            Description = "Суитчера е от 100% памук и е доста лек и прохладен за горещото лято, произведен е в Германия.",
+                            ImgUrl = "https://i.pinimg.com/736x/cf/4a/03/cf4a031cad99e38a716ab99407c3cff3.jpg",
+                            IsActive = true,
+                            Name = "БМВ Суитчер",
+                            Price = 100m,
+                            SizeId = 5,
+                            TypePersonId = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Amount = 20,
+                            BuyerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                            ClothCollectionId = 3,
+                            Description = "Панталона е от 100% памук и е доста лек и прохладен за горещото лято, произведен е в Германия.",
+                            ImgUrl = "https://webshop.motos-inghelbrecht.be/cdn/shop/files/bmw-motorbroek-aravisair-blauw.jpg?v=1705495106",
+                            IsActive = true,
+                            Name = "БМВ Панталон",
+                            Price = 100m,
+                            SizeId = 4,
+                            TypePersonId = 1
                         });
                 });
 
@@ -657,7 +713,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 1,
-                            Year = new DateTime(2024, 3, 30, 3, 37, 41, 188, DateTimeKind.Local).AddTicks(230)
+                            Year = new DateTime(2024, 4, 2, 17, 45, 17, 161, DateTimeKind.Local).AddTicks(1851)
                         },
                         new
                         {
@@ -680,7 +736,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 16,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 4,
-                            Year = new DateTime(2024, 3, 30, 3, 37, 41, 188, DateTimeKind.Local).AddTicks(274)
+                            Year = new DateTime(2024, 4, 2, 17, 45, 17, 161, DateTimeKind.Local).AddTicks(1888)
                         },
                         new
                         {
@@ -703,7 +759,99 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 2,
-                            Year = new DateTime(2024, 3, 30, 3, 37, 41, 188, DateTimeKind.Local).AddTicks(278)
+                            Year = new DateTime(2024, 4, 2, 17, 45, 17, 161, DateTimeKind.Local).AddTicks(1893)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Amount = 20,
+                            BuyerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                            CC = 100,
+                            ColorCategoryId = 1,
+                            DTC = "BMW own Dynamic Traction Control specified for this unique bike",
+                            FrontBreak = "BMW own Front Brake Control specified for this unique bike",
+                            HorsePowers = 225,
+                            ImageUrl = "https://www.euromotorcenter.fi/wp-content/uploads/2023/10/P90528842_highRes_the-new-bmw-m-1000-x.jpg",
+                            IsActive = true,
+                            Kg = 190,
+                            Model = "BMW M1000XR",
+                            Price = 82000m,
+                            RearBreak = "BMW own Rear Brake Control specified for this unique bike",
+                            SeatHeightMm = 665,
+                            StandardEuroId = 3,
+                            TankCapacity = 21,
+                            Transmission = "BMW 6-Gears transmission",
+                            TypeMotorId = 2,
+                            Year = new DateTime(2024, 4, 2, 17, 45, 17, 161, DateTimeKind.Local).AddTicks(1896)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Amount = 20,
+                            BuyerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                            CC = 100,
+                            ColorCategoryId = 1,
+                            DTC = "BMW own Dynamic Traction Control specified for this unique bike",
+                            FrontBreak = "BMW own Front Brake Control specified for this unique bike",
+                            HorsePowers = 225,
+                            ImageUrl = "https://www.bavarianmc.co.za/files/bike/22767/img_20240205160754.jpg",
+                            IsActive = true,
+                            Kg = 190,
+                            Model = "BMW F800R",
+                            Price = 82000m,
+                            RearBreak = "BMW own Rear Brake Control specified for this unique bike",
+                            SeatHeightMm = 665,
+                            StandardEuroId = 3,
+                            TankCapacity = 21,
+                            Transmission = "BMW 6-Gears transmission",
+                            TypeMotorId = 3,
+                            Year = new DateTime(2024, 4, 2, 17, 45, 17, 161, DateTimeKind.Local).AddTicks(1900)
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Amount = 20,
+                            BuyerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                            CC = 100,
+                            ColorCategoryId = 1,
+                            DTC = "BMW own Dynamic Traction Control specified for this unique bike",
+                            FrontBreak = "BMW own Front Brake Control specified for this unique bike",
+                            HorsePowers = 225,
+                            ImageUrl = "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgIT2nOwQjqBRnWlaEFM8TWukwdyvwvGoWtqhfRxAh2-lTgX1EH_l689He3V3mEj_vQQ1Dk0WK7JET62OW-THslCCRxTvn13NKzxRa6XwwM2yi-KAKY3qVeNfjLnoIB6zpA0cH2MFT4Ue7fQTc1NePPzIfcYZIB0beSzdhzY1THSaUq8sAYpOXLhjgA7A/s1074/2023-BMW-R-nineT-100-Years-and-R18-100-Years.jpg",
+                            IsActive = true,
+                            Kg = 190,
+                            Model = "BMW RNineT",
+                            Price = 82000m,
+                            RearBreak = "BMW own Rear Brake Control specified for this unique bike",
+                            SeatHeightMm = 665,
+                            StandardEuroId = 3,
+                            TankCapacity = 21,
+                            Transmission = "BMW 6-Gears transmission",
+                            TypeMotorId = 5,
+                            Year = new DateTime(2024, 4, 2, 17, 45, 17, 161, DateTimeKind.Local).AddTicks(1903)
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Amount = 20,
+                            BuyerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                            CC = 100,
+                            ColorCategoryId = 1,
+                            DTC = "BMW own Dynamic Traction Control specified for this unique bike",
+                            FrontBreak = "BMW own Front Brake Control specified for this unique bike",
+                            HorsePowers = 225,
+                            ImageUrl = "https://cdn.dealerspike.com/imglib/v1/800x600/imglib/trimsdb/17432641-0-110420261.jpg",
+                            IsActive = true,
+                            Kg = 190,
+                            Model = "BMW R1250GS",
+                            Price = 82000m,
+                            RearBreak = "BMW own Rear Brake Control specified for this unique bike",
+                            SeatHeightMm = 665,
+                            StandardEuroId = 3,
+                            TankCapacity = 21,
+                            Transmission = "BMW 6-Gears transmission",
+                            TypeMotorId = 6,
+                            Year = new DateTime(2024, 4, 2, 17, 45, 17, 161, DateTimeKind.Local).AddTicks(1906)
                         });
                 });
 
