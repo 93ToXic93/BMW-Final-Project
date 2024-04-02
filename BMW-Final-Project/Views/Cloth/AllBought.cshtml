@@ -1,10 +1,10 @@
-﻿@model ICollection<BMW_Final_Project.Engine.Models.Motorcycle.AllMineMotorcycles>
+﻿@model ICollection<BMW_Final_Project.Engine.Models.Cloth.AllMineCloths>
 
 <div class="text-center row">
 
-    <h1 class="display-2 fw-bold p-3">Мойте BMW Мотори</h1>
+    <h1 class="display-2 fw-bold p-3">Мойто BMW Облекло</h1>
     <div class="d-flex justify-content-center">
-        <a class="m-4 btn btn-primary fw-bold" asp-action="AllBought" asp-controller="Cloth">Облекло</a>
+        <a class="m-4 btn btn-primary fw-bold" asp-action="AllBought" asp-controller="Motorcycle">Мотоциклети</a>
         <a class="m-4 btn btn-primary fw-bold" asp-action="" asp-controller="">Аксесоари</a>
     </div>
     @if (Model.Any())
@@ -13,7 +13,7 @@
         {
             <div class="card col-4" style="width: 30rem; ">
                 <div class="card-body p-5">
-                    <form class="input-group-sm" asp-controller="Motorcycle" asp-action="RemoveMotorcycle" asp-route-id="@e.Id">
+                    <form class="input-group-sm" asp-controller="Cloth" asp-action="RemoveCloth" asp-route-id="@e.Id">
                         <button type="submit" class="border-0">
                             <div class="close-container">
                                 <div class="leftright"></div>
@@ -25,12 +25,11 @@
                         </button>
                     </form>
 
-                    <img src="@e.ImageUrl" alt="Motorcycle photo" class="photo-of-motorcycle" />
-                    <h4 class="card-title mt-1 fw-bold">Модел: @e.Model</h4>
+                    <img src="@e.ImgUrl" alt="Cloth photo" class="photo-of-motorcycle2" />
+                    <h4 class="card-title mt-1 fw-bold">Модел: @e.Name</h4>
                     <h4 class="card-title mt-1 fw-bold">Цена: @e.Price$</h4>
-                    <p class="mb-0">Година на производство: @e.Year</p>
-                    <p class="mb-0">Кубични сили: @e.ColorCategory</p>
-                    <form class="input-group-sm" asp-controller="Motorcycle" asp-action="Force" asp-route-id="@e.Id">
+                    <p class="mb-0">Размер: @e.Size</p>
+                    <form class="input-group-sm" asp-controller="Cloth" asp-action="Force" asp-route-id="@e.Id">
 
                         <input type="submit" class="Button-Force" value="Купи" />
 
@@ -41,6 +40,6 @@
     }
     else
     {
-        <h1>В момента нямате запазени мотори</h1>
+        <h1>В момента нямате запазени дрехи</h1>
     }
 </div>

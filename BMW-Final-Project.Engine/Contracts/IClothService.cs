@@ -1,4 +1,6 @@
-﻿using BMW_Final_Project.Engine.Models.Cloth;
+﻿using BMW_Final_Project.Engine.Models;
+using BMW_Final_Project.Engine.Models.Cloth;
+using BMW_Final_Project.Engine.Models.Motorcycle;
 using BMW_Final_Project.Infrastructure.Data.Models.Cloths;
 using BMW_Final_Project.Infrastructure.Data.Models.Motorcycles;
 
@@ -23,5 +25,17 @@ namespace BMW_Final_Project.Engine.Contracts
         Task<ClothBuyer?> GetByIdClothAndServicesAsync(int id);
 
         Task BuyClothAsync(int id);
+
+        Task<ICollection<AllMineCloths>> GetAllMineClothsAsync(Guid userId);
+
+        Task<ICollection<TypePersonModel>> GetTypesAsync();
+
+        Task<ICollection<SizeModel>> GetSizesAsync();
+
+        Task<ICollection<ClothCollectionModel>> GetClothCollectionsAsync();
+
+        Task<bool> IsThisClothExistAsync(AddClothModel model);
+
+        Task AddAsync(AddClothModel model);
     }
 }

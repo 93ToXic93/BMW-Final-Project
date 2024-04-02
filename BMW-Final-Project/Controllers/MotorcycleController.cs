@@ -77,9 +77,9 @@ namespace BMW_Final_Project.Controllers
         [HttpGet]
         public async Task<IActionResult> AllBought()
         {
-            var motorcycles = await _service.GetAllMineMotorcyclesAsync(User.Id());
+                var motorcycles = await _service.GetAllMineMotorcyclesAsync(User.Id());
 
-            return View(motorcycles);
+                return View(motorcycles);
         }
 
         [HttpPost]

@@ -24,8 +24,6 @@ namespace BMW_Final_Project.Engine.Contracts
 
         Task<MotorcycleBuyers?> GetByIdMotorsAndServicesAsync(int id);
 
-        Task<Motorcycle?> GetByNameDeletedMotorcycleAsync(string name);
-
         Task<ICollection<TypeMotorModel>> GetTypeMotorcyclesAsync();
 
         Task<ICollection<ColorCategoryModel>> GetColorsAsync();
@@ -35,8 +33,6 @@ namespace BMW_Final_Project.Engine.Contracts
         Task DeleteAsync(int id);
 
         Task<bool> IsThisMotorcycleExistAsync(AddMotorcycleModel model);
-
-        Task<bool> IsThisMotorcycleExistButDeletedAsync(AddMotorcycleModel model);
 
         Task<ICollection<AllMineMotorcycles>> GetAllMineMotorcyclesAsync(Guid userId);
 

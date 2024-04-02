@@ -44,14 +44,14 @@
                     <img class="photo-of-motorcycle2" src="@cloth.ImgUrl" alt="Cloth-Photo" />
                     <hr />
                     <h5>@cloth.Name</h5>
-                    <h5>Модел: @cloth.ClothCollection</h5>
+                    <h5>Колекция: @cloth.ClothCollection</h5>
                     <h6>Цена: @cloth.Price$</h6>
-                    <h5>Брой мотори @cloth.Amount</h5>
+                    <h5>Брой тениски @cloth.Amount</h5>
                     <br />
                     <a asp-controller="Cloth" asp-action="Details" asp-route-id="@cloth.Id" class="Button-Find">Открий сега</a>
                     <a asp-controller="Admin" asp-action="EditCloth" asp-route-id="@cloth.Id" class="Button-Find2">Промени</a>
                     <div class="p-4">
-                        <form asp-controller="Admin" asp-action="DeleteMotorcycle" onsubmit="return ConfirmDelete()" asp-route-id="@cloth.Id" method="post">
+                        <form asp-controller="Admin" asp-action="DeleteCloth" onsubmit="return ConfirmDelete()" asp-route-id="@cloth.Id" method="post">
                             <button type="submit" class="Button-Find3">Изтрий мотора</button>
                         </form>
                     </div>
@@ -63,7 +63,7 @@
                         <img class="photo-of-motorcycle2" src="@cloth.ImgUrl" alt="Cloth-Photo" />
                         <hr />
                         <h5>@cloth.Name</h5>
-                        <h5>Модел: @cloth.ClothCollection</h5>
+                        <h5>Колекция: @cloth.ClothCollection</h5>
                         <h6>Цена: @cloth.Price$</h6>
                         <br />
                         <a asp-controller="Cloth" asp-action="Details" asp-route-id="@cloth.Id" class="Button-Find">Открий сега</a>

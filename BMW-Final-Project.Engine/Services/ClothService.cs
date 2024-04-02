@@ -1,7 +1,9 @@
 ﻿using BMW_Final_Project.Engine.Contracts;
 using BMW_Final_Project.Engine.Models.Cloth;
+using BMW_Final_Project.Engine.Models.Motorcycle;
 using BMW_Final_Project.Infrastructure.Data.Common;
 using BMW_Final_Project.Infrastructure.Data.Models.Cloths;
+using BMW_Final_Project.Infrastructure.Data.Models.Motorcycles;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 
@@ -204,6 +206,135 @@ namespace BMW_Final_Project.Engine.Services
             _repository.Remove(clothToRemove);
 
             await _repository.SaveChangesAsync();
+        }
+
+        public async Task<ICollection<AllMineCloths>> GetAllMineClothsAsync(Guid userId)
+        {
+            var cloths = await _repository
+                .AllReadOnly<ClothBuyer>()
+                .Where(x => x.BuyerId == userId && x.Cloth.IsActive)
+                .Select(x => new AllMineCloths()
+                {
+                    Id = x.Cloth.Id,
+                    ImgUrl = x.Cloth.ImgUrl,
+                    Name = x.Cloth.Name,
+                    Price = x.Cloth.Price.ToString("F"),
+                    Size = x.Cloth.Size.Name,
+                })
+                .ToListAsync();
+
+            return cloths;
+
+        }
+
+        public async Task<ICollection<TypePersonModel>> GetTypesAsync()
+        {
+            var personTypes = await _repository
+                .AllReadOnly<TypePerson>()
+                .Select(x => new TypePersonModel()
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                })
+                .ToListAsync();
+
+            return personTypes;
+        }
+
+        public async Task<ICollection<SizeModel>> GetSizesAsync()
+        {
+            var clothSize = await _repository
+                .AllReadOnly<Size>()
+                .Select(x => new SizeModel()
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                })
+                .ToListAsync();
+
+            return clothSize;
+        }
+
+        public async Task<ICollection<ClothCollectionModel>> GetClothCollectionsAsync()
+        {
+            var clothCollection = await _repository
+                .AllReadOnly<ClothCollection>()
+                .Select(x => new ClothCollectionModel()
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                })
+                .ToListAsync();
+
+            return clothCollection;
+        }
+
+        public async Task<bool> IsThisClothExistAsync(AddClothModel model)
+        {
+            var motorcycle = await _repository.AllReadOnly<Cloth>().AnyAsync(x => x.IsActive == true && x.Name == model.Name);
+
+            return motorcycle;
+        }
+
+        public async Task AddAsync(AddClothModel model)
+        {
+            if (await IsThisClothExistButDeletedAsync(model))
+            {
+                var clothToAdd = await GetByNameDeletedClothAsync(model.Name);
+
+                clothToAdd.Id = model.Id;
+                clothToAdd.ImgUrl = model.ImgUrl;
+                clothToAdd.Name = model.Name;
+                clothToAdd.Amount = model.Amount;
+                clothToAdd.BuyerId = model.BuyerId;
+                clothToAdd.IsActive = true;
+                clothToAdd.Price = model.Price;
+                clothToAdd.Description = model.Description;
+                clothToAdd.SizeId = model.SizeId;
+                clothToAdd.TypePersonId = model.TypePersonId;
+                clothToAdd.ClothCollectionId = model.ClothCollectionId;
+
+                await _repository.SaveChangesAsync();
+
+            }
+            else
+            {
+                Cloth cloth = new Cloth()
+                {
+                    Id = model.Id,
+                    ImgUrl = model.ImgUrl,
+                    Name = model.Name,
+                    Amount = model.Amount,
+                    BuyerId = model.BuyerId,
+                    IsActive = true,
+                    Price = model.Price,
+                    Description = model.Description,
+                    SizeId = model.SizeId,
+                    TypePersonId = model.TypePersonId,
+                    ClothCollectionId = model.ClothCollectionId
+                   
+                };
+
+                await _repository.AddAsync(cloth);
+
+                await _repository.SaveChangesAsync();
+            }
+        }
+
+        private async Task<Cloth?> GetByNameDeletedClothAsync(string name)
+        {
+            var cloth = await _repository.All<Cloth>()
+                .Where(x => x.Name == name && x.IsActive == false)
+                .FirstOrDefaultAsync();
+
+            return cloth;
+        }
+
+        private async Task<bool> IsThisClothExistButDeletedAsync(AddClothModel model)
+        {
+            var motorcycle = await _repository.AllReadOnly<Cloth>().AnyAsync(x => x.IsActive == false && x.Name == model.Name);
+
+            return motorcycle;
         }
     }
 }

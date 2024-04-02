@@ -50,10 +50,11 @@ namespace BMW_Final_Project.Controllers
             try
             {
                 await _service.AddAsync(id, User.Id());
-                return RedirectToAction("AllBought","Motorcycle");
+                return RedirectToAction(nameof(AllBought));
             }
             catch (Exception e)
             {
+                //why and how to do it!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 return BadRequest(e.Message);
             }
 
@@ -65,7 +66,7 @@ namespace BMW_Final_Project.Controllers
             try
             {
                 await _service.RemoveClothAsync(id);
-                return RedirectToAction("AllBought","Motorcycle");
+                return RedirectToAction(nameof(AllBought));
             }
             catch (Exception e)
             {
@@ -81,13 +82,21 @@ namespace BMW_Final_Project.Controllers
             try
             {
                 await _service.BuyClothAsync(id);
-                return RedirectToAction("AllBought","Motorcycle");
+                return RedirectToAction(nameof(AllBought));
             }
             catch (Exception e)
             {
                 return NotFound();
             }
 
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AllBought()
+        {
+                var cloths = await _service.GetAllMineClothsAsync(User.Id());
+
+                return View(cloths);
         }
 
     }

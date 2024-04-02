@@ -2,6 +2,7 @@
 using BMW_Final_Project.Engine.Models;
 using BMW_Final_Project.Engine.Models.Motorcycle;
 using BMW_Final_Project.Infrastructure.Data.Common;
+using BMW_Final_Project.Infrastructure.Data.Models.Cloths;
 using BMW_Final_Project.Infrastructure.Data.Models.Motorcycles;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
@@ -266,14 +267,6 @@ namespace BMW_Final_Project.Engine.Services
             return motorcycle;
         }
 
-        public async Task<Motorcycle?> GetByNameDeletedMotorcycleAsync(string name)
-        {
-            var motorcycle = await _repository.All<Motorcycle>()
-                .Where(x => x.Model == name && x.IsActive == false)
-                .FirstOrDefaultAsync();
-
-            return motorcycle;
-        }
 
         public async Task<ICollection<TypeMotorModel>> GetTypeMotorcyclesAsync()
         {
@@ -340,13 +333,6 @@ namespace BMW_Final_Project.Engine.Services
         public async Task<bool> IsThisMotorcycleExistAsync(AddMotorcycleModel model)
         {
             var motorcycle = await _repository.AllReadOnly<Motorcycle>().AnyAsync(x => x.IsActive == true && x.Model == model.Model);
-
-            return motorcycle;
-        }
-
-        public async Task<bool> IsThisMotorcycleExistButDeletedAsync(AddMotorcycleModel model)
-        {
-            var motorcycle = await _repository.AllReadOnly<Motorcycle>().AnyAsync(x => x.IsActive == false && x.Model == model.Model);
 
             return motorcycle;
         }
@@ -486,6 +472,20 @@ namespace BMW_Final_Project.Engine.Services
             colorToDel.IsActive = false;
 
             await _repository.SaveChangesAsync();
+        }
+        private async Task<bool> IsThisMotorcycleExistButDeletedAsync(AddMotorcycleModel model)
+        {
+            var motorcycle = await _repository.AllReadOnly<Motorcycle>().AnyAsync(x => x.IsActive == false && x.Model == model.Model);
+
+            return motorcycle;
+        }
+        private async Task<Motorcycle?> GetByNameDeletedMotorcycleAsync(string name)
+        {
+            var motorcycle = await _repository.All<Motorcycle>()
+                .Where(x => x.Model == name && x.IsActive == false)
+                .FirstOrDefaultAsync();
+
+            return motorcycle;
         }
     }
 }

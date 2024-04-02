@@ -1,4 +1,5 @@
 ﻿using BMW_Final_Project.Engine.Contracts;
+using BMW_Final_Project.Engine.Models.Cloth;
 using BMW_Final_Project.Engine.Models.Motorcycle;
 using BMW_Final_Project.Extensions;
 using Microsoft.AspNetCore.Authorization;
@@ -10,11 +11,13 @@ namespace BMW_Final_Project.Controllers
     public class AdminController : BaseController
     {
 
-        private readonly IMotorcycleService _service;
+        private readonly IMotorcycleService _motorcycleService;
+        private readonly IClothService _clothService;
 
-        public AdminController(IMotorcycleService service)
+        public AdminController(IMotorcycleService motorcycleService,IClothService clothService)
         {
-            _service = service;
+            _motorcycleService = motorcycleService;
+            _clothService = clothService;
         }
 
         [HttpGet]
@@ -23,8 +26,8 @@ namespace BMW_Final_Project.Controllers
 
             var modelToAdd = new AddMotorcycleModel()
             {
-                TypeMotorModels = await _service.GetTypeMotorcyclesAsync(),
-                StandardEuroModels = await _service.GetStandardEurosAsync()
+                TypeMotorModels = await _motorcycleService.GetTypeMotorcyclesAsync(),
+                StandardEuroModels = await _motorcycleService.GetStandardEurosAsync()
             };
 
             return View(modelToAdd);
@@ -34,22 +37,22 @@ namespace BMW_Final_Project.Controllers
         public async Task<IActionResult> AddMotorcycle(AddMotorcycleModel modelToAdd)
         {
 
-            if (await _service.IsThisMotorcycleExistAsync(modelToAdd))
+            if (await _motorcycleService.IsThisMotorcycleExistAsync(modelToAdd))
             {
                 ModelState.AddModelError(string.Empty, "Този мотор вече съществува!");
             }
 
             if (!ModelState.IsValid)
             {
-                modelToAdd.TypeMotorModels = await _service.GetTypeMotorcyclesAsync();
-                modelToAdd.StandardEuroModels = await _service.GetStandardEurosAsync();
+                modelToAdd.TypeMotorModels = await _motorcycleService.GetTypeMotorcyclesAsync();
+                modelToAdd.StandardEuroModels = await _motorcycleService.GetStandardEurosAsync();
 
                 return View(modelToAdd);
             }
 
             modelToAdd.BuyerId = User.Id();
 
-            await _service.AddAsync(modelToAdd);
+            await _motorcycleService.AddAsync(modelToAdd);
 
             return RedirectToAction("Index", "Motorcycle");
         }
@@ -59,7 +62,7 @@ namespace BMW_Final_Project.Controllers
         {
             try
             {
-                var model = await _service.GetByIdAsync(id);
+                var model = await _motorcycleService.GetByIdAsync(id);
 
                 if (model == null)
                 {
@@ -88,8 +91,8 @@ namespace BMW_Final_Project.Controllers
                     HorsePowers = model.HorsePowers,
                     Year = model.Year,
                 };
-                modelToEdit.StandardEuroModels = await _service.GetStandardEurosAsync();
-                modelToEdit.TypeMotorModels = await _service.GetTypeMotorcyclesAsync();
+                modelToEdit.StandardEuroModels = await _motorcycleService.GetStandardEurosAsync();
+                modelToEdit.TypeMotorModels = await _motorcycleService.GetTypeMotorcyclesAsync();
                 return View(modelToEdit);
             }
             catch (Exception e)
@@ -105,15 +108,15 @@ namespace BMW_Final_Project.Controllers
 
             if (!ModelState.IsValid)
             {
-                modelToEdit.TypeMotorModels = await _service.GetTypeMotorcyclesAsync();
-                modelToEdit.StandardEuroModels = await _service.GetStandardEurosAsync();
+                modelToEdit.TypeMotorModels = await _motorcycleService.GetTypeMotorcyclesAsync();
+                modelToEdit.StandardEuroModels = await _motorcycleService.GetStandardEurosAsync();
 
                 return View(modelToEdit);
             }
 
             try
             {
-                await _service.EditAsync(modelToEdit);
+                await _motorcycleService.EditAsync(modelToEdit);
             }
             catch (Exception e)
             {
@@ -131,7 +134,7 @@ namespace BMW_Final_Project.Controllers
 
             try
             {
-                await _service.DeleteAsync(id);
+                await _motorcycleService.DeleteAsync(id);
             }
             catch (Exception e)
             {
@@ -153,7 +156,7 @@ namespace BMW_Final_Project.Controllers
 
             try
             {
-                await _service.AddNewColorAsync(model);
+                await _motorcycleService.AddNewColorAsync(model);
             }
             catch (Exception e)
             {
@@ -170,7 +173,7 @@ namespace BMW_Final_Project.Controllers
         {
             try
             {
-                var colors = await _service.GetColorsAsync();
+                var colors = await _motorcycleService.GetColorsAsync();
                 return Json(colors);
             }
             catch (Exception e)
@@ -185,7 +188,7 @@ namespace BMW_Final_Project.Controllers
 
             try
             {
-                var colorsModel = await _service.GetColorsToDeleteAsync(currentPage, colorsPerPage);
+                var colorsModel = await _motorcycleService.GetColorsToDeleteAsync(currentPage, colorsPerPage);
 
                 return View(colorsModel);
             }
@@ -200,7 +203,7 @@ namespace BMW_Final_Project.Controllers
         {
             try
             {
-                await _service.DeleteColorAsync(id);
+                await _motorcycleService.DeleteColorAsync(id);
 
                 return RedirectToAction(nameof(ShowColorToDelete));
             }
@@ -209,6 +212,45 @@ namespace BMW_Final_Project.Controllers
                 return BadRequest();
             }
 
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AddCloth()
+        {
+
+            var modelToAdd = new AddClothModel()
+            {
+                SizeModels = await _clothService.GetSizesAsync(),
+                TypePersonModels = await _clothService.GetTypesAsync(),
+                ClothCollectionModels = await _clothService.GetClothCollectionsAsync()
+            };
+
+            return View(modelToAdd);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddCloth(AddClothModel modelToAdd)
+        {
+
+            if (await _clothService.IsThisClothExistAsync(modelToAdd))
+            {
+                ModelState.AddModelError(string.Empty, "Този мотор вече съществува!");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                modelToAdd.SizeModels = await _clothService.GetSizesAsync();
+                modelToAdd.TypePersonModels = await _clothService.GetTypesAsync();
+                modelToAdd.ClothCollectionModels = await _clothService.GetClothCollectionsAsync();
+
+                return View(modelToAdd);
+            }
+
+            modelToAdd.BuyerId = User.Id();
+
+            await _clothService.AddAsync(modelToAdd);
+
+            return RedirectToAction("Index", "Cloth");
         }
 
     }
