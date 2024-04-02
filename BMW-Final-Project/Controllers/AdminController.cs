@@ -98,7 +98,7 @@ namespace BMW_Final_Project.Controllers
             }
             catch (Exception e)
             {
-                return Unauthorized();
+                return StatusCode(StatusCodes.Status403Forbidden);
             }
 
         }
@@ -291,7 +291,7 @@ namespace BMW_Final_Project.Controllers
             }
             catch (Exception e)
             {
-                return Unauthorized();
+                return StatusCode(StatusCodes.Status403Forbidden);
             }
 
         }
