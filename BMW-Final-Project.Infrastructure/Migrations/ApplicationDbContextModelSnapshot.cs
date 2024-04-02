@@ -53,7 +53,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("ab5f19c3-0e66-4a5b-ab4a-ada016abc5c5"),
-                            ConcurrencyStamp = "d53d4a60-86f2-4480-988d-119541991c1d",
+                            ConcurrencyStamp = "1d9d7420-540f-4481-8eec-eeaa344cfc67",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -141,7 +141,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         {
                             Id = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f08e544e-f7e1-496a-b29e-b06fe55b5614",
+                            ConcurrencyStamp = "8e0df3dd-9350-4bd3-a16a-f1b0f5f85322",
                             Email = "Adi@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Adrian",
@@ -150,9 +150,9 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             Nickname = "ToXic",
                             NormalizedEmail = "ADI@GMAIL.COM",
                             NormalizedUserName = "ADI@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEkCUGK7o3rRTZGI61ulRz154EFSc83SNgElYQE/1Ffmo8ocGkivfSGQjxUbfwVXZQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECIN+AC3Jp1y4pClNht2B46q+32wfUEOeS9WIuSopz7rCkLwhy/3qzJJRKi9LetYcg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "A5781346-029A-4E73-8B75-C41691C05ED5",
+                            SecurityStamp = "0596E55F-30F6-4B71-AC43-297D284AD145",
                             TwoFactorEnabled = false,
                             UserName = "Adi@gmail.com"
                         });
@@ -713,7 +713,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 1,
-                            Year = new DateTime(2024, 4, 2, 17, 45, 17, 161, DateTimeKind.Local).AddTicks(1851)
+                            Year = new DateTime(2024, 4, 3, 0, 24, 27, 444, DateTimeKind.Local).AddTicks(2029)
                         },
                         new
                         {
@@ -736,7 +736,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 16,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 4,
-                            Year = new DateTime(2024, 4, 2, 17, 45, 17, 161, DateTimeKind.Local).AddTicks(1888)
+                            Year = new DateTime(2024, 4, 3, 0, 24, 27, 444, DateTimeKind.Local).AddTicks(2067)
                         },
                         new
                         {
@@ -759,7 +759,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 2,
-                            Year = new DateTime(2024, 4, 2, 17, 45, 17, 161, DateTimeKind.Local).AddTicks(1893)
+                            Year = new DateTime(2024, 4, 3, 0, 24, 27, 444, DateTimeKind.Local).AddTicks(2072)
                         },
                         new
                         {
@@ -782,7 +782,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 2,
-                            Year = new DateTime(2024, 4, 2, 17, 45, 17, 161, DateTimeKind.Local).AddTicks(1896)
+                            Year = new DateTime(2024, 4, 3, 0, 24, 27, 444, DateTimeKind.Local).AddTicks(2075)
                         },
                         new
                         {
@@ -805,7 +805,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 3,
-                            Year = new DateTime(2024, 4, 2, 17, 45, 17, 161, DateTimeKind.Local).AddTicks(1900)
+                            Year = new DateTime(2024, 4, 3, 0, 24, 27, 444, DateTimeKind.Local).AddTicks(2079)
                         },
                         new
                         {
@@ -828,7 +828,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 5,
-                            Year = new DateTime(2024, 4, 2, 17, 45, 17, 161, DateTimeKind.Local).AddTicks(1903)
+                            Year = new DateTime(2024, 4, 3, 0, 24, 27, 444, DateTimeKind.Local).AddTicks(2082)
                         },
                         new
                         {
@@ -851,7 +851,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 6,
-                            Year = new DateTime(2024, 4, 2, 17, 45, 17, 161, DateTimeKind.Local).AddTicks(1906)
+                            Year = new DateTime(2024, 4, 3, 0, 24, 27, 444, DateTimeKind.Local).AddTicks(2085)
                         });
                 });
 

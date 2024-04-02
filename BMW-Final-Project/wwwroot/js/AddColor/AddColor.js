@@ -1,4 +1,4 @@
-
+п»ї
 
 
 console.log('im in');
@@ -17,7 +17,7 @@ $('#submitBtn').on('click', function () {
         url: '/Admin/AddColor',
         type: 'POST',
         data: obj,
-        success: function () {
+        complete: function () {
 
             console.log('adding color')
 
@@ -37,7 +37,7 @@ $('#submitBtn').on('click', function () {
     setTimeout(function () {
         $('#AlertColorError').fadeOut('slow');
     }, 3000);
-   
+
 });
 
 
@@ -56,7 +56,7 @@ function fetchColors() {
             console.log(data)
             console.log('im in succses fetch')
             $('#colorDropdown').empty();
-            $('#colorDropdown').append($('<option>').val('').html('Изберете цвят'));
+            $('#colorDropdown').append($('<option>').val('').html('Choose color'));
             $.each(data, function (index, color) {
                 $('#colorDropdown').append($('<option>').val(color.id).text(color.name));
                 console.log(color)
