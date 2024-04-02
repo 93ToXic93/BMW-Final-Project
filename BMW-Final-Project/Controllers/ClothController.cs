@@ -54,8 +54,7 @@ namespace BMW_Final_Project.Controllers
             }
             catch (Exception e)
             {
-                //why and how to do it!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                return BadRequest(e.Message);
+                return RedirectToAction(nameof(Index));
             }
 
         }

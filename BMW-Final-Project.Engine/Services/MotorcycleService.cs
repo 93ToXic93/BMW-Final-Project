@@ -2,7 +2,6 @@
 using BMW_Final_Project.Engine.Models;
 using BMW_Final_Project.Engine.Models.Motorcycle;
 using BMW_Final_Project.Infrastructure.Data.Common;
-using BMW_Final_Project.Infrastructure.Data.Models.Cloths;
 using BMW_Final_Project.Infrastructure.Data.Models.Motorcycles;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
@@ -258,16 +257,6 @@ namespace BMW_Final_Project.Engine.Services
             return motorcycle;
         }
 
-        public async Task<MotorcycleBuyers?> GetByIdMotorsAndServicesAsync(int id)
-        {
-            var motorcycle = await _repository.All<MotorcycleBuyers>()
-                .Where(x => x.MotorcycleId == id)
-                .FirstOrDefaultAsync();
-
-            return motorcycle;
-        }
-
-
         public async Task<ICollection<TypeMotorModel>> GetTypeMotorcyclesAsync()
         {
             var motoTypes = await _repository
@@ -458,6 +447,7 @@ namespace BMW_Final_Project.Engine.Services
             };
         }
 
+
         public async Task DeleteColorAsync(int id)
         {
             var colorToDel = await _repository.All<ColorCategory>()
@@ -483,6 +473,14 @@ namespace BMW_Final_Project.Engine.Services
         {
             var motorcycle = await _repository.All<Motorcycle>()
                 .Where(x => x.Model == name && x.IsActive == false)
+                .FirstOrDefaultAsync();
+
+            return motorcycle;
+        }
+        private async Task<MotorcycleBuyers?> GetByIdMotorsAndServicesAsync(int id)
+        {
+            var motorcycle = await _repository.All<MotorcycleBuyers>()
+                .Where(x => x.MotorcycleId == id)
                 .FirstOrDefaultAsync();
 
             return motorcycle;
