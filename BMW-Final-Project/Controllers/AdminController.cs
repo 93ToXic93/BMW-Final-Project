@@ -147,7 +147,7 @@ namespace BMW_Final_Project.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> AddColor([FromBody] AddColorModel model)
+        public async Task<IActionResult> AddColor(AddColorModel model)
         {
 
             if (!ModelState.IsValid)
@@ -161,7 +161,7 @@ namespace BMW_Final_Project.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest();
+                return RedirectToAction(nameof(AddMotorcycle));
             }
 
 

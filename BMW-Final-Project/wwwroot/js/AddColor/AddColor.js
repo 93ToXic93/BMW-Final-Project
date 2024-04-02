@@ -6,23 +6,17 @@ console.log('im in');
 $('#AlertColor').hide();
 $('#AlertColorError').hide();
 
-$.ajaxSetup({
-    contentType: 'application/json'
-});
-
 $('#submitBtn').on('click', function () {
-    var formData = {
-        Name: $('#Name').val()
-    };
+    var formData = $('#Name').val();
 
-    console.log('im in adding color')
+    var obj = {
+        Name: formData
+    }
 
     $.ajax({
         url: '/Admin/AddColor',
         type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify(formData),
-        dataType: 'json',
+        data: obj,
         success: function () {
 
             console.log('adding color')
@@ -33,7 +27,8 @@ $('#submitBtn').on('click', function () {
         },
         error: function (error) {
             $('#AlertColorError').fadeIn('slow');
-        }
+        },
+
     });
 
     setTimeout(function () {
@@ -42,6 +37,7 @@ $('#submitBtn').on('click', function () {
     setTimeout(function () {
         $('#AlertColorError').fadeOut('slow');
     }, 3000);
+   
 });
 
 
