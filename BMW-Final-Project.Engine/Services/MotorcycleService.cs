@@ -233,15 +233,6 @@ namespace BMW_Final_Project.Engine.Services
 
         }
 
-        public async Task<Motorcycle?> GetByIdReadOnlyAsync(int id)
-        {
-            var motorcycle = await _repository.AllReadOnly<Motorcycle>()
-             .Where(x => x.Id == id && x.IsActive)
-             .FirstOrDefaultAsync();
-
-            return motorcycle;
-        }
-
         public async Task<Motorcycle?> GetByIdAsync(int id)
         {
             var motorcycle = await _repository.All<Motorcycle>()
@@ -448,6 +439,14 @@ namespace BMW_Final_Project.Engine.Services
         }
 
 
+        private async Task<Motorcycle?> GetByIdReadOnlyAsync(int id)
+        {
+            var motorcycle = await _repository.AllReadOnly<Motorcycle>()
+             .Where(x => x.Id == id && x.IsActive)
+             .FirstOrDefaultAsync();
+
+            return motorcycle;
+        }
         public async Task DeleteColorAsync(int id)
         {
             var colorToDel = await _repository.All<ColorCategory>()

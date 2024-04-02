@@ -1,9 +1,7 @@
 ﻿using BMW_Final_Project.Engine.Contracts;
 using BMW_Final_Project.Engine.Models.Cloth;
-using BMW_Final_Project.Engine.Models.Motorcycle;
 using BMW_Final_Project.Infrastructure.Data.Common;
 using BMW_Final_Project.Infrastructure.Data.Models.Cloths;
-using BMW_Final_Project.Infrastructure.Data.Models.Motorcycles;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 
@@ -94,15 +92,6 @@ namespace BMW_Final_Project.Engine.Services
             return modelDetails;
         }
 
-        public async Task<Cloth?> GetByIdReadOnlyAsync(int id)
-        {
-            var motorcycle = await _repository.AllReadOnly<Cloth>()
-                .Where(x => x.Id == id && x.IsActive)
-                .FirstOrDefaultAsync();
-
-            return motorcycle;
-        }
-
         public async Task AddAsync(int id, Guid userId)
         {
             var clothToAdd = await GetByIdAsync(id);
@@ -176,15 +165,6 @@ namespace BMW_Final_Project.Engine.Services
             _repository.Remove(clothToRemove);
 
             await _repository.SaveChangesAsync();
-        }
-
-        public async Task<ClothBuyer?> GetByIdClothAndServicesAsync(int id)
-        {
-            var motorcycle = await _repository.All<ClothBuyer>()
-                .Where(x => x.ClothId == id)
-                .FirstOrDefaultAsync();
-
-            return motorcycle;
         }
 
         public async Task BuyClothAsync(int id)
@@ -276,6 +256,27 @@ namespace BMW_Final_Project.Engine.Services
             return motorcycle;
         }
 
+        public async Task EditAsync(EditClothModel model)
+        {
+            var clothEdited = await GetByIdAsync(model.Id);
+
+            if (clothEdited == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            clothEdited.Amount = model.Amount;
+            clothEdited.ImgUrl = model.ImgUrl;
+            clothEdited.Price = model.Price;
+            clothEdited.Description = model.Description;
+            clothEdited.Name = model.Name;
+            clothEdited.SizeId = model.SizeId;
+            clothEdited.ClothCollectionId = model.ClothCollectionId;
+            clothEdited.TypePersonId = model.TypePersonId;
+
+            await _repository.SaveChangesAsync();
+        }
+
         public async Task AddAsync(AddClothModel model)
         {
             if (await IsThisClothExistButDeletedAsync(model))
@@ -321,6 +322,34 @@ namespace BMW_Final_Project.Engine.Services
             }
         }
 
+        public async Task DeleteAsync(int id)
+        {
+            var cloth = await GetByIdAsync(id);
+
+            if (cloth == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (id != cloth.Id)
+            {
+                throw new ArgumentException("Not found");
+            }
+
+            cloth.IsActive = false;
+
+            await _repository.SaveChangesAsync();
+        }
+
+
+        private async Task<Cloth?> GetByIdReadOnlyAsync(int id)
+        {
+            var motorcycle = await _repository.AllReadOnly<Cloth>()
+                .Where(x => x.Id == id && x.IsActive)
+                .FirstOrDefaultAsync();
+
+            return motorcycle;
+        }
         private async Task<Cloth?> GetByNameDeletedClothAsync(string name)
         {
             var cloth = await _repository.All<Cloth>()
@@ -329,10 +358,17 @@ namespace BMW_Final_Project.Engine.Services
 
             return cloth;
         }
-
         private async Task<bool> IsThisClothExistButDeletedAsync(AddClothModel model)
         {
             var motorcycle = await _repository.AllReadOnly<Cloth>().AnyAsync(x => x.IsActive == false && x.Name == model.Name);
+
+            return motorcycle;
+        }
+        private async Task<ClothBuyer?> GetByIdClothAndServicesAsync(int id)
+        {
+            var motorcycle = await _repository.All<ClothBuyer>()
+                .Where(x => x.ClothId == id)
+                .FirstOrDefaultAsync();
 
             return motorcycle;
         }

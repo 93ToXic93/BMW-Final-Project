@@ -78,6 +78,7 @@ namespace BMW_Final_Project.Controllers
                     Amount = model.Amount,
                     ImageUrl = model.ImageUrl,
                     Model = model.Model,
+                    StandardEuroId = model.StandardEuroId,
                     CC = model.CC,
                     DTC = model.DTC,
                     FrontBreak = model.FrontBreak,
@@ -214,6 +215,8 @@ namespace BMW_Final_Project.Controllers
 
         }
 
+
+
         [HttpGet]
         public async Task<IActionResult> AddCloth()
         {
@@ -249,6 +252,89 @@ namespace BMW_Final_Project.Controllers
             modelToAdd.BuyerId = User.Id();
 
             await _clothService.AddAsync(modelToAdd);
+
+            return RedirectToAction("Index", "Cloth");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditCloth(int id)
+        {
+            try
+            {
+                var model = await _clothService.GetByIdAsync(id);
+
+                if (model == null)
+                {
+                    return BadRequest();
+                }
+
+                if (id != model.Id)
+                {
+                    return BadRequest();
+                }
+                var modelToEdit = new EditClothModel
+                {
+                    Amount = model.Amount,
+                    ImgUrl = model.ImgUrl,
+                    Price = model.Price,
+                    ClothCollectionId = model.ClothCollectionId,
+                    Description = model.Description,
+                    Name = model.Name,
+                    Id = model.Id,
+                    SizeId = model.SizeId,
+                    TypePersonId = model.TypePersonId,
+                    ClothCollectionModels = await _clothService.GetClothCollectionsAsync(),
+                    SizeModels = await _clothService.GetSizesAsync(),
+                    TypePersonModels = await _clothService.GetTypesAsync()
+                };
+                return View(modelToEdit);
+            }
+            catch (Exception e)
+            {
+                return Unauthorized();
+            }
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditCloth(EditClothModel modelToEdit, int id)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                modelToEdit.ClothCollectionModels = await _clothService.GetClothCollectionsAsync();
+                modelToEdit.SizeModels = await _clothService.GetSizesAsync();
+                modelToEdit.TypePersonModels = await _clothService.GetTypesAsync();
+
+                return View(modelToEdit);
+            }
+
+            try
+            {
+                await _clothService.EditAsync(modelToEdit);
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+
+
+
+            return RedirectToAction("Index", "Cloth");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteCloth(int id)
+        {
+
+            try
+            {
+                await _clothService.DeleteAsync(id);
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
 
             return RedirectToAction("Index", "Cloth");
         }

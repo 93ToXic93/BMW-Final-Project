@@ -18,8 +18,6 @@ namespace BMW_Final_Project.Engine.Contracts
 
         Task<MotorcycleDetailsModel> DetailsAsync(int id);
 
-        Task<Motorcycle?> GetByIdReadOnlyAsync(int id);
-
         Task<Motorcycle?> GetByIdAsync(int id);
 
         Task<ICollection<TypeMotorModel>> GetTypeMotorcyclesAsync();
