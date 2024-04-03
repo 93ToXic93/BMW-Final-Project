@@ -1,5 +1,5 @@
 ﻿using BMW_Final_Project.Engine.Models.Cloth;
-using BMW_Final_Project.Infrastructure.Data.Models.Cloths;
+using BMW_Final_Project.Infrastructure.Data.Models.Cloth;
 
 namespace BMW_Final_Project.Engine.Contracts
 {

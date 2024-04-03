@@ -2,18 +2,18 @@
 using BMW_Final_Project.Infrastructure.Constants;
 using Microsoft.EntityFrameworkCore;
 
-namespace BMW_Final_Project.Infrastructure.Data.Models.Cloths
+namespace BMW_Final_Project.Infrastructure.Data.Models.Cloth
 {
-    [Comment("Season cloth collections")]
-    public class ClothCollection
+    [Comment("Size table")]
+    public class Size
     {
-        [Comment("Collection identifier")]
+        [Comment("Size identifier")]
         [Key]
         public int Id { get; set; }
 
-        [Comment("Collection Name")]
+        [Comment("Size")]
         [Required]
-        [MaxLength(DataConstants.ClothCollectionConstants.NameMaxLength)]
+        [MaxLength(DataConstants.SizeConstants.NameMaxLength)]
         public string Name { get; set; } = string.Empty;
 
         public ICollection<Cloth> Cloths { get; set; } = new List<Cloth>();

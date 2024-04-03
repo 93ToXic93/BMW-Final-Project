@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using BMW_Final_Project.Infrastructure.Data.IdentityModels;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using BMW_Final_Project.Infrastructure.Data.IdentityModels;
 
-namespace BMW_Final_Project.Infrastructure.Data.Models.Cloths
+namespace BMW_Final_Project.Infrastructure.Data.Models.Cloth
 {
     [Comment("Cloth and buyers")]
     public class ClothBuyer

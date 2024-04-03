@@ -2,7 +2,7 @@
 using BMW_Final_Project.Infrastructure.Constants;
 using Microsoft.EntityFrameworkCore;
 
-namespace BMW_Final_Project.Infrastructure.Data.Models.Cloths
+namespace BMW_Final_Project.Infrastructure.Data.Models.Cloth
 {
     [Comment("TypePerson's table")]
     public class TypePerson

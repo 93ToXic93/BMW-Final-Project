@@ -1,7 +1,7 @@
 ﻿using BMW_Final_Project.Engine.Contracts;
 using BMW_Final_Project.Engine.Models.Cloth;
 using BMW_Final_Project.Infrastructure.Data.Common;
-using BMW_Final_Project.Infrastructure.Data.Models.Cloths;
+using BMW_Final_Project.Infrastructure.Data.Models.Cloth;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 

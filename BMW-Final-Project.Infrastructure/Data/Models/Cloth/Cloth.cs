@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using static BMW_Final_Project.Infrastructure.Constants.DataConstants.ClothConstants;
 
-namespace BMW_Final_Project.Infrastructure.Data.Models.Cloths
+namespace BMW_Final_Project.Infrastructure.Data.Models.Cloth
 {
     [Comment("Cloth table")]
     public class Cloth

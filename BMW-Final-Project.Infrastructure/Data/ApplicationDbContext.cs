@@ -1,5 +1,5 @@
 ﻿using BMW_Final_Project.Infrastructure.Data.IdentityModels;
-using BMW_Final_Project.Infrastructure.Data.Models.Cloths;
+using BMW_Final_Project.Infrastructure.Data.Models.Cloth;
 using BMW_Final_Project.Infrastructure.Data.Models.Motorcycles;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
