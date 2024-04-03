@@ -2,7 +2,7 @@
 using BMW_Final_Project.Engine.Models;
 using BMW_Final_Project.Engine.Models.Motorcycle;
 using BMW_Final_Project.Infrastructure.Data.Common;
-using BMW_Final_Project.Infrastructure.Data.Models.Motorcycles;
+using BMW_Final_Project.Infrastructure.Data.Models.Motorcycle;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 

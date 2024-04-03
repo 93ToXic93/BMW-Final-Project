@@ -1,6 +1,7 @@
 ﻿using BMW_Final_Project.Infrastructure.Data.IdentityModels;
 using BMW_Final_Project.Infrastructure.Data.Models.Cloth;
-using BMW_Final_Project.Infrastructure.Data.Models.Motorcycles;
+using BMW_Final_Project.Infrastructure.Data.Models.Event;
+using BMW_Final_Project.Infrastructure.Data.Models.Motorcycle;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,9 @@ namespace BMW_Final_Project.Infrastructure.Data
         public DbSet<TypePerson> TypesPersons { get; set; } = null!;
         public DbSet<Size> Sizes { get; set; } = null!;
         public DbSet<ClothCollection> ClothCollections { get; set; } = null!;
+
+        public DbSet<Event> Events { get; set; } = null!;
+        public DbSet<EventJoiners> EventsJoiners { get; set; } = null!;
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -92,7 +96,13 @@ namespace BMW_Final_Project.Infrastructure.Data
                 .WithMany()
                 .OnDelete(DeleteBehavior.Restrict);
 
+            builder.Entity<EventJoiners>()
+                .HasKey(x => new { x.JoinerId, x.EventId });
 
+            builder.Entity<EventJoiners>()
+                .HasOne(x => x.Joiner)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder
                 .Entity<TypePerson>()
@@ -547,7 +557,18 @@ namespace BMW_Final_Project.Infrastructure.Data
                     HorsePowers = 225,
                 });
 
-
+            builder
+                .Entity<Event>()
+                .HasData(new Event()
+                {
+                    Id = 1,
+                    Description = "Тази година само с БМВ ивента е неповторимо събитие, което на трябва да изпускате. Ще има стънт програма и екслузивни мотори. ЗАПОВЯДАЙТЕ!",
+                    Name = "BMW SPORT EVENT",
+                    PlaceOfTheEvent = "София, BMW-България",
+                    StartEvent = DateTime.Now,
+                    EndEvent = DateTime.Now,
+                    JoinerId = Guid.Parse("32b13a0b-6546-439e-a40d-4880e8a4e0a9")
+                });
 
 
 

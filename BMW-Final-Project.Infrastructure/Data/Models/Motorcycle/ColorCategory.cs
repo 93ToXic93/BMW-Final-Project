@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using static BMW_Final_Project.Infrastructure.Constants.DataConstants.CategoryColorConstants;
 
-namespace BMW_Final_Project.Infrastructure.Data.Models.Motorcycles
+namespace BMW_Final_Project.Infrastructure.Data.Models.Motorcycle
 {
     [Comment("Color Table")]
     public class ColorCategory

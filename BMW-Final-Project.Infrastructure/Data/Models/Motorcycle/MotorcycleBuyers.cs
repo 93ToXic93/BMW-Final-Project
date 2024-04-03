@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BMW_Final_Project.Infrastructure.Data.Models.Motorcycles
+namespace BMW_Final_Project.Infrastructure.Data.Models.Motorcycle
 {
     [Comment("Motorcycles and buyers")]
     public class MotorcycleBuyers

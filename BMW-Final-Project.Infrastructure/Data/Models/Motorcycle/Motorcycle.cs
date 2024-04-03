@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using static BMW_Final_Project.Infrastructure.Constants.DataConstants.MotorcycleConstants;
 
-namespace BMW_Final_Project.Infrastructure.Data.Models.Motorcycles
+namespace BMW_Final_Project.Infrastructure.Data.Models.Motorcycle
 {
     [Comment("Motorcycles table")]
     public class Motorcycle

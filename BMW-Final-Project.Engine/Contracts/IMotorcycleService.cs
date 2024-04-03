@@ -1,6 +1,6 @@
 ﻿using BMW_Final_Project.Engine.Models;
 using BMW_Final_Project.Engine.Models.Motorcycle;
-using BMW_Final_Project.Infrastructure.Data.Models.Motorcycles;
+using BMW_Final_Project.Infrastructure.Data.Models.Motorcycle;
 
 namespace BMW_Final_Project.Engine.Contracts
 {

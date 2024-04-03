@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
-namespace BMW_Final_Project.Infrastructure.Data.Models.Motorcycles
+namespace BMW_Final_Project.Infrastructure.Data.Models.Motorcycle
 {
     [Comment("Type of the motorcycle")]
     public class TypeMotor

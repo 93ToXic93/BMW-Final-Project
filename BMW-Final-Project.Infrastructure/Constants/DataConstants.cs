@@ -2,6 +2,19 @@
 {
     public static class DataConstants
     {
+        public static class EventConstants
+        {
+            public const int MaxEventNameLength = 50;
+            public const int MinEventNameLength = 3;
+
+            public const int DescriptionMaxLength = 500;
+            public const int DescriptionMinLength = 10;
+
+            public const int PlaceMaxLength = 100;
+            public const int PlaceMinLength = 3;
+
+        }
+
         public static class CategoryColorConstants
         {
             public const int MaxColorNameLength = 50;
@@ -79,16 +92,19 @@
             public const double AmountMax = 200000;
             public const double AmountMin = 1;
         }
+
         public static class ClothCollectionConstants
         {
             public const int NameMaxLength = 100;
             public const int NameMinLength = 2;
         }
+
         public static class TypePersonConstants
         {
             public const int NameMaxLength = 40;
             public const int NameMinLength = 2;
         }
+
         public static class SizeConstants
         {
             public const int NameMaxLength = 15;
@@ -106,12 +122,14 @@
 
         public const string DataFormat = "dd/MM/yyyy";
 
-        public const string DataFormatError = $"Правилният формат трябва да изглежда като: {DataFormat} и датата не трябва да е преди тази година!";
+        public const string DataFormatError =
+            $"Правилният формат трябва да изглежда като: {DataFormat} и датата не трябва да е преди тази година!";
 
         public const string RequiredErrorMessage = "Полето {0} е задължително!";
 
         public const string LengthErrorMessage = "Полето {0} трябва да бъде между {2} и {1} символи!";
 
         public const string RangeErrorMessage = "Полето {0} трябва да бъде между {1} и {2}!";
+
     }
 }
