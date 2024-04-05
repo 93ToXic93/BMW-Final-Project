@@ -1234,3 +1234,10 @@ html {
 .imgEdit{
     margin-left:25%;
 }
+
+.imgEvent {
+    border-radius: 20px;
+}
+.shadow-bottom{
+    box-shadow:10px 20px 40px 2px black;
+}

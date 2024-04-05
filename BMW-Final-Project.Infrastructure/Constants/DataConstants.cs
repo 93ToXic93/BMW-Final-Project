@@ -13,6 +13,8 @@
             public const int PlaceMaxLength = 100;
             public const int PlaceMinLength = 3;
 
+            public const int UrlMaxLength = 60000;
+            public const int UrlMinLength = 3;
         }
 
         public static class CategoryColorConstants
@@ -121,6 +123,8 @@
         }
 
         public const string DataFormat = "dd/MM/yyyy";
+
+        public const string DataFormatWithHours = "dd/MM/yyyy HH:mm";
 
         public const string DataFormatError =
             $"Правилният формат трябва да изглежда като: {DataFormat} и датата не трябва да е преди тази година!";

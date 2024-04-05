@@ -43,9 +43,15 @@ namespace BMW_Final_Project.Infrastructure.Data.Models.Event
         [Comment("Joiner identifier")]
         public Guid JoinerId { get; set; }
 
-
         [ForeignKey(nameof(JoinerId))]
         public ApplicationUser Joiner { get; set; } = null!;
+
+        [Required]
+        public bool IsActive { get; set; }
+
+        [Required]
+        [MaxLength(UrlMaxLength)]
+        public string ImgUrl { get; set; } = string.Empty;
 
         public ICollection<EventJoiners> EventsJoiners { get; set; } = new List<EventJoiners>();
 

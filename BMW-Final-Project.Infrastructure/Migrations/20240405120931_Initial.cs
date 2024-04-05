@@ -243,6 +243,33 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Events",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false, comment: "Event identifier")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false, comment: "Name of the event"),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false, comment: "Description of the event"),
+                    StartEvent = table.Column<DateTime>(type: "datetime2", nullable: false, comment: "Start date of the event"),
+                    EndEvent = table.Column<DateTime>(type: "datetime2", nullable: false, comment: "End date of the event"),
+                    PlaceOfTheEvent = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false, comment: "Place date of the event"),
+                    JoinerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false, comment: "Joiner identifier"),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    ImgUrl = table.Column<string>(type: "nvarchar(max)", maxLength: 60000, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Events", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Events_AspNetUsers_JoinerId",
+                        column: x => x.JoinerId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                },
+                comment: "Cloth table");
+
+            migrationBuilder.CreateTable(
                 name: "Motorcycles",
                 columns: table => new
                 {
@@ -346,6 +373,31 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                 comment: "Cloth table");
 
             migrationBuilder.CreateTable(
+                name: "EventsJoiners",
+                columns: table => new
+                {
+                    EventId = table.Column<int>(type: "int", nullable: false, comment: "Event identifier"),
+                    JoinerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false, comment: "Joiner identifier")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EventsJoiners", x => new { x.JoinerId, x.EventId });
+                    table.ForeignKey(
+                        name: "FK_EventsJoiners_AspNetUsers_JoinerId",
+                        column: x => x.JoinerId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_EventsJoiners_Events_EventId",
+                        column: x => x.EventId,
+                        principalTable: "Events",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                },
+                comment: "Events and joiners");
+
+            migrationBuilder.CreateTable(
                 name: "MotorcyclesBuyers",
                 columns: table => new
                 {
@@ -398,12 +450,12 @@ namespace BMW_Final_Project.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { new Guid("ab5f19c3-0e66-4a5b-ab4a-ada016abc5c5"), "1d9d7420-540f-4481-8eec-eeaa344cfc67", "Admin", "ADMIN" });
+                values: new object[] { new Guid("ab5f19c3-0e66-4a5b-ab4a-ada016abc5c5"), "630b5927-9dfd-4c1b-8ded-c389e3b41da6", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "Nickname", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 0, "8e0df3dd-9350-4bd3-a16a-f1b0f5f85322", "Adi@gmail.com", false, "Adrian", "Ivanov", true, null, "ToXic", "ADI@GMAIL.COM", "ADI@GMAIL.COM", "AQAAAAEAACcQAAAAECIN+AC3Jp1y4pClNht2B46q+32wfUEOeS9WIuSopz7rCkLwhy/3qzJJRKi9LetYcg==", null, false, "0596E55F-30F6-4B71-AC43-297D284AD145", false, "Adi@gmail.com" });
+                values: new object[] { new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 0, "f7c5bd05-b509-4a2d-bccc-0903ad84a878", "Adi@gmail.com", false, "Adrian", "Ivanov", true, null, "ToXic", "ADI@GMAIL.COM", "ADI@GMAIL.COM", "AQAAAAEAACcQAAAAEN/iGCZ9Bk00xsT0Uhi0mSZ8M1nPVWY8QBWen+qCmBbr8yHDi1BO/pEaSIhJ0OkmZw==", null, false, "9CE0E7CB-A5D3-4B21-AC57-B4BD70F879A7", false, "Adi@gmail.com" });
 
             migrationBuilder.InsertData(
                 table: "ClothCollections",
@@ -504,17 +556,27 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Events",
+                columns: new[] { "Id", "Description", "EndEvent", "ImgUrl", "IsActive", "JoinerId", "Name", "PlaceOfTheEvent", "StartEvent" },
+                values: new object[,]
+                {
+                    { 1, "Тази година само с БМВ ивента е неповторимо събитие, което на трябва да изпускате. Ще има стънт програма и екслузивни мотори. ЗАПОВЯДАЙТЕ!", new DateTime(2024, 2, 20, 19, 0, 0, 0, DateTimeKind.Unspecified), "https://www.bmw-motorrad.com/content/dam/bmwmotorradnsc/marketCORECOM/common/images/experience/stories/brand/bmd-2023/youtube/nsc-bmd-2023-youtube-fallback.jpg.asset.1675938793795.jpg", true, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), "BMW SPORT EVENT", "София, BMW-България", new DateTime(2024, 2, 18, 13, 45, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, "Тази година, БМВ ивента е неповторимо събитие, което на трябва да изпускате. Ще има стънт програма и екслузивни мотори.Това е 100-годишнината на BMW и желаем да поканим възможно повече хора! ЗАПОВЯДАЙТЕ!", new DateTime(2024, 6, 17, 21, 0, 0, 0, DateTimeKind.Unspecified), "https://i.ytimg.com/vi/2t-m6cuPUqI/maxresdefault.jpg", true, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), "BMW Anniversary", "София, BMW-България", new DateTime(2024, 6, 15, 12, 45, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, "BMW - Откриване на сезона, желаем да ви поканим да открием новият сезон с яркост и красота с нашите нови модели. ЗАПОВЯДАЙТЕ!", new DateTime(2024, 9, 22, 21, 0, 0, 0, DateTimeKind.Unspecified), "https://c.ndtvimg.com/2020-09/9e7k4g2g_bmw-motorrad-days_625x300_18_September_20.jpg", true, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), "BMW new season", "София, BMW-България", new DateTime(2024, 9, 21, 11, 45, 0, 0, DateTimeKind.Unspecified) }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Motorcycles",
                 columns: new[] { "Id", "Amount", "BuyerId", "CC", "ColorCategoryId", "DTC", "FrontBreak", "HorsePowers", "ImageUrl", "IsActive", "Kg", "Model", "Price", "RearBreak", "SeatHeightMm", "StandardEuroId", "TankCapacity", "Transmission", "TypeMotorId", "Year" },
                 values: new object[,]
                 {
-                    { 1, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 1000, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 205, "https://images4.alphacoders.com/127/1277784.jpg", true, 197, "BMW S1000RR", 62000m, "BMW own Rear Brake Control specified for this unique bike", 705, 3, 21, "BMW 6-Gears transmission", 1, new DateTime(2024, 4, 3, 0, 24, 27, 444, DateTimeKind.Local).AddTicks(2029) },
-                    { 2, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 900, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 105, "https://storage.edidomus.it/dueruote/nuovo/850/lat1586861045333.jpg", true, 210, "BMW F900R", 32000m, "BMW own Rear Brake Control specified for this unique bike", 705, 3, 16, "BMW 6-Gears transmission", 4, new DateTime(2024, 4, 3, 0, 24, 27, 444, DateTimeKind.Local).AddTicks(2067) },
-                    { 3, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 100, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 225, "https://www.procycles.com.au/cdn/shop/files/2023-BMW-M-1000-RR_-16-1024x724.jpg?v=1689145146", true, 190, "BMW M1000RR", 82000m, "BMW own Rear Brake Control specified for this unique bike", 665, 3, 21, "BMW 6-Gears transmission", 2, new DateTime(2024, 4, 3, 0, 24, 27, 444, DateTimeKind.Local).AddTicks(2072) },
-                    { 4, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 100, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 225, "https://www.euromotorcenter.fi/wp-content/uploads/2023/10/P90528842_highRes_the-new-bmw-m-1000-x.jpg", true, 190, "BMW M1000XR", 82000m, "BMW own Rear Brake Control specified for this unique bike", 665, 3, 21, "BMW 6-Gears transmission", 2, new DateTime(2024, 4, 3, 0, 24, 27, 444, DateTimeKind.Local).AddTicks(2075) },
-                    { 5, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 100, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 225, "https://www.bavarianmc.co.za/files/bike/22767/img_20240205160754.jpg", true, 190, "BMW F800R", 82000m, "BMW own Rear Brake Control specified for this unique bike", 665, 3, 21, "BMW 6-Gears transmission", 3, new DateTime(2024, 4, 3, 0, 24, 27, 444, DateTimeKind.Local).AddTicks(2079) },
-                    { 6, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 100, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 225, "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgIT2nOwQjqBRnWlaEFM8TWukwdyvwvGoWtqhfRxAh2-lTgX1EH_l689He3V3mEj_vQQ1Dk0WK7JET62OW-THslCCRxTvn13NKzxRa6XwwM2yi-KAKY3qVeNfjLnoIB6zpA0cH2MFT4Ue7fQTc1NePPzIfcYZIB0beSzdhzY1THSaUq8sAYpOXLhjgA7A/s1074/2023-BMW-R-nineT-100-Years-and-R18-100-Years.jpg", true, 190, "BMW RNineT", 82000m, "BMW own Rear Brake Control specified for this unique bike", 665, 3, 21, "BMW 6-Gears transmission", 5, new DateTime(2024, 4, 3, 0, 24, 27, 444, DateTimeKind.Local).AddTicks(2082) },
-                    { 7, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 100, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 225, "https://cdn.dealerspike.com/imglib/v1/800x600/imglib/trimsdb/17432641-0-110420261.jpg", true, 190, "BMW R1250GS", 82000m, "BMW own Rear Brake Control specified for this unique bike", 665, 3, 21, "BMW 6-Gears transmission", 6, new DateTime(2024, 4, 3, 0, 24, 27, 444, DateTimeKind.Local).AddTicks(2085) }
+                    { 1, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 1000, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 205, "https://images4.alphacoders.com/127/1277784.jpg", true, 197, "BMW S1000RR", 62000m, "BMW own Rear Brake Control specified for this unique bike", 705, 3, 21, "BMW 6-Gears transmission", 1, new DateTime(2024, 4, 5, 15, 9, 30, 267, DateTimeKind.Local).AddTicks(8792) },
+                    { 2, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 900, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 105, "https://storage.edidomus.it/dueruote/nuovo/850/lat1586861045333.jpg", true, 210, "BMW F900R", 32000m, "BMW own Rear Brake Control specified for this unique bike", 705, 3, 16, "BMW 6-Gears transmission", 4, new DateTime(2024, 4, 5, 15, 9, 30, 267, DateTimeKind.Local).AddTicks(8851) },
+                    { 3, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 100, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 225, "https://www.procycles.com.au/cdn/shop/files/2023-BMW-M-1000-RR_-16-1024x724.jpg?v=1689145146", true, 190, "BMW M1000RR", 82000m, "BMW own Rear Brake Control specified for this unique bike", 665, 3, 21, "BMW 6-Gears transmission", 2, new DateTime(2024, 4, 5, 15, 9, 30, 267, DateTimeKind.Local).AddTicks(8861) },
+                    { 4, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 100, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 225, "https://www.euromotorcenter.fi/wp-content/uploads/2023/10/P90528842_highRes_the-new-bmw-m-1000-x.jpg", true, 190, "BMW M1000XR", 82000m, "BMW own Rear Brake Control specified for this unique bike", 665, 3, 21, "BMW 6-Gears transmission", 2, new DateTime(2024, 4, 5, 15, 9, 30, 267, DateTimeKind.Local).AddTicks(8869) },
+                    { 5, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 100, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 225, "https://www.bavarianmc.co.za/files/bike/22767/img_20240205160754.jpg", true, 190, "BMW F800R", 82000m, "BMW own Rear Brake Control specified for this unique bike", 665, 3, 21, "BMW 6-Gears transmission", 3, new DateTime(2024, 4, 5, 15, 9, 30, 267, DateTimeKind.Local).AddTicks(8877) },
+                    { 6, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 100, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 225, "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgIT2nOwQjqBRnWlaEFM8TWukwdyvwvGoWtqhfRxAh2-lTgX1EH_l689He3V3mEj_vQQ1Dk0WK7JET62OW-THslCCRxTvn13NKzxRa6XwwM2yi-KAKY3qVeNfjLnoIB6zpA0cH2MFT4Ue7fQTc1NePPzIfcYZIB0beSzdhzY1THSaUq8sAYpOXLhjgA7A/s1074/2023-BMW-R-nineT-100-Years-and-R18-100-Years.jpg", true, 190, "BMW RNineT", 82000m, "BMW own Rear Brake Control specified for this unique bike", 665, 3, 21, "BMW 6-Gears transmission", 5, new DateTime(2024, 4, 5, 15, 9, 30, 267, DateTimeKind.Local).AddTicks(8885) },
+                    { 7, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 100, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 225, "https://cdn.dealerspike.com/imglib/v1/800x600/imglib/trimsdb/17432641-0-110420261.jpg", true, 190, "BMW R1250GS", 82000m, "BMW own Rear Brake Control specified for this unique bike", 665, 3, 21, "BMW 6-Gears transmission", 6, new DateTime(2024, 4, 5, 15, 9, 30, 267, DateTimeKind.Local).AddTicks(8892) }
                 });
 
             migrationBuilder.CreateIndex(
@@ -582,6 +644,16 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                 column: "ClothId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Events_JoinerId",
+                table: "Events",
+                column: "JoinerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EventsJoiners_EventId",
+                table: "EventsJoiners",
+                column: "EventId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Motorcycles_BuyerId",
                 table: "Motorcycles",
                 column: "BuyerId");
@@ -628,6 +700,9 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                 name: "ClothsBuyers");
 
             migrationBuilder.DropTable(
+                name: "EventsJoiners");
+
+            migrationBuilder.DropTable(
                 name: "MotorcyclesBuyers");
 
             migrationBuilder.DropTable(
@@ -635,6 +710,9 @@ namespace BMW_Final_Project.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Cloths");
+
+            migrationBuilder.DropTable(
+                name: "Events");
 
             migrationBuilder.DropTable(
                 name: "Motorcycles");

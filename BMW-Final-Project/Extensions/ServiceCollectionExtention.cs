@@ -11,6 +11,10 @@ namespace BMW_Final_Project.Extensions
     {
         public static IServiceCollection AddAplicationServices(this IServiceCollection services)
         {
+            services.AddScoped<IRepository, Repository>();
+            services.AddScoped<IMotorcycleService, MotorcycleService>();
+            services.AddScoped<IClothService, ClothService>();
+            services.AddScoped<IEventService, EventService>();
             return services;
         }
         public static IServiceCollection AddAplicationDbContext(this IServiceCollection services, IConfiguration configuration)
@@ -19,9 +23,6 @@ namespace BMW_Final_Project.Extensions
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
-            services.AddScoped<IRepository, Repository>();
-            services.AddScoped<IMotorcycleService, MotorcycleService>();
-            services.AddScoped<IClothService, ClothService>();
 
             return services;
         }

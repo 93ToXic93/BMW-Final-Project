@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BMW_Final_Project.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240402212427_Initial")]
+    [Migration("20240405120931_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,7 +55,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("ab5f19c3-0e66-4a5b-ab4a-ada016abc5c5"),
-                            ConcurrencyStamp = "1d9d7420-540f-4481-8eec-eeaa344cfc67",
+                            ConcurrencyStamp = "630b5927-9dfd-4c1b-8ded-c389e3b41da6",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -143,7 +143,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         {
                             Id = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8e0df3dd-9350-4bd3-a16a-f1b0f5f85322",
+                            ConcurrencyStamp = "f7c5bd05-b509-4a2d-bccc-0903ad84a878",
                             Email = "Adi@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Adrian",
@@ -152,15 +152,15 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             Nickname = "ToXic",
                             NormalizedEmail = "ADI@GMAIL.COM",
                             NormalizedUserName = "ADI@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAECIN+AC3Jp1y4pClNht2B46q+32wfUEOeS9WIuSopz7rCkLwhy/3qzJJRKi9LetYcg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEN/iGCZ9Bk00xsT0Uhi0mSZ8M1nPVWY8QBWen+qCmBbr8yHDi1BO/pEaSIhJ0OkmZw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0596E55F-30F6-4B71-AC43-297D284AD145",
+                            SecurityStamp = "9CE0E7CB-A5D3-4B21-AC57-B4BD70F879A7",
                             TwoFactorEnabled = false,
                             UserName = "Adi@gmail.com"
                         });
                 });
 
-            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloths.Cloth", b =>
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloth.Cloth", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -331,7 +331,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloths.ClothBuyer", b =>
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloth.ClothBuyer", b =>
                 {
                     b.Property<Guid>("BuyerId")
                         .HasColumnType("uniqueidentifier")
@@ -350,7 +350,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     b.HasComment("Cloth and buyers");
                 });
 
-            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloths.ClothCollection", b =>
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloth.ClothCollection", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -389,7 +389,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloths.Size", b =>
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloth.Size", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -448,7 +448,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloths.TypePerson", b =>
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloth.TypePerson", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -487,7 +487,120 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycles.ColorCategory", b =>
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Event.Event", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasComment("Event identifier");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)")
+                        .HasComment("Description of the event");
+
+                    b.Property<DateTime>("EndEvent")
+                        .HasColumnType("datetime2")
+                        .HasComment("End date of the event");
+
+                    b.Property<string>("ImgUrl")
+                        .IsRequired()
+                        .HasMaxLength(60000)
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("JoinerId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasComment("Joiner identifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasComment("Name of the event");
+
+                    b.Property<string>("PlaceOfTheEvent")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasComment("Place date of the event");
+
+                    b.Property<DateTime>("StartEvent")
+                        .HasColumnType("datetime2")
+                        .HasComment("Start date of the event");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("JoinerId");
+
+                    b.ToTable("Events");
+
+                    b.HasComment("Cloth table");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Тази година само с БМВ ивента е неповторимо събитие, което на трябва да изпускате. Ще има стънт програма и екслузивни мотори. ЗАПОВЯДАЙТЕ!",
+                            EndEvent = new DateTime(2024, 2, 20, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            ImgUrl = "https://www.bmw-motorrad.com/content/dam/bmwmotorradnsc/marketCORECOM/common/images/experience/stories/brand/bmd-2023/youtube/nsc-bmd-2023-youtube-fallback.jpg.asset.1675938793795.jpg",
+                            IsActive = true,
+                            JoinerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                            Name = "BMW SPORT EVENT",
+                            PlaceOfTheEvent = "София, BMW-България",
+                            StartEvent = new DateTime(2024, 2, 18, 13, 45, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Тази година, БМВ ивента е неповторимо събитие, което на трябва да изпускате. Ще има стънт програма и екслузивни мотори.Това е 100-годишнината на BMW и желаем да поканим възможно повече хора! ЗАПОВЯДАЙТЕ!",
+                            EndEvent = new DateTime(2024, 6, 17, 21, 0, 0, 0, DateTimeKind.Unspecified),
+                            ImgUrl = "https://i.ytimg.com/vi/2t-m6cuPUqI/maxresdefault.jpg",
+                            IsActive = true,
+                            JoinerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                            Name = "BMW Anniversary",
+                            PlaceOfTheEvent = "София, BMW-България",
+                            StartEvent = new DateTime(2024, 6, 15, 12, 45, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "BMW - Откриване на сезона, желаем да ви поканим да открием новият сезон с яркост и красота с нашите нови модели. ЗАПОВЯДАЙТЕ!",
+                            EndEvent = new DateTime(2024, 9, 22, 21, 0, 0, 0, DateTimeKind.Unspecified),
+                            ImgUrl = "https://c.ndtvimg.com/2020-09/9e7k4g2g_bmw-motorrad-days_625x300_18_September_20.jpg",
+                            IsActive = true,
+                            JoinerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                            Name = "BMW new season",
+                            PlaceOfTheEvent = "София, BMW-България",
+                            StartEvent = new DateTime(2024, 9, 21, 11, 45, 0, 0, DateTimeKind.Unspecified)
+                        });
+                });
+
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Event.EventJoiners", b =>
+                {
+                    b.Property<Guid>("JoinerId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasComment("Joiner identifier");
+
+                    b.Property<int>("EventId")
+                        .HasColumnType("int")
+                        .HasComment("Event identifier");
+
+                    b.HasKey("JoinerId", "EventId");
+
+                    b.HasIndex("EventId");
+
+                    b.ToTable("EventsJoiners");
+
+                    b.HasComment("Events and joiners");
+                });
+
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycle.ColorCategory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -581,7 +694,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycles.Motorcycle", b =>
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycle.Motorcycle", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -715,7 +828,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 1,
-                            Year = new DateTime(2024, 4, 3, 0, 24, 27, 444, DateTimeKind.Local).AddTicks(2029)
+                            Year = new DateTime(2024, 4, 5, 15, 9, 30, 267, DateTimeKind.Local).AddTicks(8792)
                         },
                         new
                         {
@@ -738,7 +851,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 16,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 4,
-                            Year = new DateTime(2024, 4, 3, 0, 24, 27, 444, DateTimeKind.Local).AddTicks(2067)
+                            Year = new DateTime(2024, 4, 5, 15, 9, 30, 267, DateTimeKind.Local).AddTicks(8851)
                         },
                         new
                         {
@@ -761,7 +874,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 2,
-                            Year = new DateTime(2024, 4, 3, 0, 24, 27, 444, DateTimeKind.Local).AddTicks(2072)
+                            Year = new DateTime(2024, 4, 5, 15, 9, 30, 267, DateTimeKind.Local).AddTicks(8861)
                         },
                         new
                         {
@@ -784,7 +897,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 2,
-                            Year = new DateTime(2024, 4, 3, 0, 24, 27, 444, DateTimeKind.Local).AddTicks(2075)
+                            Year = new DateTime(2024, 4, 5, 15, 9, 30, 267, DateTimeKind.Local).AddTicks(8869)
                         },
                         new
                         {
@@ -807,7 +920,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 3,
-                            Year = new DateTime(2024, 4, 3, 0, 24, 27, 444, DateTimeKind.Local).AddTicks(2079)
+                            Year = new DateTime(2024, 4, 5, 15, 9, 30, 267, DateTimeKind.Local).AddTicks(8877)
                         },
                         new
                         {
@@ -830,7 +943,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 5,
-                            Year = new DateTime(2024, 4, 3, 0, 24, 27, 444, DateTimeKind.Local).AddTicks(2082)
+                            Year = new DateTime(2024, 4, 5, 15, 9, 30, 267, DateTimeKind.Local).AddTicks(8885)
                         },
                         new
                         {
@@ -853,11 +966,11 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 6,
-                            Year = new DateTime(2024, 4, 3, 0, 24, 27, 444, DateTimeKind.Local).AddTicks(2085)
+                            Year = new DateTime(2024, 4, 5, 15, 9, 30, 267, DateTimeKind.Local).AddTicks(8892)
                         });
                 });
 
-            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycles.MotorcycleBuyers", b =>
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycle.MotorcycleBuyers", b =>
                 {
                     b.Property<Guid>("BuyerId")
                         .HasColumnType("uniqueidentifier")
@@ -876,7 +989,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     b.HasComment("Motorcycles and buyers");
                 });
 
-            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycles.StandardEuro", b =>
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycle.StandardEuro", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -930,7 +1043,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycles.TypeMotor", b =>
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycle.TypeMotor", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1103,7 +1216,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloths.Cloth", b =>
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloth.Cloth", b =>
                 {
                     b.HasOne("BMW_Final_Project.Infrastructure.Data.IdentityModels.ApplicationUser", "Buyer")
                         .WithMany()
@@ -1111,19 +1224,19 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BMW_Final_Project.Infrastructure.Data.Models.Cloths.ClothCollection", "ClothCollection")
+                    b.HasOne("BMW_Final_Project.Infrastructure.Data.Models.Cloth.ClothCollection", "ClothCollection")
                         .WithMany("Cloths")
                         .HasForeignKey("ClothCollectionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BMW_Final_Project.Infrastructure.Data.Models.Cloths.Size", "Size")
+                    b.HasOne("BMW_Final_Project.Infrastructure.Data.Models.Cloth.Size", "Size")
                         .WithMany("Cloths")
                         .HasForeignKey("SizeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BMW_Final_Project.Infrastructure.Data.Models.Cloths.TypePerson", "TypePerson")
+                    b.HasOne("BMW_Final_Project.Infrastructure.Data.Models.Cloth.TypePerson", "TypePerson")
                         .WithMany("Cloths")
                         .HasForeignKey("TypePersonId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1138,7 +1251,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     b.Navigation("TypePerson");
                 });
 
-            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloths.ClothBuyer", b =>
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloth.ClothBuyer", b =>
                 {
                     b.HasOne("BMW_Final_Project.Infrastructure.Data.IdentityModels.ApplicationUser", "Buyer")
                         .WithMany()
@@ -1146,7 +1259,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("BMW_Final_Project.Infrastructure.Data.Models.Cloths.Cloth", "Cloth")
+                    b.HasOne("BMW_Final_Project.Infrastructure.Data.Models.Cloth.Cloth", "Cloth")
                         .WithMany("ClothBuyers")
                         .HasForeignKey("ClothId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1157,7 +1270,37 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     b.Navigation("Cloth");
                 });
 
-            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycles.Motorcycle", b =>
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Event.Event", b =>
+                {
+                    b.HasOne("BMW_Final_Project.Infrastructure.Data.IdentityModels.ApplicationUser", "Joiner")
+                        .WithMany()
+                        .HasForeignKey("JoinerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Joiner");
+                });
+
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Event.EventJoiners", b =>
+                {
+                    b.HasOne("BMW_Final_Project.Infrastructure.Data.Models.Event.Event", "Event")
+                        .WithMany("EventsJoiners")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BMW_Final_Project.Infrastructure.Data.IdentityModels.ApplicationUser", "Joiner")
+                        .WithMany()
+                        .HasForeignKey("JoinerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Event");
+
+                    b.Navigation("Joiner");
+                });
+
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycle.Motorcycle", b =>
                 {
                     b.HasOne("BMW_Final_Project.Infrastructure.Data.IdentityModels.ApplicationUser", "Buyer")
                         .WithMany()
@@ -1165,19 +1308,19 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BMW_Final_Project.Infrastructure.Data.Models.Motorcycles.ColorCategory", "ColorCategory")
+                    b.HasOne("BMW_Final_Project.Infrastructure.Data.Models.Motorcycle.ColorCategory", "ColorCategory")
                         .WithMany("Motorcycles")
                         .HasForeignKey("ColorCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BMW_Final_Project.Infrastructure.Data.Models.Motorcycles.StandardEuro", "StandardEuro")
+                    b.HasOne("BMW_Final_Project.Infrastructure.Data.Models.Motorcycle.StandardEuro", "StandardEuro")
                         .WithMany("Motorcycles")
                         .HasForeignKey("StandardEuroId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BMW_Final_Project.Infrastructure.Data.Models.Motorcycles.TypeMotor", "TypeMotor")
+                    b.HasOne("BMW_Final_Project.Infrastructure.Data.Models.Motorcycle.TypeMotor", "TypeMotor")
                         .WithMany("Motorcycles")
                         .HasForeignKey("TypeMotorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1192,7 +1335,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     b.Navigation("TypeMotor");
                 });
 
-            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycles.MotorcycleBuyers", b =>
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycle.MotorcycleBuyers", b =>
                 {
                     b.HasOne("BMW_Final_Project.Infrastructure.Data.IdentityModels.ApplicationUser", "Buyer")
                         .WithMany()
@@ -1200,7 +1343,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("BMW_Final_Project.Infrastructure.Data.Models.Motorcycles.Motorcycle", "Motorcycle")
+                    b.HasOne("BMW_Final_Project.Infrastructure.Data.Models.Motorcycle.Motorcycle", "Motorcycle")
                         .WithMany("MotorcycleBuyers")
                         .HasForeignKey("MotorcycleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1262,42 +1405,47 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloths.Cloth", b =>
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloth.Cloth", b =>
                 {
                     b.Navigation("ClothBuyers");
                 });
 
-            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloths.ClothCollection", b =>
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloth.ClothCollection", b =>
                 {
                     b.Navigation("Cloths");
                 });
 
-            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloths.Size", b =>
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloth.Size", b =>
                 {
                     b.Navigation("Cloths");
                 });
 
-            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloths.TypePerson", b =>
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloth.TypePerson", b =>
                 {
                     b.Navigation("Cloths");
                 });
 
-            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycles.ColorCategory", b =>
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Event.Event", b =>
+                {
+                    b.Navigation("EventsJoiners");
+                });
+
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycle.ColorCategory", b =>
                 {
                     b.Navigation("Motorcycles");
                 });
 
-            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycles.Motorcycle", b =>
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycle.Motorcycle", b =>
                 {
                     b.Navigation("MotorcycleBuyers");
                 });
 
-            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycles.StandardEuro", b =>
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycle.StandardEuro", b =>
                 {
                     b.Navigation("Motorcycles");
                 });
 
-            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycles.TypeMotor", b =>
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Motorcycle.TypeMotor", b =>
                 {
                     b.Navigation("Motorcycles");
                 });

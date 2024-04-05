@@ -1,4 +1,5 @@
-﻿using BMW_Final_Project.Infrastructure.Data.IdentityModels;
+﻿using BMW_Final_Project.Infrastructure.Constants;
+using BMW_Final_Project.Infrastructure.Data.IdentityModels;
 using BMW_Final_Project.Infrastructure.Data.Models.Cloth;
 using BMW_Final_Project.Infrastructure.Data.Models.Event;
 using BMW_Final_Project.Infrastructure.Data.Models.Motorcycle;
@@ -565,9 +566,33 @@ namespace BMW_Final_Project.Infrastructure.Data
                     Description = "Тази година само с БМВ ивента е неповторимо събитие, което на трябва да изпускате. Ще има стънт програма и екслузивни мотори. ЗАПОВЯДАЙТЕ!",
                     Name = "BMW SPORT EVENT",
                     PlaceOfTheEvent = "София, BMW-България",
-                    StartEvent = DateTime.Now,
-                    EndEvent = DateTime.Now,
-                    JoinerId = Guid.Parse("32b13a0b-6546-439e-a40d-4880e8a4e0a9")
+                    StartEvent = DateTime.ParseExact("18/02/2024 13:45", DataConstants.DataFormatWithHours, null),
+                    EndEvent = DateTime.ParseExact("20/02/2024 19:00", DataConstants.DataFormatWithHours, null),
+                    JoinerId = Guid.Parse("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                    IsActive = true,
+                    ImgUrl = "https://www.bmw-motorrad.com/content/dam/bmwmotorradnsc/marketCORECOM/common/images/experience/stories/brand/bmd-2023/youtube/nsc-bmd-2023-youtube-fallback.jpg.asset.1675938793795.jpg"
+                },new Event()
+                {
+                    Id = 2,
+                    Description = "Тази година, БМВ ивента е неповторимо събитие, което на трябва да изпускате. Ще има стънт програма и екслузивни мотори.Това е 100-годишнината на BMW и желаем да поканим възможно повече хора! ЗАПОВЯДАЙТЕ!",
+                    Name = "BMW Anniversary",
+                    PlaceOfTheEvent = "София, BMW-България",
+                    StartEvent = DateTime.ParseExact("15/06/2024 12:45", DataConstants.DataFormatWithHours, null),
+                    EndEvent = DateTime.ParseExact("17/06/2024 21:00", DataConstants.DataFormatWithHours, null),
+                    JoinerId = Guid.Parse("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                    IsActive = true,
+                    ImgUrl = "https://i.ytimg.com/vi/2t-m6cuPUqI/maxresdefault.jpg"
+                }, new Event()
+                {
+                    Id = 3,
+                    Description = "BMW - Откриване на сезона, желаем да ви поканим да открием новият сезон с яркост и красота с нашите нови модели. ЗАПОВЯДАЙТЕ!",
+                    Name = "BMW new season",
+                    PlaceOfTheEvent = "София, BMW-България",
+                    StartEvent = DateTime.ParseExact("21/09/2024 11:45", DataConstants.DataFormatWithHours, null),
+                    EndEvent = DateTime.ParseExact("22/09/2024 21:00", DataConstants.DataFormatWithHours, null),
+                    JoinerId = Guid.Parse("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                    IsActive = true,
+                    ImgUrl = "https://c.ndtvimg.com/2020-09/9e7k4g2g_bmw-motorrad-days_625x300_18_September_20.jpg"
                 });
 
 
