@@ -54,8 +54,8 @@ This project is licensed under the MIT License.
 
 ### Acknowledgments
 
-Special thanks to the .NET community and all contributors who help make GymFit+ better.
+Special thanks to the .NET community and all contributors who help make BMW better.
 
 ### Live Demo
 
-A live demo of GymFit+ will be available in the future.
+A live demo of BMW will be available in the future.
