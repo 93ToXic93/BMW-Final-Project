@@ -345,6 +345,7 @@ namespace BMW_Final_Project.Engine.Services
 
         public async Task RemoveMotorcycleAsync(int id)
         {
+
             var motorcycleToRemove = await GetByIdMotorsAndServicesAsync(id);
 
             var motorcycle = await GetByIdAsync(id);

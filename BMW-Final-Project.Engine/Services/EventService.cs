@@ -1,6 +1,5 @@
 ﻿using BMW_Final_Project.Engine.Contracts;
 using BMW_Final_Project.Engine.Models.Event;
-using BMW_Final_Project.Engine.Models.Motorcycle;
 using BMW_Final_Project.Infrastructure.Constants;
 using BMW_Final_Project.Infrastructure.Data.Common;
 using BMW_Final_Project.Infrastructure.Data.Models.Event;
@@ -181,6 +180,52 @@ namespace BMW_Final_Project.Engine.Services
             return events;
         }
 
+        public async Task AddAsync(int id, Guid userId)
+        {
+            var eventToAdd = await GetByIdAsync(id);
+
+            if (eventToAdd == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (!(eventToAdd.EventsJoiners.Any(x => x.Event.Id == id && x.JoinerId == userId)))
+            {
+                var eve = new EventJoiners()
+                {
+                    EventId = eventToAdd.Id,
+                    JoinerId = userId
+                };
+
+                await _repository.AddAsync(eve);
+
+                await _repository.SaveChangesAsync();
+            }
+            else
+            {
+                throw new ArgumentException("Already joined");
+            }
+        }
+
+        public async Task RemoveEventAsync(int id, Guid userId)
+        {
+            var eventToRemove = await GetByIdMotorsAndServicesAsync(id);
+
+            if (eventToRemove == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (eventToRemove.JoinerId != userId)
+            {
+                throw new ArgumentException("Not correct user");
+            }
+
+            _repository.Remove(eventToRemove);
+
+            await _repository.SaveChangesAsync();
+        }
+
         private async Task<bool> IsThisEventExistButDeletedAsync(AddEventModel model)
         {
             var eve = await _repository.AllReadOnly<Event>().AnyAsync(x => x.IsActive == false && x.Name == model.Name);
@@ -194,6 +239,14 @@ namespace BMW_Final_Project.Engine.Services
                 .FirstOrDefaultAsync();
 
             return eve;
+        }
+        private async Task<EventJoiners?> GetByIdMotorsAndServicesAsync(int id)
+        {
+            var motorcycle = await _repository.All<EventJoiners>()
+                .Where(x => x.EventId == id)
+                .FirstOrDefaultAsync();
+
+            return motorcycle;
         }
     }
 }

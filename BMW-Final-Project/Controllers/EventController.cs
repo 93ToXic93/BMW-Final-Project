@@ -30,5 +30,37 @@ namespace BMW_Final_Project.Controllers
             return View(events);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> JoinEvent(int id)
+        {
+            try
+            {
+                await _eventService.AddAsync(id, User.Id());
+                return RedirectToAction(nameof(AllJoined));
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveEvent(int id)
+        {
+            try
+            {
+                var userId = User.Id();
+
+                await _eventService.RemoveEventAsync(id, userId);
+                return RedirectToAction(nameof(AllJoined));
+            }
+            catch (Exception e)
+            {
+                return NotFound();
+            }
+
+        }
+
     }
 }

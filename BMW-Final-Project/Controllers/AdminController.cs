@@ -5,7 +5,6 @@ using BMW_Final_Project.Engine.Models.Motorcycle;
 using BMW_Final_Project.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace BMW_Final_Project.Controllers
 {
@@ -501,7 +500,13 @@ namespace BMW_Final_Project.Controllers
             return RedirectToAction("Index", "Event");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> AllJoinedUsersForEvent(int id)
+        {
+            var model = await _eventService.AllJoinedUsersForEventAsync(id);
 
+            return View(model);
+        }
 
     }
 }
