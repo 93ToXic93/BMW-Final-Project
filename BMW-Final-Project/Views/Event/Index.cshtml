@@ -3,7 +3,7 @@
 <div class="row p-5">
     @if (Model.Any())
     {
-        @foreach (var eve in Model.OrderBy(x => x.StartEvent))
+        @foreach (var eve in Model.OrderByDescending(x => x.StartEvent))
         {
             <div class="col-12 col-md-10 p-5 mb-3">
                 <div class="row shadow-bottom p-4">
@@ -20,6 +20,9 @@
                         @if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                         {
                             <div class="d-flex">
+
+                                <a asp-controller="Admin" asp-action="AddEvent" asp-route-id="@eve.Id" class="btn btn-success m-2">Добави събитие</a>
+
                                 <a asp-controller="Admin" asp-action="EditEvent" asp-route-id="@eve.Id" class="btn btn-primary m-2">Промени</a>
 
                                 <form asp-controller="Admin" asp-action="DeleteEvent" onsubmit="return ConfirmDelete()" asp-route-id="@eve.Id" method="post">
@@ -41,3 +44,7 @@
         <h1>Няма открити ивенти в момента</h1>
     }
 </div>
+
+@section Scripts {
+    <script src="~/js/DeleteCheck/DeleteCheck.js"></script>
+}

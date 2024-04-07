@@ -124,7 +124,7 @@
 
         public const string DataFormat = "dd/MM/yyyy";
 
-        public const string DataFormatWithHours = "dd/MM/yyyy HH:mm";
+        public const string DataFormatWithHours = "MM/dd/yyyy HH:mm";
 
         public const string DataFormatError =
             $"Правилният формат трябва да изглежда като: {DataFormat} и датата не трябва да е преди тази година!";

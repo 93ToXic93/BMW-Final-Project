@@ -1,9 +1,11 @@
 ﻿using BMW_Final_Project.Engine.Contracts;
 using BMW_Final_Project.Engine.Models.Cloth;
+using BMW_Final_Project.Engine.Models.Event;
 using BMW_Final_Project.Engine.Models.Motorcycle;
 using BMW_Final_Project.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace BMW_Final_Project.Controllers
 {
@@ -13,11 +15,13 @@ namespace BMW_Final_Project.Controllers
 
         private readonly IMotorcycleService _motorcycleService;
         private readonly IClothService _clothService;
+        private readonly IEventService _eventService;
 
-        public AdminController(IMotorcycleService motorcycleService,IClothService clothService)
+        public AdminController(IMotorcycleService motorcycleService,IClothService clothService, IEventService eventService)
         {
             _motorcycleService = motorcycleService;
             _clothService = clothService;
+            _eventService = eventService;
         }
 
         [HttpGet]
@@ -338,6 +342,135 @@ namespace BMW_Final_Project.Controllers
 
             return RedirectToAction("Index", "Cloth");
         }
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteEvent(int id)
+        {
+
+            try
+            {
+                await _eventService.DeleteAsync(id);
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+
+            return RedirectToAction("Index", "Event");
+        }
+
+        [HttpGet]
+        public IActionResult AddEvent()
+        {
+
+            var eventToAdd = new AddEventModel();
+
+            return View(eventToAdd);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddEvent(AddEventModel eventToAdd)
+        {
+
+            if (await _eventService.IsThisEventExistAsync(eventToAdd))
+            {
+                ModelState.AddModelError(string.Empty, "Това събитие вече съществува!");
+            }
+
+            if (!(await _eventService.IsTheDatesAreCorrectAsync(eventToAdd.StartEvent,eventToAdd.EndEvent)))
+            {
+                 ModelState.AddModelError(string.Empty,"Датата е невалидна, трябва да имат поне час разлика и започващата дата да не е преди завършващата!");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(eventToAdd);
+            }
+
+            eventToAdd.JoinerId = User.Id();
+
+            await _eventService.AddAsync(eventToAdd);
+
+            return RedirectToAction("Index", "Event");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditEvent(int id)
+        {
+            try
+            {
+                var model = await _eventService.GetByIdAsync(id);
+
+                if (model == null)
+                {
+                    return BadRequest();
+                }
+
+                if (id != model.Id)
+                {
+                    return BadRequest();
+                }
+                var modelToEdit = new EditEventModel
+                {
+                    Id = model.Id,
+                    Description = model.Description,
+                    EndEvent = model.EndEvent,
+                    StartEvent = model.StartEvent,
+                    ImgUrl = model.ImgUrl,
+                    Name = model.Name,
+                    PlaceOfTheEvent = model.PlaceOfTheEvent
+
+                };
+                return View(modelToEdit);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status403Forbidden);
+            }
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditEvent(EditEventModel modelToEdit, int id)
+        {
+
+            var eventEdited = await _eventService.GetByIdAsync(modelToEdit.Id);
+
+            if (eventEdited == null)
+            {
+                return NotFound();
+            }
+
+            if (eventEdited.Name != modelToEdit.Name)
+            {
+                if (await _eventService.IsThisEventExistWhenEditAsync(modelToEdit))
+                {
+                    ModelState.AddModelError(string.Empty,"Това събитие вече съществува!");
+                }
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(modelToEdit);
+            }
+
+            try
+            {
+                await _eventService.EditAsync(modelToEdit);
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+
+
+
+            return RedirectToAction("Index", "Event");
+        }
+
+
 
     }
 }

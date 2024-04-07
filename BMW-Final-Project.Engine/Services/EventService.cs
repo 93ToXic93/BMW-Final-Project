@@ -35,5 +35,143 @@ namespace BMW_Final_Project.Engine.Services
 
             return events;
         }
+
+        public async Task DeleteAsync(int id)
+        {
+            var eventToRemove = await GetByIdAsync(id);
+
+            if (eventToRemove == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (id != eventToRemove.Id)
+            {
+                throw new ArgumentException("Not found");
+            }
+
+            eventToRemove.IsActive = false;
+
+            await _repository.SaveChangesAsync();
+        }
+
+        public async Task<Event?> GetByIdAsync(int id)
+        {
+            var eve = await _repository.All<Event>()
+                .Include(x => x.EventsJoiners)
+                .Where(x => x.Id == id)
+                .FirstOrDefaultAsync();
+
+            return eve;
+        }
+
+        public async Task AddAsync(AddEventModel model)
+        {
+            if (await IsThisEventExistButDeletedAsync(model))
+            {
+                var eventToAdd = await GetByNameDeletedEventAsync(model.Name);
+
+                eventToAdd.IsActive = true;
+                eventToAdd.ImgUrl = model.ImgUrl;
+                eventToAdd.Name = model.Name;
+                eventToAdd.EndEvent = model.EndEvent;
+                eventToAdd.StartEvent = model.StartEvent;
+                eventToAdd.Id = model.Id;
+                eventToAdd.PlaceOfTheEvent = model.PlaceOfTheEvent;
+                eventToAdd.Description = model.Description;
+                eventToAdd.JoinerId = model.JoinerId;
+
+
+                await _repository.SaveChangesAsync();
+            }
+            else
+            {
+                Event eventToAdd = new Event()
+                {
+                    IsActive = true,
+                    ImgUrl = model.ImgUrl,
+                    Name = model.Name,
+                    EndEvent = model.EndEvent,
+                    StartEvent = model.StartEvent,
+                    PlaceOfTheEvent = model.PlaceOfTheEvent,
+                    Description = model.Description,
+                    JoinerId = model.JoinerId,
+                };
+
+                await _repository.AddAsync(eventToAdd);
+
+                await _repository.SaveChangesAsync();
+            }
+        }
+
+        public async Task<bool> IsThisEventExistAsync(AddEventModel model)
+        {
+            var eve = await _repository.AllReadOnly<Event>().AnyAsync(x => x.IsActive == true && x.Name == model.Name);
+
+            return eve;
+        }
+
+        public async Task<bool> IsThisEventExistWhenEditAsync(EditEventModel model)
+        {
+            var eve = await _repository.AllReadOnly<Event>().AnyAsync(x => x.IsActive == true && x.Name == model.Name);
+
+            return eve; ;
+        }
+
+        public async Task<bool> IsTheDatesAreCorrectAsync(DateTime startDate, DateTime endDate)
+        {
+
+            if (!(startDate.Date > endDate.Date))
+            {
+                if (startDate.Date == endDate.Date)
+                {
+                    if (startDate.Hour + 1 <= endDate.Hour)
+                    {
+                        return true;
+                    }
+
+                    return false;
+                }
+
+                return true;
+            }
+
+
+            return false;
+        }
+
+        public async Task EditAsync(EditEventModel model)
+        {
+            var eventEdited = await GetByIdAsync(model.Id);
+
+            if (eventEdited == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            eventEdited.Name = model.Name;
+            eventEdited.Description = model.Description;
+            eventEdited.EndEvent = model.EndEvent;
+            eventEdited.StartEvent = model.StartEvent;
+            eventEdited.ImgUrl = model.ImgUrl;
+            eventEdited.PlaceOfTheEvent = model.PlaceOfTheEvent;
+
+            await _repository.SaveChangesAsync();
+        }
+
+        private async Task<bool> IsThisEventExistButDeletedAsync(AddEventModel model)
+        {
+            var eve = await _repository.AllReadOnly<Event>().AnyAsync(x => x.IsActive == false && x.Name == model.Name);
+
+            return eve;
+        }
+        private async Task<Event?> GetByNameDeletedEventAsync(string name)
+        {
+            var eve = await _repository.All<Event>()
+                .Where(x => x.Name == name && x.IsActive == false)
+                .FirstOrDefaultAsync();
+
+            return eve;
+        }
     }
 }
