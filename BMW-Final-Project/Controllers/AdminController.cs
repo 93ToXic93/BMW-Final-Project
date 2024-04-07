@@ -111,6 +111,22 @@ namespace BMW_Final_Project.Controllers
         public async Task<IActionResult> EditMotorcycle(EditMotorcycleModel modelToEdit, int id)
         {
 
+            var motorcycleToEdit = await _motorcycleService.GetByIdAsync(modelToEdit.Id);
+
+            if (motorcycleToEdit == null)
+            {
+                return NotFound();
+            }
+
+            if (motorcycleToEdit.Model != modelToEdit.Model)
+            {
+                if (await _motorcycleService.IsThisMotorcycleExistEditAsync(modelToEdit))
+                {
+                    ModelState.AddModelError(string.Empty, "Този мотор вече съществува!");
+                }
+            }
+
+
             if (!ModelState.IsValid)
             {
                 modelToEdit.TypeMotorModels = await _motorcycleService.GetTypeMotorcyclesAsync();
@@ -303,6 +319,21 @@ namespace BMW_Final_Project.Controllers
         [HttpPost]
         public async Task<IActionResult> EditCloth(EditClothModel modelToEdit, int id)
         {
+
+            var eventEdited = await _clothService.GetByIdAsync(modelToEdit.Id);
+
+            if (eventEdited == null)
+            {
+                return NotFound();
+            }
+
+            if (eventEdited.Name != modelToEdit.Name)
+            {
+                if (await _clothService.IsThisClothExistWhenEditAsync(modelToEdit))
+                {
+                    ModelState.AddModelError(string.Empty, "Това облекло вече съществува!");
+                }
+            }
 
             if (!ModelState.IsValid)
             {

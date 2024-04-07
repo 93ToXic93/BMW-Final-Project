@@ -30,6 +30,9 @@ namespace BMW_Final_Project.Engine.Contracts
 
         Task<bool> IsThisMotorcycleExistAsync(AddMotorcycleModel model);
 
+        Task<bool> IsThisMotorcycleExistEditAsync(EditMotorcycleModel model);
+
+
         Task<ICollection<AllMineMotorcycles>> GetAllMineMotorcyclesAsync(Guid userId);
 
         Task RemoveMotorcycleAsync(int id);

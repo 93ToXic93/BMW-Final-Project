@@ -251,9 +251,9 @@ namespace BMW_Final_Project.Engine.Services
 
         public async Task<bool> IsThisClothExistAsync(AddClothModel model)
         {
-            var motorcycle = await _repository.AllReadOnly<Cloth>().AnyAsync(x => x.IsActive == true && x.Name == model.Name);
+            var cloth = await _repository.AllReadOnly<Cloth>().AnyAsync(x => x.IsActive == true && x.Name == model.Name);
 
-            return motorcycle;
+            return cloth;
         }
 
         public async Task EditAsync(EditClothModel model)
@@ -339,6 +339,13 @@ namespace BMW_Final_Project.Engine.Services
             cloth.IsActive = false;
 
             await _repository.SaveChangesAsync();
+        }
+
+        public async Task<bool> IsThisClothExistWhenEditAsync(EditClothModel model)
+        {
+            var cloth = await _repository.AllReadOnly<Cloth>().AnyAsync(x => x.IsActive == true && x.Name == model.Name);
+
+            return cloth;
         }
 
 
