@@ -1,8 +1,10 @@
 ﻿using BMW_Final_Project.Engine.Contracts;
 using BMW_Final_Project.Engine.Models.Event;
+using BMW_Final_Project.Engine.Models.Motorcycle;
 using BMW_Final_Project.Infrastructure.Constants;
 using BMW_Final_Project.Infrastructure.Data.Common;
 using BMW_Final_Project.Infrastructure.Data.Models.Event;
+using BMW_Final_Project.Infrastructure.Data.Models.Motorcycle;
 using Microsoft.EntityFrameworkCore;
 
 namespace BMW_Final_Project.Engine.Services
@@ -157,6 +159,26 @@ namespace BMW_Final_Project.Engine.Services
             eventEdited.PlaceOfTheEvent = model.PlaceOfTheEvent;
 
             await _repository.SaveChangesAsync();
+        }
+
+        public async Task<ICollection<AllMineEvents>> GetAllMineEventsAsync(Guid userId)
+        {
+            var events = await _repository
+                .AllReadOnly<EventJoiners>()
+                .Where(x => x.JoinerId == userId && x.Event.IsActive)
+                .Select(x => new AllMineEvents()
+                {
+                    Id = x.Event.Id,
+                    Description = x.Event.Description,
+                    ImgUrl = x.Event.ImgUrl,
+                    EndEvent = x.Event.EndEvent.ToString(DataConstants.DataFormatWithHours),
+                    StartEvent = x.Event.StartEvent.ToString(DataConstants.DataFormatWithHours),
+                    Name = x.Event.Name,
+                    PlaceOfTheEvent = x.Event.PlaceOfTheEvent
+                })
+                .ToListAsync();
+
+            return events;
         }
 
         private async Task<bool> IsThisEventExistButDeletedAsync(AddEventModel model)

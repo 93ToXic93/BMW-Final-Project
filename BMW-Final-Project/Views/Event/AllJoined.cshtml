@@ -1,0 +1,38 @@
+﻿@model ICollection<BMW_Final_Project.Engine.Models.Event.AllMineEvents>
+
+<div class="row p-5">
+    <h1 class="text-center display-2">Мойте събития</h1>
+    @if (Model.Any())
+    {
+        @foreach (var eve in Model.OrderByDescending(x => x.StartEvent))
+        {
+            <div class="col-12 col-md-10 p-5 mb-3">
+                <div class="row shadow-bottom p-4">
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <img class="img-fluid imgEvent" src="@eve.ImgUrl" alt="Event Photo"/>
+                    </div>
+                    <div class="col-md-8">
+                        <h1 class="display-4">@eve.Name</h1>
+                        <h4 class="p-3">@eve.Description</h4>
+                        <p> -- Дата на началото на ивента: @eve.StartEvent часа</p>
+                        <p> -- Дата на края на ивента: @eve.EndEvent часа</p>
+                        <p>Местоположение: @eve.PlaceOfTheEvent</p>
+                        <hr/>
+                        <h1>Вече сте присъединени към това събитие!</h1>
+
+                        <button class="btn btn-success w-50">Напусни ивента</button>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <hr class="m-2 text-black"/>
+        <h1 class="text-center display-6">Няма открити събития в момента</h1>
+    }
+</div>
+
+@section Scripts {
+    <script src="~/js/DeleteCheck/DeleteCheck.js"></script>
+};

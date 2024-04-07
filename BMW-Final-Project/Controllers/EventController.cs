@@ -1,4 +1,5 @@
 ﻿using BMW_Final_Project.Engine.Contracts;
+using BMW_Final_Project.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BMW_Final_Project.Controllers
@@ -20,5 +21,14 @@ namespace BMW_Final_Project.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> AllJoined()
+        {
+            var events = await _eventService.GetAllMineEventsAsync(User.Id());
+
+            return View(events);
+        }
+
     }
 }

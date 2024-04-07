@@ -1,4 +1,5 @@
 ﻿using BMW_Final_Project.Engine.Models.Event;
+using BMW_Final_Project.Engine.Models.Motorcycle;
 using BMW_Final_Project.Infrastructure.Data.Models.Event;
 
 namespace BMW_Final_Project.Engine.Contracts
@@ -20,6 +21,8 @@ namespace BMW_Final_Project.Engine.Contracts
         Task<bool> IsTheDatesAreCorrectAsync(DateTime startDate, DateTime endDate);
 
         Task EditAsync(EditEventModel model);
+
+        Task<ICollection<AllMineEvents>> GetAllMineEventsAsync(Guid userId);
 
     }
 }
