@@ -1,12 +1,68 @@
 ﻿@model BMW_Final_Project.Engine.Models.Event.AllJoinedUsersModel
 
+@{
+    var previousPage = Model.CurrentPage - 1;
+    if (previousPage < 1)
+    {
+        previousPage = 1;
+    }
 
-<img src="@Model.ImgUrl"/>
-
-<h1>@Model.Name</h1>
-
-
-@foreach (var person in Model.Joiners)
-{
-    <h1>@person.Name</h1>
+    var maxPage = Math.Ceiling((double)Model.TotalCount / Model.ColorsPerPage);
 }
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class="p-5 display-4">@Model.Name</h1>
+            <img src="@Model.ImgUrl" class="img-fluid mb-4" alt="Event Photo">
+
+            @if (Model.Joiners.Any())
+            {
+                <p>Total Joiners: @Model.TotalCount</p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-between">
+                    <div>
+                        <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+                           asp-controller="Admin"
+                           asp-action="AllJoinedUsersForEvent"
+                           asp-route-currentPage="@previousPage"
+                           asp-route-colorsPerPage="@Model.ColorsPerPage">Предишна страница</a>
+                    </div>
+                    <div>
+                        @{
+                            var nextPage = Model.CurrentPage + 1;
+                            var shouldButtonBeDisabled = Model.CurrentPage == maxPage || !Model.Joiners.Any();
+                        }
+                        <a class="btn btn-primary @(shouldButtonBeDisabled ? "disabled" : string.Empty)"
+                           asp-controller="Admin"
+                           asp-action="AllJoinedUsersForEvent"
+                           asp-route-currentPage="@nextPage"
+                           asp-route-colorsPerPage="@Model.ColorsPerPage">Следваща страница</a>
+                    </div>
+                </div>
+                <table class="table table-striped mt-3">
+                    <thead>
+                        <tr>
+                            <th scope="col">Първо име</th>
+                            <th scope="col">Прякор</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var person in Model.Joiners)
+                        {
+                            <tr>
+                                <td>@person.FirstName</td>
+                                <td>@person.NickName</td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p class="display-6 p-3">Няма присъединили се хора все още към това събитие!</p>
+            }
+        </div>
+
+    </div>
+</div>

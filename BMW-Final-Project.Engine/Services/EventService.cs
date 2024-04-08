@@ -6,7 +6,6 @@ using BMW_Final_Project.Infrastructure.Data.Common;
 using BMW_Final_Project.Infrastructure.Data.Models.Event;
 using BMW_Final_Project.Infrastructure.Data.Models.Motorcycle;
 using Microsoft.EntityFrameworkCore;
-using System.Globalization;
 
 namespace BMW_Final_Project.Engine.Services
 {
@@ -228,19 +227,29 @@ namespace BMW_Final_Project.Engine.Services
             await _repository.SaveChangesAsync();
         }
 
-        public async Task<AllJoinedUsersModel> AllJoinedUsersForEventAsync(int id)
+        public async Task<AllJoinedUsersModel> AllJoinedUsersForEventAsync(int id, int currentPage, int joinersPerPage)
         {
             var model = await _repository.AllReadOnly<Event>()
+                .Where(x => x.Id == id)
+                .Include(x => x.EventsJoiners)
                 .Select(x => new AllJoinedUsersModel()
                 {
                     ImgUrl = x.ImgUrl,
                     Name = x.Name,
-                    Joiners = x.EventsJoiners.Select(x => new JoinersModel()
-                    {
-                        Name = x.Joiner.FirstName ?? string.Empty
-                    }).ToList()
+                    Joiners = x.EventsJoiners
+                        .Skip((currentPage - 1) * joinersPerPage)
+                        .Take(joinersPerPage)
+                        .Select(x => new JoinersModel()
+                        {
+                            FirstName = x.Joiner.FirstName ?? string.Empty,
+                            NickName = x.Joiner.Nickname ?? string.Empty
+                        }).ToList()
 
                 }).FirstOrDefaultAsync();
+
+            var modelForCount = await _repository.AllReadOnly<EventJoiners>()
+                .Where(x => x.EventId == id)
+                .Select(x => new JoinersModel()).ToListAsync();
 
             if (model == null)
             {
@@ -248,7 +257,18 @@ namespace BMW_Final_Project.Engine.Services
             }
 
 
-            return model;
+            var totalCount = modelForCount.Count;
+
+
+            return new AllJoinedUsersModel
+            {
+                ImgUrl = model.ImgUrl,
+                Name = model.Name,
+                Joiners = model.Joiners,
+                ColorsPerPage = joinersPerPage,
+                CurrentPage = currentPage,
+                TotalCount = totalCount
+            };
         }
 
         private async Task<bool> IsThisEventExistButDeletedAsync(AddEventModel model)

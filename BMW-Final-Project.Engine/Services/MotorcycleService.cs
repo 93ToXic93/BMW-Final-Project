@@ -421,7 +421,7 @@ namespace BMW_Final_Project.Engine.Services
 
         public async Task<DeleteColorPageModel> GetColorsToDeleteAsync(int currentPage, int colorsPerPage)
         {
-            var motoColors = _repository.All<ColorCategory>();
+            var motoColors = _repository.AllReadOnly<ColorCategory>();
 
             var colors = await motoColors
                 .Where(x => x.IsActive)

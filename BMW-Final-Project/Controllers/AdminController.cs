@@ -503,11 +503,11 @@ namespace BMW_Final_Project.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> AllJoinedUsersForEvent(int id)
+        public async Task<IActionResult> AllJoinedUsersForEvent(int id, int currentPage = 1, int joinersPerPage = 3)
         {
             try
             {
-                var model = await _eventService.AllJoinedUsersForEventAsync(id);
+                var model = await _eventService.AllJoinedUsersForEventAsync(id,currentPage, joinersPerPage);
 
                 return View(model);
             }

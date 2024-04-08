@@ -2,6 +2,8 @@
 {
     public class JoinersModel
     {
-        public string Name { get; set; } = string.Empty;
+        public string FirstName { get; set; } = string.Empty;
+
+        public string NickName { get; set; } = string.Empty;
     }
 }

@@ -41,7 +41,7 @@ namespace BMW_Final_Project.Engine.Contracts
 
         Task AddNewColorAsync(AddColorModel model);
 
-        Task<DeleteColorPageModel> GetColorsToDeleteAsync(int currentPage, int housesPerPage);
+        Task<DeleteColorPageModel> GetColorsToDeleteAsync(int currentPage, int colorsPerPage);
 
         Task DeleteColorAsync(int id);
     }
