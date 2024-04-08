@@ -16,7 +16,7 @@ namespace BMW_Final_Project.Controllers
         private readonly IClothService _clothService;
         private readonly IEventService _eventService;
 
-        public AdminController(IMotorcycleService motorcycleService,IClothService clothService, IEventService eventService)
+        public AdminController(IMotorcycleService motorcycleService, IClothService clothService, IEventService eventService)
         {
             _motorcycleService = motorcycleService;
             _clothService = clothService;
@@ -94,9 +94,11 @@ namespace BMW_Final_Project.Controllers
                     SeatHeightMm = model.SeatHeightMm,
                     HorsePowers = model.HorsePowers,
                     Year = model.Year,
+                    ColorCategoryId = model.ColorCategoryId
                 };
                 modelToEdit.StandardEuroModels = await _motorcycleService.GetStandardEurosAsync();
                 modelToEdit.TypeMotorModels = await _motorcycleService.GetTypeMotorcyclesAsync();
+                modelToEdit.ColorCategoryModels = await _motorcycleService.GetColorsAsync();
                 return View(modelToEdit);
             }
             catch (Exception e)
@@ -409,9 +411,9 @@ namespace BMW_Final_Project.Controllers
                 ModelState.AddModelError(string.Empty, "Това събитие вече съществува!");
             }
 
-            if (!(await _eventService.IsTheDatesAreCorrectAsync(eventToAdd.StartEvent,eventToAdd.EndEvent)))
+            if (!(await _eventService.IsTheDatesAreCorrectAsync(eventToAdd.StartEvent, eventToAdd.EndEvent)))
             {
-                 ModelState.AddModelError(string.Empty,"Датата е невалидна, трябва да имат поне час разлика и започващата дата да не е преди завършващата!");
+                ModelState.AddModelError(string.Empty, "Датата е невалидна, трябва да имат поне час разлика и започващата дата да не е преди завършващата!");
             }
 
             if (!ModelState.IsValid)
@@ -477,7 +479,7 @@ namespace BMW_Final_Project.Controllers
             {
                 if (await _eventService.IsThisEventExistWhenEditAsync(modelToEdit))
                 {
-                    ModelState.AddModelError(string.Empty,"Това събитие вече съществува!");
+                    ModelState.AddModelError(string.Empty, "Това събитие вече съществува!");
                 }
             }
 
@@ -503,9 +505,16 @@ namespace BMW_Final_Project.Controllers
         [HttpGet]
         public async Task<IActionResult> AllJoinedUsersForEvent(int id)
         {
-            var model = await _eventService.AllJoinedUsersForEventAsync(id);
+            try
+            {
+                var model = await _eventService.AllJoinedUsersForEventAsync(id);
 
-            return View(model);
+                return View(model);
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
         }
 
     }

@@ -1,0 +1,12 @@
+﻿@model BMW_Final_Project.Engine.Models.Event.AllJoinedUsersModel
+
+
+<img src="@Model.ImgUrl"/>
+
+<h1>@Model.Name</h1>
+
+
+@foreach (var person in Model.Joiners)
+{
+    <h1>@person.Name</h1>
+}

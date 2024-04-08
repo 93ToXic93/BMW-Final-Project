@@ -1,10 +1,12 @@
 ﻿using BMW_Final_Project.Engine.Contracts;
 using BMW_Final_Project.Engine.Models.Event;
+using BMW_Final_Project.Engine.Models.Motorcycle;
 using BMW_Final_Project.Infrastructure.Constants;
 using BMW_Final_Project.Infrastructure.Data.Common;
 using BMW_Final_Project.Infrastructure.Data.Models.Event;
 using BMW_Final_Project.Infrastructure.Data.Models.Motorcycle;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 namespace BMW_Final_Project.Engine.Services
 {
@@ -224,6 +226,29 @@ namespace BMW_Final_Project.Engine.Services
             _repository.Remove(eventToRemove);
 
             await _repository.SaveChangesAsync();
+        }
+
+        public async Task<AllJoinedUsersModel> AllJoinedUsersForEventAsync(int id)
+        {
+            var model = await _repository.AllReadOnly<Event>()
+                .Select(x => new AllJoinedUsersModel()
+                {
+                    ImgUrl = x.ImgUrl,
+                    Name = x.Name,
+                    Joiners = x.EventsJoiners.Select(x => new JoinersModel()
+                    {
+                        Name = x.Joiner.FirstName ?? string.Empty
+                    }).ToList()
+
+                }).FirstOrDefaultAsync();
+
+            if (model == null)
+            {
+                throw new NullReferenceException();
+            }
+
+
+            return model;
         }
 
         private async Task<bool> IsThisEventExistButDeletedAsync(AddEventModel model)

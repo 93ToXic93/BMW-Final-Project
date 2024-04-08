@@ -28,5 +28,7 @@ namespace BMW_Final_Project.Engine.Contracts
 
         Task RemoveEventAsync(int id, Guid userId);
 
+        Task<AllJoinedUsersModel> AllJoinedUsersForEventAsync(int id);
+
     }
 }

@@ -3,9 +3,6 @@
 
 console.log('im in');
 
-$('#AlertColor').hide();
-$('#AlertColorError').hide();
-
 $('#submitBtn').on('click', function () {
     var formData = $('#Name').val();
 
@@ -21,23 +18,10 @@ $('#submitBtn').on('click', function () {
 
             console.log('adding color')
 
-            $('#AlertColor').fadeIn('slow');
             fetchColors();
             $('#ProgramNameModal').modal('hide');
         },
-        error: function (error) {
-            $('#AlertColorError').fadeIn('slow');
-        },
-
     });
-
-    setTimeout(function () {
-        $('#AlertColor').fadeOut('slow');
-    }, 3000);
-    setTimeout(function () {
-        $('#AlertColorError').fadeOut('slow');
-    }, 3000);
-
 });
 
 
