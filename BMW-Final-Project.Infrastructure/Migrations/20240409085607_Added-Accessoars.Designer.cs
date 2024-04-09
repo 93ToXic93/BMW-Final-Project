@@ -4,6 +4,7 @@ using BMW_Final_Project.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BMW_Final_Project.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240409085607_Added-Accessoars")]
+    partial class AddedAccessoars
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,7 +55,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("ab5f19c3-0e66-4a5b-ab4a-ada016abc5c5"),
-                            ConcurrencyStamp = "d96f1584-bc96-42cf-9b43-652d7478f220",
+                            ConcurrencyStamp = "e94b4e0e-e2df-4961-954c-877c6fd47643",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -141,7 +143,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         {
                             Id = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c7badb3c-f8ca-4e8f-a1c2-1579bbf1e413",
+                            ConcurrencyStamp = "859fb265-c1ea-4b4c-9ef9-c5922d54d235",
                             Email = "Adi@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Adrian",
@@ -150,9 +152,9 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             Nickname = "ToXic",
                             NormalizedEmail = "ADI@GMAIL.COM",
                             NormalizedUserName = "ADI@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAUGo9yN2zjkX1kTm/K+raNHIRUIqVNuTHkVTlGdlpxqwOwM9XHMCX09w3rC5iI9Fg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDysbwfc0GLJgzj5TxGdAAGoogMXDAjQSek09ay+2YbZo31GIMKmAp1ED2mEBjEXMg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "55E78619-6203-417F-B33B-573DF3DDBA2E",
+                            SecurityStamp = "3E44E624-7ED2-49F4-9501-8BCA77027454",
                             TwoFactorEnabled = false,
                             UserName = "Adi@gmail.com"
                         });
@@ -205,48 +207,6 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     b.ToTable("Accessors");
 
                     b.HasComment("Accessories table");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            BuyerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
-                            ImgUrl = "https://www.donbaron.bg/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/c/h/chanta-bmw-motorsport1_2_.jpg",
-                            IsActive = true,
-                            ItemTypeId = 1,
-                            Name = "Чанта BMW-MPower",
-                            Price = 100m
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BuyerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
-                            ImgUrl = "https://s3.amazonaws.com/rparts-sites/images/285f89b802bcb2651801455c86d78f2a/8093df632b4ba5e7c90265f4c930b311.png",
-                            IsActive = true,
-                            ItemTypeId = 2,
-                            Name = "Флашка BMW-Black",
-                            Price = 130m
-                        },
-                        new
-                        {
-                            Id = 3,
-                            BuyerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
-                            ImgUrl = "https://www.igrachka.com/uploads/images/original/motor-injusa-s-bateriya-12v-bmw-r-1250-gs_143611.jpg",
-                            IsActive = true,
-                            ItemTypeId = 3,
-                            Name = "Детско моторче BMW-Black",
-                            Price = 330m
-                        },
-                        new
-                        {
-                            Id = 4,
-                            BuyerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
-                            ImgUrl = "https://cdn.shopify.com/s/files/1/0422/5191/1327/files/BMWMMOTORSPORTBOTTLE.jpg?v=1699006337&width=533",
-                            IsActive = true,
-                            ItemTypeId = 4,
-                            Name = "Бутилка BMW",
-                            Price = 110m
-                        });
                 });
 
             modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Accessories.AccessorBuyer", b =>
@@ -288,28 +248,6 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     b.ToTable("ItemTypes");
 
                     b.HasComment("Item's type table");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Ежедневни"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Електронни"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Играчки"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Други"
-                        });
                 });
 
             modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloth.Cloth", b =>
@@ -980,7 +918,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 1,
-                            Year = new DateTime(2024, 4, 9, 12, 10, 2, 355, DateTimeKind.Local).AddTicks(3659)
+                            Year = new DateTime(2024, 4, 9, 11, 56, 6, 897, DateTimeKind.Local).AddTicks(9711)
                         },
                         new
                         {
@@ -1003,7 +941,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 16,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 4,
-                            Year = new DateTime(2024, 4, 9, 12, 10, 2, 355, DateTimeKind.Local).AddTicks(3700)
+                            Year = new DateTime(2024, 4, 9, 11, 56, 6, 897, DateTimeKind.Local).AddTicks(9748)
                         },
                         new
                         {
@@ -1026,7 +964,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 2,
-                            Year = new DateTime(2024, 4, 9, 12, 10, 2, 355, DateTimeKind.Local).AddTicks(3705)
+                            Year = new DateTime(2024, 4, 9, 11, 56, 6, 897, DateTimeKind.Local).AddTicks(9752)
                         },
                         new
                         {
@@ -1049,7 +987,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 3,
-                            Year = new DateTime(2024, 4, 9, 12, 10, 2, 355, DateTimeKind.Local).AddTicks(3708)
+                            Year = new DateTime(2024, 4, 9, 11, 56, 6, 897, DateTimeKind.Local).AddTicks(9756)
                         },
                         new
                         {
@@ -1072,7 +1010,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 5,
-                            Year = new DateTime(2024, 4, 9, 12, 10, 2, 355, DateTimeKind.Local).AddTicks(3712)
+                            Year = new DateTime(2024, 4, 9, 11, 56, 6, 897, DateTimeKind.Local).AddTicks(9759)
                         },
                         new
                         {
@@ -1095,7 +1033,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 6,
-                            Year = new DateTime(2024, 4, 9, 12, 10, 2, 355, DateTimeKind.Local).AddTicks(3715)
+                            Year = new DateTime(2024, 4, 9, 11, 56, 6, 897, DateTimeKind.Local).AddTicks(9762)
                         });
                 });
 

@@ -1,5 +1,6 @@
 ﻿using BMW_Final_Project.Infrastructure.Constants;
 using BMW_Final_Project.Infrastructure.Data.IdentityModels;
+using BMW_Final_Project.Infrastructure.Data.Models.Accessories;
 using BMW_Final_Project.Infrastructure.Data.Models.Cloth;
 using BMW_Final_Project.Infrastructure.Data.Models.Event;
 using BMW_Final_Project.Infrastructure.Data.Models.Motorcycle;
@@ -29,6 +30,10 @@ namespace BMW_Final_Project.Infrastructure.Data
 
         public DbSet<Event> Events { get; set; } = null!;
         public DbSet<EventJoiners> EventsJoiners { get; set; } = null!;
+
+        public DbSet<Accessor> Accessors { get; set; } = null!;
+        public DbSet<AccessorBuyer> AccessorsBuyers { get; set; } = null!;
+        public DbSet<ItemType> ItemTypes { get; set; } = null!;
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -104,6 +109,18 @@ namespace BMW_Final_Project.Infrastructure.Data
                 .HasOne(x => x.Joiner)
                 .WithMany()
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Accessor>()
+                .Property(x => x.Price)
+                .HasPrecision(18, 2);
+
+            builder.Entity<AccessorBuyer>()
+                .HasOne(x => x.Buyer)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<AccessorBuyer>()
+                .HasKey(x => new { x.BuyerId, x.AccessorId });
 
             builder
                 .Entity<TypePerson>()
@@ -571,6 +588,65 @@ namespace BMW_Final_Project.Infrastructure.Data
                     JoinerId = Guid.Parse("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
                     IsActive = true,
                     ImgUrl = "https://c.ndtvimg.com/2020-09/9e7k4g2g_bmw-motorrad-days_625x300_18_September_20.jpg"
+                });
+
+            builder.Entity<ItemType>()
+                .HasData(new ItemType
+                {
+                    Id = 1,
+                    Name = "Ежедневни"
+                }, new ItemType()
+                {
+                    Id = 2,
+                    Name = "Електронни"
+                }, new ItemType()
+                {
+                    Id = 3,
+                    Name = "Играчки"
+                }, new ItemType()
+                {
+                    Id = 4,
+                    Name = "Други"
+                });
+
+            builder.Entity<Accessor>()
+                .HasData(new Accessor()
+                {
+                    Id = 1,
+                    Name = "Чанта BMW-MPower",
+                    BuyerId = Guid.Parse("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                    IsActive = true,
+                    ItemTypeId = 1,
+                    Price = 100,
+                    ImgUrl = "https://www.donbaron.bg/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/c/h/chanta-bmw-motorsport1_2_.jpg"
+
+                }, new Accessor
+                {
+                    Id = 2,
+                    Name = "Флашка BMW-Black",
+                    BuyerId = Guid.Parse("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                    IsActive = true,
+                    ItemTypeId = 2,
+                    Price = 130,
+                    ImgUrl = "https://s3.amazonaws.com/rparts-sites/images/285f89b802bcb2651801455c86d78f2a/8093df632b4ba5e7c90265f4c930b311.png"
+                }, new Accessor
+                {
+                    Id = 3,
+                    Name = "Детско моторче BMW-Black",
+                    BuyerId = Guid.Parse("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                    IsActive = true,
+                    ItemTypeId = 3,
+                    Price = 330,
+                    ImgUrl = "https://www.igrachka.com/uploads/images/original/motor-injusa-s-bateriya-12v-bmw-r-1250-gs_143611.jpg"
+                }, new Accessor
+                {
+                    Id = 4,
+                    Name = "Бутилка BMW",
+                    BuyerId = Guid.Parse("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                    IsActive = true,
+                    ItemTypeId = 4,
+                    Price = 110,
+                    ImgUrl = "https://cdn.shopify.com/s/files/1/0422/5191/1327/files/BMWMMOTORSPORTBOTTLE.jpg?v=1699006337&width=533"
                 });
 
 

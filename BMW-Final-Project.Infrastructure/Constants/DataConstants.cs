@@ -122,6 +122,23 @@
             public const int NicknameMaxLength = 50;
         }
 
+        public static class AccessorConstants
+        {
+            public const int MaxNameLength = 200;
+            public const int MinNameLength = 3;
+
+            public const int UrlMaxLength = 60000;
+            public const int UrlMinLength = 3;
+
+            public const double MaxPrice = 1000000;
+            public const double MinPrice = 1;
+        }
+        public static class ItemTypeConstants
+        {
+            public const int MaxNameLength = 200;
+            public const int MinNameLength = 3;
+        }
+
         public const string DataFormat = "dd/MM/yyyy";
 
         public const string DataFormatWithHours = "MM/dd/yyyy HH:mm";
