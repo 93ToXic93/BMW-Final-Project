@@ -81,6 +81,20 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                 comment: "Color Table");
 
             migrationBuilder.CreateTable(
+                name: "ItemTypes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false, comment: "ItemType identifier")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false, comment: "Item type Name")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ItemTypes", x => x.Id);
+                },
+                comment: "Item's type table");
+
+            migrationBuilder.CreateTable(
                 name: "Sizes",
                 columns: table => new
                 {
@@ -270,6 +284,38 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                 comment: "Cloth table");
 
             migrationBuilder.CreateTable(
+                name: "Accessors",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false, comment: "Accessor identifier")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false, comment: "Accessor's name"),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false, comment: "Accessor's price"),
+                    ItemTypeId = table.Column<int>(type: "int", nullable: false, comment: "Accessor's type"),
+                    BuyerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false, comment: "Buyer identifier"),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false, comment: "Accessor's state"),
+                    ImgUrl = table.Column<string>(type: "nvarchar(max)", maxLength: 60000, nullable: false, comment: "Accessor's image"),
+                    Amount = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Accessors", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Accessors_AspNetUsers_BuyerId",
+                        column: x => x.BuyerId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Accessors_ItemTypes_ItemTypeId",
+                        column: x => x.ItemTypeId,
+                        principalTable: "ItemTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                },
+                comment: "Accessories table");
+
+            migrationBuilder.CreateTable(
                 name: "Motorcycles",
                 columns: table => new
                 {
@@ -398,6 +444,31 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                 comment: "Events and joiners");
 
             migrationBuilder.CreateTable(
+                name: "AccessorsBuyers",
+                columns: table => new
+                {
+                    AccessorId = table.Column<int>(type: "int", nullable: false, comment: "Accessor identifier"),
+                    BuyerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false, comment: "Buyer identifier")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AccessorsBuyers", x => new { x.BuyerId, x.AccessorId });
+                    table.ForeignKey(
+                        name: "FK_AccessorsBuyers_Accessors_AccessorId",
+                        column: x => x.AccessorId,
+                        principalTable: "Accessors",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AccessorsBuyers_AspNetUsers_BuyerId",
+                        column: x => x.BuyerId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                },
+                comment: "Accessors and buyers table");
+
+            migrationBuilder.CreateTable(
                 name: "MotorcyclesBuyers",
                 columns: table => new
                 {
@@ -450,12 +521,12 @@ namespace BMW_Final_Project.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { new Guid("ab5f19c3-0e66-4a5b-ab4a-ada016abc5c5"), "ecdbb273-bd10-441d-9ecc-2273116a2ad3", "Admin", "ADMIN" });
+                values: new object[] { new Guid("ab5f19c3-0e66-4a5b-ab4a-ada016abc5c5"), "7c1483a8-53f4-4dd4-b584-05c061a9c624", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "Nickname", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 0, "dc3932bc-1975-41b9-bfbd-9a5e3026b3b2", "Adi@gmail.com", false, "Adrian", "Ivanov", true, null, "ToXic", "ADI@GMAIL.COM", "ADI@GMAIL.COM", "AQAAAAEAACcQAAAAEKAQk7xw0wEmDlguT56zLkqSIpSigU2HibA6JsMX7Lof9yRK4/cgKemXbo4H9P7zbA==", null, false, "AB5A821E-B747-4C2D-B4E6-97C9C10F68DD", false, "Adi@gmail.com" });
+                values: new object[] { new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 0, "c5d840c4-0eae-42e9-ad9f-061293a688e6", "Adi@gmail.com", false, "Adrian", "Ivanov", true, null, "ToXic", "ADI@GMAIL.COM", "ADI@GMAIL.COM", "AQAAAAEAACcQAAAAEB3CPfG3ydzU2xXSiKANYhSnPkGnfK0KkUPo+FWVtYyQ98KTKxaqGi6ZxrecPS/faw==", null, false, "2706E556-D894-4F17-B12E-E51AFC490027", false, "Adi@gmail.com" });
 
             migrationBuilder.InsertData(
                 table: "ClothCollections",
@@ -483,6 +554,17 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     { 9, true, "Светло-лилав" },
                     { 10, true, "Зелен" },
                     { 11, true, "Оранжев" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ItemTypes",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Ежедневни" },
+                    { 2, "Електронни" },
+                    { 3, "Играчки" },
+                    { 4, "Други" }
                 });
 
             migrationBuilder.InsertData(
@@ -532,8 +614,23 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                 values: new object[,]
                 {
                     { 1, "Мъже" },
-                    { 2, "Жени" },
-                    { 3, "Деца" }
+                    { 2, "Жени" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "TypesPersons",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 3, "Деца" });
+
+            migrationBuilder.InsertData(
+                table: "Accessors",
+                columns: new[] { "Id", "Amount", "BuyerId", "ImgUrl", "IsActive", "ItemTypeId", "Name", "Price" },
+                values: new object[,]
+                {
+                    { 1, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), "https://www.donbaron.bg/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/c/h/chanta-bmw-motorsport1_2_.jpg", true, 1, "Чанта BMW-MPower", 100m },
+                    { 2, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), "https://s3.amazonaws.com/rparts-sites/images/285f89b802bcb2651801455c86d78f2a/8093df632b4ba5e7c90265f4c930b311.png", true, 2, "Флашка BMW-Black", 130m },
+                    { 3, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), "https://www.igrachka.com/uploads/images/original/motor-injusa-s-bateriya-12v-bmw-r-1250-gs_143611.jpg", true, 3, "Детско моторче BMW-Black", 330m },
+                    { 4, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), "https://cdn.shopify.com/s/files/1/0422/5191/1327/files/BMWMMOTORSPORTBOTTLE.jpg?v=1699006337&width=533", true, 4, "Бутилка BMW", 110m }
                 });
 
             migrationBuilder.InsertData(
@@ -548,10 +645,10 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                 {
                     { 1, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 3, "Тениската е от 100% памук, качеството е гарантирано! Създадена е в Германия и е точната придобивка за лятото.", "https://bmwaccessories.ie/cdn/shop/products/80145A21737_3.jpg?v=1647336616&width=1445", true, "Тениска къс ръкав BMW-GO-SPEED", 60m, 3, 3 },
                     { 2, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 1, "Якето е кожено и доста леко за вида му пропуска въздух с цел изягване на запотяване, произведено е в Германия.", "https://www.dhresource.com/webp/m/0x0/f2/albu/g22/M00/41/9D/rBNaEmLG6pGASPeRAABoSHJIjxI746.jpg", true, "М-Power Лятно яке", 200m, 2, 1 },
-                    { 3, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 2, "Суитчера е от 100% памук и е доста лек и прохладен за горещото лято, произведен е в Германия.", "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/596362/01/fnd/PNA/fmt/png/BMW-M-Motorsport-Women's-Hooded-Sweat-Jacket", true, "БМВ Оrigin Суитчер", 100m, 1, 2 },
+                    { 3, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 2, "Суитчера е от 100% памук и е доста лек и прохладен за горещото лято, произведен е в Германия.", "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/596362/01/fnd/PNA/fmt/png/BMW-M-Motorsport-Women's-Hooded-Sweat-Jacket", true, "БМВ Оrigin суитшърт", 100m, 1, 2 },
                     { 4, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 3, "Тениската е от 100% памук и е доста лека и прохладна за горещото лято, произведена е в Германия.", "https://i.ebayimg.com/images/g/eCsAAOSwuz5j3pLA/s-l1200.webp", true, "БМВ Оrigin Тениска", 120m, 2, 1 },
-                    { 5, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 2, "Суитчера е от 100% памук и е доста лек и прохладен за горещото лято, произведен е в Германия.", "https://img.fruugo.com/product/0/33/211450330_max.jpg", true, "БМВ Оrigin Суитчер", 70m, 1, 2 },
-                    { 6, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 1, "Суитчера е от 100% памук и е доста лек и прохладен за горещото лято, произведен е в Германия.", "https://i.pinimg.com/736x/cf/4a/03/cf4a031cad99e38a716ab99407c3cff3.jpg", true, "БМВ Суитчер", 100m, 5, 1 },
+                    { 5, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 2, "суитшърта е от 100% памук и е доста лек и прохладен за горещото лято, произведен е в Германия.", "https://img.fruugo.com/product/0/33/211450330_max.jpg", true, "БМВ Оrigin суитшърт", 70m, 1, 2 },
+                    { 6, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 1, "Суитшърта е от 100% памук и е доста лек и прохладен за горещото лято, произведен е в Германия.", "https://i.pinimg.com/736x/cf/4a/03/cf4a031cad99e38a716ab99407c3cff3.jpg", true, "БМВ суитшърт", 100m, 5, 1 },
                     { 7, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 3, "Панталона е от 100% памук и е доста лек и прохладен за горещото лято, произведен е в Германия.", "https://webshop.motos-inghelbrecht.be/cdn/shop/files/bmw-motorbroek-aravisair-blauw.jpg?v=1705495106", true, "БМВ Панталон", 100m, 4, 1 }
                 });
 
@@ -560,9 +657,9 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                 columns: new[] { "Id", "Description", "EndEvent", "ImgUrl", "IsActive", "JoinerId", "Name", "PlaceOfTheEvent", "StartEvent" },
                 values: new object[,]
                 {
-                    { 1, "Тази година само с БМВ ивента е неповторимо събитие, което на трябва да изпускате. Ще има стънт програма и екслузивни мотори. ЗАПОВЯДАЙТЕ!", new DateTime(2024, 2, 3, 19, 0, 0, 0, DateTimeKind.Unspecified), "https://www.bmw-motorrad.com/content/dam/bmwmotorradnsc/marketCORECOM/common/images/experience/stories/brand/bmd-2023/youtube/nsc-bmd-2023-youtube-fallback.jpg.asset.1675938793795.jpg", true, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), "BMW SPORT EVENT", "София, BMW-България", new DateTime(2024, 2, 2, 13, 45, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, "Тази година, БМВ ивента е неповторимо събитие, което на трябва да изпускате. Ще има стънт програма и екслузивни мотори.Това е 100-годишнината на BMW и желаем да поканим възможно повече хора! ЗАПОВЯДАЙТЕ!", new DateTime(2024, 1, 30, 21, 0, 0, 0, DateTimeKind.Unspecified), "https://i.ytimg.com/vi/2t-m6cuPUqI/maxresdefault.jpg", true, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), "BMW Anniversary", "София, BMW-България", new DateTime(2024, 1, 29, 12, 45, 0, 0, DateTimeKind.Unspecified) },
-                    { 3, "BMW - Откриване на сезона, желаем да ви поканим да открием новият сезон с яркост и красота с нашите нови модели. ЗАПОВЯДАЙТЕ!", new DateTime(2024, 4, 13, 21, 0, 0, 0, DateTimeKind.Unspecified), "https://c.ndtvimg.com/2020-09/9e7k4g2g_bmw-motorrad-days_625x300_18_September_20.jpg", true, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), "BMW new season", "София, BMW-България", new DateTime(2024, 4, 12, 11, 45, 0, 0, DateTimeKind.Unspecified) }
+                    { 1, "Тази година само с BMW ,събитието ще бъде неповторимо, което не трябва да изпускате. Ще има стънт програма и екслузивни мотори. ЗАПОВЯДАЙТЕ!", new DateTime(2024, 2, 3, 19, 0, 0, 0, DateTimeKind.Unspecified), "https://www.bmw-motorrad.com/content/dam/bmwmotorradnsc/marketCORECOM/common/images/experience/stories/brand/bmd-2023/youtube/nsc-bmd-2023-youtube-fallback.jpg.asset.1675938793795.jpg", true, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), "BMW SPORT EVENT", "София, BMW-България", new DateTime(2024, 2, 2, 13, 45, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, "Тази година, BMW събитието ще бъде неповторимо, което не трябва да изпускате. Ще има стънт програма и екслузивни мотори.Това е 100-годишнината на BMW и желаем да поканим възможно повече хора! ЗАПОВЯДАЙТЕ!", new DateTime(2024, 1, 30, 21, 0, 0, 0, DateTimeKind.Unspecified), "https://i.ytimg.com/vi/2t-m6cuPUqI/maxresdefault.jpg", true, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), "BMW Anniversary", "София, BMW-България", new DateTime(2024, 1, 29, 12, 45, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, "BMW - Откриване на сезона, желаем да Ви поканим да открием новият сезон с яркост и красота с нашите нови модели. ЗАПОВЯДАЙТЕ!", new DateTime(2024, 4, 13, 21, 0, 0, 0, DateTimeKind.Unspecified), "https://c.ndtvimg.com/2020-09/9e7k4g2g_bmw-motorrad-days_625x300_18_September_20.jpg", true, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), "BMW new season", "София, BMW-България", new DateTime(2024, 4, 12, 11, 45, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
@@ -570,13 +667,28 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                 columns: new[] { "Id", "Amount", "BuyerId", "CC", "ColorCategoryId", "DTC", "FrontBreak", "HorsePowers", "ImageUrl", "IsActive", "Kg", "Model", "Price", "RearBreak", "SeatHeightMm", "StandardEuroId", "TankCapacity", "Transmission", "TypeMotorId", "Year" },
                 values: new object[,]
                 {
-                    { 1, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 1000, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 205, "https://images4.alphacoders.com/127/1277784.jpg", true, 197, "BMW S1000RR", 62000m, "BMW own Rear Brake Control specified for this unique bike", 705, 3, 21, "BMW 6-Gears transmission", 1, new DateTime(2024, 4, 9, 10, 11, 54, 260, DateTimeKind.Local).AddTicks(2172) },
-                    { 2, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 900, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 105, "https://storage.edidomus.it/dueruote/nuovo/850/lat1586861045333.jpg", true, 210, "BMW F900R", 32000m, "BMW own Rear Brake Control specified for this unique bike", 705, 3, 16, "BMW 6-Gears transmission", 4, new DateTime(2024, 4, 9, 10, 11, 54, 260, DateTimeKind.Local).AddTicks(2207) },
-                    { 3, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 100, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 225, "https://www.procycles.com.au/cdn/shop/files/2023-BMW-M-1000-RR_-16-1024x724.jpg?v=1689145146", true, 190, "BMW M1000RR", 82000m, "BMW own Rear Brake Control specified for this unique bike", 665, 3, 21, "BMW 6-Gears transmission", 2, new DateTime(2024, 4, 9, 10, 11, 54, 260, DateTimeKind.Local).AddTicks(2211) },
-                    { 5, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 100, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 225, "https://www.bavarianmc.co.za/files/bike/22767/img_20240205160754.jpg", true, 190, "BMW F800R", 82000m, "BMW own Rear Brake Control specified for this unique bike", 665, 3, 21, "BMW 6-Gears transmission", 3, new DateTime(2024, 4, 9, 10, 11, 54, 260, DateTimeKind.Local).AddTicks(2216) },
-                    { 6, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 100, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 225, "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgIT2nOwQjqBRnWlaEFM8TWukwdyvwvGoWtqhfRxAh2-lTgX1EH_l689He3V3mEj_vQQ1Dk0WK7JET62OW-THslCCRxTvn13NKzxRa6XwwM2yi-KAKY3qVeNfjLnoIB6zpA0cH2MFT4Ue7fQTc1NePPzIfcYZIB0beSzdhzY1THSaUq8sAYpOXLhjgA7A/s1074/2023-BMW-R-nineT-100-Years-and-R18-100-Years.jpg", true, 190, "BMW RNineT", 82000m, "BMW own Rear Brake Control specified for this unique bike", 665, 3, 21, "BMW 6-Gears transmission", 5, new DateTime(2024, 4, 9, 10, 11, 54, 260, DateTimeKind.Local).AddTicks(2219) },
-                    { 7, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 100, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 225, "https://cdn.dealerspike.com/imglib/v1/800x600/imglib/trimsdb/17432641-0-110420261.jpg", true, 190, "BMW R1250GS", 82000m, "BMW own Rear Brake Control specified for this unique bike", 665, 3, 21, "BMW 6-Gears transmission", 6, new DateTime(2024, 4, 9, 10, 11, 54, 260, DateTimeKind.Local).AddTicks(2222) }
+                    { 1, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 1000, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 205, "https://images4.alphacoders.com/127/1277784.jpg", true, 197, "BMW S1000RR", 62000m, "BMW own Rear Brake Control specified for this unique bike", 705, 3, 21, "BMW 6-Gears transmission", 1, new DateTime(2024, 4, 9, 13, 8, 4, 331, DateTimeKind.Local).AddTicks(2046) },
+                    { 2, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 900, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 105, "https://storage.edidomus.it/dueruote/nuovo/850/lat1586861045333.jpg", true, 210, "BMW F900R", 32000m, "BMW own Rear Brake Control specified for this unique bike", 705, 3, 16, "BMW 6-Gears transmission", 4, new DateTime(2024, 4, 9, 13, 8, 4, 331, DateTimeKind.Local).AddTicks(2087) },
+                    { 3, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 100, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 225, "https://www.procycles.com.au/cdn/shop/files/2023-BMW-M-1000-RR_-16-1024x724.jpg?v=1689145146", true, 190, "BMW M1000RR", 82000m, "BMW own Rear Brake Control specified for this unique bike", 665, 3, 21, "BMW 6-Gears transmission", 2, new DateTime(2024, 4, 9, 13, 8, 4, 331, DateTimeKind.Local).AddTicks(2092) },
+                    { 5, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 100, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 225, "https://www.bavarianmc.co.za/files/bike/22767/img_20240205160754.jpg", true, 190, "BMW F800R", 82000m, "BMW own Rear Brake Control specified for this unique bike", 665, 3, 21, "BMW 6-Gears transmission", 3, new DateTime(2024, 4, 9, 13, 8, 4, 331, DateTimeKind.Local).AddTicks(2095) },
+                    { 6, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 100, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 225, "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgIT2nOwQjqBRnWlaEFM8TWukwdyvwvGoWtqhfRxAh2-lTgX1EH_l689He3V3mEj_vQQ1Dk0WK7JET62OW-THslCCRxTvn13NKzxRa6XwwM2yi-KAKY3qVeNfjLnoIB6zpA0cH2MFT4Ue7fQTc1NePPzIfcYZIB0beSzdhzY1THSaUq8sAYpOXLhjgA7A/s1074/2023-BMW-R-nineT-100-Years-and-R18-100-Years.jpg", true, 190, "BMW RNineT", 82000m, "BMW own Rear Brake Control specified for this unique bike", 665, 3, 21, "BMW 6-Gears transmission", 5, new DateTime(2024, 4, 9, 13, 8, 4, 331, DateTimeKind.Local).AddTicks(2099) },
+                    { 7, 20, new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"), 100, 1, "BMW own Dynamic Traction Control specified for this unique bike", "BMW own Front Brake Control specified for this unique bike", 225, "https://cdn.dealerspike.com/imglib/v1/800x600/imglib/trimsdb/17432641-0-110420261.jpg", true, 190, "BMW R1250GS", 82000m, "BMW own Rear Brake Control specified for this unique bike", 665, 3, 21, "BMW 6-Gears transmission", 6, new DateTime(2024, 4, 9, 13, 8, 4, 331, DateTimeKind.Local).AddTicks(2102) }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Accessors_BuyerId",
+                table: "Accessors",
+                column: "BuyerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Accessors_ItemTypeId",
+                table: "Accessors",
+                column: "ItemTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AccessorsBuyers_AccessorId",
+                table: "AccessorsBuyers",
+                column: "AccessorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -681,6 +793,9 @@ namespace BMW_Final_Project.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AccessorsBuyers");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
@@ -705,6 +820,9 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                 name: "MotorcyclesBuyers");
 
             migrationBuilder.DropTable(
+                name: "Accessors");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
@@ -715,6 +833,9 @@ namespace BMW_Final_Project.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Motorcycles");
+
+            migrationBuilder.DropTable(
+                name: "ItemTypes");
 
             migrationBuilder.DropTable(
                 name: "ClothCollections");

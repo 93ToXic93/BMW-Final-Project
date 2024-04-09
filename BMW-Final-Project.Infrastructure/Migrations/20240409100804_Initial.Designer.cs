@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BMW_Final_Project.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240409073512_Seeded-eventData")]
-    partial class SeededeventData
+    [Migration("20240409100804_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,7 +55,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("ab5f19c3-0e66-4a5b-ab4a-ada016abc5c5"),
-                            ConcurrencyStamp = "29f1d54b-140e-44e5-870f-0a9f8c7486c9",
+                            ConcurrencyStamp = "7c1483a8-53f4-4dd4-b584-05c061a9c624",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -143,7 +143,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         {
                             Id = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8aa5c9b4-e438-47a6-93c4-9911ee52f72f",
+                            ConcurrencyStamp = "c5d840c4-0eae-42e9-ad9f-061293a688e6",
                             Email = "Adi@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Adrian",
@@ -152,11 +152,172 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             Nickname = "ToXic",
                             NormalizedEmail = "ADI@GMAIL.COM",
                             NormalizedUserName = "ADI@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAECvsBqYEcS5P6EPbC0Jsgi2vLimErKXm7eUEOwjk0NzDKA3hAkvx6jmzIa1t9KZeRQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEB3CPfG3ydzU2xXSiKANYhSnPkGnfK0KkUPo+FWVtYyQ98KTKxaqGi6ZxrecPS/faw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "F16CC902-9EFF-461E-9FCA-54A9DBEBAEFB",
+                            SecurityStamp = "2706E556-D894-4F17-B12E-E51AFC490027",
                             TwoFactorEnabled = false,
                             UserName = "Adi@gmail.com"
+                        });
+                });
+
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Accessories.Accessor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasComment("Accessor identifier");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("BuyerId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasComment("Buyer identifier");
+
+                    b.Property<string>("ImgUrl")
+                        .IsRequired()
+                        .HasMaxLength(60000)
+                        .HasColumnType("nvarchar(max)")
+                        .HasComment("Accessor's image");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit")
+                        .HasComment("Accessor's state");
+
+                    b.Property<int>("ItemTypeId")
+                        .HasColumnType("int")
+                        .HasComment("Accessor's type");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)")
+                        .HasComment("Accessor's name");
+
+                    b.Property<decimal>("Price")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)")
+                        .HasComment("Accessor's price");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BuyerId");
+
+                    b.HasIndex("ItemTypeId");
+
+                    b.ToTable("Accessors");
+
+                    b.HasComment("Accessories table");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Amount = 20,
+                            BuyerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                            ImgUrl = "https://www.donbaron.bg/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/c/h/chanta-bmw-motorsport1_2_.jpg",
+                            IsActive = true,
+                            ItemTypeId = 1,
+                            Name = "Чанта BMW-MPower",
+                            Price = 100m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Amount = 20,
+                            BuyerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                            ImgUrl = "https://s3.amazonaws.com/rparts-sites/images/285f89b802bcb2651801455c86d78f2a/8093df632b4ba5e7c90265f4c930b311.png",
+                            IsActive = true,
+                            ItemTypeId = 2,
+                            Name = "Флашка BMW-Black",
+                            Price = 130m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Amount = 20,
+                            BuyerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                            ImgUrl = "https://www.igrachka.com/uploads/images/original/motor-injusa-s-bateriya-12v-bmw-r-1250-gs_143611.jpg",
+                            IsActive = true,
+                            ItemTypeId = 3,
+                            Name = "Детско моторче BMW-Black",
+                            Price = 330m
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Amount = 20,
+                            BuyerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
+                            ImgUrl = "https://cdn.shopify.com/s/files/1/0422/5191/1327/files/BMWMMOTORSPORTBOTTLE.jpg?v=1699006337&width=533",
+                            IsActive = true,
+                            ItemTypeId = 4,
+                            Name = "Бутилка BMW",
+                            Price = 110m
+                        });
+                });
+
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Accessories.AccessorBuyer", b =>
+                {
+                    b.Property<Guid>("BuyerId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasComment("Buyer identifier");
+
+                    b.Property<int>("AccessorId")
+                        .HasColumnType("int")
+                        .HasComment("Accessor identifier");
+
+                    b.HasKey("BuyerId", "AccessorId");
+
+                    b.HasIndex("AccessorId");
+
+                    b.ToTable("AccessorsBuyers");
+
+                    b.HasComment("Accessors and buyers table");
+                });
+
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Accessories.ItemType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasComment("ItemType identifier");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)")
+                        .HasComment("Item type Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ItemTypes");
+
+                    b.HasComment("Item's type table");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Ежедневни"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Електронни"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Играчки"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Други"
                         });
                 });
 
@@ -828,7 +989,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 1,
-                            Year = new DateTime(2024, 4, 9, 10, 35, 11, 782, DateTimeKind.Local).AddTicks(9924)
+                            Year = new DateTime(2024, 4, 9, 13, 8, 4, 331, DateTimeKind.Local).AddTicks(2046)
                         },
                         new
                         {
@@ -851,7 +1012,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 16,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 4,
-                            Year = new DateTime(2024, 4, 9, 10, 35, 11, 782, DateTimeKind.Local).AddTicks(9963)
+                            Year = new DateTime(2024, 4, 9, 13, 8, 4, 331, DateTimeKind.Local).AddTicks(2087)
                         },
                         new
                         {
@@ -874,7 +1035,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 2,
-                            Year = new DateTime(2024, 4, 9, 10, 35, 11, 782, DateTimeKind.Local).AddTicks(9968)
+                            Year = new DateTime(2024, 4, 9, 13, 8, 4, 331, DateTimeKind.Local).AddTicks(2092)
                         },
                         new
                         {
@@ -897,7 +1058,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 3,
-                            Year = new DateTime(2024, 4, 9, 10, 35, 11, 782, DateTimeKind.Local).AddTicks(9971)
+                            Year = new DateTime(2024, 4, 9, 13, 8, 4, 331, DateTimeKind.Local).AddTicks(2095)
                         },
                         new
                         {
@@ -920,7 +1081,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 5,
-                            Year = new DateTime(2024, 4, 9, 10, 35, 11, 782, DateTimeKind.Local).AddTicks(9976)
+                            Year = new DateTime(2024, 4, 9, 13, 8, 4, 331, DateTimeKind.Local).AddTicks(2099)
                         },
                         new
                         {
@@ -943,7 +1104,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 6,
-                            Year = new DateTime(2024, 4, 9, 10, 35, 11, 782, DateTimeKind.Local).AddTicks(9979)
+                            Year = new DateTime(2024, 4, 9, 13, 8, 4, 331, DateTimeKind.Local).AddTicks(2102)
                         });
                 });
 
@@ -1193,6 +1354,44 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Accessories.Accessor", b =>
+                {
+                    b.HasOne("BMW_Final_Project.Infrastructure.Data.IdentityModels.ApplicationUser", "Buyer")
+                        .WithMany()
+                        .HasForeignKey("BuyerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BMW_Final_Project.Infrastructure.Data.Models.Accessories.ItemType", "ItemType")
+                        .WithMany("Accessories")
+                        .HasForeignKey("ItemTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Buyer");
+
+                    b.Navigation("ItemType");
+                });
+
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Accessories.AccessorBuyer", b =>
+                {
+                    b.HasOne("BMW_Final_Project.Infrastructure.Data.Models.Accessories.Accessor", "Accessor")
+                        .WithMany()
+                        .HasForeignKey("AccessorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BMW_Final_Project.Infrastructure.Data.IdentityModels.ApplicationUser", "Buyer")
+                        .WithMany()
+                        .HasForeignKey("BuyerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Accessor");
+
+                    b.Navigation("Buyer");
+                });
+
             modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloth.Cloth", b =>
                 {
                     b.HasOne("BMW_Final_Project.Infrastructure.Data.IdentityModels.ApplicationUser", "Buyer")
@@ -1380,6 +1579,11 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Accessories.ItemType", b =>
+                {
+                    b.Navigation("Accessories");
                 });
 
             modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Cloth.Cloth", b =>

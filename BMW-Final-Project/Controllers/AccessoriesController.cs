@@ -19,5 +19,14 @@ namespace BMW_Final_Project.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> LoadById(int id)
+        {
+            var model = await _accessoriesService.LoadByIdAsync(id);
+
+            return View(model);
+
+        }
     }
 }

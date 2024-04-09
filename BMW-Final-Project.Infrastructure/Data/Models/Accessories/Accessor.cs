@@ -44,5 +44,8 @@ namespace BMW_Final_Project.Infrastructure.Data.Models.Accessories
         [MaxLength(UrlMaxLength)]
         [Comment("Accessor's image")]
         public string ImgUrl { get; set; } = string.Empty;
+
+        [Range(MinAmount,MaxAmount)]
+        public int Amount { get; set; } 
     }
 }

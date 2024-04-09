@@ -618,8 +618,8 @@ namespace BMW_Final_Project.Infrastructure.Data
                     IsActive = true,
                     ItemTypeId = 1,
                     Price = 100,
-                    ImgUrl = "https://www.donbaron.bg/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/c/h/chanta-bmw-motorsport1_2_.jpg"
-
+                    ImgUrl = "https://www.donbaron.bg/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/c/h/chanta-bmw-motorsport1_2_.jpg",
+                    Amount = 20
                 }, new Accessor
                 {
                     Id = 2,
@@ -628,7 +628,8 @@ namespace BMW_Final_Project.Infrastructure.Data
                     IsActive = true,
                     ItemTypeId = 2,
                     Price = 130,
-                    ImgUrl = "https://s3.amazonaws.com/rparts-sites/images/285f89b802bcb2651801455c86d78f2a/8093df632b4ba5e7c90265f4c930b311.png"
+                    ImgUrl = "https://s3.amazonaws.com/rparts-sites/images/285f89b802bcb2651801455c86d78f2a/8093df632b4ba5e7c90265f4c930b311.png",
+                    Amount = 20
                 }, new Accessor
                 {
                     Id = 3,
@@ -637,16 +638,18 @@ namespace BMW_Final_Project.Infrastructure.Data
                     IsActive = true,
                     ItemTypeId = 3,
                     Price = 330,
-                    ImgUrl = "https://www.igrachka.com/uploads/images/original/motor-injusa-s-bateriya-12v-bmw-r-1250-gs_143611.jpg"
+                    ImgUrl = "https://www.igrachka.com/uploads/images/original/motor-injusa-s-bateriya-12v-bmw-r-1250-gs_143611.jpg",
+                    Amount = 20
                 }, new Accessor
                 {
                     Id = 4,
                     Name = "Бутилка BMW",
                     BuyerId = Guid.Parse("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
                     IsActive = true,
-                    ItemTypeId = 4,
+                    ItemTypeId = 1,
                     Price = 110,
-                    ImgUrl = "https://cdn.shopify.com/s/files/1/0422/5191/1327/files/BMWMMOTORSPORTBOTTLE.jpg?v=1699006337&width=533"
+                    ImgUrl = "https://cdn.shopify.com/s/files/1/0422/5191/1327/files/BMWMMOTORSPORTBOTTLE.jpg?v=1699006337&width=533",
+                    Amount = 20
                 });
 
 
