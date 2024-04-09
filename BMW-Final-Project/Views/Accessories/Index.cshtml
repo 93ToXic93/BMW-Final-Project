@@ -67,7 +67,9 @@
                         <h6>Цена: @accessor.Price$</h6>
                         <br />
 
-                        <a asp-action="" asp-controller="" class="btn btn-success">Добави в количката</a>
+                        <form class="input-group-sm" asp-controller="Accessories" asp-action="BuyAccsesoar" asp-route-id="@accessor.Id" method="post">
+                            <input type="submit" value="Добави в количката" class="btn btn-success" />
+                        </form>
                     }
                 }
             </div>

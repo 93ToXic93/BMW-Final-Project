@@ -24,6 +24,12 @@ namespace BMW_Final_Project.Engine.Contracts
 
         Task<bool> IsThisAccsesoarExistWhenEditAsync(EditAccsesoarModel model);
 
+        Task<ICollection<AllMineAccsesoaries>> GetAllMineAccsesoariesAsync(Guid userId);
 
+        Task AddAsync(int id, Guid userId);
+
+        Task RemoveAccsesoarAsync(int id);
+
+        Task BuyAccsesoarAsync(int id);
     }
 }

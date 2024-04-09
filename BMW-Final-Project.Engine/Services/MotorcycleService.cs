@@ -371,14 +371,8 @@ namespace BMW_Final_Project.Engine.Services
         {
             var motorcycleToRemove = await GetByIdMotorsAndServicesAsync(id);
 
-            var motorcycle = await GetByIdAsync(id);
 
             if (motorcycleToRemove == null)
-            {
-                throw new ArgumentNullException();
-            }
-
-            if (motorcycle == null)
             {
                 throw new ArgumentNullException();
             }

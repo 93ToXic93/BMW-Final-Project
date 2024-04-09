@@ -1,7 +1,9 @@
 ﻿using BMW_Final_Project.Engine.Contracts;
 using BMW_Final_Project.Engine.Models.Accessories;
+using BMW_Final_Project.Engine.Models.Motorcycle;
 using BMW_Final_Project.Infrastructure.Data.Common;
 using BMW_Final_Project.Infrastructure.Data.Models.Accessories;
+using BMW_Final_Project.Infrastructure.Data.Models.Motorcycle;
 using Microsoft.EntityFrameworkCore;
 
 namespace BMW_Final_Project.Engine.Services
@@ -165,6 +167,105 @@ namespace BMW_Final_Project.Engine.Services
             return accsesoar;
         }
 
+        public async Task<ICollection<AllMineAccsesoaries>> GetAllMineAccsesoariesAsync(Guid userId)
+        {
+            var accsesoaries = await _repository
+                .AllReadOnly<AccessorBuyer>()
+                .Where(x => x.BuyerId == userId && x.Accessor.IsActive)
+                .Select(x => new AllMineAccsesoaries()
+                {
+                    Id = x.Accessor.Id,
+                    ImgUrl = x.Accessor.ImgUrl,
+                    Price = x.Accessor.Price.ToString("F"),
+                    BuyerId = x.BuyerId
+                })
+                .ToListAsync();
+
+            return accsesoaries;
+        }
+
+        public async Task AddAsync(int id, Guid userId)
+        {
+            var accsesoarToAdd = await GetByIdAsync(id);
+             
+            if (accsesoarToAdd == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (!(accsesoarToAdd.AccessorBuyers.Any(x => x.Accessor.Id == id && x.BuyerId == userId || accsesoarToAdd.Amount == 0)))
+            {
+                var accsesoarBuyer = new AccessorBuyer()
+                {
+                    AccessorId = accsesoarToAdd.Id,
+                    BuyerId = userId
+                };
+
+                if (accsesoarToAdd.Amount > 0)
+                {
+                    accsesoarToAdd.Amount -= 1;
+
+                    await _repository.AddAsync(accsesoarBuyer);
+
+                    await _repository.SaveChangesAsync();
+                }
+                else
+                {
+                    throw new ArgumentException("There is no more of this motor!");
+                }
+
+            }
+            else
+            {
+                throw new ArgumentException("Already reserved it or its 0 amount!");
+            }
+        }
+
+        public async Task RemoveAccsesoarAsync(int id)
+        {
+            var accsesoarToRemove = await GetByIdAccsesoarAndServicesAsync(id);
+
+            var accessor = await GetByIdAsync(id);
+
+            if (accsesoarToRemove == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (accessor == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            accessor.Amount += 1;
+
+            _repository.Remove(accsesoarToRemove);
+
+            await _repository.SaveChangesAsync();
+        }
+
+        public async Task BuyAccsesoarAsync(int id)
+        {
+            var accessorToRemove = await GetByIdAccsesoarAndServicesAsync(id);
+
+            if (accessorToRemove == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            _repository.Remove(accessorToRemove);
+
+            await _repository.SaveChangesAsync();
+        }
+
+        private async Task<AccessorBuyer?> GetByIdAccsesoarAndServicesAsync(int id)
+        {
+            var motorcycle = await _repository.All<AccessorBuyer>()
+                .Where(x => x.AccessorId == id)
+                .FirstOrDefaultAsync();
+
+            return motorcycle;
+        }
 
         private async Task<Accessor?> GetByNameDeletedAccsesoarAsync(string name)
         {

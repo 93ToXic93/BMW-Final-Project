@@ -1,0 +1,45 @@
+﻿@model ICollection<BMW_Final_Project.Engine.Models.Accessories.AllMineAccsesoaries>
+
+<div class="text-center row">
+
+    <h1 class="display-2 fw-bold p-3">Моите BMW Аксесоари</h1>
+    <div class="d-flex justify-content-center">
+        <a class="m-4 btn btn-success fw-bold w-25" asp-action="AllBought" asp-controller="Cloth">Облекло</a>
+        <a class="m-4 btn btn-primary fw-bold w-25" asp-action="AllBought" asp-controller="Motorcycle">Аксесоари</a>    
+    </div>
+    @if (Model.Any())
+    {
+        @foreach (var e in Model)
+        {
+            <div class="card col-4" style="width: 30rem; ">
+                <div class="card-body p-5">
+                    <form class="input-group-sm" asp-controller="Accessories" asp-action="RemoveAccsesoar" asp-route-id="@e.Id">
+                        <button type="submit" class="border-0">
+                            <div class="close-container">
+                                <div class="leftright"></div>
+                                <div class="rightleft"></div>
+
+                                <input type="submit" class="close labelText" value="Remove" />
+
+                            </div>
+                        </button>
+                    </form>
+
+                    <img src="@e.ImgUrl" alt="Motorcycle photo" class="photo-of-motorcycle" />
+                    <h4 class="card-title mt-1 fw-bold">Име: @e.Name</h4>
+                    <h4 class="card-title mt-1 fw-bold">Цена: @e.Price$</h4>
+
+                    <form class="input-group-sm" asp-controller="Accessories" asp-action="Force" asp-route-id="@e.Id">
+
+                        <input type="submit" class="Button-Force" value="Купи" />
+
+                    </form>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <h1>В момента нямате запазени мотори</h1>
+    }
+</div>
