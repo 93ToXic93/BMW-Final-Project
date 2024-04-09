@@ -470,28 +470,6 @@ namespace BMW_Final_Project.Infrastructure.Data
                     HorsePowers = 225,
                 }, new Motorcycle()
                 {
-                    Id = 4,
-                    Model = "BMW M1000XR",
-                    TypeMotorId = 2,
-                    Amount = 20,
-                    CC = 100,
-                    StandardEuroId = 3,
-                    Price = 82000,
-                    Year = DateTime.Now,
-                    BuyerId = Guid.Parse("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
-                    ColorCategoryId = 1,
-                    Kg = 190,
-                    TankCapacity = 21,
-                    DTC = "BMW own Dynamic Traction Control specified for this unique bike",
-                    Transmission = "BMW 6-Gears transmission",
-                    FrontBreak = "BMW own Front Brake Control specified for this unique bike",
-                    RearBreak = "BMW own Rear Brake Control specified for this unique bike",
-                    SeatHeightMm = 665,
-                    ImageUrl = "https://www.euromotorcenter.fi/wp-content/uploads/2023/10/P90528842_highRes_the-new-bmw-m-1000-x.jpg",
-                    IsActive = true,
-                    HorsePowers = 225,
-                }, new Motorcycle()
-                {
                     Id = 5,
                     Model = "BMW F800R",
                     TypeMotorId = 3,
@@ -563,7 +541,7 @@ namespace BMW_Final_Project.Infrastructure.Data
                 .HasData(new Event()
                 {
                     Id = 1,
-                    Description = "Тази година само с БМВ ивента е неповторимо събитие, което на трябва да изпускате. Ще има стънт програма и екслузивни мотори. ЗАПОВЯДАЙТЕ!",
+                    Description = "Тази година само с BMW ,събитието ще бъде неповторимо, което не трябва да изпускате. Ще има стънт програма и екслузивни мотори. ЗАПОВЯДАЙТЕ!",
                     Name = "BMW SPORT EVENT",
                     PlaceOfTheEvent = "София, BMW-България",
                     StartEvent = DateTime.ParseExact("02/02/2024 13:45", DataConstants.DataFormatWithHours, null),
@@ -574,7 +552,7 @@ namespace BMW_Final_Project.Infrastructure.Data
                 },new Event()
                 {
                     Id = 2,
-                    Description = "Тази година, БМВ ивента е неповторимо събитие, което на трябва да изпускате. Ще има стънт програма и екслузивни мотори.Това е 100-годишнината на BMW и желаем да поканим възможно повече хора! ЗАПОВЯДАЙТЕ!",
+                    Description = "Тази година, BMW събитието ще бъде неповторимо, което не трябва да изпускате. Ще има стънт програма и екслузивни мотори.Това е 100-годишнината на BMW и желаем да поканим възможно повече хора! ЗАПОВЯДАЙТЕ!",
                     Name = "BMW Anniversary",
                     PlaceOfTheEvent = "София, BMW-България",
                     StartEvent = DateTime.ParseExact("01/29/2024 12:45", DataConstants.DataFormatWithHours, null),
@@ -585,7 +563,7 @@ namespace BMW_Final_Project.Infrastructure.Data
                 }, new Event()
                 {
                     Id = 3,
-                    Description = "BMW - Откриване на сезона, желаем да ви поканим да открием новият сезон с яркост и красота с нашите нови модели. ЗАПОВЯДАЙТЕ!",
+                    Description = "BMW - Откриване на сезона, желаем да Ви поканим да открием новият сезон с яркост и красота с нашите нови модели. ЗАПОВЯДАЙТЕ!",
                     Name = "BMW new season",
                     PlaceOfTheEvent = "София, BMW-България",
                     StartEvent = DateTime.ParseExact("04/12/2024 11:45", DataConstants.DataFormatWithHours, null),
