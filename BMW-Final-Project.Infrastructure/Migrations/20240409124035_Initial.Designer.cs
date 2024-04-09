@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BMW_Final_Project.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240409100804_Initial")]
+    [Migration("20240409124035_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,7 +55,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("ab5f19c3-0e66-4a5b-ab4a-ada016abc5c5"),
-                            ConcurrencyStamp = "7c1483a8-53f4-4dd4-b584-05c061a9c624",
+                            ConcurrencyStamp = "b7e06598-d146-43cd-a4da-b100f5ab6368",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -143,7 +143,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         {
                             Id = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c5d840c4-0eae-42e9-ad9f-061293a688e6",
+                            ConcurrencyStamp = "05f21979-92fd-4930-b429-f181a77690e9",
                             Email = "Adi@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Adrian",
@@ -152,9 +152,9 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             Nickname = "ToXic",
                             NormalizedEmail = "ADI@GMAIL.COM",
                             NormalizedUserName = "ADI@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEB3CPfG3ydzU2xXSiKANYhSnPkGnfK0KkUPo+FWVtYyQ98KTKxaqGi6ZxrecPS/faw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDuPCqtxGes//jy7wy0zKPXoYQ8d4HWek1h2FqLEqc2cmLGA//YebHp50wMGe1q/nQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2706E556-D894-4F17-B12E-E51AFC490027",
+                            SecurityStamp = "FF25C234-3087-45FB-9F11-2794A82E069B",
                             TwoFactorEnabled = false,
                             UserName = "Adi@gmail.com"
                         });
@@ -252,7 +252,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             BuyerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
                             ImgUrl = "https://cdn.shopify.com/s/files/1/0422/5191/1327/files/BMWMMOTORSPORTBOTTLE.jpg?v=1699006337&width=533",
                             IsActive = true,
-                            ItemTypeId = 4,
+                            ItemTypeId = 1,
                             Name = "Бутилка BMW",
                             Price = 110m
                         });
@@ -989,7 +989,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 1,
-                            Year = new DateTime(2024, 4, 9, 13, 8, 4, 331, DateTimeKind.Local).AddTicks(2046)
+                            Year = new DateTime(2024, 4, 9, 15, 40, 35, 129, DateTimeKind.Local).AddTicks(5547)
                         },
                         new
                         {
@@ -1012,7 +1012,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 16,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 4,
-                            Year = new DateTime(2024, 4, 9, 13, 8, 4, 331, DateTimeKind.Local).AddTicks(2087)
+                            Year = new DateTime(2024, 4, 9, 15, 40, 35, 129, DateTimeKind.Local).AddTicks(5590)
                         },
                         new
                         {
@@ -1035,7 +1035,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 2,
-                            Year = new DateTime(2024, 4, 9, 13, 8, 4, 331, DateTimeKind.Local).AddTicks(2092)
+                            Year = new DateTime(2024, 4, 9, 15, 40, 35, 129, DateTimeKind.Local).AddTicks(5595)
                         },
                         new
                         {
@@ -1058,7 +1058,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 3,
-                            Year = new DateTime(2024, 4, 9, 13, 8, 4, 331, DateTimeKind.Local).AddTicks(2095)
+                            Year = new DateTime(2024, 4, 9, 15, 40, 35, 129, DateTimeKind.Local).AddTicks(5600)
                         },
                         new
                         {
@@ -1081,7 +1081,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 5,
-                            Year = new DateTime(2024, 4, 9, 13, 8, 4, 331, DateTimeKind.Local).AddTicks(2099)
+                            Year = new DateTime(2024, 4, 9, 15, 40, 35, 129, DateTimeKind.Local).AddTicks(5603)
                         },
                         new
                         {
@@ -1104,7 +1104,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 6,
-                            Year = new DateTime(2024, 4, 9, 13, 8, 4, 331, DateTimeKind.Local).AddTicks(2102)
+                            Year = new DateTime(2024, 4, 9, 15, 40, 35, 129, DateTimeKind.Local).AddTicks(5607)
                         });
                 });
 

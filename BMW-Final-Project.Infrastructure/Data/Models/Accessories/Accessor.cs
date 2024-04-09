@@ -13,6 +13,7 @@ namespace BMW_Final_Project.Infrastructure.Data.Models.Accessories
         [Comment("Accessor identifier")]
         public int Id { get; set; }
 
+        [Required]
         [Comment("Accessor's name")]
         [MaxLength(MaxNameLength)]
         public string Name { get; set; } = string.Empty;
@@ -46,6 +47,7 @@ namespace BMW_Final_Project.Infrastructure.Data.Models.Accessories
         public string ImgUrl { get; set; } = string.Empty;
 
         [Range(MinAmount,MaxAmount)]
+        [Required]
         public int Amount { get; set; } 
     }
 }

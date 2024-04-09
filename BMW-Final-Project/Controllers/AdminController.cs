@@ -1,4 +1,5 @@
 ﻿using BMW_Final_Project.Engine.Contracts;
+using BMW_Final_Project.Engine.Models.Accessories;
 using BMW_Final_Project.Engine.Models.Cloth;
 using BMW_Final_Project.Engine.Models.Event;
 using BMW_Final_Project.Engine.Models.Motorcycle;
@@ -15,12 +16,17 @@ namespace BMW_Final_Project.Controllers
         private readonly IMotorcycleService _motorcycleService;
         private readonly IClothService _clothService;
         private readonly IEventService _eventService;
+        private readonly IAccessoriesService _accessoriesService;
 
-        public AdminController(IMotorcycleService motorcycleService, IClothService clothService, IEventService eventService)
+        public AdminController(IMotorcycleService motorcycleService,
+            IClothService clothService,
+            IEventService eventService,
+            IAccessoriesService accessoriesService)
         {
             _motorcycleService = motorcycleService;
             _clothService = clothService;
             _eventService = eventService;
+            _accessoriesService = accessoriesService;
         }
 
         [HttpGet]
@@ -507,7 +513,7 @@ namespace BMW_Final_Project.Controllers
         {
             try
             {
-                var model = await _eventService.AllJoinedUsersForEventAsync(id,currentPage, joinersPerPage);
+                var model = await _eventService.AllJoinedUsersForEventAsync(id, currentPage, joinersPerPage);
 
                 return View(model);
             }
@@ -516,6 +522,39 @@ namespace BMW_Final_Project.Controllers
                 return BadRequest();
             }
         }
+
+
+
+        //[HttpGet]
+        //public IActionResult AddAccessoar()
+        //{
+
+        //    var accsModel = new AddAccsessoarModel();
+
+        //    return View(accsModel);
+        //}
+
+        //[HttpPost]
+        //public async Task<IActionResult> AddAccessoar(AddAccsessoarModel accsModel)
+        //{
+
+        //    if (await _accessoriesService.IsThisEventExistAsync(accsModel))
+        //    {
+        //        ModelState.AddModelError(string.Empty, "Този аксесоар вече съществува!");
+        //    }
+
+
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View(accsModel);
+        //    }
+
+        //    accsModel.BuyerId = User.Id();
+
+        //    await _accessoriesService.AddAsync(accsModel);
+
+        //    return RedirectToAction("Index", "Accessories");
+        //}
 
     }
 }
