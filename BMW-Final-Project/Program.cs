@@ -12,8 +12,8 @@ namespace BMW_Final_Project
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddAplicationDbContext(builder.Configuration);
-            builder.Services.AddAplicationIdentity(builder.Configuration);
+            builder.Services.AddApplicationDbContext(builder.Configuration);
+            builder.Services.AddApplicationIdentity(builder.Configuration);
             builder.Services.AddApplicationAuthentication();
 
             builder.Services.AddControllersWithViews(mvcOptions =>
@@ -23,7 +23,7 @@ namespace BMW_Final_Project
             });
 
             
-            builder.Services.AddAplicationServices();
+            builder.Services.AddApplicationServices();
 
             var app = builder.Build();
 

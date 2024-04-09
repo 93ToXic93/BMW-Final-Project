@@ -9,15 +9,17 @@ namespace BMW_Final_Project.Extensions
 {
     public static class ServiceCollectionExtension
     {
-        public static IServiceCollection AddAplicationServices(this IServiceCollection services)
+        public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddScoped<IRepository, Repository>();
             services.AddScoped<IMotorcycleService, MotorcycleService>();
             services.AddScoped<IClothService, ClothService>();
             services.AddScoped<IEventService, EventService>();
+            services.AddScoped<IAccessoriesService, AccessoriesService>();
+
             return services;
         }
-        public static IServiceCollection AddAplicationDbContext(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddApplicationDbContext(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -26,7 +28,7 @@ namespace BMW_Final_Project.Extensions
 
             return services;
         }
-        public static IServiceCollection AddAplicationIdentity(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddApplicationIdentity(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDefaultIdentity<ApplicationUser>(options =>
                 {

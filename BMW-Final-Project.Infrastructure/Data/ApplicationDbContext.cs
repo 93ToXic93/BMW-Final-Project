@@ -218,7 +218,7 @@ namespace BMW_Final_Project.Infrastructure.Data
                    SizeId = 1,
                    ClothCollectionId = 2,
                    TypePersonId = 2,
-                   Name = "БМВ Оrigin Суитчер",
+                   Name = "БМВ Оrigin суитшърт",
                    Description = "Суитчера е от 100% памук и е доста лек и прохладен за горещото лято, произведен е в Германия."
                }, new Cloth
                {
@@ -244,8 +244,8 @@ namespace BMW_Final_Project.Infrastructure.Data
                    SizeId = 1,
                    ClothCollectionId = 2,
                    TypePersonId = 2,
-                   Name = "БМВ Оrigin Суитчер",
-                   Description = "Суитчера е от 100% памук и е доста лек и прохладен за горещото лято, произведен е в Германия."
+                   Name = "БМВ Оrigin суитшърт",
+                   Description = "суитшърта е от 100% памук и е доста лек и прохладен за горещото лято, произведен е в Германия."
                }, new Cloth
                {
                    Id = 6,
@@ -257,8 +257,8 @@ namespace BMW_Final_Project.Infrastructure.Data
                    SizeId = 5,
                    ClothCollectionId = 1,
                    TypePersonId = 1,
-                   Name = "БМВ Суитчер",
-                   Description = "Суитчера е от 100% памук и е доста лек и прохладен за горещото лято, произведен е в Германия."
+                   Name = "БМВ суитшърт",
+                   Description = "Суитшърта е от 100% памук и е доста лек и прохладен за горещото лято, произведен е в Германия."
                }, new Cloth
                {
                    Id = 7,
