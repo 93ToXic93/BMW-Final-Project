@@ -1,4 +1,5 @@
 ﻿using BMW_Final_Project.Infrastructure.Data.IdentityModels;
+using BMW_Final_Project.Infrastructure.Data.Models.Cloth;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -48,6 +49,9 @@ namespace BMW_Final_Project.Infrastructure.Data.Models.Accessories
 
         [Range(MinAmount,MaxAmount)]
         [Required]
-        public int Amount { get; set; } 
+        public int Amount { get; set; }
+
+        public ICollection<AccessorBuyer> AccessorBuyers { get; set; } = new List<AccessorBuyer>();
+
     }
 }

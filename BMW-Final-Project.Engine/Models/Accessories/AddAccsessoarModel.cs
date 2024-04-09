@@ -32,5 +32,7 @@ namespace BMW_Final_Project.Engine.Models.Accessories
         [Range(MinAmount, MaxAmount)]
         [Required(ErrorMessage = DataConstants.RequiredErrorMessage)]
         public int Amount { get; set; }
+        
+        public ICollection<ItemTypeModel> ItemTypeModel { get; set; } = new List<ItemTypeModel>();
     }
 }

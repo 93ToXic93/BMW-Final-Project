@@ -48,5 +48,114 @@ namespace BMW_Final_Project.Engine.Services
 
             return model;
         }
+
+        public async Task<bool> IsThisAccsesoarExistAsync(AddAccsessoarModel model)
+        {
+            var accsesoar = await _repository.AllReadOnly<Accessor>().AnyAsync(x => x.IsActive == true && x.Name == model.Name);
+
+            return accsesoar;
+        }
+
+        public async Task AddAsync(AddAccsessoarModel model)
+        {
+            if (await IsThisAccsesoarExistButDeletedAsync(model))
+            {
+                var accessoroToAdd = await GetByNameDeletedAccsesoarAsync(model.Name);
+
+                accessoroToAdd.IsActive = true;
+                accessoroToAdd.Amount = model.Amount;
+                accessoroToAdd.ImgUrl = model.ImgUrl;
+                accessoroToAdd.Price = model.Price;
+                accessoroToAdd.Name = model.Name;
+                accessoroToAdd.ItemTypeId = model.ItemTypeId;
+
+                await _repository.SaveChangesAsync();
+
+            }
+            else
+            {
+                Accessor accessor = new Accessor()
+                {
+                    Id = model.Id,
+                    ImgUrl = model.ImgUrl,
+                    Amount = model.Amount,
+                    BuyerId = model.BuyerId,
+                    IsActive = true,
+                    Price = model.Price,
+                    Name = model.Name,
+                    ItemTypeId = model.ItemTypeId,
+                };
+
+                await _repository.AddAsync(accessor);
+
+                await _repository.SaveChangesAsync();
+            }
+        }
+
+        public async Task<ICollection<ItemTypeModel>> GetItemTypeModelAsync()
+        {
+            var itemTypes = await _repository
+                .AllReadOnly<ItemType>()
+                .Select(x => new ItemTypeModel()
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                })
+                .ToListAsync();
+
+            return itemTypes;
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var accsesoar = await GetByIdAsync(id);
+
+            if (accsesoar == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (id != accsesoar.Id)
+            {
+                throw new ArgumentException("Not found");
+            }
+
+            accsesoar.IsActive = false;
+
+            await _repository.SaveChangesAsync();
+        }
+
+        public async Task<Accessor?> GetByIdAsync(int id)
+        {
+            var accessor = await _repository.All<Accessor>()
+                .Include(x => x.AccessorBuyers)
+                .Where(x => x.Id == id && x.IsActive)
+                .FirstOrDefaultAsync();
+
+            if (accessor == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            return accessor;
+        }
+
+
+        private async Task<Accessor?> GetByNameDeletedAccsesoarAsync(string name)
+        {
+            var accsesoar = await _repository.All<Accessor>()
+                .Where(x => x.Name == name && x.IsActive == false)
+                .FirstOrDefaultAsync();
+
+            return accsesoar;
+        }
+
+        private async Task<bool> IsThisAccsesoarExistButDeletedAsync(AddAccsessoarModel model)
+        {
+            var accsesoar = await _repository.AllReadOnly<Accessor>().AnyAsync(x => x.IsActive == false && x.Name == model.Name);
+
+            return accsesoar;
+        }
+
     }
 }

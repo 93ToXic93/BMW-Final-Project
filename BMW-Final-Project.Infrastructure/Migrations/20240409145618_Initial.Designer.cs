@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BMW_Final_Project.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240409124035_Initial")]
+    [Migration("20240409145618_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,7 +55,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("ab5f19c3-0e66-4a5b-ab4a-ada016abc5c5"),
-                            ConcurrencyStamp = "b7e06598-d146-43cd-a4da-b100f5ab6368",
+                            ConcurrencyStamp = "7e961b76-93af-483b-ab95-e519db26a089",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -143,7 +143,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         {
                             Id = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "05f21979-92fd-4930-b429-f181a77690e9",
+                            ConcurrencyStamp = "97887623-b6d1-48ee-b17b-d0e1e4779b22",
                             Email = "Adi@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Adrian",
@@ -152,9 +152,9 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             Nickname = "ToXic",
                             NormalizedEmail = "ADI@GMAIL.COM",
                             NormalizedUserName = "ADI@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDuPCqtxGes//jy7wy0zKPXoYQ8d4HWek1h2FqLEqc2cmLGA//YebHp50wMGe1q/nQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECiruepb7FVvM2W/UdNmEqj0AddBYnhLY/msy4ZY6Ue0jY4JkFfhQvJwDsQnnlmRew==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "FF25C234-3087-45FB-9F11-2794A82E069B",
+                            SecurityStamp = "F981F778-4B60-4C72-BAE4-293BC37204A4",
                             TwoFactorEnabled = false,
                             UserName = "Adi@gmail.com"
                         });
@@ -989,7 +989,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 1,
-                            Year = new DateTime(2024, 4, 9, 15, 40, 35, 129, DateTimeKind.Local).AddTicks(5547)
+                            Year = new DateTime(2024, 4, 9, 17, 56, 17, 820, DateTimeKind.Local).AddTicks(3566)
                         },
                         new
                         {
@@ -1012,7 +1012,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 16,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 4,
-                            Year = new DateTime(2024, 4, 9, 15, 40, 35, 129, DateTimeKind.Local).AddTicks(5590)
+                            Year = new DateTime(2024, 4, 9, 17, 56, 17, 820, DateTimeKind.Local).AddTicks(3610)
                         },
                         new
                         {
@@ -1035,7 +1035,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 2,
-                            Year = new DateTime(2024, 4, 9, 15, 40, 35, 129, DateTimeKind.Local).AddTicks(5595)
+                            Year = new DateTime(2024, 4, 9, 17, 56, 17, 820, DateTimeKind.Local).AddTicks(3614)
                         },
                         new
                         {
@@ -1058,7 +1058,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 3,
-                            Year = new DateTime(2024, 4, 9, 15, 40, 35, 129, DateTimeKind.Local).AddTicks(5600)
+                            Year = new DateTime(2024, 4, 9, 17, 56, 17, 820, DateTimeKind.Local).AddTicks(3618)
                         },
                         new
                         {
@@ -1081,7 +1081,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 5,
-                            Year = new DateTime(2024, 4, 9, 15, 40, 35, 129, DateTimeKind.Local).AddTicks(5603)
+                            Year = new DateTime(2024, 4, 9, 17, 56, 17, 820, DateTimeKind.Local).AddTicks(3621)
                         },
                         new
                         {
@@ -1104,7 +1104,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 6,
-                            Year = new DateTime(2024, 4, 9, 15, 40, 35, 129, DateTimeKind.Local).AddTicks(5607)
+                            Year = new DateTime(2024, 4, 9, 17, 56, 17, 820, DateTimeKind.Local).AddTicks(3624)
                         });
                 });
 
@@ -1376,7 +1376,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
             modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Accessories.AccessorBuyer", b =>
                 {
                     b.HasOne("BMW_Final_Project.Infrastructure.Data.Models.Accessories.Accessor", "Accessor")
-                        .WithMany()
+                        .WithMany("AccessorBuyers")
                         .HasForeignKey("AccessorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1579,6 +1579,11 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Accessories.Accessor", b =>
+                {
+                    b.Navigation("AccessorBuyers");
                 });
 
             modelBuilder.Entity("BMW_Final_Project.Infrastructure.Data.Models.Accessories.ItemType", b =>

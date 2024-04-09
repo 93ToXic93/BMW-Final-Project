@@ -134,7 +134,7 @@
             public const double MinPrice = 1;
 
             public const int MaxAmount = 1000000;
-            public const int MinAmount = 1000000;
+            public const int MinAmount = 1;
 
         }
         public static class ItemTypeConstants

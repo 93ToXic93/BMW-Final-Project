@@ -524,37 +524,57 @@ namespace BMW_Final_Project.Controllers
         }
 
 
+        [HttpGet]
+        public async Task<IActionResult> AddAccessoar()
+        {
 
-        //[HttpGet]
-        //public IActionResult AddAccessoar()
-        //{
+            var accsModel = new AddAccsessoarModel();
 
-        //    var accsModel = new AddAccsessoarModel();
+            accsModel.ItemTypeModel = await _accessoriesService.GetItemTypeModelAsync();
 
-        //    return View(accsModel);
-        //}
+            return View(accsModel);
+        }
 
-        //[HttpPost]
-        //public async Task<IActionResult> AddAccessoar(AddAccsessoarModel accsModel)
-        //{
+        [HttpPost]
+        public async Task<IActionResult> AddAccessoar(AddAccsessoarModel accsModel)
+        {
 
-        //    if (await _accessoriesService.IsThisEventExistAsync(accsModel))
-        //    {
-        //        ModelState.AddModelError(string.Empty, "Този аксесоар вече съществува!");
-        //    }
+            if (await _accessoriesService.IsThisAccsesoarExistAsync(accsModel))
+            {
+                ModelState.AddModelError(string.Empty, "Този аксесоар вече съществува!");
+            }
 
 
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View(accsModel);
-        //    }
+            if (!ModelState.IsValid)
+            {
+                accsModel.ItemTypeModel = await _accessoriesService.GetItemTypeModelAsync();
 
-        //    accsModel.BuyerId = User.Id();
+                return View(accsModel);
+            }
 
-        //    await _accessoriesService.AddAsync(accsModel);
+            accsModel.BuyerId = User.Id();
 
-        //    return RedirectToAction("Index", "Accessories");
-        //}
+            await _accessoriesService.AddAsync(accsModel);
+
+            return RedirectToAction("Index", "Accessories");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteAccsesoar(int id)
+        {
+
+            try
+            {
+                await _accessoriesService.DeleteAsync(id);
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+
+            return RedirectToAction("Index", "Accessories");
+        }
+
 
     }
 }
