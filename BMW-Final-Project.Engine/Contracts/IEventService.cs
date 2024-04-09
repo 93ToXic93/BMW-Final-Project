@@ -1,5 +1,4 @@
 ﻿using BMW_Final_Project.Engine.Models.Event;
-using BMW_Final_Project.Engine.Models.Motorcycle;
 using BMW_Final_Project.Infrastructure.Data.Models.Event;
 
 namespace BMW_Final_Project.Engine.Contracts
