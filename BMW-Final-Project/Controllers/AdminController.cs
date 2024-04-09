@@ -503,7 +503,7 @@ namespace BMW_Final_Project.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> AllJoinedUsersForEvent(int id, int currentPage = 1, int joinersPerPage = 3)
+        public async Task<IActionResult> AllJoinedUsersForEvent(int id, int currentPage = 1, int joinersPerPage = 10)
         {
             try
             {

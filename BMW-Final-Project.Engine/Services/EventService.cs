@@ -76,7 +76,6 @@ namespace BMW_Final_Project.Engine.Services
                 eventToAdd.Name = model.Name;
                 eventToAdd.EndEvent = model.EndEvent;
                 eventToAdd.StartEvent = model.StartEvent;
-                eventToAdd.Id = model.Id;
                 eventToAdd.PlaceOfTheEvent = model.PlaceOfTheEvent;
                 eventToAdd.Description = model.Description;
                 eventToAdd.JoinerId = model.JoinerId;
