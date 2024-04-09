@@ -575,6 +575,81 @@ namespace BMW_Final_Project.Controllers
             return RedirectToAction("Index", "Accessories");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> EditAccsesoar(int id)
+        {
+            try
+            {
+                var model = await _accessoriesService.GetByIdAsync(id);
 
+                if (model == null)
+                {
+                    return BadRequest();
+                }
+
+                if (id != model.Id)
+                {
+                    return BadRequest();
+                }
+                var modelToEdit = new EditAccsesoarModel
+                {
+                    Id = model.Id,
+                    ImgUrl = model.ImgUrl,
+                    Name = model.Name,
+                    Price = model.Price,
+                    Amount = model.Amount,
+                    ItemTypeId = model.ItemTypeId,
+
+                };
+
+                modelToEdit.ItemTypeModel = await _accessoriesService.GetItemTypeModelAsync();
+
+                return View(modelToEdit);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status403Forbidden);
+            }
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditAccsesoar(EditAccsesoarModel modelToEdit, int id)
+        {
+
+            var eventEdited = await _accessoriesService.GetByIdAsync(modelToEdit.Id);
+
+            if (eventEdited == null)
+            {
+                return NotFound();
+            }
+
+            if (eventEdited.Name != modelToEdit.Name)
+            {
+                if (await _accessoriesService.IsThisAccsesoarExistWhenEditAsync(modelToEdit))
+                {
+                    ModelState.AddModelError(string.Empty, "Това събитие вече съществува!");
+                }
+            }
+
+            if (!ModelState.IsValid)
+            {
+                modelToEdit.ItemTypeModel = await _accessoriesService.GetItemTypeModelAsync();
+                return View(modelToEdit);
+            }
+
+            try
+            {
+                await _accessoriesService.EditAsync(modelToEdit);
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+
+
+
+            return RedirectToAction("Index", "Accessories");
+        }
     }
 }

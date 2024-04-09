@@ -140,6 +140,31 @@ namespace BMW_Final_Project.Engine.Services
             return accessor;
         }
 
+        public async Task EditAsync(EditAccsesoarModel model)
+        {
+            var accsesoarToEdit = await GetByIdAsync(model.Id);
+             
+            if (accsesoarToEdit == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            accsesoarToEdit.Amount = model.Amount;
+            accsesoarToEdit.ImgUrl = model.ImgUrl;
+            accsesoarToEdit.Price = model.Price;
+            accsesoarToEdit.Name = model.Name;
+            accsesoarToEdit.ItemTypeId = model.ItemTypeId;
+
+            await _repository.SaveChangesAsync();
+        }
+
+        public async Task<bool> IsThisAccsesoarExistWhenEditAsync(EditAccsesoarModel model)
+        {
+            var accsesoar = await _repository.AllReadOnly<Accessor>().AnyAsync(x => x.IsActive == true && x.Name == model.Name);
+
+            return accsesoar;
+        }
+
 
         private async Task<Accessor?> GetByNameDeletedAccsesoarAsync(string name)
         {

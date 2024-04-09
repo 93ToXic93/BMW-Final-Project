@@ -15,7 +15,7 @@
     <div class="d-lg-flex">
         <div class="col-md-2"></div>
         <div class="col-md-2">
-            <a asp-controller="Accessories" asp-action="Index" class="@* Mini-menu-text *@">ВСИЧКИ</a>
+            <a asp-controller="Accessories" asp-action="Index" class="Mini-menu-text">ВСИЧКИ</a>
         </div>
         <div class="col-md-2">
             <a asp-controller="Accessories" asp-action="LoadById" asp-route-id="1" class="Mini-menu-text">Ежедневни</a>
@@ -40,7 +40,7 @@
             <div class="m-5">
                 @if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                 {
-                    <img class="photo-of-motorcycle" src="@accessor.ImgUrl" alt="Motor-Photo" />
+                    <img class="photo-of-Accsesoar" src="@accessor.ImgUrl" alt="Motor-Photo" />
                     <hr />
                     <h5>Име: @accessor.Name</h5>
                     <h6>Цена: @accessor.Price$</h6>
@@ -48,10 +48,10 @@
                     <br />
                     <div class="d-flex">
                         <div class="p-2">
-                            <a asp-controller="Admin" asp-action="EditAccessoar" asp-route-id="@accessor.Id" class="Button-Find2">Промени</a>
+                            <a asp-controller="Admin" asp-action="EditAccsesoar" asp-route-id="@accessor.Id" class="Button-Find2">Промени</a>
                         </div>
                         <div>
-                            <form asp-controller="Admin" asp-action="DeleteAccessoar" onsubmit="return ConfirmDelete()" asp-route-id="@accessor.Id" method="post">
+                            <form asp-controller="Admin" asp-action="DeleteAccsesoar" onsubmit="return ConfirmDelete()" asp-route-id="@accessor.Id" method="post">
                                 <button type="submit" class="Button-Find3">Изтрий облекло</button>
                             </form>
                         </div>

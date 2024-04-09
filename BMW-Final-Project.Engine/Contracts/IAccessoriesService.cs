@@ -1,6 +1,6 @@
 ﻿using BMW_Final_Project.Engine.Models.Accessories;
+using BMW_Final_Project.Engine.Models.Motorcycle;
 using BMW_Final_Project.Infrastructure.Data.Models.Accessories;
-using BMW_Final_Project.Infrastructure.Data.Models.Motorcycle;
 
 namespace BMW_Final_Project.Engine.Contracts
 {
@@ -19,6 +19,10 @@ namespace BMW_Final_Project.Engine.Contracts
         Task DeleteAsync(int id);
 
         Task<Accessor?> GetByIdAsync(int id);
+
+        Task EditAsync(EditAccsesoarModel model);
+
+        Task<bool> IsThisAccsesoarExistWhenEditAsync(EditAccsesoarModel model);
 
 
     }
