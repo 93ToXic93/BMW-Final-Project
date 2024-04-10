@@ -30,5 +30,7 @@ namespace BMW_Final_Project.Engine.Contracts
         Task RemoveAccsesoarAsync(int id);
 
         Task BuyAccsesoarAsync(int id);
+
+        Task<bool> IsThisProductIsAddedFromThisUserAsync(Guid userId, int id);
     }
 }

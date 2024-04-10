@@ -1,5 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using BMW_Final_Project.Engine.Contracts
+@using BMW_Final_Project.Extensions
 @model ICollection<BMW_Final_Project.Engine.Models.Accessories.AllAccessoriesModel>
+@inject IAccessoriesService Service
 
 <h1 class="display-2 fw-bold text-center pt-5">ВСИЧКИ АКСЕСОАРИ</h1>
 <h3 class="fw-bold text-center">ОТКРИЙ СВОЯ АКСЕСОАР BMW MOTORRAD.</h3>
@@ -67,10 +70,12 @@
                         <h5>Име: @accessor.Name</h5>
                         <h6>Цена: @accessor.Price$</h6>
                         <br />
-
-                        <form class="input-group-sm" asp-controller="Accessories" asp-action="BuyAccsesoar" asp-route-id="@accessor.Id" method="post">
-                            <input type="submit" value="Добави в количката" class="btn btn-success" />
-                        </form>
+                        if (!(await Service.IsThisProductIsAddedFromThisUserAsync(User.Id(), accessor.Id)))
+                        {
+                            <form class="input-group-sm" asp-controller="Accessories" asp-action="BuyAccsesoar" asp-route-id="@accessor.Id" method="post">
+                                <input type="submit" value="Добави в количката" class="btn btn-success" />
+                            </form>
+                        }
                     }
                 }
             </div>

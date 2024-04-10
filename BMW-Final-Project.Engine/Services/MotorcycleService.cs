@@ -464,6 +464,13 @@ namespace BMW_Final_Project.Engine.Services
 
             await _repository.SaveChangesAsync();
         }
+
+        public async Task<bool> IsThisMotorcycleIsAdded(Guid userId, int id)
+        {
+            return await _repository.AllReadOnly<MotorcycleBuyers>()
+                .AnyAsync(x => x.BuyerId == userId && x.MotorcycleId == id);
+        }
+
         private async Task<bool> IsThisMotorcycleExistButDeletedAsync(AddMotorcycleModel model)
         {
             var motorcycle = await _repository.AllReadOnly<Motorcycle>().AnyAsync(x => x.IsActive == false && x.Model == model.Model);

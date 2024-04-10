@@ -1,8 +1,11 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using BMW_Final_Project.Extensions
+@using BMW_Final_Project.Engine.Contracts
 @model ICollection<BMW_Final_Project.Engine.Models.Accessories.AllAccessoriesModel>
+@inject IAccessoriesService Service
 
 <h1 class="display-2 fw-bold text-center pt-5">ВСИЧКИ АКСЕСОАРИ</h1>
-<h3 class="fw-bold text-center">ОТКРИЙ СВОЯ АКСЕСОАР BMW MOTORRAD.</h3>
+<h3 class="fw-bold text-center p-3">ОТКРИЙ СВОЯ АКСЕСОАР BMW MOTORRAD.</h3>
 
 @if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Admin"))
 {
@@ -11,7 +14,7 @@
     </div>
 }
 
-<div class="row">
+<div class="row p-3">
     <div class="d-lg-flex">
         <div class="col-md-2"></div>
         <div class="col-md-2">
@@ -66,10 +69,12 @@
                         <h5>Име: @accessor.Name</h5>
                         <h6>Цена: @accessor.Price$</h6>
                         <br />
-
-                        <form class="input-group-sm" asp-controller="Accessories" asp-action="BuyAccsesoar" asp-route-id="@accessor.Id" method="post">
-                            <input type="submit" value="Добави в количката" class="btn btn-success" />
-                        </form>
+                        if (!(await Service.IsThisProductIsAddedFromThisUserAsync(User.Id(), accessor.Id)))
+                        {
+                            <form class="input-group-sm" asp-controller="Accessories" asp-action="BuyAccsesoar" asp-route-id="@accessor.Id" method="post">
+                                <input type="submit" value="Добави в количката" class="btn btn-success" />
+                            </form>
+                        }
                     }
                 }
             </div>
@@ -79,7 +84,7 @@
 }
 else
 {
-    <h1 class="p-5 text-center">В момента нямаме такива облекла, очаквайте скоро!</h1>
+    <h1 class="p-5 text-center">В момента нямаме такива аксесоари, очаквайте скоро!</h1>
 }
 @section Scripts {
     <script src="~/js/DeleteCheck/DeleteCheck.js"></script>

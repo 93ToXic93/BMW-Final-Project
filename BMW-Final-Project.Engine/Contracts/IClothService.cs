@@ -36,5 +36,7 @@ namespace BMW_Final_Project.Engine.Contracts
         Task DeleteAsync(int id);
 
         Task<bool> IsThisClothExistWhenEditAsync(EditClothModel model);
+
+        Task<bool> IsThisProductIsAddedAsync(Guid userId, int id);
     }
 }

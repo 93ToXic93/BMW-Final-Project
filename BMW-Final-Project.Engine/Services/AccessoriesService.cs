@@ -256,6 +256,12 @@ namespace BMW_Final_Project.Engine.Services
             await _repository.SaveChangesAsync();
         }
 
+        public async Task<bool> IsThisProductIsAddedFromThisUserAsync(Guid userId, int id)
+        {
+            return await _repository.AllReadOnly<AccessorBuyer>()
+                .AnyAsync(x => x.BuyerId == userId && x.AccessorId == id);
+        }
+
         private async Task<AccessorBuyer?> GetByIdAccsesoarAndServicesAsync(int id)
         {
             var motorcycle = await _repository.All<AccessorBuyer>()

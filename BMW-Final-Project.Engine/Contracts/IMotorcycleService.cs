@@ -43,5 +43,7 @@ namespace BMW_Final_Project.Engine.Contracts
         Task<DeleteColorPageModel> GetColorsToDeleteAsync(int currentPage, int colorsPerPage);
 
         Task DeleteColorAsync(int id);
+
+        Task<bool> IsThisMotorcycleIsAdded(Guid userId, int id);
     }
 }

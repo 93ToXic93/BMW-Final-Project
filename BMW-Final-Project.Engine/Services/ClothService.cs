@@ -348,6 +348,12 @@ namespace BMW_Final_Project.Engine.Services
             return cloth;
         }
 
+        public async Task<bool> IsThisProductIsAddedAsync(Guid userId, int id)
+        {
+            return await _repository.AllReadOnly<ClothBuyer>()
+                .AnyAsync(x => x.BuyerId == userId && x.ClothId == id);
+        }
+
 
         private async Task<Cloth?> GetByIdReadOnlyAsync(int id)
         {

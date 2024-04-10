@@ -29,7 +29,7 @@ namespace BMW_Final_Project.Engine.Contracts
 
         Task<AllJoinedUsersModel> AllJoinedUsersForEventAsync(int id,int currentPage,int joinersPerPage);
 
-        Task<bool> IsThisUserHasBeenAddedTheEvent(Guid userId, int id);
+        Task<bool> IsThisUserHasBeenAddedTheEventAsync(Guid userId, int id);
 
     }
 }
