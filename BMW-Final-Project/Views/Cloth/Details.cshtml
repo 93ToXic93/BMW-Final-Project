@@ -33,11 +33,14 @@
     </div>
 
     <div class="PriceContainer">
-        <h1 class="priceText">Добави в количката: </h1>
-        <form class="input-group-sm" asp-controller="Cloth" asp-action="BuyCloth" method="post">
-            <input type="hidden" name="id" value="@Model.Id" />
-            <input type="submit" value="@Model.Price$" class="Add-Button-Submit" />
-        </form>
+        @if (User.Identity != null && User.Identity.IsAuthenticated && !(User.IsInRole("Admin")))
+        {
+            <h1 class="priceText">Добави в количката: </h1>
+            <form class="input-group-sm" asp-controller="Cloth" asp-action="BuyCloth" method="post">
+                <input type="hidden" name="id" value="@Model.Id" />
+                <input type="submit" value="@Model.Price$" class="Add-Button-Submit" />
+            </form>
+        }
     </div>
 
 </div>

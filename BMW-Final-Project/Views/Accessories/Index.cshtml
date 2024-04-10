@@ -49,6 +49,7 @@
                     <div class="d-flex">
                         <div class="p-2">
                             <a asp-controller="Admin" asp-action="EditAccsesoar" asp-route-id="@accessor.Id" class="Button-Find2">Промени</a>
+
                         </div>
                         <div>
                             <form asp-controller="Admin" asp-action="DeleteAccsesoar" onsubmit="return ConfirmDelete()" asp-route-id="@accessor.Id" method="post">

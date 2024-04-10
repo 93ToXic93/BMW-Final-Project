@@ -233,7 +233,6 @@ namespace BMW_Final_Project.Engine.Services
 
         }
 
-
         public async Task<ICollection<TypeMotorModel>> GetTypeMotorcyclesAsync()
         {
             var motoTypes = await _repository

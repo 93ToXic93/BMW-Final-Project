@@ -9,12 +9,15 @@
         var user = await UserManager.GetUserAsync(User);
         if (user != null)
         {
-            <li>
-                <a asp-controller="Event" asp-action="AllJoined" class="nav-link text-dark fw-bold">Моите събития</a>
-            </li>
-            <li>
-                <a asp-controller="Motorcycle" asp-action="AllBought" class="nav-link text-dark fw-bold">Поръчки</a>
-            </li>
+            @if (User.Identity != null && User.Identity.IsAuthenticated && !(User.IsInRole("Admin")))
+            {
+                <li>
+                    <a asp-controller="Event" asp-action="AllJoined" class="nav-link text-dark fw-bold">Моите събития</a>
+                </li>
+                <li>
+                    <a asp-controller="Motorcycle" asp-action="AllBought" class="nav-link text-dark fw-bold">Поръчки</a>
+                </li>
+            }
             <li class="nav-item">
                 <a class="nav-link text-dark fw-bold" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Здравей @user.Nickname</a>
             </li>
