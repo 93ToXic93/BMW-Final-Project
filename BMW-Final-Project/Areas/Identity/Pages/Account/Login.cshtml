@@ -36,52 +36,10 @@
                 </a>
             </button>
 
-            <p>
-                <a id="forgot-password" asp-page="./ForgotPassword">Забравена парола?</a>
-            </p>
-            <p>
-                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Регистрирай се като нов потребител</a>
-            </p>
-            <p>
-                <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Препрати имейл конфигурация</a>
-            </p>
-
         </form>
     </div>
 </div>
 
-
-
- @* <div class="col-md-6 col-md-offset-2">
-    <section>
-    <h3>Use another motorcycleService to log in.</h3>
-    <hr />
-    @{
-    if ((Model.ExternalLogins?.Count ?? 0) == 0)
-    {
-    <div>
-    <p>
-    There are no external authentication motorcycleServices configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-    about setting up this ASP.NET application to support logging in via external motorcycleServices</a>.
-    </p>
-    </div>
-    }
-    else
-    {
-    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-    <div>
-    <p>
-    @foreach (var provider in Model.ExternalLogins!)
-    {
-    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-    }
-    </p>
-    </div>
-    </form>
-    }
-    }
-    </section>
-    </div> *@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

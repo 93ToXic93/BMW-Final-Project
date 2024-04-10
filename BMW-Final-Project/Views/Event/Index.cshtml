@@ -1,4 +1,7 @@
-﻿@model ICollection<BMW_Final_Project.Engine.Models.Event.AllEventsModel>
+﻿@using BMW_Final_Project.Engine.Contracts
+@using BMW_Final_Project.Extensions
+@model ICollection<BMW_Final_Project.Engine.Models.Event.AllEventsModel>
+@inject IEventService Service
 
 <div class="row p-5">
     @if (Model.Any())
@@ -37,9 +40,12 @@
                         }
                         else
                         {
-                            <form class="input-group-sm" asp-controller="Event" asp-action="JoinEvent" asp-route-id="@eve.Id" method="post">
-                                <button type="submit" class="btn btn-success w-50">Присъедини се</button>
-                            </form>
+                            @if (!(await Service.IsThisUserHasBeenAddedTheEvent(User.Id(), eve.Id)))
+                            {
+                                <form class="input-group-sm" asp-controller="Event" asp-action="JoinEvent" asp-route-id="@eve.Id" method="post">
+                                    <button type="submit" class="btn btn-success w-50">Присъедини се</button>
+                                </form>
+                            }
                         }
                     </div>
                 </div>

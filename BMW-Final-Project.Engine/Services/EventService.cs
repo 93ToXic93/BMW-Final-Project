@@ -268,6 +268,11 @@ namespace BMW_Final_Project.Engine.Services
             };
         }
 
+        public Task<bool> IsThisUserHasBeenAddedTheEvent(Guid userId, int id)
+        {
+            return _repository.AllReadOnly<EventJoiners>().AnyAsync(x => x.JoinerId == userId && x.EventId == id);
+        }
+
         private async Task<bool> IsThisEventExistButDeletedAsync(AddEventModel model)
         {
             var eve = await _repository.AllReadOnly<Event>().AnyAsync(x => x.IsActive == false && x.Name == model.Name);
