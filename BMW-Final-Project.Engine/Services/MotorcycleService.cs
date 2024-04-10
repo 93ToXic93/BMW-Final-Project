@@ -233,20 +233,6 @@ namespace BMW_Final_Project.Engine.Services
 
         }
 
-        public async Task<Motorcycle?> GetByIdAsync(int id)
-        {
-            var motorcycle = await _repository.All<Motorcycle>()
-                .Include(x => x.MotorcycleBuyers)
-                .Where(x => x.Id == id && x.IsActive)
-                .FirstOrDefaultAsync();
-
-            if (motorcycle == null)
-            {
-                throw new ArgumentNullException();
-            }
-
-            return motorcycle;
-        }
 
         public async Task<ICollection<TypeMotorModel>> GetTypeMotorcyclesAsync()
         {
@@ -438,6 +424,21 @@ namespace BMW_Final_Project.Engine.Services
                 ColorsPerPage = colorsPerPage,
                 CurrentPage = currentPage,
             };
+        }
+
+        public async Task<Motorcycle?> GetByIdAsync(int id)
+        {
+            var motorcycle = await _repository.All<Motorcycle>()
+                .Include(x => x.MotorcycleBuyers)
+                .Where(x => x.Id == id && x.IsActive)
+                .FirstOrDefaultAsync();
+
+            if (motorcycle == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            return motorcycle;
         }
 
 
