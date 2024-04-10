@@ -14,7 +14,7 @@ namespace BMW_Final_Project.Engine.Models.Accessories
         public string Name { get; set; } = string.Empty;
 
         [Required(ErrorMessage = DataConstants.RequiredErrorMessage)]
-        [Range(MinPrice, MaxPrice)]
+        [Range(MinPrice, MaxPrice, ErrorMessage = DataConstants.RangeErrorMessage)]
         [Display(Name = "Цена")]
         public decimal Price { get; set; }
 
@@ -27,7 +27,7 @@ namespace BMW_Final_Project.Engine.Models.Accessories
         [Display(Name = "Снимка")]
         public string ImgUrl { get; set; } = string.Empty;
 
-        [Range(MinAmount, MaxAmount)]
+        [Range(MinAmount, MaxAmount,ErrorMessage = DataConstants.RangeErrorMessage)]
         [Required(ErrorMessage = DataConstants.RequiredErrorMessage)]
         [Display(Name = "Количество")]
         public int Amount { get; set; }
