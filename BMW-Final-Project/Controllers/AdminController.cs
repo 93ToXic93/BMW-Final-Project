@@ -418,6 +418,9 @@ namespace BMW_Final_Project.Controllers
                 return BadRequest();
             }
 
+            TempData[DataConstants.UserMessageSuccess] = "Успешно изтрихте това събитие!";
+
+
             return RedirectToAction("Index", "Event");
         }
 
@@ -452,6 +455,9 @@ namespace BMW_Final_Project.Controllers
             eventToAdd.JoinerId = User.Id();
 
             await _eventService.AddAsync(eventToAdd);
+
+            TempData[DataConstants.UserMessageSuccess] = "Успешно добавихте това събитие!";
+
 
             return RedirectToAction("Index", "Event");
         }
@@ -525,6 +531,7 @@ namespace BMW_Final_Project.Controllers
                 return BadRequest();
             }
 
+            TempData[DataConstants.UserMessageSuccess] = "Успешно променихте това събитие!";
 
 
             return RedirectToAction("Index", "Event");
@@ -578,6 +585,9 @@ namespace BMW_Final_Project.Controllers
 
             await _accessoriesService.AddAsync(accsModel);
 
+            TempData[DataConstants.UserMessageSuccess] = "Успешно добавихте нов аксесоар!";
+
+
             return RedirectToAction("Index", "Accessories");
         }
 
@@ -593,6 +603,9 @@ namespace BMW_Final_Project.Controllers
             {
                 return BadRequest();
             }
+
+            TempData[DataConstants.UserMessageSuccess] = "Успешно изтрихте този аксесоар!";
+
 
             return RedirectToAction("Index", "Accessories");
         }
@@ -669,6 +682,7 @@ namespace BMW_Final_Project.Controllers
                 return BadRequest();
             }
 
+            TempData[DataConstants.UserMessageSuccess] = "Успешно променихте този аксесоар!";
 
 
             return RedirectToAction("Index", "Accessories");
