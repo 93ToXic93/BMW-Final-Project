@@ -14,12 +14,13 @@ $('#submitBtn').on('click', function () {
         url: '/Admin/AddColor',
         type: 'POST',
         data: obj,
-        complete: function () {
+        success: function () {
 
             console.log('adding color')
 
             fetchColors();
             $('#ProgramNameModal').modal('hide');
+            $('#AlertColor').alert()
         },
     });
 });
@@ -40,7 +41,7 @@ function fetchColors() {
             console.log(data)
             console.log('im in succses fetch')
             $('#colorDropdown').empty();
-            $('#colorDropdown').append($('<option>').val('').html('Choose color'));
+            $('#colorDropdown').append($('<option>').val('').html('Добави цвят'));
             $.each(data, function (index, color) {
                 $('#colorDropdown').append($('<option>').val(color.id).text(color.name));
                 console.log(color)

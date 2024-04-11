@@ -137,6 +137,7 @@
             public const int MinAmount = 1;
 
         }
+
         public static class ItemTypeConstants
         {
             public const int MaxNameLength = 200;
@@ -156,5 +157,8 @@
 
         public const string RangeErrorMessage = "Полето {0} трябва да бъде между {1} и {2}!";
 
+        public const string UserMessageSuccess = "UserMessageSuccess";
+
+        public const string UserMessageError = "UserMessageError";
     }
 }

@@ -86,7 +86,7 @@
     <div class="PriceContainer">
         @if (User.Identity != null && User.Identity.IsAuthenticated && !(User.IsInRole("Admin")))
         {
-            if (!(await Service.IsThisMotorcycleIsAdded(User.Id(), Model.Id)))
+            if (!(await Service.IsThisMotorcycleIsAddedAsync(User.Id(), Model.Id)))
             {
                 <h1 class="priceText">Добави в количката: </h1>
                 <form class="input-group-sm" asp-controller="Motorcycle" asp-action="BuyMotorcycle" method="post">

@@ -44,6 +44,8 @@ namespace BMW_Final_Project.Engine.Contracts
 
         Task DeleteColorAsync(int id);
 
-        Task<bool> IsThisMotorcycleIsAdded(Guid userId, int id);
+        Task<bool> IsThisMotorcycleIsAddedAsync(Guid userId, int id);
+
+        Task<bool> IsThisColorExistAsync(string name);
     }
 }

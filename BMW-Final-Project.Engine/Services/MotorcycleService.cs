@@ -370,13 +370,13 @@ namespace BMW_Final_Project.Engine.Services
         public async Task AddNewColorAsync(AddColorModel model)
         {
 
-            if (await _repository.AllReadOnly<ColorCategory>().AnyAsync(x => x.Name == model.Name && x.IsActive))
+            if (await IsThisColorExistAsync(model.Name))
             {
                 throw new ArgumentException("There is already one!");
             }
             else if (await _repository.AllReadOnly<ColorCategory>().AnyAsync(x => x.Name == model.Name && x.IsActive == false))
             {
-                var colorToAddAgain = await _repository.All<ColorCategoryModel>()
+                var colorToAddAgain = await _repository.All<ColorCategory>()
                     .FirstAsync(x => x.Name == model.Name);
 
                 colorToAddAgain.IsActive = true;
@@ -465,10 +465,15 @@ namespace BMW_Final_Project.Engine.Services
             await _repository.SaveChangesAsync();
         }
 
-        public async Task<bool> IsThisMotorcycleIsAdded(Guid userId, int id)
+        public async Task<bool> IsThisMotorcycleIsAddedAsync(Guid userId, int id)
         {
             return await _repository.AllReadOnly<MotorcycleBuyers>()
                 .AnyAsync(x => x.BuyerId == userId && x.MotorcycleId == id);
+        }
+
+        public async Task<bool> IsThisColorExistAsync(string name)
+        {
+            return await _repository.AllReadOnly<ColorCategory>().AnyAsync(x => x.Name == name && x.IsActive);
         }
 
         private async Task<bool> IsThisMotorcycleExistButDeletedAsync(AddMotorcycleModel model)

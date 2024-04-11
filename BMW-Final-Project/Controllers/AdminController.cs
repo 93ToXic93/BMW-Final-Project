@@ -4,6 +4,7 @@ using BMW_Final_Project.Engine.Models.Cloth;
 using BMW_Final_Project.Engine.Models.Event;
 using BMW_Final_Project.Engine.Models.Motorcycle;
 using BMW_Final_Project.Extensions;
+using BMW_Final_Project.Infrastructure.Constants;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -36,8 +37,10 @@ namespace BMW_Final_Project.Controllers
             var modelToAdd = new AddMotorcycleModel()
             {
                 TypeMotorModels = await _motorcycleService.GetTypeMotorcyclesAsync(),
-                StandardEuroModels = await _motorcycleService.GetStandardEurosAsync()
-            };
+                StandardEuroModels = await _motorcycleService.GetStandardEurosAsync(),
+                ColorCategoryModels = await _motorcycleService.GetColorsAsync()
+
+        };
 
             return View(modelToAdd);
         }
@@ -55,6 +58,7 @@ namespace BMW_Final_Project.Controllers
             {
                 modelToAdd.TypeMotorModels = await _motorcycleService.GetTypeMotorcyclesAsync();
                 modelToAdd.StandardEuroModels = await _motorcycleService.GetStandardEurosAsync();
+                modelToAdd.ColorCategoryModels = await _motorcycleService.GetColorsAsync();
 
                 return View(modelToAdd);
             }
@@ -172,13 +176,19 @@ namespace BMW_Final_Project.Controllers
             return RedirectToAction("Index", "Motorcycle");
         }
 
-
         [HttpPost]
         public async Task<IActionResult> AddColor(AddColorModel model)
         {
 
+            if (await _motorcycleService.IsThisColorExistAsync(model.Name))
+            {
+                ModelState.AddModelError(string.Empty,"Този цвят вече съществува!");
+            }
+
             if (!ModelState.IsValid)
             {
+                TempData[DataConstants.UserMessageError] = "Неуспешно добавяне на цвят!";
+
                 return RedirectToAction(nameof(AddMotorcycle));
             }
 
@@ -188,10 +198,10 @@ namespace BMW_Final_Project.Controllers
             }
             catch (Exception e)
             {
-                return RedirectToAction(nameof(AddMotorcycle));
+                return BadRequest();
             }
 
-
+            TempData[DataConstants.UserMessageSuccess] = "Успешно добавихте нов цвят!";
 
             return RedirectToAction(nameof(AddMotorcycle));
         }
@@ -231,7 +241,10 @@ namespace BMW_Final_Project.Controllers
         {
             try
             {
+
                 await _motorcycleService.DeleteColorAsync(id);
+
+                TempData[DataConstants.UserMessageSuccess] = "Успешно добавихте да изтриете този цвят!";
 
                 return RedirectToAction(nameof(ShowColorToDelete));
             }
