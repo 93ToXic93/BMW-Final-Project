@@ -38,9 +38,8 @@ namespace BMW_Final_Project.Controllers
             {
                 TypeMotorModels = await _motorcycleService.GetTypeMotorcyclesAsync(),
                 StandardEuroModels = await _motorcycleService.GetStandardEurosAsync(),
-                ColorCategoryModels = await _motorcycleService.GetColorsAsync()
 
-        };
+            };
 
             return View(modelToAdd);
         }
@@ -58,7 +57,6 @@ namespace BMW_Final_Project.Controllers
             {
                 modelToAdd.TypeMotorModels = await _motorcycleService.GetTypeMotorcyclesAsync();
                 modelToAdd.StandardEuroModels = await _motorcycleService.GetStandardEurosAsync();
-                modelToAdd.ColorCategoryModels = await _motorcycleService.GetColorsAsync();
 
                 return View(modelToAdd);
             }
@@ -66,6 +64,9 @@ namespace BMW_Final_Project.Controllers
             modelToAdd.BuyerId = User.Id();
 
             await _motorcycleService.AddAsync(modelToAdd);
+
+            TempData[DataConstants.UserMessageSuccess] = "Успешно добавихте нов мотор!";
+
 
             return RedirectToAction("Index", "Motorcycle");
         }
@@ -108,7 +109,7 @@ namespace BMW_Final_Project.Controllers
                 };
                 modelToEdit.StandardEuroModels = await _motorcycleService.GetStandardEurosAsync();
                 modelToEdit.TypeMotorModels = await _motorcycleService.GetTypeMotorcyclesAsync();
-                modelToEdit.ColorCategoryModels = await _motorcycleService.GetColorsAsync();
+
                 return View(modelToEdit);
             }
             catch (Exception e)
@@ -155,7 +156,7 @@ namespace BMW_Final_Project.Controllers
                 return BadRequest();
             }
 
-
+            TempData[DataConstants.UserMessageSuccess] = "Успешно променихте този мотор!";
 
             return RedirectToAction("Index", "Motorcycle");
         }
@@ -173,6 +174,8 @@ namespace BMW_Final_Project.Controllers
                 return BadRequest();
             }
 
+            TempData[DataConstants.UserMessageSuccess] = "Успешно изтрихте този мотор!";
+
             return RedirectToAction("Index", "Motorcycle");
         }
 
@@ -182,7 +185,7 @@ namespace BMW_Final_Project.Controllers
 
             if (await _motorcycleService.IsThisColorExistAsync(model.Name))
             {
-                ModelState.AddModelError(string.Empty,"Този цвят вече съществува!");
+                ModelState.AddModelError(string.Empty, "Този цвят вече съществува!");
             }
 
             if (!ModelState.IsValid)
@@ -244,7 +247,7 @@ namespace BMW_Final_Project.Controllers
 
                 await _motorcycleService.DeleteColorAsync(id);
 
-                TempData[DataConstants.UserMessageSuccess] = "Успешно добавихте да изтриете този цвят!";
+                TempData[DataConstants.UserMessageSuccess] = "Успешно изтрихте този цвят!";
 
                 return RedirectToAction(nameof(ShowColorToDelete));
             }
@@ -292,6 +295,9 @@ namespace BMW_Final_Project.Controllers
             modelToAdd.BuyerId = User.Id();
 
             await _clothService.AddAsync(modelToAdd);
+
+            TempData[DataConstants.UserMessageSuccess] = "Успешно добавихте ново облекло!";
+
 
             return RedirectToAction("Index", "Cloth");
         }
@@ -373,6 +379,7 @@ namespace BMW_Final_Project.Controllers
                 return BadRequest();
             }
 
+            TempData[DataConstants.UserMessageSuccess] = "Успешно променихте това облекло!";
 
 
             return RedirectToAction("Index", "Cloth");
@@ -390,6 +397,8 @@ namespace BMW_Final_Project.Controllers
             {
                 return BadRequest();
             }
+            TempData[DataConstants.UserMessageSuccess] = "Успешно изтрихте това облекло!";
+
 
             return RedirectToAction("Index", "Cloth");
         }

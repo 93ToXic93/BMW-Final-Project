@@ -10,7 +10,7 @@ namespace BMW_Final_Project.Engine.Models.Motorcycle
 
         [StringLength(MaxColorNameLength, MinimumLength = MinColorNameLength, ErrorMessage = DataConstants.LengthErrorMessage)]
         [Required(ErrorMessage = DataConstants.RequiredErrorMessage)]
-        [Display(Name = "Име")]
+        [Display(Name = "Цвят на мотора")]
         public string Name { get; set; } = string.Empty;
 
         [Required]

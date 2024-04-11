@@ -18,7 +18,7 @@
 
             @if (Model.Joiners.Any())
             {
-                <p>Total Joiners: @Model.TotalCount</p>
+                <p>Брой записани хора: @Model.TotalCount</p>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-between">
                     <div>
                         <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
