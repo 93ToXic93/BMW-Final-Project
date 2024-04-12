@@ -1,5 +1,6 @@
 ﻿using BMW_Final_Project.Engine.Contracts;
 using BMW_Final_Project.Extensions;
+using BMW_Final_Project.Infrastructure.Constants;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BMW_Final_Project.Controllers
@@ -36,10 +37,17 @@ namespace BMW_Final_Project.Controllers
             try
             {
                 await _eventService.AddAsync(id, User.Id());
+
+                TempData[DataConstants.UserMessageSuccess] = "Успешно заявихте участието си на това събитие!";
+
+
                 return RedirectToAction(nameof(AllJoined));
             }
             catch (Exception e)
             {
+
+                TempData[DataConstants.UserMessageError] = "Това облекло вече е добавен в количката!";
+
                 return RedirectToAction(nameof(Index));
             }
 
@@ -53,6 +61,9 @@ namespace BMW_Final_Project.Controllers
                 var userId = User.Id();
 
                 await _eventService.RemoveEventAsync(id, userId);
+
+                TempData[DataConstants.UserMessageSuccess] = "Успешно се отписахте от това събитие!";
+
                 return RedirectToAction(nameof(AllJoined));
             }
             catch (Exception e)

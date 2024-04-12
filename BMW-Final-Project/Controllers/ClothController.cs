@@ -1,5 +1,6 @@
 ﻿using BMW_Final_Project.Engine.Contracts;
 using BMW_Final_Project.Extensions;
+using BMW_Final_Project.Infrastructure.Constants;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BMW_Final_Project.Controllers
@@ -50,6 +51,9 @@ namespace BMW_Final_Project.Controllers
             try
             {
                 await _service.AddAsync(id, User.Id());
+
+                TempData[DataConstants.UserMessageSuccess] = "Успешно добавихте в количката това облекло!";
+
                 return RedirectToAction(nameof(AllBought));
             }
             catch (Exception e)
@@ -65,6 +69,9 @@ namespace BMW_Final_Project.Controllers
             try
             {
                 await _service.RemoveClothAsync(id);
+
+                TempData[DataConstants.UserMessageSuccess] = "Успешно премахнахте от количката това облекло!";
+
                 return RedirectToAction(nameof(AllBought));
             }
             catch (Exception e)
@@ -81,6 +88,9 @@ namespace BMW_Final_Project.Controllers
             try
             {
                 await _service.BuyClothAsync(id);
+
+                TempData[DataConstants.UserMessageSuccess] = "Успешно закупихте това облекло!";
+
                 return RedirectToAction(nameof(AllBought));
             }
             catch (Exception e)
