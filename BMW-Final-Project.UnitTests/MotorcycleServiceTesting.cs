@@ -561,5 +561,128 @@ namespace BMW_Final_Project.UnitTests
             Assert.ThrowsAsync<ArgumentNullException>(async ()
                 => await _motorcycleService.RemoveMotorcycleAsync(motorId));
         }
+
+        [TestCase(1, "c8295132-e05b-491a-84ee-1049d1f036dc", 0)]
+        [TestCase(2, "c8295132-e05b-491a-84ee-1049d1f036dc", 0)]
+        public async Task BuyMotorcycle_ShouldRemoveItFromTheCollectionLikeItWasForced(int motorcycleId,string userId,int expectedCount)
+        {
+            await _motorcycleService.AddAsync(motorcycleId, Guid.Parse(userId));
+
+            await _motorcycleService.BuyMotorcycleAsync(motorcycleId);
+
+            var model = await _motorcycleService.GetAllMineMotorcyclesAsync(Guid.Parse(userId));
+
+            var expectedAmount = await _applicationDbContext
+                .Motorcycles
+                .Where(x => x.Id == motorcycleId)
+                .FirstOrDefaultAsync();
+
+            int count = model.Count;
+
+            var modelToCheckTheAmount = await _motorcycleService.GetByIdAsync(motorcycleId);
+
+
+            Assert.That(count, Is.EqualTo(expectedCount));
+            Assert.That(modelToCheckTheAmount.Amount, Is.EqualTo(expectedAmount.Amount));
+
+
+        }
+        [TestCase(11)]
+        [TestCase(22)]
+        public async Task BuyMotorcycle_ShouldReturnException(int motorcycleId)
+        {
+            Assert.ThrowsAsync<ArgumentNullException>(async ()
+                => await _motorcycleService.BuyMotorcycleAsync(motorcycleId));
+        }
+
+        [TestCase("χεπεν")]
+        public async Task IsThisColorExistAsync_ShouldReturnTrue(string colorName)
+        {
+            Assert.IsTrue(await _motorcycleService.IsThisColorExistAsync(colorName));
+        }
+        [TestCase("αÿλ")]
+        public async Task IsThisColorExistAsync_ShouldReturnFalse(string colorName)
+        {
+            Assert.IsFalse(await _motorcycleService.IsThisColorExistAsync(colorName));
+        }
+
+        [TestCase(1, "c8295132-e05b-491a-84ee-1049d1f036dc")]
+        public async Task IsThisMotorcycleIsAddedAsync_ShouldReturnTrue(int motorcycleId,string userId)
+        {
+            await _motorcycleService.AddAsync(motorcycleId, Guid.Parse(userId));
+
+            Assert.IsTrue(await _motorcycleService
+                .IsThisMotorcycleIsAddedAsync(Guid.Parse(userId),motorcycleId));
+        }
+        [TestCase(4, "c8295132-e05b-491a-84ee-1049d1f036dc")]
+        public async Task IsThisMotorcycleIsAddedAsync_ShouldReturnFalse(int motorcycleId,string userId)
+        {
+            Assert.IsFalse(await _motorcycleService
+                .IsThisMotorcycleIsAddedAsync(Guid.Parse(userId),motorcycleId));
+        }
+
+        [TestCase(1)]
+        public async Task GetColorsToDeleteAsync_ShouldReturnCorrectNumber(int expectedCount)
+        {
+            var model = await _motorcycleService.GetColorsToDeleteAsync(1, 10);
+
+            int countColors = model.Colors.Count;
+
+            Assert.That(countColors,Is.EqualTo(expectedCount));
+        }
+
+        [TestCase(2)]
+        public async Task AddColorAsync_ShouldAddColorToTheDataBase(int expectedCount)
+        {
+            var model = new AddColorModel()
+            {
+                Id = 1,
+                IsActive = true,
+                Name = "Αÿλ"
+            };
+
+            await _motorcycleService.AddNewColorAsync(model);
+
+            var colors = await _motorcycleService.GetColorsAsync();
+
+            int countColors = colors.Count;
+
+            Assert.That(countColors,Is.EqualTo(expectedCount));
+
+        }
+
+        [Test]
+        public async Task AddColorAsync_ShouldThrowAnException()
+        {
+            var model = new AddColorModel()
+            {
+                Id = 1,
+                IsActive = true,
+                Name = "χεπεν"
+            };
+
+            Assert.ThrowsAsync<ArgumentException>(async ()
+                => await _motorcycleService.AddNewColorAsync(model));
+        }
+
+        [TestCase(1,0)]
+        public async Task ColorToDelete_ShouldSetThePropIsActiveToFalse(int colorId, int expectedCount)
+        {
+            await _motorcycleService.DeleteColorAsync(colorId);
+
+            var model = await _motorcycleService.GetColorsAsync();
+
+            int count = model.Count;
+
+            Assert.That(count,Is.EqualTo(expectedCount));
+        }
+
+        [TestCase(12)]
+        [TestCase(11)]
+        public async Task ColorToDelete_ShouldReturnNullException(int colorId)
+        {
+            Assert.ThrowsAsync<ArgumentNullException>(async ()
+                => await _motorcycleService.DeleteColorAsync(colorId));
+        }
     }
 }
