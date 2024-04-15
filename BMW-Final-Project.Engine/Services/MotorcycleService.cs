@@ -461,14 +461,6 @@ namespace BMW_Final_Project.Engine.Services
         }
 
 
-        private async Task<Motorcycle?> GetByIdReadOnlyAsync(int id)
-        {
-            var motorcycle = await _repository.AllReadOnly<Motorcycle>()
-             .Where(x => x.Id == id && x.IsActive)
-             .FirstOrDefaultAsync();
-
-            return motorcycle;
-        }
         private async Task<bool> IsThisMotorcycleExistButDeletedAsync(AddMotorcycleModel model)
         {
             var motorcycle = await _repository.AllReadOnly<Motorcycle>().AnyAsync(x => x.IsActive == false && x.Model == model.Model);

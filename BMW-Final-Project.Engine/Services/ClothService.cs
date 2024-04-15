@@ -347,15 +347,6 @@ namespace BMW_Final_Project.Engine.Services
                 .AnyAsync(x => x.BuyerId == userId && x.ClothId == id);
         }
 
-
-        private async Task<Cloth?> GetByIdReadOnlyAsync(int id)
-        {
-            var motorcycle = await _repository.AllReadOnly<Cloth>()
-                .Where(x => x.Id == id && x.IsActive)
-                .FirstOrDefaultAsync();
-
-            return motorcycle;
-        }
         private async Task<Cloth?> GetByNameDeletedClothAsync(string name)
         {
             var cloth = await _repository.All<Cloth>()

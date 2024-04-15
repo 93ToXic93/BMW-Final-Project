@@ -453,5 +453,113 @@ namespace BMW_Final_Project.UnitTests
             Assert.That(actualCount, Is.EqualTo(expectedCount));
         }
 
+        [Test]
+        public async Task IsThisMotorcycleExistAsync_ShouldReturnTrue()
+        {
+            var motor = await _motorcycleService.GetByIdAsync(1);
+
+            var model = new AddMotorcycleModel()
+            {
+                Id = motor.Id,
+                Model = motor.Model,
+                IsActive = motor.IsActive
+            };
+
+            Assert.IsTrue(await _motorcycleService.IsThisMotorcycleExistAsync(model));
+        }
+        [Test]
+        public async Task IsThisMotorcycleExistAsync_ShouldReturnFalse()
+        {
+            var model = new AddMotorcycleModel()
+            {
+                Model = "S100FR",
+                IsActive = true,
+            };
+
+            Assert.IsFalse(await _motorcycleService.IsThisMotorcycleExistAsync(model));
+
+            var model2 = new AddMotorcycleModel()
+            {
+                Model = "S1000RR",
+                IsActive = false,
+            };
+
+            Assert.IsFalse(await _motorcycleService.IsThisMotorcycleExistAsync(model));
+        }
+
+        [Test]
+        public async Task IsThisMotorcycleEditExistAsync_ShouldReturnTrue()
+        {
+            var motor = await _motorcycleService.GetByIdAsync(1);
+
+            var model = new EditMotorcycleModel()
+            {
+                Id = motor.Id,
+                Model = motor.Model,
+            };
+
+            Assert.IsTrue(await _motorcycleService.IsThisMotorcycleExistEditAsync(model));
+        }
+        [Test]
+        public async Task IsThisMotorcycleEditExistAsync_ShouldReturnFalse()
+        {
+            var model = new EditMotorcycleModel()
+            {
+                Model = "S100FR",
+            };
+
+            Assert.IsFalse(await _motorcycleService.IsThisMotorcycleExistEditAsync(model));
+
+            var model2 = new EditMotorcycleModel()
+            {
+                Model = "F900R",
+            };
+
+            Assert.IsFalse(await _motorcycleService.IsThisMotorcycleExistEditAsync(model));
+        }
+
+        [TestCase(1, "c8295132-e05b-491a-84ee-1049d1f036dc",1)]
+        public async Task AllMineMotorcycles_ShouldReturnCorrectCount(int expectedCount,string userId,int motorcycleId)
+        {
+            await _motorcycleService.AddAsync(motorcycleId, Guid.Parse(userId));
+
+            var model = await _motorcycleService.GetAllMineMotorcyclesAsync(Guid.Parse(userId));
+
+            int count = model.Count;
+
+            Assert.That(count,Is.EqualTo(expectedCount));
+
+        }
+
+        [TestCase(1, "c8295132-e05b-491a-84ee-1049d1f036dc",0)]
+        [TestCase(2, "c8295132-e05b-491a-84ee-1049d1f036dc",0)]
+        public async Task RemoveMotorcycle_ShouldRemoveTheMotorcycleFromTheCollectionOnTheUser(int motorId,string userId,int expectedCount)
+        {
+            await _motorcycleService.AddAsync(motorId, Guid.Parse(userId));
+
+            await _motorcycleService.RemoveMotorcycleAsync(motorId);
+
+            var model = await _motorcycleService.GetAllMineMotorcyclesAsync(Guid.Parse(userId));
+
+            int count = model.Count;
+
+            var modelToCheckTheAmount = await _motorcycleService.GetByIdAsync(motorId);
+
+            var expectedAmount = await _applicationDbContext
+                .Motorcycles
+                .Where(x => x.Id == motorId)
+                .FirstOrDefaultAsync();
+
+            Assert.That(count,Is.EqualTo(expectedCount));
+            Assert.That(modelToCheckTheAmount.Amount,Is.EqualTo(expectedAmount.Amount));
+        }
+
+        [TestCase(11)]
+        [TestCase(12)]
+        public async Task RemoveMotorcycle_ShouldReturnArgumentNullException(int motorId)
+        {
+            Assert.ThrowsAsync<ArgumentNullException>(async ()
+                => await _motorcycleService.RemoveMotorcycleAsync(motorId));
+        }
     }
 }
