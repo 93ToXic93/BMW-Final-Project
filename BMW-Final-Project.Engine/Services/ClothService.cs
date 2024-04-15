@@ -56,18 +56,6 @@ namespace BMW_Final_Project.Engine.Services
 
         public async Task<ClothDetailsModel> DetailsAsync(int id)
         {
-            var model = await GetByIdReadOnlyAsync(id);
-
-            if (model == null)
-            {
-                throw new NullReferenceException();
-            }
-
-            if (id != model.Id)
-            {
-                throw new ArgumentException("model id isn't correct!");
-            }
-
             var modelDetails = await _repository
                 .AllReadOnly<Cloth>()
                 .Where(x => x.Id == id && x.IsActive)
@@ -86,6 +74,11 @@ namespace BMW_Final_Project.Engine.Services
             if (modelDetails == null)
             {
                 throw new NullReferenceException();
+            }
+
+            if (id != modelDetails.Id)
+            {
+                throw new ArgumentException("model id isn't correct!");
             }
 
 

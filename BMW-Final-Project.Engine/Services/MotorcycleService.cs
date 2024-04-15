@@ -36,35 +36,23 @@ namespace BMW_Final_Project.Engine.Services
             return motorcycles;
         }
 
-        public async Task EditAsync(EditMotorcycleModel model)
+        public async Task<ICollection<MotorcycleModel>> LoadByIdAsync(int id)
         {
-            var motorcycleEdited = await GetByIdAsync(model.Id);
+            var motorcycles = await _repository
+                .AllReadOnly<Motorcycle>()
+                .Where(x => x.IsActive && x.TypeMotor.Id == id)
+                .Select(x => new MotorcycleModel()
+                {
+                    Id = x.Id,
+                    ImageUrl = x.ImageUrl,
+                    Model = x.Model,
+                    Year = x.Year.Year.ToString(),
+                    Price = x.Price.ToString("F"),
+                    Amount = x.Amount
+                })
+                .ToListAsync();
 
-            if (motorcycleEdited == null)
-            {
-                throw new NullReferenceException();
-            }
-
-            motorcycleEdited.Amount = model.Amount;
-            motorcycleEdited.ImageUrl = model.ImageUrl;
-            motorcycleEdited.Model = model.Model;
-            motorcycleEdited.CC = model.CC;
-            motorcycleEdited.ColorCategoryId = model.ColorCategoryId;
-            motorcycleEdited.DTC = model.DTC;
-            motorcycleEdited.FrontBreak = model.FrontBreak;
-            motorcycleEdited.RearBreak = model.RearBreak;
-            motorcycleEdited.TankCapacity = model.TankCapacity;
-            motorcycleEdited.TypeMotorId = model.TypeMotorId;
-            motorcycleEdited.Transmission = model.Transmission;
-            motorcycleEdited.Kg = model.Kg;
-            motorcycleEdited.Price = model.Price;
-            motorcycleEdited.HorsePowers = model.HorsePowers;
-            motorcycleEdited.SeatHeightMm = model.SeatHeightMm;
-            motorcycleEdited.StandardEuroId = model.StandardEuroId;
-            motorcycleEdited.Year = model.Year;
-
-            await _repository.SaveChangesAsync();
-
+            return motorcycles;
         }
 
         public async Task AddAsync(AddMotorcycleModel model)
@@ -166,39 +154,59 @@ namespace BMW_Final_Project.Engine.Services
 
         }
 
-        public async Task<ICollection<MotorcycleModel>> LoadByIdAsync(int id)
+        public async Task EditAsync(EditMotorcycleModel model)
+
         {
-            var motorcycles = await _repository
-                .AllReadOnly<Motorcycle>()
-                .Where(x => x.IsActive && x.TypeMotor.Id == id)
-                .Select(x => new MotorcycleModel()
-                {
-                    Id = x.Id,
-                    ImageUrl = x.ImageUrl,
-                    Model = x.Model,
-                    Year = x.Year.Year.ToString(),
-                    Price = x.Price.ToString("F"),
-                    Amount = x.Amount
-                })
-                .ToListAsync();
+            var motorcycleEdited = await GetByIdAsync(model.Id);
 
-            return motorcycles;
-        }
-
-        public async Task<MotorcycleDetailsModel> DetailsAsync(int id)
-        {
-            var model = await GetByIdReadOnlyAsync(id);
-
-            if (model == null)
+            if (motorcycleEdited == null)
             {
                 throw new NullReferenceException();
             }
 
-            if (id != model.Id)
+            motorcycleEdited.Amount = model.Amount;
+            motorcycleEdited.ImageUrl = model.ImageUrl;
+            motorcycleEdited.Model = model.Model;
+            motorcycleEdited.CC = model.CC;
+            motorcycleEdited.ColorCategoryId = model.ColorCategoryId;
+            motorcycleEdited.DTC = model.DTC;
+            motorcycleEdited.FrontBreak = model.FrontBreak;
+            motorcycleEdited.RearBreak = model.RearBreak;
+            motorcycleEdited.TankCapacity = model.TankCapacity;
+            motorcycleEdited.TypeMotorId = model.TypeMotorId;
+            motorcycleEdited.Transmission = model.Transmission;
+            motorcycleEdited.Kg = model.Kg;
+            motorcycleEdited.Price = model.Price;
+            motorcycleEdited.HorsePowers = model.HorsePowers;
+            motorcycleEdited.SeatHeightMm = model.SeatHeightMm;
+            motorcycleEdited.StandardEuroId = model.StandardEuroId;
+            motorcycleEdited.Year = model.Year;
+
+            await _repository.SaveChangesAsync();
+
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var motorcycle = await GetByIdAsync(id);
+
+            if (motorcycle == null)
             {
-                throw new ArgumentException("model id isn't correct!");
+                throw new ArgumentNullException();
             }
 
+            if (id != motorcycle.Id)
+            {
+                throw new ArgumentException("Not found");
+            }
+
+            motorcycle.IsActive = false;
+
+            await _repository.SaveChangesAsync();
+        }
+
+        public async Task<MotorcycleDetailsModel> DetailsAsync(int id)
+        {
             var modelDetails = await _repository
                 .AllReadOnly<Motorcycle>()
                 .Where(x => x.Id == id && x.IsActive)
@@ -228,6 +236,10 @@ namespace BMW_Final_Project.Engine.Services
                 throw new NullReferenceException();
             }
 
+            if (id != modelDetails.Id)
+            {
+                throw new ArgumentException("model id isn't correct!");
+            }
 
             return modelDetails;
 
@@ -274,25 +286,6 @@ namespace BMW_Final_Project.Engine.Services
                 .ToListAsync();
 
             return motoColors;
-        }
-
-        public async Task DeleteAsync(int id)
-        {
-            var motorcycle = await GetByIdAsync(id);
-
-            if (motorcycle == null)
-            {
-                throw new ArgumentNullException();
-            }
-
-            if (id != motorcycle.Id)
-            {
-                throw new ArgumentException("Not found");
-            }
-
-            motorcycle.IsActive = false;
-
-            await _repository.SaveChangesAsync();
         }
 
         public async Task<bool> IsThisMotorcycleExistAsync(AddMotorcycleModel model)
@@ -440,15 +433,6 @@ namespace BMW_Final_Project.Engine.Services
             return motorcycle;
         }
 
-
-        private async Task<Motorcycle?> GetByIdReadOnlyAsync(int id)
-        {
-            var motorcycle = await _repository.AllReadOnly<Motorcycle>()
-             .Where(x => x.Id == id && x.IsActive)
-             .FirstOrDefaultAsync();
-
-            return motorcycle;
-        }
         public async Task DeleteColorAsync(int id)
         {
             var colorToDel = await _repository.All<ColorCategory>()
@@ -476,6 +460,15 @@ namespace BMW_Final_Project.Engine.Services
             return await _repository.AllReadOnly<ColorCategory>().AnyAsync(x => x.Name == name && x.IsActive);
         }
 
+
+        private async Task<Motorcycle?> GetByIdReadOnlyAsync(int id)
+        {
+            var motorcycle = await _repository.AllReadOnly<Motorcycle>()
+             .Where(x => x.Id == id && x.IsActive)
+             .FirstOrDefaultAsync();
+
+            return motorcycle;
+        }
         private async Task<bool> IsThisMotorcycleExistButDeletedAsync(AddMotorcycleModel model)
         {
             var motorcycle = await _repository.AllReadOnly<Motorcycle>().AnyAsync(x => x.IsActive == false && x.Model == model.Model);
