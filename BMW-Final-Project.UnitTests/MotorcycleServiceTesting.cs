@@ -425,5 +425,33 @@ namespace BMW_Final_Project.UnitTests
                 => await _motorcycleService.DetailsAsync(motorcycleId));
         }
 
+        [TestCase(2)]
+        public async Task GetTypes_ShouldReturnTheTypesOfTheMotorcycle(int expectedCount)
+        {
+            var model = await _motorcycleService.GetTypeMotorcyclesAsync();
+
+            int actualCount = model.Count;
+
+            Assert.That(actualCount,Is.EqualTo(expectedCount));
+        }
+        [TestCase(1)]
+        public async Task GetColors_ShouldReturnTheColorsOfTheMotorcycle(int expectedCount)
+        {
+            var model = await _motorcycleService.GetColorsAsync();
+
+            int actualCount = model.Count;
+
+            Assert.That(actualCount, Is.EqualTo(expectedCount));
+        }
+        [TestCase(1)]
+        public async Task GetEuros_ShouldReturnTheEurosOfTheMotorcycle(int expectedCount)
+        {
+            var model = await _motorcycleService.GetStandardEurosAsync();
+
+            int actualCount = model.Count;
+
+            Assert.That(actualCount, Is.EqualTo(expectedCount));
+        }
+
     }
 }
