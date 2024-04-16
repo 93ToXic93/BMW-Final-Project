@@ -3,6 +3,7 @@ using BMW_Final_Project.Engine.Models.Motorcycle;
 using BMW_Final_Project.Engine.Services;
 using BMW_Final_Project.Infrastructure.Data;
 using BMW_Final_Project.Infrastructure.Data.Common;
+using BMW_Final_Project.Infrastructure.Data.Models.Cloth;
 using BMW_Final_Project.Infrastructure.Data.Models.Motorcycle;
 using Microsoft.EntityFrameworkCore;
 
@@ -322,7 +323,7 @@ namespace BMW_Final_Project.UnitTests
         }
 
         [TestCase(1)]
-        public async Task EditAsync_shouldReturnTheMotorcycleEddited(int motorcycleId)
+        public async Task EditAsync_shouldReturnTheMotorcycleEdited(int motorcycleId)
         {
             var model = new EditMotorcycleModel()
             {
@@ -557,8 +558,9 @@ namespace BMW_Final_Project.UnitTests
         [TestCase(12)]
         public async Task RemoveMotorcycle_ShouldReturnArgumentNullException(int motorId)
         {
-            Assert.ThrowsAsync<ArgumentNullException>(async ()
-                => await _motorcycleService.RemoveMotorcycleAsync(motorId));
+            async Task Act() => await _motorcycleService.RemoveMotorcycleAsync(motorId);
+
+            Assert.ThrowsAsync<ArgumentNullException>(Act);
         }
 
         [TestCase(1, "c8295132-e05b-491a-84ee-1049d1f036dc", 0)]

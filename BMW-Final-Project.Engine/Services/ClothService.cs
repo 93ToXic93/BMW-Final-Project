@@ -141,12 +141,12 @@ namespace BMW_Final_Project.Engine.Services
         {
             var clothToRemove = await GetByIdClothAndServicesAsync(id);
 
-            var cloth = await GetByIdAsync(id);
-
             if (clothToRemove == null)
             {
                 throw new ArgumentNullException();
             }
+
+            var cloth = await GetByIdAsync(id);
 
             if (cloth == null)
             {
@@ -164,14 +164,7 @@ namespace BMW_Final_Project.Engine.Services
         {
             var clothToRemove = await GetByIdClothAndServicesAsync(id);
 
-            var cloth = await GetByIdAsync(id);
-
             if (clothToRemove == null)
-            {
-                throw new ArgumentNullException();
-            }
-
-            if (cloth == null)
             {
                 throw new ArgumentNullException();
             }
@@ -276,7 +269,6 @@ namespace BMW_Final_Project.Engine.Services
             {
                 var clothToAdd = await GetByNameDeletedClothAsync(model.Name);
 
-                clothToAdd.Id = model.Id;
                 clothToAdd.ImgUrl = model.ImgUrl;
                 clothToAdd.Name = model.Name;
                 clothToAdd.Amount = model.Amount;
@@ -306,7 +298,7 @@ namespace BMW_Final_Project.Engine.Services
                     SizeId = model.SizeId,
                     TypePersonId = model.TypePersonId,
                     ClothCollectionId = model.ClothCollectionId
-                   
+
                 };
 
                 await _repository.AddAsync(cloth);
