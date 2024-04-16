@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BMW_Final_Project.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240412150231_Initial")]
+    [Migration("20240416150002_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,7 +55,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("ab5f19c3-0e66-4a5b-ab4a-ada016abc5c5"),
-                            ConcurrencyStamp = "0b741bd9-23c1-4795-9044-d36519a41105",
+                            ConcurrencyStamp = "4cb8e6ad-eac1-4787-8afa-79bd97b668c0",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -143,7 +143,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         {
                             Id = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5619c008-ca30-4ac1-b972-5ed5d443033a",
+                            ConcurrencyStamp = "c729b90a-6444-4eea-b15c-7fb09589a779",
                             Email = "Adi@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Adrian",
@@ -152,9 +152,9 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             Nickname = "ToXic",
                             NormalizedEmail = "ADI@GMAIL.COM",
                             NormalizedUserName = "ADI@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAELvhsa9vz/XEJ2Xvu120Fl7Pju8bDU0BvaE2lciOFeYCiEtpI4x82yGYTFNWVffnZw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKaArgkSt/KUf16xQKEBLjzPnnIlDcNmPUQ0GkxiG82Ll9euv347MpxOg/zh+o+D3A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "521F0041-6A91-41AD-A129-C880D7FBA721",
+                            SecurityStamp = "8F1EB108-E499-4C92-87C3-CF0F2F443B46",
                             TwoFactorEnabled = false,
                             UserName = "Adi@gmail.com"
                         });
@@ -708,37 +708,37 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                         {
                             Id = 1,
                             Description = "Тази година само с BMW ,събитието ще бъде неповторимо, което не трябва да изпускате. Ще има стънт програма и екслузивни мотори. ЗАПОВЯДАЙТЕ!",
-                            EndEvent = new DateTime(2024, 2, 3, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndEvent = new DateTime(2026, 2, 3, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             ImgUrl = "https://www.bmw-motorrad.com/content/dam/bmwmotorradnsc/marketCORECOM/common/images/experience/stories/brand/bmd-2023/youtube/nsc-bmd-2023-youtube-fallback.jpg.asset.1675938793795.jpg",
                             IsActive = true,
                             JoinerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
                             Name = "BMW SPORT EVENT",
                             PlaceOfTheEvent = "София, BMW-България",
-                            StartEvent = new DateTime(2024, 2, 2, 13, 45, 0, 0, DateTimeKind.Unspecified)
+                            StartEvent = new DateTime(2026, 2, 2, 13, 45, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 2,
                             Description = "Тази година, BMW събитието ще бъде неповторимо, което не трябва да изпускате. Ще има стънт програма и екслузивни мотори.Това е 100-годишнината на BMW и желаем да поканим възможно повече хора! ЗАПОВЯДАЙТЕ!",
-                            EndEvent = new DateTime(2024, 1, 30, 21, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndEvent = new DateTime(2026, 1, 30, 21, 0, 0, 0, DateTimeKind.Unspecified),
                             ImgUrl = "https://i.ytimg.com/vi/2t-m6cuPUqI/maxresdefault.jpg",
                             IsActive = true,
                             JoinerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
                             Name = "BMW Anniversary",
                             PlaceOfTheEvent = "София, BMW-България",
-                            StartEvent = new DateTime(2024, 1, 29, 12, 45, 0, 0, DateTimeKind.Unspecified)
+                            StartEvent = new DateTime(2026, 1, 29, 12, 45, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 3,
                             Description = "BMW - Откриване на сезона, желаем да Ви поканим да открием новият сезон с яркост и красота с нашите нови модели. ЗАПОВЯДАЙТЕ!",
-                            EndEvent = new DateTime(2024, 4, 13, 21, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndEvent = new DateTime(2026, 4, 13, 21, 0, 0, 0, DateTimeKind.Unspecified),
                             ImgUrl = "https://c.ndtvimg.com/2020-09/9e7k4g2g_bmw-motorrad-days_625x300_18_September_20.jpg",
                             IsActive = true,
                             JoinerId = new Guid("32b13a0b-6546-439e-a40d-4880e8a4e0a9"),
                             Name = "BMW new season",
                             PlaceOfTheEvent = "София, BMW-България",
-                            StartEvent = new DateTime(2024, 4, 12, 11, 45, 0, 0, DateTimeKind.Unspecified)
+                            StartEvent = new DateTime(2026, 4, 12, 11, 45, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -989,7 +989,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 1,
-                            Year = new DateTime(2024, 4, 12, 18, 2, 31, 65, DateTimeKind.Local).AddTicks(7008)
+                            Year = new DateTime(2024, 4, 16, 18, 0, 2, 472, DateTimeKind.Local).AddTicks(1574)
                         },
                         new
                         {
@@ -1012,7 +1012,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 16,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 4,
-                            Year = new DateTime(2024, 4, 12, 18, 2, 31, 65, DateTimeKind.Local).AddTicks(7047)
+                            Year = new DateTime(2024, 4, 16, 18, 0, 2, 472, DateTimeKind.Local).AddTicks(1618)
                         },
                         new
                         {
@@ -1035,7 +1035,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 2,
-                            Year = new DateTime(2024, 4, 12, 18, 2, 31, 65, DateTimeKind.Local).AddTicks(7052)
+                            Year = new DateTime(2024, 4, 16, 18, 0, 2, 472, DateTimeKind.Local).AddTicks(1626)
                         },
                         new
                         {
@@ -1058,7 +1058,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 3,
-                            Year = new DateTime(2024, 4, 12, 18, 2, 31, 65, DateTimeKind.Local).AddTicks(7055)
+                            Year = new DateTime(2024, 4, 16, 18, 0, 2, 472, DateTimeKind.Local).AddTicks(1631)
                         },
                         new
                         {
@@ -1081,7 +1081,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 5,
-                            Year = new DateTime(2024, 4, 12, 18, 2, 31, 65, DateTimeKind.Local).AddTicks(7058)
+                            Year = new DateTime(2024, 4, 16, 18, 0, 2, 472, DateTimeKind.Local).AddTicks(1636)
                         },
                         new
                         {
@@ -1104,7 +1104,7 @@ namespace BMW_Final_Project.Infrastructure.Migrations
                             TankCapacity = 21,
                             Transmission = "BMW 6-Gears transmission",
                             TypeMotorId = 6,
-                            Year = new DateTime(2024, 4, 12, 18, 2, 31, 65, DateTimeKind.Local).AddTicks(7062)
+                            Year = new DateTime(2024, 4, 16, 18, 0, 2, 472, DateTimeKind.Local).AddTicks(1641)
                         });
                 });
 

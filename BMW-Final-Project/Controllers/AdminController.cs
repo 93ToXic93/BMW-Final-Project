@@ -509,6 +509,12 @@ namespace BMW_Final_Project.Controllers
                 return NotFound();
             }
 
+            if (!(await _eventService.IsTheDatesAreCorrectAsync(modelToEdit.StartEvent, modelToEdit.EndEvent)))
+            {
+                ModelState.AddModelError(string.Empty, "Датата е невалидна, трябва да имат поне час разлика и започващата дата да не е преди завършващата!");
+            }
+
+
             if (eventEdited.Name != modelToEdit.Name)
             {
                 if (await _eventService.IsThisEventExistWhenEditAsync(modelToEdit))
