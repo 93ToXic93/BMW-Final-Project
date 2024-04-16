@@ -195,9 +195,9 @@ namespace BMW_Final_Project.UnitTests
                 .FirstOrDefaultAsync(x => x.Id == 3
                                           && x.Name == "Bmw-T-shirt3");
 
+            Assert.That(motorcycleToReturn, Is.Not.Null);
             Assert.That(motorcycleToReturn.IsActive, Is.True);
             Assert.That(actualCountInDb, Is.EqualTo(expectedCountInDb));
-            Assert.That(motorcycleToReturn, Is.Not.Null);
         }
 
         [TestCase("c8295132-e05b-491a-84ee-1049d1f036dc", 1, 1, 19)]

@@ -1,5 +1,4 @@
 ﻿using BMW_Final_Project.Infrastructure.Data.IdentityModels;
-using BMW_Final_Project.Infrastructure.Data.Models.Cloth;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;

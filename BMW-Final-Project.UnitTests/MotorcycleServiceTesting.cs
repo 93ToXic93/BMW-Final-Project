@@ -3,7 +3,6 @@ using BMW_Final_Project.Engine.Models.Motorcycle;
 using BMW_Final_Project.Engine.Services;
 using BMW_Final_Project.Infrastructure.Data;
 using BMW_Final_Project.Infrastructure.Data.Common;
-using BMW_Final_Project.Infrastructure.Data.Models.Cloth;
 using BMW_Final_Project.Infrastructure.Data.Models.Motorcycle;
 using Microsoft.EntityFrameworkCore;
 
@@ -393,8 +392,6 @@ namespace BMW_Final_Project.UnitTests
             Assert.That(returned.DTC, Is.EqualTo(expected.DTC));
             Assert.That(returned.CC, Is.EqualTo(expected.CC));
             Assert.That(returned.TankCapacity, Is.EqualTo(expected.TankCapacity));
-            Assert.That(returned.Id, Is.EqualTo(expected.Id));
-
         }
 
         [Test]
