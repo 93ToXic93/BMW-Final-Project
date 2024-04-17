@@ -58,7 +58,7 @@ namespace BMW_Final_Project.Infrastructure.Data
                     FirstName = "Adrian",
                     LastName = "Ivanov",
                     Nickname = "ToXic",
-                    PasswordHash = hasher.HashPassword(null, "123456")
+                    PasswordHash = hasher.HashPassword(null, "Aa123456")
                 });
 
             builder
