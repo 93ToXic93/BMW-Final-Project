@@ -551,28 +551,6 @@ html {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .login-Main-Container {
     font-family: sans-serif;
     background: linear-gradient(#141e30, #243b55);
@@ -1034,7 +1012,7 @@ html {
     }
 
     .acssesoars-photo {
-        width: 500px;
+        width: 300px;
     }
 
     .text-accsesoars-container {
@@ -1242,6 +1220,6 @@ html {
     box-shadow:10px 20px 40px 2px black;
 }
 .photo-of-Accsesoar {
-    width: 340px;
-    height: 280px;
+    width: 140px;
+    height: 180px;
 }
